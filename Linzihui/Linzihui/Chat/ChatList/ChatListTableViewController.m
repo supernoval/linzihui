@@ -12,6 +12,7 @@
 #import "NSDate+Category.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "ChatViewController.h"
+#import "LoginViewController.h"
 
 static NSString *cellId = @"ChatListCell";
 
@@ -48,10 +49,27 @@ static NSString *cellId = @"ChatListCell";
 {
     [super viewWillAppear:animated];
     
-    [self reFreshDataSource];
     
-    [self registerNotifications];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
+        
+        [self reFreshDataSource];
+        
+        [self registerNotifications];
+        
+        
+       
+    }
+    else
+    {
+       
+        UINavigationController *logNav = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+        
+        [self presentViewController:logNav animated:YES completion:nil];
+        
+        
+    }
     
+   
 }
 
 -(void)headerRefresh

@@ -11,4 +11,18 @@
 
 @interface LoginViewController : BaseViewController
 
+
+
+@property (weak, nonatomic) IBOutlet UITextField *usernameTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *codeTF;
+- (IBAction)loginButton:(id)sender;
+
+
+- (IBAction)registAction:(id)sender;
+
+
+- (IBAction)forgetCodeAction:(id)sender;
+
+
 @end

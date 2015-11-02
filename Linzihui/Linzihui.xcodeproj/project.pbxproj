@@ -166,6 +166,7 @@
 		15B7A5D71BE744A70052115F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5D61BE744A70052115F /* LoginViewController.m */; };
 		15B7A5DA1BE744C10052115F /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5D91BE744C10052115F /* RegistViewController.m */; };
 		15B7A5DF1BE74E790052115F /* LinJinTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */; };
+		15B7A5E21BE772CE0052115F /* MineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5E11BE772CE0052115F /* MineTableViewController.m */; };
 		15EFF9331BE7266A00069F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EFF9321BE7266A00069F38 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -564,6 +565,8 @@
 		15B7A5D91BE744C10052115F /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		15B7A5DD1BE74E790052115F /* LinJinTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinJinTableViewController.h; sourceTree = "<group>"; };
 		15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinJinTableViewController.m; sourceTree = "<group>"; };
+		15B7A5E01BE772CE0052115F /* MineTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineTableViewController.h; sourceTree = "<group>"; };
+		15B7A5E11BE772CE0052115F /* MineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewController.m; sourceTree = "<group>"; };
 		15EFF9321BE7266A00069F38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -620,6 +623,7 @@
 		153CE0121BE50D910032517E /* Linzihui */ = {
 			isa = PBXGroup;
 			children = (
+				15B7A5E31BE776840052115F /* linxin */,
 				15B7A5DC1BE74E490052115F /* linjin */,
 				15B7A5DB1BE744FA0052115F /* mine */,
 				15B7A5D41BE744890052115F /* Account */,
@@ -973,12 +977,12 @@
 		15B7A4161BE72F6B0052115F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				15B7A43F1BE72FA60052115F /* ChatList */,
 				15B7A4A81BE72FFE0052115F /* ChatAccountManager.h */,
 				15B7A4A91BE72FFE0052115F /* ChatAccountManager.m */,
 				15B7A45A1BE72FEE0052115F /* ChatView */,
 				15B7A4531BE72FD80052115F /* ChatViewController */,
 				15B7A4401BE72FB30052115F /* Emoji */,
-				15B7A43F1BE72FA60052115F /* ChatList */,
 				15B7A4231BE72F800052115F /* DeviceUtil */,
 				15B7A4171BE72F760052115F /* SlimeRefresh */,
 			);
@@ -1043,8 +1047,8 @@
 		15B7A43F1BE72FA60052115F /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
-				15B7A4471BE72FBC0052115F /* ChatListTableViewController.h */,
 				15B7A4481BE72FBC0052115F /* ChatListTableViewController.m */,
+				15B7A4471BE72FBC0052115F /* ChatListTableViewController.h */,
 				15B7A4491BE72FBC0052115F /* NSDate+Category.h */,
 				15B7A44A1BE72FBC0052115F /* NSDate+Category.m */,
 				15B7A44B1BE72FBC0052115F /* NSDateFormatter+Category.h */,
@@ -1523,6 +1527,8 @@
 		15B7A5DB1BE744FA0052115F /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				15B7A5E01BE772CE0052115F /* MineTableViewController.h */,
+				15B7A5E11BE772CE0052115F /* MineTableViewController.m */,
 			);
 			path = mine;
 			sourceTree = "<group>";
@@ -1534,6 +1540,13 @@
 				15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */,
 			);
 			path = linjin;
+			sourceTree = "<group>";
+		};
+		15B7A5E31BE776840052115F /* linxin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = linxin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1624,6 +1637,7 @@
 				15B7A4B11BE730150052115F /* BaseViewController.m in Sources */,
 				15B7A4511BE72FBC0052115F /* NSDateFormatter+Category.m in Sources */,
 				15B7A44F1BE72FBC0052115F /* ChatListTableViewController.m in Sources */,
+				15B7A5E21BE772CE0052115F /* MineTableViewController.m in Sources */,
 				15B7A54A1BE730460052115F /* UIImage+EMGIF.m in Sources */,
 				15B7A4501BE72FBC0052115F /* NSDate+Category.m in Sources */,
 				15B7A5581BE730460052115F /* PSTCollectionViewUpdateItem.m in Sources */,
