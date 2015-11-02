@@ -21,8 +21,14 @@
     
     [Bmob registerWithAppKey:kBmobApplicationID];
     
+    //设置navigationbar
+    [[UINavigationBar appearance] setTintColor:kNavigationTintColor];
+    [[UINavigationBar appearance ] setBarTintColor:kNavigationBarColor];
     
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
+    [[UITabBar appearance] setTintColor:kNavigationBarColor];
+    [[UITabBar appearance]setBarTintColor:[UIColor whiteColor]];
     
     
     return YES;

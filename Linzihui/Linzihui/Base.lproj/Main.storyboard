@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="43.5" y="557.25"/>
         </scene>
-        <!--Root View Controller-->
+        <!--邻近-->
         <scene sceneID="c5C-Yw-nme">
             <objects>
                 <tableViewController id="qCp-HB-Z3g" sceneMemberID="viewController">
@@ -53,7 +53,7 @@
                             <outlet property="delegate" destination="qCp-HB-Z3g" id="kRW-1i-ITR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="IXP-EJ-mGl"/>
+                    <navigationItem key="navigationItem" title="邻近" id="IXP-EJ-mGl"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARX-dD-ybp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,7 +63,7 @@
         <scene sceneID="yHv-Tt-rRg">
             <objects>
                 <navigationController title="邻近" id="csi-WM-Xgw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="邻近" id="Rp4-4N-AfS"/>
+                    <tabBarItem key="tabBarItem" title="邻近" image="linjin" selectedImage="linjin_1" id="Rp4-4N-AfS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Qc-LO-wxZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -75,9 +75,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmY-ZU-wk6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="897" y="690.75"/>
+            <point key="canvasLocation" x="924.5" y="735.5"/>
         </scene>
-        <!--Root View Controller-->
+        <!--我-->
         <scene sceneID="foG-Vh-LMK">
             <objects>
                 <tableViewController id="KES-Y8-aOX" sceneMemberID="viewController">
@@ -103,7 +103,7 @@
                             <outlet property="delegate" destination="KES-Y8-aOX" id="8vc-JM-qLJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="hpa-lV-tFK"/>
+                    <navigationItem key="navigationItem" title="我" id="hpa-lV-tFK"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sN9-AI-pYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,7 +113,7 @@
         <scene sceneID="IyG-M1-1zd">
             <objects>
                 <navigationController id="vfN-c8-SId" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" id="vRg-m1-irM"/>
+                    <tabBarItem key="tabBarItem" title="我" image="wo" selectedImage="wo_1" id="vRg-m1-irM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nuh-bN-Cqd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -125,9 +125,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNS-BO-9dY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896.25" y="1345.125"/>
+            <point key="canvasLocation" x="942.5" y="1547.5"/>
         </scene>
-        <!--Root View Controller-->
+        <!--邻友-->
         <scene sceneID="1W4-zP-oLb">
             <objects>
                 <tableViewController id="PIL-cN-TTe" sceneMemberID="viewController">
@@ -153,13 +153,13 @@
                             <outlet property="delegate" destination="PIL-cN-TTe" id="Rmz-rs-qNo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="k2k-ck-iit"/>
+                    <navigationItem key="navigationItem" title="邻友" id="k2k-ck-iit"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j9V-kQ-Acz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1842" y="3.75"/>
         </scene>
-        <!--Root View Controller-->
+        <!--邻信-->
         <scene sceneID="14Y-vS-Ltt">
             <objects>
                 <tableViewController id="4NW-4a-p5Q" sceneMemberID="viewController">
@@ -185,7 +185,7 @@
                             <outlet property="delegate" destination="4NW-4a-p5Q" id="iyw-aX-UI3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="jNd-6J-eDC"/>
+                    <navigationItem key="navigationItem" title="邻信" id="jNd-6J-eDC"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ON-PB-rMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -195,7 +195,7 @@
         <scene sceneID="e7q-t4-J0i">
             <objects>
                 <navigationController title="邻信" id="G5p-lz-l2F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="邻信" id="KtQ-6y-vph"/>
+                    <tabBarItem key="tabBarItem" title="邻信" image="linxin" selectedImage="linxin_1" id="KtQ-6y-vph"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jwU-iZ-06i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -213,7 +213,7 @@
         <scene sceneID="B5O-mZ-Usc">
             <objects>
                 <navigationController title="邻友" id="0Ud-Ih-Va1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="邻友" id="D4e-al-xmW"/>
+                    <tabBarItem key="tabBarItem" title="邻友" image="linyou" selectedImage="linyou_1" id="D4e-al-xmW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kio-Qw-0j8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -228,4 +228,14 @@
             <point key="canvasLocation" x="912" y="3.75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="linjin" width="22" height="22"/>
+        <image name="linjin_1" width="22" height="22"/>
+        <image name="linxin" width="22" height="22"/>
+        <image name="linxin_1" width="22" height="22"/>
+        <image name="linyou" width="22" height="22"/>
+        <image name="linyou_1" width="22" height="22"/>
+        <image name="wo" width="22" height="22"/>
+        <image name="wo_1" width="22" height="22"/>
+    </resources>
 </document>
