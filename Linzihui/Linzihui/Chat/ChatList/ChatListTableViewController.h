@@ -11,4 +11,9 @@
 
 @interface ChatListTableViewController : BaseTableViewController
 
+@property (weak, nonatomic) IBOutlet UIView *chatHeadView;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+
 @end

@@ -13,7 +13,7 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "ChatViewController.h"
 
-static NSString *cellId = @"ChatListCellTableViewCell";
+static NSString *cellId = @"ChatListCell";
 
 
 @interface ChatListTableViewController ()<EMChatManagerDelegate,UITableViewDataSource,UITableViewDelegate,IChatManagerDelegate>
@@ -31,7 +31,9 @@ static NSString *cellId = @"ChatListCellTableViewCell";
     
     [super viewDidLoad];
   
-    self.title = @"消息";
+    self.title = @"邻信";
+    
+    self.chatHeadView.frame = CGRectMake(0, 0, ScreenWidth, 44);
     
     
     _conversations = [[NSMutableArray alloc]init];

@@ -163,6 +163,9 @@
 		15B7A5CF1BE730E40052115F /* MyProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5CB1BE730E40052115F /* MyProgressHUD.m */; };
 		15B7A5D01BE730E40052115F /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15B7A5CC1BE730E40052115F /* ProgressHUD.bundle */; };
 		15B7A5D11BE730E40052115F /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5CE1BE730E40052115F /* ProgressHUD.m */; };
+		15B7A5D71BE744A70052115F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5D61BE744A70052115F /* LoginViewController.m */; };
+		15B7A5DA1BE744C10052115F /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5D91BE744C10052115F /* RegistViewController.m */; };
+		15B7A5DF1BE74E790052115F /* LinJinTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */; };
 		15EFF9331BE7266A00069F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EFF9321BE7266A00069F38 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -555,6 +558,12 @@
 		15B7A5CE1BE730E40052115F /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		15B7A5D21BE732360052115F /* NSUserDefaultKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultKeys.h; sourceTree = "<group>"; };
 		15B7A5D31BE732C40052115F /* ConstantsHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantsHeaders.h; sourceTree = "<group>"; };
+		15B7A5D51BE744A70052115F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		15B7A5D61BE744A70052115F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		15B7A5D81BE744C10052115F /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
+		15B7A5D91BE744C10052115F /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
+		15B7A5DD1BE74E790052115F /* LinJinTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinJinTableViewController.h; sourceTree = "<group>"; };
+		15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinJinTableViewController.m; sourceTree = "<group>"; };
 		15EFF9321BE7266A00069F38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -611,6 +620,9 @@
 		153CE0121BE50D910032517E /* Linzihui */ = {
 			isa = PBXGroup;
 			children = (
+				15B7A5DC1BE74E490052115F /* linjin */,
+				15B7A5DB1BE744FA0052115F /* mine */,
+				15B7A5D41BE744890052115F /* Account */,
 				15B7A4AB1BE730150052115F /* BaseViewControllers */,
 				15B7A4161BE72F6B0052115F /* Chat */,
 				154A39801BE5E5310042632E /* Constants */,
@@ -1497,6 +1509,33 @@
 			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
+		15B7A5D41BE744890052115F /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				15B7A5D51BE744A70052115F /* LoginViewController.h */,
+				15B7A5D61BE744A70052115F /* LoginViewController.m */,
+				15B7A5D81BE744C10052115F /* RegistViewController.h */,
+				15B7A5D91BE744C10052115F /* RegistViewController.m */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		15B7A5DB1BE744FA0052115F /* mine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = mine;
+			sourceTree = "<group>";
+		};
+		15B7A5DC1BE74E490052115F /* linjin */ = {
+			isa = PBXGroup;
+			children = (
+				15B7A5DD1BE74E790052115F /* LinJinTableViewController.h */,
+				15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */,
+			);
+			path = linjin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1608,6 +1647,8 @@
 				15B7A5391BE730460052115F /* MWGridViewController.m in Sources */,
 				153CE0181BE50D910032517E /* AppDelegate.m in Sources */,
 				15B7A5451BE730460052115F /* EMSDWebImageManager.m in Sources */,
+				15B7A5D71BE744A70052115F /* LoginViewController.m in Sources */,
+				15B7A5DF1BE74E790052115F /* LinJinTableViewController.m in Sources */,
 				15B7A4591BE72FE30052115F /* UIViewController+HUD.m in Sources */,
 				15B7A4A41BE72FEE0052115F /* MessageModel.m in Sources */,
 				15B7A53C1BE730460052115F /* MWTapDetectingImageView.m in Sources */,
@@ -1694,6 +1735,7 @@
 				15B7A5CF1BE730E40052115F /* MyProgressHUD.m in Sources */,
 				15B7A4AA1BE72FFE0052115F /* ChatAccountManager.m in Sources */,
 				15B7A4921BE72FEE0052115F /* ChatViewController+Category.m in Sources */,
+				15B7A5DA1BE744C10052115F /* RegistViewController.m in Sources */,
 				15B7A5481BE730460052115F /* NSData+EMImageContentType.m in Sources */,
 				15B7A4911BE72FEE0052115F /* ChatSendHelper.m in Sources */,
 				15B7A49E1BE72FEE0052115F /* EMChatLocationBubbleView.m in Sources */,

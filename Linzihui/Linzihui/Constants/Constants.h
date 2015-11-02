@@ -14,6 +14,10 @@
 #pragma mark -  环信
 #define kEseamobAppKey            @"shiwaitaoyuan#linzihui"
 
+#pragma mark - 短信验证  shareSDK
+#define kShareSMSAppKey           @"bd2e97285a60"
+#define kShareSMSAppSecret        @"a674e74bf5ee044aab7695bdf0135a29"
+
 
 
 
@@ -27,7 +31,7 @@
 
 #define kTabbarBarTintColor        RGB(0,0,0,0.9)
 
-#define kBackgroundColor           RGB(255,255,255,1)
+#define kBackgroundColor           RGB(240,240,240,1)
 
 #define kOrangeTextColor           RGB(255,105,0,0.9)
 

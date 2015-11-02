@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <BmobSDK/Bmob.h>
 #import "Constants.h"
+#import <SMS_SDK/SMSSDK.h>
+
 @interface AppDelegate ()
 
 @end
@@ -29,6 +31,9 @@
     
     [[UITabBar appearance] setTintColor:kNavigationBarColor];
     [[UITabBar appearance]setBarTintColor:[UIColor whiteColor]];
+    
+    //sharesdk sms 注册
+    [SMSSDK registerApp:kShareSMSAppKey withSecret:kShareSMSAppSecret];
     
     
     return YES;
