@@ -71,7 +71,9 @@ static ChatAccountManager *manager;
                  case EMErrorNotFound:
                  {
                     
-                     [CommonMethods showDefaultErrorString:@"未找到该账户注册信息"];
+                     [self registWithAccount:account successBlock:isSuccess];
+                     
+//                     [CommonMethods showDefaultErrorString:@"未找到该账户注册信息"];
                      
                  }
                      break;
@@ -83,21 +85,21 @@ static ChatAccountManager *manager;
                      break;
                  case EMErrorServerNotReachable:
                  {
-                     [CommonMethods showDefaultErrorString:@"登陆失败,请稍后再试"];
+//                     [CommonMethods showDefaultErrorString:@"登陆失败,请稍后再试"];
                      
                  }
                 
                      break;
                  case EMErrorServerAuthenticationFailure:
                  {
-                     [CommonMethods showDefaultErrorString:@"登陆失败"];
+//                     [CommonMethods showDefaultErrorString:@"登陆失败"];
                      
                  }
                     
                      break;
                  case EMErrorServerTimeout:
                  {
-                     [CommonMethods showDefaultErrorString:@"登陆失败"];
+//                     [CommonMethods showDefaultErrorString:@"登陆失败"];
                  }
              
                      break;

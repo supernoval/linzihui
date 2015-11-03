@@ -20,6 +20,8 @@
 #import "SDPhotoItem.h"
 #import "SDPhotoGroup.h"
 #import "ConstantsHeaders.h"
+#import <BmobSDK/Bmob.h>
+
 
 
 

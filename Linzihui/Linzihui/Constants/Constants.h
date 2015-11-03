@@ -15,8 +15,8 @@
 #define kEseamobAppKey            @"shiwaitaoyuan#linzihui"
 
 #pragma mark - 短信验证  shareSDK
-#define kShareSMSAppKey           @"bd2e97285a60"
-#define kShareSMSAppSecret        @"a674e74bf5ee044aab7695bdf0135a29"
+#define kShareSMSAppKey           @"bda4046e6c7c"
+#define kShareSMSAppSecret        @"7212b6997e38237ed00ad4ce0f332ed7"
 
 
 
