@@ -42,7 +42,10 @@ static NSString *cellId = @"ChatListCell";
 //    [self addHeaderRefresh];
 //    [self addFooterRefresh];
     
+    //去掉搜索框黑线
+    [[[[_searchBar.subviews objectAtIndex : 0 ] subviews ] objectAtIndex : 0 ] removeFromSuperview ];
     
+//    [ MySearchBar setBackgroundColor :[ UIColor clearColor ]];
     
 }
 -(void)viewWillAppear:(BOOL)animated

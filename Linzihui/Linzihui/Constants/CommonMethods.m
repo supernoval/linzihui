@@ -646,5 +646,70 @@
 }
 
 
++(void)upLoadPhotos:(NSArray *)photos resultBlock:(upLoadPhotoBlock)block
+{
+    if (photos.count > 0) {
+        
+        NSMutableArray *photosDataArray = [[NSMutableArray alloc]init];
+        
+        for (NSInteger i = 0 ; i  < photos.count ; i ++) {
+            
+            UIImage *oneImage = [photos objectAtIndex:i];
+            NSData *imageData = UIImageJPEGRepresentation(oneImage, 1);
+            
+            
+            
+            NSDictionary *imagedataDic = @{@"data":imageData,@"filename":@"image.jpg"};
+            
+            [photosDataArray addObject:imagedataDic];
+            
+            
+        }
+        
+        
+        
+        [MyProgressHUD showProgress];
+        
+        
+        [BmobProFile uploadFilesWithDatas:photosDataArray resultBlock:^(NSArray *filenameArray, NSArray *urlArray, NSArray *bmobFileArray, NSError *error) {
+            
+            
+            [MyProgressHUD dismiss];
+            
+            if (error) {
+                
+                NSLog(@"%s,error:%@",__func__,error);
+                
+                NSLog(@"图片上传失败");
+                
+                [CommonMethods showDefaultErrorString:@"图片上传失败，请重新上传"];
+                
+                block(NO,nil);
+                
+                
+            }else
+            {
+                
+                NSLog(@"filename:%@  urlArray:%@",filenameArray,urlArray);
+               
+                //回调
+                block(YES,filenameArray);
+                
+                
+            }
+      
+         
+            
+        } progress:^(NSUInteger index, CGFloat progress) {
+            
+            
+        }];
+        
+        
+        
+        
+        
+    }
+}
 
 @end

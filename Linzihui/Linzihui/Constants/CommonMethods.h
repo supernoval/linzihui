@@ -13,6 +13,11 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "StringHeight.h"
+
+
+#import <BmobSDK/Bmob.h>
+#import <BmobSDK/BmobProFile.h>
+
 typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 
 

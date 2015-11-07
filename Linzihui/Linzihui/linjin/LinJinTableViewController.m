@@ -30,6 +30,8 @@ static NSString *CellID = @"CellID";
    _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"}];
     
     
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
