@@ -137,8 +137,6 @@
 		15B7A5831BE730580052115F /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5761BE730580052115F /* amrFileCodec.mm */; };
 		15B7A5841BE730580052115F /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5781BE730580052115F /* wav.mm */; };
 		15B7A5851BE730580052115F /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A57A1BE730580052115F /* EMVoiceConverter.mm */; };
-		15B7A5861BE730580052115F /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7A57E1BE730580052115F /* libopencore-amrnb.a */; };
-		15B7A5871BE730580052115F /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7A5821BE730580052115F /* libopencore-amrwb.a */; };
 		15B7A5AA1BE7305D0052115F /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A58A1BE7305D0052115F /* MKAnnotationView+WebCache.m */; };
 		15B7A5AB1BE7305D0052115F /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A58C1BE7305D0052115F /* NSData+ImageContentType.m */; };
 		15B7A5AC1BE7305D0052115F /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A58E1BE7305D0052115F /* SDImageCache.m */; };
@@ -184,6 +182,8 @@
 		15EE46F91BE879D600538EA5 /* LinYouTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46F81BE879D600538EA5 /* LinYouTableViewController.m */; };
 		15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46FF1BE891FC00538EA5 /* AddNewFriendsTVC.m */; };
 		15EFF9331BE7266A00069F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EFF9321BE7266A00069F38 /* Assets.xcassets */; };
+		15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */; };
+		15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -523,10 +523,8 @@
 		15B7A57A1BE730580052115F /* EMVoiceConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EMVoiceConverter.mm; sourceTree = "<group>"; };
 		15B7A57C1BE730580052115F /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
 		15B7A57D1BE730580052115F /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
-		15B7A57E1BE730580052115F /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		15B7A5801BE730580052115F /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		15B7A5811BE730580052115F /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
-		15B7A5821BE730580052115F /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 		15B7A5891BE7305D0052115F /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		15B7A58A1BE7305D0052115F /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		15B7A58B1BE7305D0052115F /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -619,6 +617,8 @@
 		15EE46FE1BE891FC00538EA5 /* AddNewFriendsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewFriendsTVC.h; sourceTree = "<group>"; };
 		15EE46FF1BE891FC00538EA5 /* AddNewFriendsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewFriendsTVC.m; sourceTree = "<group>"; };
 		15EFF9321BE7266A00069F38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -630,12 +630,12 @@
 				15B7A5C21BE730780052115F /* SMS_SDK.framework in Frameworks */,
 				154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */,
 				154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */,
+				15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */,
 				154A397B1BE5E4830042632E /* libsqlite3.tbd in Frameworks */,
+				15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */,
 				154A39F41BE5E6F50042632E /* libstdc++.6.0.9.tbd in Frameworks */,
 				154A39711BE5E4520042632E /* CFNetwork.framework in Frameworks */,
 				15B7A5C11BE730770052115F /* MOBFoundation.framework in Frameworks */,
-				15B7A5871BE730580052115F /* libopencore-amrwb.a in Frameworks */,
-				15B7A5861BE730580052115F /* libopencore-amrnb.a in Frameworks */,
 				154A396F1BE5E44C0042632E /* MobileCoreServices.framework in Frameworks */,
 				154A397F1BE5E5100042632E /* MediaPlayer.framework in Frameworks */,
 				154A397D1BE5E5070042632E /* AVFoundation.framework in Frameworks */,
@@ -1490,7 +1490,7 @@
 			children = (
 				15B7A57C1BE730580052115F /* interf_dec.h */,
 				15B7A57D1BE730580052115F /* interf_enc.h */,
-				15B7A57E1BE730580052115F /* libopencore-amrnb.a */,
+				15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */,
 			);
 			path = "opencore-amrnb";
 			sourceTree = "<group>";
@@ -1500,7 +1500,7 @@
 			children = (
 				15B7A5801BE730580052115F /* dec_if.h */,
 				15B7A5811BE730580052115F /* if_rom.h */,
-				15B7A5821BE730580052115F /* libopencore-amrwb.a */,
+				15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */,
 			);
 			path = "opencore-amrwb";
 			sourceTree = "<group>";
@@ -2053,7 +2053,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7e2dca90-bf3d-422e-bae7-471400ef0dd5";
+				PROVISIONING_PROFILE = "474127e4-1952-451b-9137-c4621236e8d0";
 			};
 			name = Debug;
 		};
