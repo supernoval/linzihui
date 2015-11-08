@@ -39,3 +39,7 @@
 /*宽高*/
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
+
+//默认头像
+#define kDefaultHeadImage   [UIImage imageNamed:@"wo"]

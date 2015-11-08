@@ -184,6 +184,9 @@
 		15EFF9331BE7266A00069F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EFF9321BE7266A00069F38 /* Assets.xcassets */; };
 		15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */; };
 		15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */; };
+		15FB7FED1BEF48E6007D6EC8 /* BaseBmobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */; };
+		15FB7FF11BEF5206007D6EC8 /* ChangePersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FF01BEF5206007D6EC8 /* ChangePersonInfoVC.m */; };
+		15FB7FF41BEF53D5007D6EC8 /* BmobHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -619,6 +622,12 @@
 		15EFF9321BE7266A00069F38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		15FB7FEB1BEF48E6007D6EC8 /* BaseBmobModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseBmobModel.h; sourceTree = "<group>"; };
+		15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseBmobModel.m; sourceTree = "<group>"; };
+		15FB7FEF1BEF5206007D6EC8 /* ChangePersonInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePersonInfoVC.h; sourceTree = "<group>"; };
+		15FB7FF01BEF5206007D6EC8 /* ChangePersonInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePersonInfoVC.m; sourceTree = "<group>"; };
+		15FB7FF21BEF53D5007D6EC8 /* BmobHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BmobHelper.h; sourceTree = "<group>"; };
+		15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BmobHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -755,6 +764,8 @@
 				15B7A5C31BE730900052115F /* CommonMethods.h */,
 				15B7A5C41BE730900052115F /* CommonMethods.m */,
 				154A39811BE5E5420042632E /* Constants.h */,
+				15FB7FF21BEF53D5007D6EC8 /* BmobHelper.h */,
+				15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1587,6 +1598,7 @@
 		15B7A5DB1BE744FA0052115F /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				15FB7FEE1BEF51CA007D6EC8 /* changePersonInfo */,
 				15B7A5E01BE772CE0052115F /* MineTableViewController.h */,
 				15B7A5E11BE772CE0052115F /* MineTableViewController.m */,
 			);
@@ -1668,6 +1680,8 @@
 				15EE46EA1BE85C5D00538EA5 /* UserModel.h */,
 				15EE46EB1BE85C5D00538EA5 /* UserModel.m */,
 				15EE46ED1BE85CD100538EA5 /* ModelHeader.h */,
+				15FB7FEB1BEF48E6007D6EC8 /* BaseBmobModel.h */,
+				15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1689,6 +1703,15 @@
 				15EE46FF1BE891FC00538EA5 /* AddNewFriendsTVC.m */,
 			);
 			name = addNewFriends;
+			sourceTree = "<group>";
+		};
+		15FB7FEE1BEF51CA007D6EC8 /* changePersonInfo */ = {
+			isa = PBXGroup;
+			children = (
+				15FB7FEF1BEF5206007D6EC8 /* ChangePersonInfoVC.h */,
+				15FB7FF01BEF5206007D6EC8 /* ChangePersonInfoVC.m */,
+			);
+			name = changePersonInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1773,6 +1796,7 @@
 				15B7A4D41BE730320052115F /* UIScrollView+MJExtension.m in Sources */,
 				15B7A55C1BE730460052115F /* PSTGridLayoutSection.m in Sources */,
 				15B7A5B81BE7305D0052115F /* UIImageView+WebCache.m in Sources */,
+				15FB7FF11BEF5206007D6EC8 /* ChangePersonInfoVC.m in Sources */,
 				15B7A4381BE72F800052115F /* EMAudioPlayerUtil.m in Sources */,
 				15B7A5B21BE7305D0052115F /* SDWebImagePrefetcher.m in Sources */,
 				15B7A4CF1BE730320052115F /* MJRefreshGifFooter.m in Sources */,
@@ -1788,6 +1812,7 @@
 				15B7A53F1BE730460052115F /* DACircularProgressView.m in Sources */,
 				15B7A4D21BE730320052115F /* MJRefreshLegendFooter.m in Sources */,
 				15B7A5B91BE7305D0052115F /* UIView+WebCacheOperation.m in Sources */,
+				15FB7FF41BEF53D5007D6EC8 /* BmobHelper.m in Sources */,
 				15B7A4931BE72FEE0052115F /* ChatViewController.m in Sources */,
 				15B7A5571BE730460052115F /* PSTCollectionViewLayout.m in Sources */,
 				15B7A5511BE730460052115F /* PSTCollectionView.m in Sources */,
@@ -1894,6 +1919,7 @@
 				15B7A49A1BE72FEE0052115F /* DXRecordView.m in Sources */,
 				15B7A5AC1BE7305D0052115F /* SDImageCache.m in Sources */,
 				15B7A5561BE730460052115F /* PSTCollectionViewItemKey.m in Sources */,
+				15FB7FED1BEF48E6007D6EC8 /* BaseBmobModel.m in Sources */,
 				15B7A4461BE72FB30052115F /* EmojiEmoticons.m in Sources */,
 				15B7A54D1BE730460052115F /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				15B7A56C1BE7304D0052115F /* SDPhotoGroup.m in Sources */,
@@ -2053,7 +2079,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "474127e4-1952-451b-9137-c4621236e8d0";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};

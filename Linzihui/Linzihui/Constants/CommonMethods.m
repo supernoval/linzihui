@@ -692,8 +692,17 @@
                 
                 NSLog(@"filename:%@  urlArray:%@",filenameArray,urlArray);
                
+                NSMutableArray *temUrlArray = [[NSMutableArray alloc]init];
+                
+                for (int i = 0; i < bmobFileArray.count; i ++) {
+                    
+                    BmobFile *file = [bmobFileArray objectAtIndex:i];
+                    
+                    [temUrlArray addObject:file.url];
+                    
+                }
                 //回调
-                block(YES,filenameArray);
+                block(YES,temUrlArray);
                 
                 
             }

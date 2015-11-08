@@ -8,18 +8,77 @@
 
 #import "MineTableViewController.h"
 #import "CommonMethods.h"
+#import "ConstantsHeaders.h"
+#import "ModelHeader.h"
+#import "ChangePersonInfoVC.h"
+
+static NSInteger photoActionSheetTag = 99;
+
+static NSInteger sextActionSheetTag  = 100;
+
 
 @interface MineTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
-
+{
+    NSArray *_titlesArray;
+    
+    UserModel *_model;
+    
+}
 @end
 
 @implementation MineTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
+    _titlesArray = [self titlesArray];
+
+    _model = [[UserModel alloc]init];
+    
+
+    
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self requestPerSonInfo];
+    
+}
+
+-(NSArray *)titlesArray
+{
+    NSArray *titles = @[@"头像",@"昵称",@"邻子号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"地区",@"个性签名"];
+    
+    return titles;
+    
+}
+
+
+#pragma mark - 请求个人信息 
+-(void)requestPerSonInfo
+{
+    BmobQuery *queryPersonInfo = [BmobQuery queryForUser];
+    
+    BmobUser *currentUser = [BmobUser getCurrentUser];
+    
+    [queryPersonInfo whereKey:@"objectId" equalTo:currentUser.objectId];
+    
+    
+    
+    [BmobHelper queryWithObject:queryPersonInfo model:_model result:^(BOOL success, id object) {
+        
+        if (success) {
+            
+            [self.tableView reloadData];
+            
+        }
+    }];
+    
+  
+}
 
 
 
@@ -45,7 +104,7 @@
     switch (section) {
         case 0:
         {
-            return 5;
+            return 6;
         }
             break;
         case 1:
@@ -80,15 +139,134 @@
     
     if (indexPath.section == 0) {
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeadPhotoCell"];
         
-        
-        return cell;
+        if (indexPath.row == 0) {
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeadPhotoCell"];
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
+                
+                UIImageView *imageView = (UIImageView*)[cell viewWithTag:101];
+                
+                titleLabel.text = [_titlesArray objectAtIndex:indexPath.row];
+                
+                [imageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];
+                
+                
+                
+                
+            });
+            
+            return cell;
+            
+        }
+        else
+        {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentLabelCell"];
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
+                
+                 UILabel *contentLabel = (UILabel *)[cell viewWithTag:101];
+                
+                titleLabel.text = [_titlesArray objectAtIndex:indexPath.row];
+                
+                
+                switch (indexPath.row) {
+                    case 1: //昵称
+                    {
+                        if (_model.nickName) {
+                            
+                             contentLabel.text = _model.nickName;
+                        }
+                       
+                        
+                    }
+                        break;
+                    case 2:  //林子号
+                    {
+                        contentLabel.text = _model.objectId;
+                        
+                    }
+                        break;
+                    case 3:
+                    {
+                        
+                    }
+                        break;
+                        
+                        
+                    default:
+                        break;
+                }
+            });
+            
+            
+            return cell;
+        }
+   
     }
     else
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentLabelCell"];
         
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
+            
+            UILabel *contentLabel = (UILabel *)[cell viewWithTag:101];
+            
+            titleLabel.text = [_titlesArray objectAtIndex:indexPath.row + 6];
+            
+            
+            switch (indexPath.row) {
+                case 0: //性别
+                {
+                  
+                        
+                        if (_model.sex == 0) {
+                            
+                            contentLabel.text = @"女";
+                            
+                         }
+                        
+                        if (_model.sex == 1) {
+                            
+                            contentLabel.text = @"男";
+                            
+                         }
+                    
+                }
+                    break;
+                case 1: //地区
+                {
+                    
+                }
+                    break;
+                case 2:  //个性签名
+                {
+                    if (_model.selfComment) {
+                        
+                        contentLabel.text = _model.selfComment;
+                        
+                    }
+                    
+                }
+                    break;
+                    
+                    
+                default:
+                    break;
+            }
+            
+        });
+
         
         return cell;
     }
@@ -114,11 +292,103 @@
                 
                 _pickActionSheet.cancelButtonIndex = 2;
                 
-                _pickActionSheet.tag = 99;
+                _pickActionSheet.tag = photoActionSheetTag;
                 
                 [_pickActionSheet showInView:self.view];
             }
                 break;
+            case 1:  //昵称
+            {
+                ChangePersonInfoVC *_changeInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePersonInfoVC"];
+                
+                _changeInfoVC.changeTitle = @"修改昵称";
+                
+                _changeInfoVC.key = @"nickName";
+           
+               
+                _changeInfoVC.hidesBottomBarWhenPushed = YES;
+                
+           
+                _changeInfoVC.value = _model.nickName;
+                
+                [self.navigationController pushViewController:_changeInfoVC animated:YES];
+                
+                
+                
+            }
+                break;
+            case 2:  //邻子号
+            {
+                
+            }
+                break;
+            case 3: //邀请码
+            {
+                
+            }
+                break;
+            case 4: //二维码名片
+            {
+                
+            }
+                break;
+                
+            case 5:  //我的地址
+            {
+                
+            }
+                break;
+        
+                
+                
+            default:
+                break;
+        }
+     }
+    
+    if (indexPath.section == 1) {
+        
+        
+        switch (indexPath.row) {
+            case 0: //性别
+            {
+                UIActionSheet *_pickActionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+                _pickActionSheet.delegate = self;
+                
+                [_pickActionSheet addButtonWithTitle:@"男"];
+                [_pickActionSheet addButtonWithTitle:@"女"];
+                
+                [_pickActionSheet addButtonWithTitle:@"取消"];
+                
+                _pickActionSheet.cancelButtonIndex = 2;
+                
+                _pickActionSheet.tag = sextActionSheetTag;
+                
+                [_pickActionSheet showInView:self.view];
+            }
+                break;
+            case 1:  //地区
+            {
+                
+            }
+                break;
+            case 2:  //个性签名
+            {
+                ChangePersonInfoVC *_changeInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePersonInfoVC"];
+                
+                _changeInfoVC.changeTitle = @"修改个性签名";
+                
+                
+                _changeInfoVC.hidesBottomBarWhenPushed = YES;
+                
+                
+                _changeInfoVC.value = _model.selfComment;
+                _changeInfoVC.key = @"selfComment";
+                
+                [self.navigationController pushViewController:_changeInfoVC animated:YES];
+            }
+                break;
+                
                 
             default:
                 break;
@@ -144,6 +414,38 @@
     
     [CommonMethods upLoadPhotos:@[cutImage] resultBlock:^(BOOL success, NSArray *results) {
         
+        if (success) {
+            
+            NSLog(@"results:%@",results);
+            
+            if (results.count > 0) {
+                
+                _model.headImageURL = [results firstObject];
+                
+                [BmobHelper updateBmobWithKey:@"headImageURL" value:_model.headImageURL object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
+                    
+                    if (isSuccess) {
+                        
+                         [self.tableView reloadData];
+                        
+                        
+                    }
+                    else
+                    {
+                        [CommonMethods showDefaultErrorString:@"头像修改失败，请重试"];
+                        
+                    }
+                    
+                }];
+                
+                
+               
+                
+               
+                
+            }
+        }
+        
     }];
     
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -161,7 +463,7 @@
 #pragma  mark - UIActionSheetDelegate
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag == 99) {
+    if (actionSheet.tag == photoActionSheetTag) {
         
         switch (buttonIndex) {
             case 0:
@@ -190,6 +492,41 @@
             default:
                 break;
         }
+    }
+    
+    
+    if (actionSheet.tag == sextActionSheetTag) {
+        
+        if (buttonIndex == 0) //男
+        {
+            
+            [BmobHelper updateBmobWithKey:@"sex" value:@(1) object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
+                
+                if (isSuccess) {
+                    
+                    _model.sex = 1;
+                    
+                    [self.tableView reloadData];
+                    
+                }
+            }];
+            
+        }
+        else if (buttonIndex == 1) //女
+        {
+           
+            [BmobHelper updateBmobWithKey:@"sex" value:@(0) object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
+                
+                if (isSuccess) {
+                    
+                    _model.sex = 0;
+                    
+                    [self.tableView reloadData];
+                }
+            }];
+
+        }
+    
     }
 }
 
