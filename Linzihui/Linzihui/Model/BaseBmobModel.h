@@ -7,6 +7,7 @@
 //
 
 #import "JSONModel.h"
+#import <BmobSDK/Bmob.h>
 
 @interface BaseBmobModel : JSONModel
 
@@ -14,6 +15,7 @@
 @property (nonatomic,strong)  NSString *updatedAt;
 @property (nonatomic,strong)  NSString *objectId;
 
+-(id)initwithBmobObject:(BmobObject*)object;
 
 
 @end

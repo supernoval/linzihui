@@ -187,6 +187,7 @@
 		15FB7FED1BEF48E6007D6EC8 /* BaseBmobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */; };
 		15FB7FF11BEF5206007D6EC8 /* ChangePersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FF01BEF5206007D6EC8 /* ChangePersonInfoVC.m */; };
 		15FB7FF41BEF53D5007D6EC8 /* BmobHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */; };
+		15FB7FF71BEF6E39007D6EC8 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FF61BEF6E39007D6EC8 /* ChineseToPinyin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -628,6 +629,8 @@
 		15FB7FF01BEF5206007D6EC8 /* ChangePersonInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePersonInfoVC.m; sourceTree = "<group>"; };
 		15FB7FF21BEF53D5007D6EC8 /* BmobHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BmobHelper.h; sourceTree = "<group>"; };
 		15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BmobHelper.m; sourceTree = "<group>"; };
+		15FB7FF51BEF6E33007D6EC8 /* ChineseToPinyin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
+		15FB7FF61BEF6E39007D6EC8 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1042,9 +1045,9 @@
 		15B7A4161BE72F6B0052115F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				15B7A43F1BE72FA60052115F /* ChatList */,
 				15B7A4A81BE72FFE0052115F /* ChatAccountManager.h */,
 				15B7A4A91BE72FFE0052115F /* ChatAccountManager.m */,
+				15B7A43F1BE72FA60052115F /* ChatList */,
 				15B7A45A1BE72FEE0052115F /* ChatView */,
 				15B7A4531BE72FD80052115F /* ChatViewController */,
 				15B7A4401BE72FB30052115F /* Emoji */,
@@ -1690,6 +1693,8 @@
 			isa = PBXGroup;
 			children = (
 				15EE46FD1BE891D500538EA5 /* addNewFriends */,
+				15FB7FF51BEF6E33007D6EC8 /* ChineseToPinyin.h */,
+				15FB7FF61BEF6E39007D6EC8 /* ChineseToPinyin.m */,
 				15EE46F71BE879D600538EA5 /* LinYouTableViewController.h */,
 				15EE46F81BE879D600538EA5 /* LinYouTableViewController.m */,
 			);
@@ -1827,6 +1832,7 @@
 				15B7A4CD1BE730320052115F /* MJRefreshConst.m in Sources */,
 				15B7A4B01BE730150052115F /* BaseTableViewController.m in Sources */,
 				15B7A5AA1BE7305D0052115F /* MKAnnotationView+WebCache.m in Sources */,
+				15FB7FF71BEF6E39007D6EC8 /* ChineseToPinyin.m in Sources */,
 				15EE46F51BE8644100538EA5 /* ChangeCodeTVC.m in Sources */,
 				15B7A4CC1BE730320052115F /* MJRefreshComponent.m in Sources */,
 				15B7A5391BE730460052115F /* MWGridViewController.m in Sources */,

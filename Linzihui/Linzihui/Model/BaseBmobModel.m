@@ -10,6 +10,21 @@
 
 @implementation BaseBmobModel
 
+-(id)initwithBmobObject:(BmobObject*)object
+{
+    
+    if (self == [super init]) {
+        
+        
+        NSDictionary *dataDic = [object valueForKey:@"bmobDataDic"];
+        
+        [self setValuesForKeysWithDictionary:dataDic];
+        
+        
+    }
+    
+    return self;
+}
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     NSLog(@"undefineKey:%@",key);

@@ -53,7 +53,11 @@
             
             [[ChatAccountManager shareChatAccountManager] loginWithAccount:_usernameTF.text successBlock:^(BOOL isSuccess) {
                
-                
+                if (isSuccess) {
+                    
+                    NSLog(@"环信账号登陆成功!");
+                    
+                }
                 
             }];
             [[NSUserDefaults standardUserDefaults ] setBool:YES forKey:kHadLogin];
