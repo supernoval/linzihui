@@ -41,8 +41,17 @@ static ChatAccountManager *manager;
      ^(NSDictionary *loginInfo, EMError *error) {
          
          if (loginInfo && !error) {
+             
+              [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+             
              //设置是否自动登录
+              [[EaseMob sharedInstance].chatManager enableAutoLogin];
+             
              [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+             
+             [[EaseMob sharedInstance ].chatManager enableDeliveryNotification];
+             
+             
              
            
              //获取数据库中数据

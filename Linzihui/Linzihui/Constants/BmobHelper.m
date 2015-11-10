@@ -205,6 +205,7 @@
     
     BmobQuery *getAllFollowMes = [BmobQuery queryWithClassName:@"Follow"];
     
+    BmobUser *currentUser = [BmobUser getCurrentUser];
     
     for (UserModel *oneModel in itemArray) {
         
@@ -217,11 +218,12 @@
     [getAllFollowMes findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         if (!error && array.count > 0) {
             
-//            NSLog(@"followMes:%@",array);
+            NSLog(@"followMes:%@",array);
             
             NSMutableArray *temArray = [[NSMutableArray alloc]initWithArray:array];
-             BmobObject *temOb = [array objectAtIndex:0];
+             BmobObject *targetOb = [array objectAtIndex:0];
             
+            NSLog(@"targetOb.objectId:%@",targetOb.objectId);
             
           
             for (int i = 0;i < followsArray.count ; i++) {
@@ -232,27 +234,28 @@
                     
                     UserModel *model = [itemArray objectAtIndex:d];
                     
-                 
+                    //判断关注我的人里面有没有这个人的 objectId
                     if ([obId isEqualToString:model.objectId]) {
                         
                         
-                        //再遍历
+                        //再遍历 判断 我有没有关注这个人
                         for (int f = 0; f < temArray.count ; f ++) {
                             
                             BmobObject *temOb = [temArray objectAtIndex:f];
                             
-                            if ([temOb.objectId isEqualToString:model.objectId]) {
                                 
                                 NSArray *followMes = [temOb objectForKey:@"followMes"];
                                 
                                 for (NSString *temID in followMes) {
                                     
-                                    if ([temID isEqualToString:obId]) {
+                                    
+                                    
+                                    if ([temID isEqualToString:currentUser.objectId]) {
                                         
                                         model.followEach = YES;
                                         
                                     }
-                                }
+                                
                             }
                         }
                         

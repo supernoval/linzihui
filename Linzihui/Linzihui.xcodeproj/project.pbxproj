@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C31BF1872900F91C06 /* EditPhotoViewController.m */; };
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
+		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
+		152877141BF251CE00321E50 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877131BF251CE00321E50 /* InvitationManager.m */; };
 		153CE0151BE50D910032517E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0141BE50D910032517E /* main.m */; };
 		153CE0181BE50D910032517E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0171BE50D910032517E /* AppDelegate.m */; };
 		153CE01E1BE50D910032517E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153CE01C1BE50D910032517E /* Main.storyboard */; };
@@ -197,6 +199,10 @@
 		152579C31BF1872900F91C06 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		152579C41BF1872900F91C06 /* STScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScratchView.h; sourceTree = "<group>"; };
 		152579C51BF1872900F91C06 /* STScratchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STScratchView.m; sourceTree = "<group>"; };
+		1528770F1BF23B7100321E50 /* EMHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHelper.h; sourceTree = "<group>"; };
+		152877101BF23B7100321E50 /* EMHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHelper.m; sourceTree = "<group>"; };
+		152877121BF251CA00321E50 /* InvitationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
+		152877131BF251CE00321E50 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		153CE0101BE50D910032517E /* Linzihui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linzihui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		153CE0141BE50D910032517E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		153CE0161BE50D910032517E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -633,8 +639,8 @@
 		15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseBmobModel.m; sourceTree = "<group>"; };
 		15FB7FEF1BEF5206007D6EC8 /* ChangePersonInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePersonInfoVC.h; sourceTree = "<group>"; };
 		15FB7FF01BEF5206007D6EC8 /* ChangePersonInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePersonInfoVC.m; sourceTree = "<group>"; };
-		15FB7FF21BEF53D5007D6EC8 /* BmobHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BmobHelper.h; sourceTree = "<group>"; };
-		15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BmobHelper.m; sourceTree = "<group>"; };
+		15FB7FF21BEF53D5007D6EC8 /* BmobHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BmobHelper.h; path = Constants/BmobHelper.h; sourceTree = "<group>"; };
+		15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BmobHelper.m; path = Constants/BmobHelper.m; sourceTree = "<group>"; };
 		15FB7FF51BEF6E33007D6EC8 /* ChineseToPinyin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
 		15FB7FF61BEF6E39007D6EC8 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -683,6 +689,19 @@
 			path = STSCropPhoto;
 			sourceTree = "<group>";
 		};
+		1528770E1BF23B4100321E50 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				15FB7FF21BEF53D5007D6EC8 /* BmobHelper.h */,
+				15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */,
+				1528770F1BF23B7100321E50 /* EMHelper.h */,
+				152877101BF23B7100321E50 /* EMHelper.m */,
+				152877121BF251CA00321E50 /* InvitationManager.h */,
+				152877131BF251CE00321E50 /* InvitationManager.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		153CE0071BE50D900032517E = {
 			isa = PBXGroup;
 			children = (
@@ -703,6 +722,7 @@
 		153CE0121BE50D910032517E /* Linzihui */ = {
 			isa = PBXGroup;
 			children = (
+				1528770E1BF23B4100321E50 /* Helper */,
 				15EE46F61BE8796200538EA5 /* linyou */,
 				15B7A5DC1BE74E490052115F /* linjin */,
 				15B7A5DB1BE744FA0052115F /* mine */,
@@ -785,8 +805,6 @@
 				15B7A5C31BE730900052115F /* CommonMethods.h */,
 				15B7A5C41BE730900052115F /* CommonMethods.m */,
 				154A39811BE5E5420042632E /* Constants.h */,
-				15FB7FF21BEF53D5007D6EC8 /* BmobHelper.h */,
-				15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1885,8 +1903,10 @@
 				15B7A53B1BE730460052115F /* MWPhotoBrowser.m in Sources */,
 				15B7A4391BE72F800052115F /* EMAudioRecorderUtil.m in Sources */,
 				15B7A5B51BE7305D0052115F /* UIImage+MultiFormat.m in Sources */,
+				152877141BF251CE00321E50 /* InvitationManager.m in Sources */,
 				15B7A5AF1BE7305D0052115F /* SDWebImageDownloader.m in Sources */,
 				15B7A5B11BE7305D0052115F /* SDWebImageManager.m in Sources */,
+				152877111BF23B7100321E50 /* EMHelper.m in Sources */,
 				15B7A56A1BE7304D0052115F /* SDBrowserImageView.m in Sources */,
 				15B7A56B1BE7304D0052115F /* SDPhotoBrowser.m in Sources */,
 				15B7A5851BE730580052115F /* EMVoiceConverter.mm in Sources */,

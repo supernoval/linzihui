@@ -7,15 +7,18 @@
 //
 
 #import "AddNewFriendsTVC.h"
+#import "InvitationManager.h"
 
 
 static NSString * CellId = @"CellId";
-
+static NSString * RequestCell = @"RequestCell";
 
 @interface AddNewFriendsTVC ()<UISearchDisplayDelegate,UISearchBarDelegate>
 @property (nonatomic,strong) UISearchDisplayController *searchController;
 @property ( nonatomic) UISearchBar *searchbar;
 @property (nonatomic,strong) NSMutableArray *searResults;
+@property (nonatomic,strong) NSMutableArray *dataSource;
+
 
 
 @end
@@ -27,6 +30,7 @@ static NSString * CellId = @"CellId";
   
   
      _searResults = [[NSMutableArray alloc]init];
+    _dataSource = [[NSMutableArray alloc]init];
     
     
     [self searchbar];
@@ -35,9 +39,26 @@ static NSString * CellId = @"CellId";
     
     self.tableView.tableHeaderView = _searchbar;
     
+    [self getLocateInviteData];
     
 }
 
+
+//添加本地的好友请求数据
+-(void)getLocateInviteData
+{
+    [_dataSource removeAllObjects];
+    NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
+    NSString *loginName = [loginInfo objectForKey:kSDKUsername];
+    if(loginName && [loginName length] > 0)
+    {
+        
+        NSArray * applyArray = [[InvitationManager sharedInstance] applyEmtitiesWithloginUser:loginName];
+        [_dataSource addObjectsFromArray:applyArray];
+        
+        [self.tableView reloadData];
+    }
+}
 #pragma mark  - property
 
 -(UISearchBar*)searchbar
@@ -76,7 +97,12 @@ static NSString * CellId = @"CellId";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (tableView == _searchController.searchResultsTableView) {
+        
+        return 1;
+        
+    }
+    return 2;
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -87,7 +113,15 @@ static NSString * CellId = @"CellId";
         return _searResults.count;
         
     }
-    return 3;
+   
+    if (section == 0) {
+        
+        return 3;
+        
+    }
+    
+    return _dataSource.count;
+    
     
 }
 
@@ -96,15 +130,18 @@ static NSString * CellId = @"CellId";
 
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellId];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-      
-        
-        UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
-        UILabel *titleLabel = (UILabel*)[cell viewWithTag:101];
-        UIButton *button = (UIButton*)[cell viewWithTag:102];
-        
+
+    
+    
         
         if (tableView ==_searchController.searchResultsTableView) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
+                UILabel *titleLabel = (UILabel*)[cell viewWithTag:101];
+                UIButton *button = (UIButton*)[cell viewWithTag:102];
+            
             
             button.hidden = NO;
             cell.contentView.tag = indexPath.row;
@@ -136,62 +173,155 @@ static NSString * CellId = @"CellId";
                 
             }
             
-            
-
+        
             cell.accessoryType = UITableViewCellAccessoryNone;
+                
+             });
             
+             return cell;
+           
             
-            
-            
-            
-        }
+         }
         else
         {
+      
             
-            
-        button.hidden = YES;
-        
-        
-        NSString *imageName = nil;
-        NSString  *title    = nil;
-        
-        switch (indexPath.row) {
-            case 0:
-            {
-                imageName  = @"tongxunlu";
-                title =  @"通讯录";
-            }
-                break;
-            case 1:
-            {
-                imageName  = @"qqIcon";
-                title =  @"QQ";
-            }
-                break;
-            case 2:
-            {
-                imageName  = @"weichaIcon";
-                title =  @"微信";
-            }
-                break;
+                 
+                 
             
                 
-            default:
-                break;
-        }
-        
-        imageView.image = [UIImage imageNamed:imageName];
-        titleLabel.text = title;
-        
+            if (indexPath.section == 0) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
             
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
+                UILabel *titleLabel = (UILabel*)[cell viewWithTag:101];
+                UIButton *button = (UIButton*)[cell viewWithTag:102];
+                
+                button.hidden = YES;
+                
+                
+                NSString *imageName = nil;
+                NSString  *title    = nil;
+                
+                switch (indexPath.row) {
+                    case 0:
+                    {
+                        imageName  = @"tongxunlu";
+                        title =  @"通讯录";
+                    }
+                        break;
+                    case 1:
+                    {
+                        imageName  = @"qqIcon";
+                        title =  @"QQ";
+                    }
+                        break;
+                    case 2:
+                    {
+                        imageName  = @"weichaIcon";
+                        title =  @"微信";
+                    }
+                        break;
+                        
+                        
+                    default:
+                    {
+                        
+                        
+                    }
+                        break;
+                }
+                
+                imageView.image = [UIImage imageNamed:imageName];
+                titleLabel.text = title;
+                
+                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                
+                });
+                
+                
+                return cell;
+                
+                
+             }
+            else  //好友请求历史
+            {
+            
+            UITableViewCell * _requestCell = [tableView dequeueReusableCellWithIdentifier:RequestCell];
+            
+            _requestCell.contentView.tag = indexPath.row;
+                
+            dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UIImageView *headImageView = (UIImageView*)[_requestCell viewWithTag:100];
+            UILabel *titleLabel = (UILabel*)[_requestCell viewWithTag:101];
+            UILabel *contentLabel = (UILabel*)[_requestCell viewWithTag:102];
+            UIButton *acceptButton = (UIButton*)[_requestCell viewWithTag:103];
+            
+            [acceptButton addTarget:self action:@selector(acceptApply:) forControlEvents:UIControlEventTouchUpInside];
             
             
-        }
-        
-    });
+            ApplyEntity *entity = [_dataSource objectAtIndex:indexPath.row ];
+            if (entity) {
+                
+                ApplyStyle applyStyle = [entity.style intValue];
+                if (applyStyle == ApplyStyleGroupInvitation) {
+                    
+                    
+                    
+                }
+                else if (applyStyle == ApplyStyleJoinGroup)
+                {
+                    
+                }
+                else if(applyStyle == ApplyStyleFriend){
+                    
+                    [headImageView sd_setImageWithURL:[NSURL URLWithString:entity.avatar] placeholderImage:kDefaultHeadImage];
+                    
+                    if (entity.applicantNick) {
+                        
+                        titleLabel.text = entity.applicantNick;
+                    }
+                    else
+                    {
+                        titleLabel.text = entity.applicantUsername;
+                        
+                    }
+                    
+                    if (entity.reason) {
+                        
+                        contentLabel.text = entity.reason;
+                    }
+                    else
+                    {
+                        contentLabel.text = @"请求加你为好友";
+                    }
+                    
+                    
+                    
+                }
+                
+                
+                
+                
+            }
+                
+                
+            });
+                
+            
+            return _requestCell;
+                
+                
+            }
+            
+            
+         }
     
-    return cell;
+      
+    
+   
     
 }
 
@@ -274,6 +404,15 @@ static NSString * CellId = @"CellId";
     
     UserModel *model = [_searResults objectAtIndex:[sender superview].tag];
     
+    //如果互相关注 发送加好友请求
+    if (model.followEach) {
+      
+        [EMHelper sendFriendRequestWithBuddyName:model.username Mesage:@"请求加为好友"];
+        
+        
+    }
+    else
+    {
     [BmobHelper addFollowWithFollowedUserModel:model result:^(BOOL isSuccess) {
        
         if (isSuccess) {
@@ -286,6 +425,7 @@ static NSString * CellId = @"CellId";
              NSLog(@"添加关注失败");
         }
     }];
+    }
     
     
 }
@@ -315,6 +455,25 @@ static NSString * CellId = @"CellId";
     }];
 }
 
+
+#pragma mark - 接受好友请求
+-(void)acceptApply:(UIButton*)sender
+{
+    ApplyEntity *entity = [_dataSource objectAtIndex:[sender superview].tag ];
+    
+    EMError *error ;
+    
+    if ([[EMHelper getHelper] accepBuddyRequestWithUserName:entity.applicantUsername error:&error])
+    {
+        
+        [self.tableView reloadData];
+        
+    }
+    
+   
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
