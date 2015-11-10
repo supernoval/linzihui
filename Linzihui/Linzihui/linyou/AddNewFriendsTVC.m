@@ -110,10 +110,21 @@ static NSString * CellId = @"CellId";
             cell.contentView.tag = indexPath.row;
             [button addTarget:self action:@selector(follow:) forControlEvents:UIControlEventTouchUpInside];
            
-            
+            button.clipsToBounds = YES;
+            button.layer.cornerRadius = 5.0;
             
             UserModel *model = [_searResults objectAtIndex:indexPath.row];
-         
+            
+            if (model.followEach) {
+                
+                [button setTitle:@"添加好友" forState:UIControlStateNormal];
+                
+            }else
+            {
+                [button setTitle:@"关注" forState:UIControlStateNormal];
+            }
+            
+            
             [imageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
             
             if (model.nickName) {
@@ -278,6 +289,8 @@ static NSString * CellId = @"CellId";
     
     
 }
+
+
 #pragma mark - 搜索用户
 -(void)getUserWithUserName:(NSString*)username
 {
@@ -286,10 +299,16 @@ static NSString * CellId = @"CellId";
        
         if (array.count > 0) {
             
+            //检查是否互相关注
+            [BmobHelper checkFollowEachOtherWithItemArray:array searchResult:^(NSArray *results) {
+                
+                
+                [_searResults addObjectsFromArray:results];
+                
+                [_searchController.searchResultsTableView reloadData];
+                
+            }];
             
-            [_searResults addObjectsFromArray:array];
-            
-            [_searchController.searchResultsTableView reloadData];
             
         }
         

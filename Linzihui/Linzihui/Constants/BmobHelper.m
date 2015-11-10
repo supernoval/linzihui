@@ -157,148 +157,301 @@
     }];
 }
 
-#pragma mark - 添加关注
-+ (void)addFollowWithFollowedUserModel:(UserModel*)model result:(void (^)(BOOL))result
+#pragma mark - 判断是否互相关注
++ (void)checkFollowEachOtherWithItemArray:(NSArray*)itemArray searchResult:(void(^)(NSArray*))resultBlock
 {
-    UserModel *currentUserModel = [self getCurrentUserModel];
+    BmobQuery *quary = [[BmobQuery alloc]initWithClassName:@"Follow"];
     
-  __block  NSInteger saveNum = 0;
+    BmobUser *currentUser = [BmobUser getCurrentUser];
     
-    if (!currentUserModel.myFollows) {
-        
-        currentUserModel.myFollows = [NSArray arrayWithObject:model.objectId];
-        
-        
-    }
-    else
-    {
-        NSMutableArray *muarray = [[NSMutableArray alloc]initWithArray:currentUserModel.myFollows];
-        
-        [muarray addObject:model.objectId];
-        
-        currentUserModel.myFollows = muarray;
-        
-    }
+    [quary whereKey:@"userObjectId" equalTo:currentUser.objectId];
     
-//    [self updateBmobWithKey:@"myFollows" value:currentUserModel.myFollows object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
-//       
-//         saveNum ++;
-//        
-//        if (isSuccess) {
-//            
-//        
-//            if (saveNum == 2) {
-//                
-//                
-//                if (result) {
-//                    
-//                    result(YES);
-//                    
-//                }
-//            }
-//            else
-//            {
-//                if (saveNum == 2) {
-//                    
-//                    
-//                    if (result) {
-//                        
-//                        result(NO);
-//                        
-//                    }
-//                }
-//            }
-//            
-//        }
-//    }];
-    
-    
-    if (!model.followMes) {
-        
-        model.followMes = [NSArray arrayWithObject:currentUserModel.objectId];
-        
-        
-        
-        
-    }
-    else
-    {
-        NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:model.followMes];
-        
-        [muArray addObject:currentUserModel.objectId];
-        
-        
-        model.followMes = muArray;
-        
-    }
-    
-    BmobObject *followed = [BmobObject objectWithoutDatatWithClassName:@"_User" objectId:model.objectId];
-    
-    [self updateBmobWithKey:@"followMes" value:currentUserModel.myFollows object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
-        
-        if (isSuccess) {
+    [quary findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (!error && array.count > 0) {
             
+            BmobObject *followOb = [array firstObject];
             
+            NSArray *followsArray = [followOb objectForKey:@"myFollows"];
             
-            if (saveNum == 2) {
+            if (followsArray.count > 0) {
                 
+                [self queryfollowMesWithItems:itemArray myFollows:followsArray searchResult:resultBlock];
                 
-                if (result) {
+            }
+            else
+            {
+                if (resultBlock) {
                     
-                    result(YES);
-                    
+                    resultBlock(itemArray);
                 }
             }
-        }
-        else
+        }else
         {
-            if (saveNum == 2) {
+            if (resultBlock) {
                 
-                
-                if (result) {
-                    
-                    result(NO);
-                    
-                }
+                resultBlock(itemArray);
             }
+            
         }
         
     }];
     
     
-//    [self updateBmobWithKey:@"followMes" value:model.followMes usermodel:model result:^(BOOL isSuccess) {
-//       
-//            saveNum ++;
-//        
-//        if (isSuccess) {
-//            
-//        
-//            
-//            if (saveNum == 2) {
-//                
-//                
-//                if (result) {
-//                    
-//                    result(YES);
-//                    
-//                }
-//            }
-//        }
-//        else
-//        {
-//            if (saveNum == 2) {
-//                
-//                
-//                if (result) {
-//                    
-//                    result(NO);
-//                    
-//                }
-//            }
-//        }
-//        
-//    }];
 }
 
++ (void)queryfollowMesWithItems:(NSArray*)itemArray myFollows:(NSArray*)followsArray searchResult:(void(^)(NSArray*))resultBlock
+{
+    
+    BmobQuery *getAllFollowMes = [BmobQuery queryWithClassName:@"Follow"];
+    
+    
+    for (UserModel *oneModel in itemArray) {
+        
+        
+        [getAllFollowMes whereKey:@"userObjectId" equalTo:oneModel.objectId];
+    }
+    
+    
+    
+    [getAllFollowMes findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        if (!error && array.count > 0) {
+            
+//            NSLog(@"followMes:%@",array);
+            
+            NSMutableArray *temArray = [[NSMutableArray alloc]initWithArray:array];
+             BmobObject *temOb = [array objectAtIndex:0];
+            
+            
+          
+            for (int i = 0;i < followsArray.count ; i++) {
+                
+                NSString *obId = [followsArray objectAtIndex:i];
+                
+                for (int d = 0; d < itemArray.count; d ++) {
+                    
+                    UserModel *model = [itemArray objectAtIndex:d];
+                    
+                 
+                    if ([obId isEqualToString:model.objectId]) {
+                        
+                        
+                        //再遍历
+                        for (int f = 0; f < temArray.count ; f ++) {
+                            
+                            BmobObject *temOb = [temArray objectAtIndex:f];
+                            
+                            if ([temOb.objectId isEqualToString:model.objectId]) {
+                                
+                                NSArray *followMes = [temOb objectForKey:@"followMes"];
+                                
+                                for (NSString *temID in followMes) {
+                                    
+                                    if ([temID isEqualToString:obId]) {
+                                        
+                                        model.followEach = YES;
+                                        
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                }
+            }
+            
+            
+            
+            if (resultBlock) {
+                
+                resultBlock(itemArray);
+                
+            }
+            
+        }
+        else
+        {
+            if (resultBlock) {
+                
+                resultBlock(itemArray);
+                
+            }
+        }
+        
+    }];
+    
+   
+}
+
+#pragma mark - 添加关注
+
+//添加关注“我的”
++ (void)addFollowWithFollowedUserModel:(UserModel*)model result:(void (^)(BOOL))result
+{
+   
+    UserModel *currentUserModel = [self getCurrentUserModel];
+    BmobQuery *queryTargeUserFollow = [BmobQuery queryWithClassName:@"Follow"];
+    [queryTargeUserFollow whereKey:@"userObjectId" equalTo:model.objectId];
+    
+    [queryTargeUserFollow findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (!error ) {
+            
+            BmobObject *_followOb = [array firstObject];
+            
+            if (array.count == 0) {
+                
+                _followOb = [[BmobObject alloc]initWithClassName:@"Follow"];
+                
+            }
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            NSArray *followMes  = [_followOb objectForKey:@"followMes"];
+            
+            
+            if (followMes) {
+                
+                [muArray addObjectsFromArray:followMes];
+                [muArray addObject:currentUserModel.objectId];
+                
+            }
+            else
+            {
+                [muArray addObject:currentUserModel.objectId];
+                
+            }
+            
+            [_followOb setObject:muArray forKey:@"followMes"];
+            [_followOb setObject:model.objectId forKey:@"userObjectId"];
+            
+            
+            if (array.count > 0) {
+                
+                [_followOb updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    
+                    if (isSuccessful) {
+                        
+                        [self addMyFollowsWithModel:model result:result];
+                        
+                        
+                    }
+                }];
+            }
+            else
+            {
+                [_followOb saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                   
+                    if (isSuccessful) {
+                        
+                        [self addMyFollowsWithModel:model result:result];
+                        
+                        
+                    }
+                }];
+            }
+        
+        }
+        else
+        {
+            result(NO);
+            
+        }
+    }];
+    
+  
+
+    
+    
+
+}
+
+//添加我的关注
++ (void)addMyFollowsWithModel:(UserModel*)model result:(void (^)(BOOL))result
+{
+     UserModel *currentUserModel = [self getCurrentUserModel];
+    
+    //currentUserFollows
+    BmobQuery *queryCurrentUserFoL = [BmobQuery queryWithClassName:@"Follow"];
+    
+    [queryCurrentUserFoL whereKey:@"userObjectId" equalTo:currentUserModel.objectId];
+    
+    [queryCurrentUserFoL findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (!error) {
+            
+            BmobObject *_currentObject = [array firstObject];
+            
+            if (array.count == 0) {
+                
+                _currentObject = [[BmobObject alloc]initWithClassName:@"Follow"];
+                
+            }
+            
+            NSArray *myFollows = [_currentObject objectForKey:@"myFollows"];
+            
+            NSMutableArray *MuArray = [[NSMutableArray alloc]init];
+            
+            if (myFollows) {
+                
+                [MuArray addObjectsFromArray:myFollows];
+                [MuArray addObject:model.objectId];
+                
+                
+            }
+            else
+            {
+                [MuArray addObject:model.objectId];
+                
+            }
+            
+            [_currentObject setObject:MuArray forKey:@"myFollows"];
+            [_currentObject setObject:currentUserModel.objectId forKey:@"userObjectId"];
+            
+            if (array.count > 0) {
+                
+                [_currentObject updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    
+                    if (isSuccessful) {
+                        
+                        if (result) {
+                            
+                            result(YES);
+                            
+                        }
+                    }
+                }];
+            }
+            else
+            {
+                [_currentObject saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    
+                    if (isSuccessful) {
+                        
+                        if (result) {
+                            
+                            result(YES);
+                            
+                        }
+                    }
+                    
+                }];
+                
+            }
+          
+            
+        }
+       else
+       {
+           if (result) {
+               
+               result(NO);
+               
+           }
+       }
+        
+    }];
+}
 
 @end

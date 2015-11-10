@@ -26,5 +26,8 @@
 @property (nonatomic,strong ) NSArray *followMes;  // 关注我的人的 objectId   只有同时我关注的人也关注我才可以加好友
 
 
+@property (nonatomic,assign) BOOL followEach; //额外添加 标识是否互相关注
+
+
 
 @end

@@ -35,6 +35,9 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 添加关注 
 + (void)addFollowWithFollowedUserModel:(UserModel*)model  result:(void(^)(BOOL))result;
 
+#pragma mark - 判断是否互相关注
++ (void)checkFollowEachOtherWithItemArray:(NSArray*)itemArray searchResult:(void(^)(NSArray*))resultBlock;
+
 
 
 

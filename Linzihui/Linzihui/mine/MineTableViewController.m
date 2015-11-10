@@ -11,17 +11,24 @@
 #import "ConstantsHeaders.h"
 #import "ModelHeader.h"
 #import "ChangePersonInfoVC.h"
+#import "EditPhotoViewController.h"
 
 static NSInteger photoActionSheetTag = 99;
 
 static NSInteger sextActionSheetTag  = 100;
 
 
-@interface MineTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface MineTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,EditPhotoViewDelegate>
 {
     NSArray *_titlesArray;
     
     UserModel *_model;
+    
+    UIImage *temImage;
+    
+    UIImage *showImage;
+    
+    
     
 }
 @end
@@ -153,7 +160,9 @@ static NSInteger sextActionSheetTag  = 100;
                 
                 titleLabel.text = [_titlesArray objectAtIndex:indexPath.row];
                 
-                [imageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];
+//                [imageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];
+                
+                imageView.image = temImage;
                 
                 
                 
@@ -285,6 +294,7 @@ static NSInteger sextActionSheetTag  = 100;
                 UIActionSheet *_pickActionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
                 _pickActionSheet.delegate = self;
                 
+                
                 [_pickActionSheet addButtonWithTitle:@"相册"];
                 [_pickActionSheet addButtonWithTitle:@"照相"];
                 
@@ -411,6 +421,7 @@ static NSInteger sextActionSheetTag  = 100;
     //    UIImage *cutImage           = [self cutImage:editImage size:CGSizeMake(160, 160)];
     UIImage *cutImage  = [CommonMethods imageWithImage:editImage scaledToSize:CGSizeMake(300, 300)];
     
+    temImage = cutImage;
     
     [CommonMethods upLoadPhotos:@[cutImage] resultBlock:^(BOOL success, NSArray *results) {
         
@@ -468,6 +479,9 @@ static NSInteger sextActionSheetTag  = 100;
         switch (buttonIndex) {
             case 0:
             {
+                
+          
+                
                 UIImagePickerController *_picker = [[UIImagePickerController alloc]init];
                 _picker.editing = NO;
                 _picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -479,12 +493,20 @@ static NSInteger sextActionSheetTag  = 100;
                 break;
             case 1:
             {
-                UIImagePickerController *_picker = [[UIImagePickerController alloc]init];
-                _picker.editing = NO;
-                _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                _picker.delegate = self;
                 
-                [self presentViewController:_picker animated:YES completion:nil];
+                EditPhotoViewController *_editrVC = [[EditPhotoViewController alloc]init];
+                _editrVC.delegate = self;
+                
+                _editrVC.sourseImg = temImage;
+                
+                [self presentViewController:_editrVC animated:YES completion:nil];
+                
+//                UIImagePickerController *_picker = [[UIImagePickerController alloc]init];
+//                _picker.editing = NO;
+//                _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//                _picker.delegate = self;
+//                
+//                [self presentViewController:_picker animated:YES completion:nil];
             }
                 break;
                 
@@ -528,6 +550,22 @@ static NSInteger sextActionSheetTag  = 100;
         }
     
     }
+}
+
+-(void)doneEditeUpLoadPhoto:(UIImage *)photo
+{
+    temImage = photo;
+    
+    [self.tableView reloadData];
+    
+    [CommonMethods upLoadPhotos:@[photo] resultBlock:^(BOOL success, NSArray *results) {
+       
+        if (success) {
+            
+            NSLog(@"传成功");
+            
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
