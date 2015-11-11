@@ -176,6 +176,11 @@
 		15BE66DA1BF3C34E000A9D1F /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66D91BF3C34E000A9D1F /* Contacts.framework */; };
 		15BE66DD1BF3CD6B000A9D1F /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66DC1BF3CD6B000A9D1F /* ContactModel.m */; };
 		15BE66DF1BF3E79F000A9D1F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66DE1BF3E79F000A9D1F /* MessageUI.framework */; };
+		15BE66E51BF3F3F0000A9D1F /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66E11BF3F3F0000A9D1F /* libWeChatSDK.a */; };
+		15BE66E81BF3F5B5000A9D1F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66E71BF3F5B5000A9D1F /* libz.tbd */; };
+		15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66E91BF3F5C1000A9D1F /* libsqlite3.0.tbd */; };
+		15BE66EC1BF3F5CA000A9D1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */; };
+		15BE66F31BF3F932000A9D1F /* GZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66F21BF3F932000A9D1F /* GZViewController.m */; };
 		15EE46BE1BE84BE200538EA5 /* RegistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46BD1BE84BE200538EA5 /* RegistTableViewController.m */; };
 		15EE46C11BE84C2000538EA5 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46C01BE84C2000538EA5 /* PrivacyViewController.m */; };
 		15EE46DF1BE85C1700538EA5 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46C81BE85C1700538EA5 /* JSONModel.m */; };
@@ -615,6 +620,14 @@
 		15BE66DB1BF3CD6B000A9D1F /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
 		15BE66DC1BF3CD6B000A9D1F /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		15BE66DE1BF3E79F000A9D1F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		15BE66E11BF3F3F0000A9D1F /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		15BE66E31BF3F3F0000A9D1F /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		15BE66E41BF3F3F0000A9D1F /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		15BE66E71BF3F5B5000A9D1F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		15BE66E91BF3F5C1000A9D1F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		15BE66F11BF3F932000A9D1F /* GZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZViewController.h; sourceTree = "<group>"; };
+		15BE66F21BF3F932000A9D1F /* GZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZViewController.m; sourceTree = "<group>"; };
 		15EE46BC1BE84BDE00538EA5 /* RegistTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistTableViewController.h; sourceTree = "<group>"; };
 		15EE46BD1BE84BE200538EA5 /* RegistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistTableViewController.m; sourceTree = "<group>"; };
 		15EE46BF1BE84C1C00538EA5 /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
@@ -670,6 +683,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15BE66EC1BF3F5CA000A9D1F /* libc++.tbd in Frameworks */,
+				15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */,
+				15BE66E81BF3F5B5000A9D1F /* libz.tbd in Frameworks */,
+				154A39751BE5E4690042632E /* SystemConfiguration.framework in Frameworks */,
 				15BE66DF1BF3E79F000A9D1F /* MessageUI.framework in Frameworks */,
 				15BE66DA1BF3C34E000A9D1F /* Contacts.framework in Frameworks */,
 				15BE66D81BF3BEBA000A9D1F /* AddressBookUI.framework in Frameworks */,
@@ -689,7 +706,7 @@
 				154A397D1BE5E5070042632E /* AVFoundation.framework in Frameworks */,
 				154A39791BE5E47A0042632E /* libicucore.tbd in Frameworks */,
 				154A39771BE5E4730042632E /* libz.1.2.5.tbd in Frameworks */,
-				154A39751BE5E4690042632E /* SystemConfiguration.framework in Frameworks */,
+				15BE66E51BF3F3F0000A9D1F /* libWeChatSDK.a in Frameworks */,
 				154A39F11BE5E6930042632E /* libEaseMobClientSDKLite.a in Frameworks */,
 				154A39731BE5E4570042632E /* CoreTelephony.framework in Frameworks */,
 				154A396D1BE5E4450042632E /* CoreGraphics.framework in Frameworks */,
@@ -780,6 +797,7 @@
 		154A39641BE5E3BD0042632E /* ThirdPartFrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				15BE66E01BF3F3F0000A9D1F /* SDKExport */,
 				152579C11BF1872900F91C06 /* STSCropPhoto */,
 				15EE46C51BE85C1700538EA5 /* JSONModel */,
 				15B7A5C91BE730E40052115F /* ProgressHUD */,
@@ -800,6 +818,9 @@
 		154A39671BE5E4010042632E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */,
+				15BE66E91BF3F5C1000A9D1F /* libsqlite3.0.tbd */,
+				15BE66E71BF3F5B5000A9D1F /* libz.tbd */,
 				15BE66DE1BF3E79F000A9D1F /* MessageUI.framework */,
 				15BE66D91BF3C34E000A9D1F /* Contacts.framework */,
 				15BE66D71BF3BEBA000A9D1F /* AddressBookUI.framework */,
@@ -1702,6 +1723,25 @@
 			name = tongxunlu;
 			sourceTree = "<group>";
 		};
+		15BE66E01BF3F3F0000A9D1F /* SDKExport */ = {
+			isa = PBXGroup;
+			children = (
+				15BE66E11BF3F3F0000A9D1F /* libWeChatSDK.a */,
+				15BE66E31BF3F3F0000A9D1F /* WXApi.h */,
+				15BE66E41BF3F3F0000A9D1F /* WXApiObject.h */,
+			);
+			path = SDKExport;
+			sourceTree = "<group>";
+		};
+		15BE66ED1BF3F6ED000A9D1F /* guanzhu */ = {
+			isa = PBXGroup;
+			children = (
+				15BE66F11BF3F932000A9D1F /* GZViewController.h */,
+				15BE66F21BF3F932000A9D1F /* GZViewController.m */,
+			);
+			name = guanzhu;
+			sourceTree = "<group>";
+		};
 		15EE46C51BE85C1700538EA5 /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1779,6 +1819,7 @@
 		15EE46F61BE8796200538EA5 /* linyou */ = {
 			isa = PBXGroup;
 			children = (
+				15BE66ED1BF3F6ED000A9D1F /* guanzhu */,
 				15BE66D11BF3BE6E000A9D1F /* tongxunlu */,
 				15EE46FD1BE891D500538EA5 /* addNewFriends */,
 				15FB7FF51BEF6E33007D6EC8 /* ChineseToPinyin.h */,
@@ -1952,6 +1993,7 @@
 				15B7A4D51BE730320052115F /* UIScrollView+MJRefresh.m in Sources */,
 				15B7A5471BE730460052115F /* MKAnnotationView+EMWebCache.m in Sources */,
 				15B7A4991BE72FEE0052115F /* DXChatBarMoreView.m in Sources */,
+				15BE66F31BF3F932000A9D1F /* GZViewController.m in Sources */,
 				15EE46F91BE879D600538EA5 /* LinYouTableViewController.m in Sources */,
 				15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */,
 				15B7A53B1BE730460052115F /* MWPhotoBrowser.m in Sources */,
@@ -2186,6 +2228,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/EaseMobSDK/lib",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SDKExport",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
@@ -2214,6 +2257,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/EaseMobSDK/lib",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SDKExport",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;

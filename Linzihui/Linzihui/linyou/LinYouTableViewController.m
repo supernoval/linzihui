@@ -11,6 +11,8 @@
 #import "ChineseToPinyin.h"
 #import "AddNewFriendsTVC.h"
 #import "ChatViewController.h"
+#import "GZViewController.h"
+
 
 
 
@@ -289,6 +291,11 @@ static NSString *CellId  = @"CellId";
             break;
         case 2:
         {
+            GZViewController *_gzVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GZViewController"];
+            
+            _gzVC.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController pushViewController:_gzVC animated:YES];
             
         }
             break;
