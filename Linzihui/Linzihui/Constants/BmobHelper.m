@@ -7,7 +7,7 @@
 //
 
 #import "BmobHelper.h"
-
+#import "MyConversation.h"
 @implementation BmobHelper
 
 #pragma mark - 获取当前用户 UserModel
@@ -457,4 +457,315 @@
     }];
 }
 
+
+
+#pragma mark -  通过环信好友username 获取bmob 对应用户信息
++ (void)getBmobBuddyUsers:(void(^)(NSArray*))block{
+    
+    
+     NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
+    
+    BmobQuery  *query = [BmobQuery queryForUser];
+    
+    for (EMBuddy *buddy in buddyList) {
+        
+        //环信的 username 和  bmob 一样，注册的时候设置的
+        [query whereKey:@"username" equalTo:buddy.username ];
+        
+       
+        
+    }
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (!error && array.count > 0) {
+         
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            for (int i = 0;i < array.count; i++) {
+                
+                BmobObject *object = [array objectAtIndex:i];
+                
+                UserModel *model = [[UserModel alloc]initwithBmobObject:object];
+                
+                [muArray addObject:model];
+                
+                
+            }
+            
+            if (block) {
+                
+                block(muArray);
+                
+            }
+            
+        }
+        else
+        {
+            NSLog(@"error:%@",error);
+            
+            block(nil);
+            
+        }
+        
+    }];
+    
+    
+}
+
+#pragma mark - 批量获取聊天记录里面用户的nickName headImageURL
++ (void)getConversionsNickNameHeadeImageURL:(NSArray*)conversations results:(void(^)(NSArray*array))result
+{
+    
+    BmobQuery *query = [BmobQuery queryForUser];
+    
+    for (EMConversation *_conver in conversations) {
+        
+        [query whereKey:@"username" equalTo:_conver.chatter];
+        
+    }
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (!error && array.count > 0) {
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            for (int i = 0;i < array.count; i++) {
+                
+                BmobObject *object = [array objectAtIndex:i];
+                
+                UserModel *model = [[UserModel alloc]initwithBmobObject:object];
+                
+                
+                for (EMConversation*_myConver in conversations) {
+                    
+                    if ([_myConver.chatter isEqualToString:model.username]) {
+                        
+                        MyConversation *myConModel = [[MyConversation alloc]init];
+                        
+                        myConModel.nickName = model.nickName;
+                        myConModel.headImageURL = model.headImageURL;
+                        myConModel.converstion = _myConver;
+                        
+                        
+                    
+                        [muArray addObject:myConModel];
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+            }
+            
+            if (result) {
+                result(muArray);
+                
+            }
+        
+            
+        }
+        else
+        {
+            if (result) {
+                
+                result(nil);
+                
+            }
+        }
+        
+        
+    }];
+    
+}
+
+
+#pragma mark - 通讯录匹配
++(void)tongxunluMatch:(NSArray*)contacts results:(void(^)(NSArray*array))result
+{
+
+    
+    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < contacts.count; i ++) {
+        
+        NSDictionary *oneDict = [contacts objectAtIndex:i];
+        
+        NSString *phoneNum = [oneDict objectForKey:@"phone"];
+        
+        [muArray addObject:phoneNum];
+        
+      
+        
+    }
+ 
+    
+    
+    dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
+    
+    NSInteger per = 10;
+    
+    NSInteger times = muArray.count/per +1;
+    
+   __block  NSMutableArray *searchRults = [[NSMutableArray alloc]init];
+    
+    __block NSInteger searchNum = 0;
+    
+    for (int i = 0; i < times; i++) {
+        
+        NSMutableArray *_perArray = [[NSMutableArray alloc]init];
+        
+        for (int d = 0; d < muArray.count;d ++) {
+            
+            NSString *temPhone = [muArray objectAtIndex:d];
+            
+            if (d <= i*per && d > (i-1)*per) {
+                
+                [_perArray addObject:temPhone];
+                
+            }
+           
+            
+            
+        }
+        
+      [self quequeSearch:_perArray queue:queue resultBlock:^(NSArray *array) {
+         
+          searchNum ++;
+          
+          if (array) {
+              
+              
+              [searchRults addObjectsFromArray:array];
+              
+              
+          }
+          
+          
+          if (searchNum == times && i == times -1) {
+              
+              
+              NSMutableArray *allcontantsArray = [[NSMutableArray alloc]init];
+              
+              for (int i = 0; i < contacts.count; i ++) {
+                  
+                  NSDictionary *oneDict = [contacts objectAtIndex:i];
+                  
+                  NSString *phoneNum = [oneDict objectForKey:@"phone"];
+                  
+                  ContactModel *_contactModel = [[ContactModel alloc]init];
+                  
+                  _contactModel.phoneNum = phoneNum;
+                  _contactModel.nickName = [oneDict objectForKey:@"name"];
+                  _contactModel.username = phoneNum;
+                  
+                  
+                  for (UserModel *oneModel in searchRults) {
+                      
+                      //判断是否注册过
+                      
+                      if ([oneModel.username isEqualToString:phoneNum]) {
+                          
+                          _contactModel.hadRegist = YES;
+                          _contactModel.headImageURL = oneModel.headImageURL;
+                          _contactModel.nickName = oneModel.nickName;
+                          
+                          if ([EMHelper isBuddyWithUsername:_contactModel.username]) {
+                              
+                              _contactModel.isBuddy = YES;
+                              
+                          }
+                          
+                          
+                      }
+                  }
+                  
+                  //如果是自己的号码就不加
+                  UserModel *currentUserModel = [BmobHelper getCurrentUserModel];
+                  
+                  if (![currentUserModel.username isEqualToString:_contactModel.username]) {
+                      
+                       [allcontantsArray addObject:_contactModel];
+                  }
+                 
+                  
+                  
+               
+                }
+              
+              
+              if (result) {
+                  
+                  result(allcontantsArray);
+                  
+              }
+              
+           }
+          
+      }];
+        
+    }
+    
+    
+
+    
+    
+}
+
++(void)quequeSearch:(NSArray*)consitions queue:(dispatch_queue_t)queue resultBlock:(void(^)(NSArray*array))block
+{
+    
+    dispatch_async(queue, ^{
+        
+  
+    
+    BmobQuery *query = [BmobQuery queryForUser];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (!error && array.count > 0)
+        {
+            
+            
+            
+            NSMutableArray *temModelArray = [[NSMutableArray alloc]init];
+            
+            for (BmobObject *oneOB in array) {
+                
+                UserModel *model = [[UserModel alloc]initwithBmobObject:oneOB];
+                
+                [temModelArray addObject:model];
+                
+                
+            }
+            
+            
+            if (block) {
+                block(temModelArray);
+                
+            }
+
+            
+        }
+        else
+        {
+            
+            
+            if (block) {
+                block(nil);
+                
+            }
+            
+            
+        }
+        
+    }];
+    
+        
+    });
+    
+
+}
 @end

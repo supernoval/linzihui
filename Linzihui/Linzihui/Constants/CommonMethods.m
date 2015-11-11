@@ -241,6 +241,8 @@
 }
 
 
+
+
 #pragma mark - 判断Email格式是否正确
 + (BOOL)isValidateEmail:(NSString *)Email
 {
@@ -719,6 +721,41 @@
         
         
     }
+}
+
+#pragma mark - 整理手机号码格式
++(NSString*)getRightPhoneNum:(NSString*)phoneNum{
+    
+    if (phoneNum.length > 4) {
+        
+        NSString *firstThreeLetter = [phoneNum substringFromIndex:3];
+        
+        NSString *firstTwoLetter = [phoneNum substringToIndex:2];
+        
+        if ([firstThreeLetter isEqualToString:@"+86"]) {
+            
+            phoneNum = [phoneNum substringFromIndex:4];
+            
+        }
+        if ([firstTwoLetter isEqualToString:@"86"]) {
+            
+            phoneNum = [phoneNum substringFromIndex:3];
+            
+        }
+        
+        phoneNum = [phoneNum stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        
+        return phoneNum;
+        
+        
+    }
+    else
+    {
+        return @"";
+        
+    }
+ 
+    
 }
 
 @end

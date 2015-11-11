@@ -10,6 +10,8 @@
 #import "EaseMob.h"
 #import "ChineseToPinyin.h"
 #import "AddNewFriendsTVC.h"
+#import "ChatViewController.h"
+
 
 
 static NSString *CellId  = @"CellId";
@@ -44,6 +46,9 @@ static NSString *CellId  = @"CellId";
     
      _friendListArray = [[NSMutableArray alloc]init];
     
+    //设置侧边索引背景颜色
+    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    
     
 }
 
@@ -61,24 +66,24 @@ static NSString *CellId  = @"CellId";
     [self.dataSource removeAllObjects];
     [self.contactsSource removeAllObjects];
     
-    NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
-    NSArray *blockList = [[EaseMob sharedInstance].chatManager blockedList];
-    for (EMBuddy *buddy in buddyList) {
-        if (![blockList containsObject:buddy.username]) {
-            [self.contactsSource addObject:buddy];
+    
+    [BmobHelper getBmobBuddyUsers:^(NSArray * array) {
+        
+        if (array) {
+            
+            //将数据排序后加入到 datasource
+            [self.dataSource addObjectsFromArray:[self sortDataArray:array]];
+            
+            [self.tableView reloadData];
+            
         }
-    }
+    }];
     
-    NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
-    NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
-    if (loginUsername && loginUsername.length > 0) {
-        EMBuddy *loginBuddy = [EMBuddy buddyWithUsername:loginUsername];
-        [self.contactsSource addObject:loginBuddy];
-    }
     
-    [self.dataSource addObjectsFromArray:[self sortDataArray:self.contactsSource]];
     
-    [self.tableView reloadData];
+
+    
+  
 }
 
 
@@ -96,18 +101,98 @@ static NSString *CellId  = @"CellId";
     
 }
 
+#pragma mark   UITableViewDataSource
 
+//设置 sectionheaderView 及邮编字母栏
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSMutableArray * existTitles = [NSMutableArray array];
+    //section数组为空的title过滤掉，不显示
+    for (int i = 0; i < [self.sectionTitles count]; i++) {
+        
+        NSArray *array = [_dataSource objectAtIndex:i];
+        
+        if ([array count] > 0) {
+            
+            [existTitles addObject:[self.sectionTitles objectAtIndex:i]];
+        }
+    }
+    return existTitles;
+}
+
+//section header 的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section < 3) {
+        
+        return 0;
+    }
+    else
+    {
+        if (_dataSource.count > section -3) {
+            
+            NSArray *array = [_dataSource objectAtIndex:section - 3];
+            
+            if (array.count > 0) {
+                
+                return 25;
+            }
+            else
+            {
+                return 0;
+                
+            }
+        }
+        return 0;
+        
+     
+        
+    }
+    
+}
+
+//返回每个section 上面的 A,B,C....
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section < 3) {
+        return nil;
+    }
+    else
+    {
+        if (_sectionTitles.count > section -3) {
+            
+              return [_sectionTitles objectAtIndex:section - 3];
+        }
+      
+        return nil;
+        
+        
+    }
+}
+
+
+//有几个section
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return _muDataSource.count;
+    return _muDataSource.count + _dataSource.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
+    if (section < 3) {
+        
+        return 1;
+    }
+    else
+    {
+        NSArray *array = [_dataSource objectAtIndex:section -3];
+        
+        return array.count;
+        
+    }
     
-    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,20 +201,6 @@ static NSString *CellId  = @"CellId";
     return 50;
 }
 
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-//{
-//    NSMutableArray * existTitles = [NSMutableArray array];
-//    //section数组为空的title过滤掉，不显示
-//    for (int i = 0; i < [self.sectionTitles count]; i++) {
-//        
-//        NSArray *temDataArray = [self.dataSource objectAtIndex:i];
-//        
-//        if (temDataArray.count > 0) {
-//            [existTitles addObject:[self.sectionTitles objectAtIndex:i]];
-//        }
-//    }
-//    return existTitles;
-//}
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -149,12 +220,40 @@ static NSString *CellId  = @"CellId";
         
         UILabel*titleLabel = (UILabel*)[cell viewWithTag:101];
         
-        
-        NSDictionary *oneDict = [_muDataSource objectAtIndex:indexPath.section];
-        
-        titleLabel.text = [oneDict objectForKey:@"title"];
-        
-        imageView.image = [UIImage imageNamed:[oneDict objectForKey:@"image"]];
+        if (indexPath.section < 3) {
+            
+            NSDictionary *oneDict = [_muDataSource objectAtIndex:indexPath.section];
+            
+            titleLabel.text = [oneDict objectForKey:@"title"];
+            
+            imageView.image = [UIImage imageNamed:[oneDict objectForKey:@"image"]];
+        }
+        else
+        {
+            if (_dataSource.count > indexPath.section -3) {
+                
+                NSArray *oneArray = [_dataSource objectAtIndex:indexPath.section - 3];
+                
+                UserModel *oneModel = [oneArray objectAtIndex:indexPath.row];
+                
+                if (oneModel.nickName) {
+                    
+                    titleLabel.text = oneModel.nickName;
+                }
+                else
+                {
+                    titleLabel.text = oneModel.username;
+                    
+                }
+                
+                
+                [imageView sd_setImageWithURL:[NSURL URLWithString:oneModel.headImageURL] placeholderImage:kDefaultHeadImage];
+            }
+          
+            
+            
+        }
+   
         
         
         
@@ -195,8 +294,27 @@ static NSString *CellId  = @"CellId";
             break;
             
         
-        default:
+        default:  //点击好友 跳到聊天
         {
+            NSArray *Array = [_dataSource objectAtIndex:indexPath.section -3];
+            
+            UserModel *model = [Array objectAtIndex:indexPath.row];
+            
+            ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:model.username isGroup:NO];
+            
+            if (model.nickName) {
+                
+                _chat.title = model.nickName;
+            }
+            else
+            {
+                _chat.title = model.username;
+            }
+            
+            _chat.hidesBottomBarWhenPushed = YES;
+            _chat.userModel = model;
+            
+            [self.navigationController pushViewController:_chat animated:YES];
             
         }
             break;
@@ -229,22 +347,36 @@ static NSString *CellId  = @"CellId";
     }
     
     //名字分section
-    for (EMBuddy *buddy in dataArray) {
+    for (UserModel *oneModel in dataArray) {
         //getUserName是实现中文拼音检索的核心，见NameIndex类
-        NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:buddy.username];
+        NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:oneModel.nickName];
+        if (!firstLetter) {
+            
+            firstLetter = [ChineseToPinyin pinyinFromChineseString:oneModel.username];
+            
+        }
         NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
         
         NSMutableArray *array = [sortedArray objectAtIndex:section];
-        [array addObject:buddy];
+        [array addObject:oneModel];
     }
     
     //每个section内的数组排序
     for (int i = 0; i < [sortedArray count]; i++) {
-        NSArray *array = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(EMBuddy *obj1, EMBuddy *obj2) {
-            NSString *firstLetter1 = [ChineseToPinyin pinyinFromChineseString:obj1.username];
+        NSArray *array = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(UserModel *obj1, UserModel *obj2) {
+            NSString *firstLetter1 = [ChineseToPinyin pinyinFromChineseString:obj1.nickName];
+            if (!firstLetter1) {
+                
+                firstLetter1 = [ChineseToPinyin pinyinFromChineseString:obj1.username];
+            }
             firstLetter1 = [[firstLetter1 substringToIndex:1] uppercaseString];
             
-            NSString *firstLetter2 = [ChineseToPinyin pinyinFromChineseString:obj2.username];
+            NSString *firstLetter2 = [ChineseToPinyin pinyinFromChineseString:obj2.nickName];
+            
+            if (!firstLetter2) {
+                firstLetter2 = [ChineseToPinyin pinyinFromChineseString:obj2.username];
+            }
+            
             firstLetter2 = [[firstLetter2 substringToIndex:1] uppercaseString];
             
             return [firstLetter1 caseInsensitiveCompare:firstLetter2];

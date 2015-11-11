@@ -18,6 +18,7 @@
 #import <BmobSDK/Bmob.h>
 #import <BmobSDK/BmobProFile.h>
 
+
 typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 
 
@@ -67,6 +68,7 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 + (void)callPhoneWithSuperView:(UIView*)view phoneNum:(NSString*)phoneNum;
 
 
+
 #pragma mark - 判断email格式是否正确
 + (BOOL)isValidateEmail:(NSString *)Email;
 
@@ -114,6 +116,9 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 + (NSString *)getMounthAndDay:(NSDate *)dateTime;
 #pragma mark - Bmob上传图片 
 +(void)upLoadPhotos:(NSArray*)photos resultBlock:(upLoadPhotoBlock)block;
+
+#pragma mark - 整理手机号码格式
++(NSString*)getRightPhoneNum:(NSString*)phoneNum;
 
 
 

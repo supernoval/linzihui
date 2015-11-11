@@ -19,6 +19,9 @@
 #define kShareSMSAppSecret        @"7212b6997e38237ed00ad4ce0f332ed7"
 
 
+//app 下载地址
+#define kAppDownloadURL            @"https://itunes.apple.com/us/app/you-kang-fu-wu/id646300912?l=zh&ls=1&mt=8"
+
 
 
 #pragma mark - Color
@@ -35,6 +38,8 @@
 
 #define kOrangeTextColor           RGB(255,105,0,0.9)
 
+#define kBlueBackColor            RGB(68,180,205,1)
+
 
 /*宽高*/
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -42,4 +47,4 @@
 
 
 //默认头像
-#define kDefaultHeadImage   [UIImage imageNamed:@"wo"]
+#define kDefaultHeadImage   [UIImage imageNamed:@"wo_1"]

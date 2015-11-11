@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <BmobSDK/Bmob.h>
 #import "ModelHeader.h"
+#import "EaseMob.h"
+#import "NSUserDefaultKeys.h"
+#import "EMHelper.h"
 
 typedef void (^successBlock)(BOOL isSuccess);
 typedef void (^getObjectModelBlock)(BOOL success,id object);
@@ -25,19 +28,28 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 
 
 #pragma mark - 保存单个信息
-+ (void)updateBmobWithKey:(NSString*)key value:(id)value  usermodel:(UserModel*)model result:(void(^)(BOOL))result;
++ (void)updateBmobWithKey:(NSString*)key value:(id)value  usermodel:(UserModel*)model result:(void(^)(BOOL success))result;
 
 +(void)updateBmobWithKey:(NSString*)key value:(id)value  object:(id)object result:(successBlock)block;
 
 #pragma mark -  查询用户
-+(void)searchUserWithUsername:(NSString*)username searchResult:(void(^)(NSArray*))resultBlock;
++(void)searchUserWithUsername:(NSString*)username searchResult:(void(^)(NSArray*array))resultBlock;
 
 #pragma mark - 添加关注 
-+ (void)addFollowWithFollowedUserModel:(UserModel*)model  result:(void(^)(BOOL))result;
++ (void)addFollowWithFollowedUserModel:(UserModel*)model  result:(void(^)(BOOL success))result;
 
 #pragma mark - 判断是否互相关注
-+ (void)checkFollowEachOtherWithItemArray:(NSArray*)itemArray searchResult:(void(^)(NSArray*))resultBlock;
++ (void)checkFollowEachOtherWithItemArray:(NSArray*)itemArray searchResult:(void(^)(NSArray*array))resultBlock;
 
+
+#pragma mark -  通过环信好友username 获取bmob 对应用户信息
++ (void)getBmobBuddyUsers:(void(^)(NSArray*))block;
+
+#pragma mark - 批量获取聊天记录里面用户的nickName headImageURL
++ (void)getConversionsNickNameHeadeImageURL:(NSArray*)conversations results:(void(^)(NSArray*array))result;
+
+#pragma mark - 通讯录匹配
++(void)tongxunluMatch:(NSArray*)contacts results:(void(^)(NSArray*array))result;
 
 
 

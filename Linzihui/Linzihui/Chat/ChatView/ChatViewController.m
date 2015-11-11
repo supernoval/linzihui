@@ -1442,16 +1442,7 @@
                 model.headImageURL = [NSURL URLWithString:[_delelgate avatarWithChatter:model.username]];
             }
             
-            //Demo集成Parse,获取用户个人信息
-//            UserProfileEntity *user = [[UserProfileManager sharedInstance] getUserProfileByUsername:model.username];
-//            
-//            if (user && user.imageUrl.length > 0) {
-//                model.headImageURL = [NSURL URLWithString:user.imageUrl];
-//            }
-//            
-//            if (user && user.nickname.length > 0) {
-//                model.nickName = user.nickname;
-//            }
+   
             
             if (model) {
                 [formatArray addObject:model];

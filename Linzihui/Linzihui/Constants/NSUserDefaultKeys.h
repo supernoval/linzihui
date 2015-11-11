@@ -52,3 +52,6 @@
 //isAttestation
 #define kisAttestation @"isAttestation"
 
+//本地好友列表
+#define kLocateFriends  @"LocateFriends"
+

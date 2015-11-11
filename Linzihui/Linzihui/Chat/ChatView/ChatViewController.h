@@ -13,6 +13,7 @@
 #import <UIKit/UIKit.h>
 #import "EMChatManagerDefs.h"
 #import "EaseMob.h"
+#import "ConstantsHeaders.h"
 
 #import "BaseViewController.h"
 @protocol ChatViewControllerDelegate <NSObject>
@@ -23,6 +24,7 @@
 @end
 
 @interface ChatViewController : BaseViewController
+@property (nonatomic,strong) UserModel*userModel;
 @property (strong, nonatomic, readonly) NSString *chatter;
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源
 @property (nonatomic) BOOL isInvisible;

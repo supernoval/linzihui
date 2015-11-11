@@ -13,6 +13,7 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "ChatViewController.h"
 #import "LoginViewController.h"
+#import "MyConversation.h"
 
 static NSString *cellId = @"ChatListCell";
 
@@ -42,8 +43,7 @@ static NSString *cellId = @"ChatListCell";
 //    [self addHeaderRefresh];
 //    [self addFooterRefresh];
     
-    //去掉搜索框黑线
-    [[[[_searchBar.subviews objectAtIndex : 0 ] subviews ] objectAtIndex : 0 ] removeFromSuperview ];
+  
     
 //    [ MySearchBar setBackgroundColor :[ UIColor clearColor ]];
     
@@ -125,15 +125,26 @@ static NSString *cellId = @"ChatListCell";
 {
     ChatListCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
-    EMConversation *conversation = [_conversations objectAtIndex:indexPath.row];
+    MyConversation *model = [_conversations objectAtIndex:indexPath.row];
     
-    cell.titleLabel.text = conversation.chatter;
+    if (model.nickName) {
+        
+        cell.titleLabel.text = model.nickName;
+    }
+    else
+    {
+       cell.titleLabel.text = model.converstion.chatter; 
+    }
     
     
-    cell.lastestChatlabel.text = [self subTitleMessageByConversation:conversation];
     
-    cell.timeLabel.text = [self lastMessageTimeByConversation:conversation];
+    cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
+    
+    
+    cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
     cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+    
+    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
     
     
     
@@ -146,14 +157,25 @@ static NSString *cellId = @"ChatListCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    EMConversation *conversation = [_conversations objectAtIndex:indexPath.section];
+    MyConversation *model = [_conversations objectAtIndex:indexPath.section];
     
-    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:conversation.chatter isGroup:NO];
-    chatVC.title =conversation.chatter;
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
+    if (model.nickName) {
+        
+        chatVC.title =model.nickName;
+    }else
+    {
+        chatVC.title = model.converstion.chatter;
+    }
+    
     chatVC.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:chatVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+
+    
+   
     
 }
 
@@ -223,32 +245,53 @@ static NSString *cellId = @"ChatListCell";
 #pragma mark - 刷新
 -(void)reFreshDataSource
 {
-    _conversations = [self loadDataSource];
     
-    [self.tableView reloadData];
+    
+    [self loadDataSource];
+    
+   
     
     
 }
 
 #pragma mark -获取聊天记录
-- (NSMutableArray *)loadDataSource
+- (void)loadDataSource
 {
-    NSMutableArray *ret = nil;
+ 
     NSArray *conversations = [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
+    // get conversations nickname headImage
     
-    NSArray* sorte = [conversations sortedArrayUsingComparator:
-                      ^(EMConversation *obj1, EMConversation* obj2){
-                          EMMessage *message1 = [obj1 latestMessage];
-                          EMMessage *message2 = [obj2 latestMessage];
-                          if(message1.timestamp > message2.timestamp) {
-                              return(NSComparisonResult)NSOrderedAscending;
-                          }else {
-                              return(NSComparisonResult)NSOrderedDescending;
-                          }
-                      }];
+    [BmobHelper getConversionsNickNameHeadeImageURL:conversations results:^(NSArray *array) {
+       
+        if (array) {
+            
+            NSArray* sorte = [array sortedArrayUsingComparator:
+                              ^(MyConversation *obj1, MyConversation* obj2){
+                                  
+                                  EMMessage *message1 = [obj1.converstion latestMessage];
+                                  EMMessage *message2 = [obj2.converstion latestMessage];
+                                  if(message1.timestamp > message2.timestamp) {
+                                      return(NSComparisonResult)NSOrderedAscending;
+                                  }else {
+                                      return(NSComparisonResult)NSOrderedDescending;
+                                  }
+                              }];
+            
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:sorte];
+            
+            _conversations = muArray;
+            
+            [self.tableView reloadData];
+            
+            
+        }
+       
+        
+        
+    }];
     
-    ret = [[NSMutableArray alloc] initWithArray:sorte];
-    return ret;
+ 
 }
 
 

@@ -29,6 +29,10 @@ typedef enum{
 #pragma mark -  发送好友请求
 +(void)sendFriendRequestWithBuddyName:(NSString*)buddyName Mesage:(NSString*)message;
 
+#pragma mark  - 检查是否为好友
++(BOOL)isBuddyWithUsername:(NSString*)userName;
+
+
 
 
 @end

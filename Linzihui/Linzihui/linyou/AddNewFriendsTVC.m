@@ -8,6 +8,7 @@
 
 #import "AddNewFriendsTVC.h"
 #import "InvitationManager.h"
+#import "TongXunLuTVC.h"
 
 
 static NSString * CellId = @"CellId";
@@ -330,7 +331,15 @@ static NSString * RequestCell = @"RequestCell";
 {
     
     
-    
+    if (indexPath.section == 0) {
+        
+        TongXunLuTVC *_tonxunLuTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TongXunLuTVC"];
+        
+        [self.navigationController pushViewController:_tonxunLuTVC animated:YES];
+        
+        
+        
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }

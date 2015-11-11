@@ -168,6 +168,14 @@
 		15B7A5D71BE744A70052115F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5D61BE744A70052115F /* LoginViewController.m */; };
 		15B7A5DF1BE74E790052115F /* LinJinTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */; };
 		15B7A5E21BE772CE0052115F /* MineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A5E11BE772CE0052115F /* MineTableViewController.m */; };
+		15BE66C91BF3AC05000A9D1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15BE66CB1BF3AC05000A9D1F /* Localizable.strings */; };
+		15BE66D01BF3AD91000A9D1F /* MyConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66CF1BF3AD91000A9D1F /* MyConversation.m */; };
+		15BE66D41BF3BE9F000A9D1F /* TongXunLuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66D31BF3BE9F000A9D1F /* TongXunLuTVC.m */; };
+		15BE66D61BF3BEB4000A9D1F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66D51BF3BEB4000A9D1F /* AddressBook.framework */; };
+		15BE66D81BF3BEBA000A9D1F /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66D71BF3BEBA000A9D1F /* AddressBookUI.framework */; };
+		15BE66DA1BF3C34E000A9D1F /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66D91BF3C34E000A9D1F /* Contacts.framework */; };
+		15BE66DD1BF3CD6B000A9D1F /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66DC1BF3CD6B000A9D1F /* ContactModel.m */; };
+		15BE66DF1BF3E79F000A9D1F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66DE1BF3E79F000A9D1F /* MessageUI.framework */; };
 		15EE46BE1BE84BE200538EA5 /* RegistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46BD1BE84BE200538EA5 /* RegistTableViewController.m */; };
 		15EE46C11BE84C2000538EA5 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46C01BE84C2000538EA5 /* PrivacyViewController.m */; };
 		15EE46DF1BE85C1700538EA5 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46C81BE85C1700538EA5 /* JSONModel.m */; };
@@ -343,8 +351,8 @@
 		15B7A4421BE72FB30052115F /* Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Emoji.m; sourceTree = "<group>"; };
 		15B7A4431BE72FB30052115F /* EmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiEmoticons.h; sourceTree = "<group>"; };
 		15B7A4441BE72FB30052115F /* EmojiEmoticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiEmoticons.m; sourceTree = "<group>"; };
-		15B7A4471BE72FBC0052115F /* ChatListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListTableViewController.h; sourceTree = "<group>"; };
-		15B7A4481BE72FBC0052115F /* ChatListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListTableViewController.m; sourceTree = "<group>"; };
+		15B7A4471BE72FBC0052115F /* ChatListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatListTableViewController.h; path = Chat/ChatList/ChatListTableViewController.h; sourceTree = "<group>"; };
+		15B7A4481BE72FBC0052115F /* ChatListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatListTableViewController.m; path = Chat/ChatList/ChatListTableViewController.m; sourceTree = "<group>"; };
 		15B7A4491BE72FBC0052115F /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		15B7A44A1BE72FBC0052115F /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		15B7A44B1BE72FBC0052115F /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
@@ -595,6 +603,18 @@
 		15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinJinTableViewController.m; sourceTree = "<group>"; };
 		15B7A5E01BE772CE0052115F /* MineTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineTableViewController.h; sourceTree = "<group>"; };
 		15B7A5E11BE772CE0052115F /* MineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewController.m; sourceTree = "<group>"; };
+		15BE66CA1BF3AC05000A9D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		15BE66CC1BF3AC0B000A9D1F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		15BE66CE1BF3AD91000A9D1F /* MyConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyConversation.h; path = Chat/ChatList/MyConversation.h; sourceTree = "<group>"; };
+		15BE66CF1BF3AD91000A9D1F /* MyConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyConversation.m; path = Chat/ChatList/MyConversation.m; sourceTree = "<group>"; };
+		15BE66D21BF3BE9F000A9D1F /* TongXunLuTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TongXunLuTVC.h; sourceTree = "<group>"; };
+		15BE66D31BF3BE9F000A9D1F /* TongXunLuTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TongXunLuTVC.m; sourceTree = "<group>"; };
+		15BE66D51BF3BEB4000A9D1F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		15BE66D71BF3BEBA000A9D1F /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		15BE66D91BF3C34E000A9D1F /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		15BE66DB1BF3CD6B000A9D1F /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
+		15BE66DC1BF3CD6B000A9D1F /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
+		15BE66DE1BF3E79F000A9D1F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		15EE46BC1BE84BDE00538EA5 /* RegistTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistTableViewController.h; sourceTree = "<group>"; };
 		15EE46BD1BE84BE200538EA5 /* RegistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistTableViewController.m; sourceTree = "<group>"; };
 		15EE46BF1BE84C1C00538EA5 /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
@@ -650,6 +670,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15BE66DF1BF3E79F000A9D1F /* MessageUI.framework in Frameworks */,
+				15BE66DA1BF3C34E000A9D1F /* Contacts.framework in Frameworks */,
+				15BE66D81BF3BEBA000A9D1F /* AddressBookUI.framework in Frameworks */,
+				15BE66D61BF3BEB4000A9D1F /* AddressBook.framework in Frameworks */,
 				154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */,
 				15B7A5C21BE730780052115F /* SMS_SDK.framework in Frameworks */,
 				154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */,
@@ -723,6 +747,7 @@
 			isa = PBXGroup;
 			children = (
 				1528770E1BF23B4100321E50 /* Helper */,
+				15BE66CD1BF3AC7C000A9D1F /* linxin */,
 				15EE46F61BE8796200538EA5 /* linyou */,
 				15B7A5DC1BE74E490052115F /* linjin */,
 				15B7A5DB1BE744FA0052115F /* mine */,
@@ -738,6 +763,7 @@
 				15EFF9321BE7266A00069F38 /* Assets.xcassets */,
 				153CE0211BE50D910032517E /* LaunchScreen.storyboard */,
 				153CE0241BE50D910032517E /* Info.plist */,
+				15BE66CB1BF3AC05000A9D1F /* Localizable.strings */,
 				153CE0131BE50D910032517E /* Supporting Files */,
 			);
 			path = Linzihui;
@@ -774,6 +800,10 @@
 		154A39671BE5E4010042632E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15BE66DE1BF3E79F000A9D1F /* MessageUI.framework */,
+				15BE66D91BF3C34E000A9D1F /* Contacts.framework */,
+				15BE66D71BF3BEBA000A9D1F /* AddressBookUI.framework */,
+				15BE66D51BF3BEB4000A9D1F /* AddressBook.framework */,
 				154A39F91BE5E7110042632E /* libresolv.tbd */,
 				154A39F71BE5E70B0042632E /* libiconv.tbd */,
 				154A39F51BE5E7030042632E /* libxml2.tbd */,
@@ -1083,7 +1113,6 @@
 			children = (
 				15B7A4A81BE72FFE0052115F /* ChatAccountManager.h */,
 				15B7A4A91BE72FFE0052115F /* ChatAccountManager.m */,
-				15B7A43F1BE72FA60052115F /* ChatList */,
 				15B7A45A1BE72FEE0052115F /* ChatView */,
 				15B7A4531BE72FD80052115F /* ChatViewController */,
 				15B7A4401BE72FB30052115F /* Emoji */,
@@ -1151,8 +1180,6 @@
 		15B7A43F1BE72FA60052115F /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
-				15B7A4471BE72FBC0052115F /* ChatListTableViewController.h */,
-				15B7A4481BE72FBC0052115F /* ChatListTableViewController.m */,
 				15B7A4491BE72FBC0052115F /* NSDate+Category.h */,
 				15B7A44A1BE72FBC0052115F /* NSDate+Category.m */,
 				15B7A44B1BE72FBC0052115F /* NSDateFormatter+Category.h */,
@@ -1160,7 +1187,8 @@
 				15B7A44D1BE72FBC0052115F /* ChatListCellTableViewCell.h */,
 				15B7A44E1BE72FBC0052115F /* ChatListCellTableViewCell.m */,
 			);
-			path = ChatList;
+			name = ChatList;
+			path = Chat/ChatList;
 			sourceTree = "<group>";
 		};
 		15B7A4401BE72FB30052115F /* Emoji */ = {
@@ -1653,6 +1681,27 @@
 			path = linjin;
 			sourceTree = "<group>";
 		};
+		15BE66CD1BF3AC7C000A9D1F /* linxin */ = {
+			isa = PBXGroup;
+			children = (
+				15B7A4471BE72FBC0052115F /* ChatListTableViewController.h */,
+				15B7A4481BE72FBC0052115F /* ChatListTableViewController.m */,
+				15B7A43F1BE72FA60052115F /* ChatList */,
+				15BE66CE1BF3AD91000A9D1F /* MyConversation.h */,
+				15BE66CF1BF3AD91000A9D1F /* MyConversation.m */,
+			);
+			name = linxin;
+			sourceTree = "<group>";
+		};
+		15BE66D11BF3BE6E000A9D1F /* tongxunlu */ = {
+			isa = PBXGroup;
+			children = (
+				15BE66D21BF3BE9F000A9D1F /* TongXunLuTVC.h */,
+				15BE66D31BF3BE9F000A9D1F /* TongXunLuTVC.m */,
+			);
+			name = tongxunlu;
+			sourceTree = "<group>";
+		};
 		15EE46C51BE85C1700538EA5 /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1716,11 +1765,13 @@
 		15EE46E91BE85C4400538EA5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				15EE46ED1BE85CD100538EA5 /* ModelHeader.h */,
 				15EE46EA1BE85C5D00538EA5 /* UserModel.h */,
 				15EE46EB1BE85C5D00538EA5 /* UserModel.m */,
-				15EE46ED1BE85CD100538EA5 /* ModelHeader.h */,
 				15FB7FEB1BEF48E6007D6EC8 /* BaseBmobModel.h */,
 				15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */,
+				15BE66DB1BF3CD6B000A9D1F /* ContactModel.h */,
+				15BE66DC1BF3CD6B000A9D1F /* ContactModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1728,6 +1779,7 @@
 		15EE46F61BE8796200538EA5 /* linyou */ = {
 			isa = PBXGroup;
 			children = (
+				15BE66D11BF3BE6E000A9D1F /* tongxunlu */,
 				15EE46FD1BE891D500538EA5 /* addNewFriends */,
 				15FB7FF51BEF6E33007D6EC8 /* ChineseToPinyin.h */,
 				15FB7FF61BEF6E39007D6EC8 /* ChineseToPinyin.m */,
@@ -1816,6 +1868,7 @@
 			files = (
 				153CE0231BE50D910032517E /* LaunchScreen.storyboard in Resources */,
 				15B7A4201BE72F760052115F /* sr_refresh@2X.png in Resources */,
+				15BE66C91BF3AC05000A9D1F /* Localizable.strings in Resources */,
 				15B7A4CB1BE730320052115F /* MJRefresh.bundle in Resources */,
 				154A39F21BE5E6930042632E /* EaseMob.bundle in Resources */,
 				15B7A41F1BE72F760052115F /* sr_refresh.png in Resources */,
@@ -1850,6 +1903,7 @@
 				15B7A5581BE730460052115F /* PSTCollectionViewUpdateItem.m in Sources */,
 				15EE46E61BE85C1700538EA5 /* JSONModel+networking.m in Sources */,
 				15B7A5591BE730460052115F /* PSTGridLayoutInfo.m in Sources */,
+				15BE66D01BF3AD91000A9D1F /* MyConversation.m in Sources */,
 				15B7A53F1BE730460052115F /* DACircularProgressView.m in Sources */,
 				15B7A4D21BE730320052115F /* MJRefreshLegendFooter.m in Sources */,
 				15B7A5B91BE7305D0052115F /* UIView+WebCacheOperation.m in Sources */,
@@ -1947,6 +2001,7 @@
 				15B7A53A1BE730460052115F /* MWPhoto.m in Sources */,
 				15B7A54F1BE730460052115F /* UIView+EMWebCacheOperation.m in Sources */,
 				15EE46BE1BE84BE200538EA5 /* RegistTableViewController.m in Sources */,
+				15BE66DD1BF3CD6B000A9D1F /* ContactModel.m in Sources */,
 				15B7A4A21BE72FEE0052115F /* EMChatViewBaseCell.m in Sources */,
 				15B7A55A1BE730460052115F /* PSTGridLayoutItem.m in Sources */,
 				15B7A43C1BE72F800052115F /* EMCDDeviceManager+ProximitySensor.m in Sources */,
@@ -1971,6 +2026,7 @@
 				15B7A56C1BE7304D0052115F /* SDPhotoGroup.m in Sources */,
 				15B7A4581BE72FE30052115F /* XHMessageTextView.m in Sources */,
 				15EE46E81BE85C1700538EA5 /* JSONValueTransformer.m in Sources */,
+				15BE66D41BF3BE9F000A9D1F /* TongXunLuTVC.m in Sources */,
 				15EE46C11BE84C2000538EA5 /* PrivacyViewController.m in Sources */,
 				15B7A5AD1BE7305D0052115F /* SDWebImageCompat.m in Sources */,
 				15B7A49F1BE72FEE0052115F /* EMChatTextBubbleView.m in Sources */,
@@ -2016,6 +2072,15 @@
 				15B7A5BF1BE730770052115F /* zh-Hans */,
 			);
 			name = SMS_SDKLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		15BE66CB1BF3AC05000A9D1F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15BE66CA1BF3AC05000A9D1F /* en */,
+				15BE66CC1BF3AC0B000A9D1F /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

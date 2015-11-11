@@ -127,4 +127,22 @@ static EMHelper *_helper;
     
 }
 
+#pragma mark  - 检查是否为好友
++(BOOL)isBuddyWithUsername:(NSString*)userName
+{
+    NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
+    
+    for (EMBuddy *buddy in buddyList) {
+        
+        if ([buddy.username isEqualToString:userName]) {
+            
+            
+            return YES;
+        }
+    }
+    
+    return NO;
+    
+}
+
 @end

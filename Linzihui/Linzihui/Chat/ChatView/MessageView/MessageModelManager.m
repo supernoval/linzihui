@@ -13,6 +13,7 @@
 #import "MessageModelManager.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "MessageModel.h"
+#import "ConstantsHeaders.h"
 
 @implementation MessageModelManager
 
@@ -24,6 +25,7 @@
     NSString *sender = (message.messageType == eMessageTypeChat) ? message.from : message.groupSenderName;
     BOOL isSender = [login isEqualToString:sender] ? YES : NO;
     
+
     MessageModel *model = [[MessageModel alloc] init];
     model.isRead = message.isRead;
     model.messageBody = messageBody;
@@ -39,14 +41,38 @@
         model.username = message.from;
     }
 
-    /*
+    
     if (isSender) {
-        model.headImageURL = nil;
+        
+        UserModel *currentUserModel = [BmobHelper getCurrentUserModel];
+        
+        model.headImageURL = [NSURL URLWithString:currentUserModel.headImageURL];
     }
     else{
-        model.headImageURL = nil;
+        
+        BmobQuery *query = [BmobQuery queryForUser];
+        
+        [query whereKey:@"username" equalTo:model.username];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+           
+            if (!error && array.count > 0) {
+                
+                BmobObject *ob = [array firstObject];
+                
+                NSString *headImageURL = [ob objectForKey:@"headImageURL"];
+                
+                model.headImageURL = [NSURL URLWithString:headImageURL];
+                
+            }
+            else
+            {
+              model.headImageURL = nil;  
+            }
+        }];
+        
     }
-     */
+    
     
     switch (messageBody.messageBodyType) {
         case eMessageBodyType_Text:

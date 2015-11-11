@@ -10,3 +10,5 @@
 
 #import "UserModel.h"
 #import "BaseBmobModel.h"
+#import "ContactModel.h"
+
