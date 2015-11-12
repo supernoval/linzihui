@@ -9,6 +9,7 @@
 #import "AddNewFriendsTVC.h"
 #import "InvitationManager.h"
 #import "TongXunLuTVC.h"
+#import "WechatShareController.h"
 
 
 static NSString * CellId = @"CellId";
@@ -214,14 +215,16 @@ static NSString * RequestCell = @"RequestCell";
                         break;
                     case 1:
                     {
-                        imageName  = @"qqIcon";
-                        title =  @"QQ";
+                        imageName  = @"weichaIcon";
+                        title =  @"微信";
+                        
+                        
                     }
                         break;
                     case 2:
                     {
-                        imageName  = @"weichaIcon";
-                        title =  @"微信";
+                        imageName  = @"qqIcon";
+                        title =  @"QQ";
                     }
                         break;
                         
@@ -333,13 +336,25 @@ static NSString * RequestCell = @"RequestCell";
     
     if (indexPath.section == 0) {
         
-        TongXunLuTVC *_tonxunLuTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TongXunLuTVC"];
-        
-        [self.navigationController pushViewController:_tonxunLuTVC animated:YES];
-        
+        if (indexPath.row == 0) {
+            
+            TongXunLuTVC *_tonxunLuTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TongXunLuTVC"];
+            
+            [self.navigationController pushViewController:_tonxunLuTVC animated:YES];
+        }
+       else
+       {
+           WechatShareController *_shareVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WechatShareController"];
+           
+           _shareVC.hidesBottomBarWhenPushed = YES;
+           _shareVC.shareType = indexPath.row;
+           
+           [self.navigationController pushViewController:_shareVC animated:YES];
+       }
         
         
     }
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }

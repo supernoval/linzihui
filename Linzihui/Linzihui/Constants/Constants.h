@@ -19,8 +19,8 @@
 #define kShareSMSAppSecret        @"7212b6997e38237ed00ad4ce0f332ed7"
 
 #pragma mark - 微信
-#define kWeiChatAppID              @"wx324fc4f1945fcaac"
-#define kWeiChatURLScheme          @"wx324fc4f1945fcaac"
+#define kWeiChatAppID              @"wx08f14afb1a1bcf1a"
+#define kWeiChatURLScheme          @"wx08f14afb1a1bcf1a"
 
 //app 下载地址
 #define kAppDownloadURL            @"https://itunes.apple.com/us/app/you-kang-fu-wu/id646300912?l=zh&ls=1&mt=8"

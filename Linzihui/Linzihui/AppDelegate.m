@@ -12,8 +12,9 @@
 #import <SMS_SDK/SMSSDK.h>
 #import "EaseMob.h"
 #import "EMHelper.h"
+#import "WXApi.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -46,6 +47,9 @@
     
     //初始化下环信 监听
     [EMHelper getHelper];
+    
+    //注册微信
+    [WXApi registerApp:kWeiChatAppID];
     
     
     if ([[UIDevice currentDevice].systemVersion floatValue] >=8.0)
@@ -96,6 +100,19 @@
     
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    NSLog(@"url host:%@",url.host);
+    
+    if ([url.host isEqualToString:@"platformId=wechat"]) {
+        
+          return [WXApi handleOpenURL:url delegate:self];
+    }
+  
+    return NO;
+    
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
    
 }
@@ -118,6 +135,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     
      [[EaseMob sharedInstance] applicationWillTerminate:application];
+}
+
+#pragma mark - WXApiDelegate
+-(void)onReq:(BaseReq *)req
+{
+    NSLog(@"req:%@",req);
+    
+}
+
+-(void)onResp:(BaseResp *)resp
+{
+    NSLog(@"resp:%@",resp);
+    NSLog(@"errorCode:%d,errorStr:%@",resp.errCode,resp.errStr);
 }
 
 @end

@@ -1388,6 +1388,212 @@
             </objects>
             <point key="canvasLocation" x="4154.25" y="3.375"/>
         </scene>
+        <!--Wechat Share Controller-->
+        <scene sceneID="tXo-af-oou">
+            <objects>
+                <tableViewController storyboardIdentifier="WechatShareController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="adC-lx-YOj" customClass="WechatShareController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="KBU-tm-NT9">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="8c3-vc-LZK">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CellId" rowHeight="50" id="NxW-QP-mhO">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NxW-QP-mhO" id="s8F-sR-6Cy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享到微信朋友圈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9K-Ea-iXe">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="215" id="Xm5-Nh-I3l"/>
+                                                        <constraint firstAttribute="height" constant="33" id="aw2-cg-Rvn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="Xm5-Nh-I3l"/>
+                                                            <exclude reference="aw2-cg-Rvn"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="Xm5-Nh-I3l"/>
+                                                            <include reference="aw2-cg-Rvn"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="251" image="pengyouquan" translatesAutoresizingMaskIntoConstraints="NO" id="nJA-tg-IRp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="6bc-Wj-WVJ">
+                                                            <variation key="heightClass=regular-widthClass=compact" constant="32"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="height" constant="40" id="Rta-Mc-3Vr">
+                                                            <variation key="heightClass=regular-widthClass=compact" constant="32"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="6bc-Wj-WVJ"/>
+                                                            <exclude reference="Rta-Mc-3Vr"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="6bc-Wj-WVJ"/>
+                                                            <include reference="Rta-Mc-3Vr"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="p9K-Ea-iXe" firstAttribute="centerY" secondItem="s8F-sR-6Cy" secondAttribute="centerY" id="74c-Lf-4ky"/>
+                                                <constraint firstItem="nJA-tg-IRp" firstAttribute="centerY" secondItem="s8F-sR-6Cy" secondAttribute="centerY" id="8i0-rH-ifT"/>
+                                                <constraint firstItem="p9K-Ea-iXe" firstAttribute="leading" secondItem="nJA-tg-IRp" secondAttribute="trailing" constant="8" id="Lxh-t8-Jk8"/>
+                                                <constraint firstItem="nJA-tg-IRp" firstAttribute="leading" secondItem="s8F-sR-6Cy" secondAttribute="leading" constant="15" id="nuK-Nt-4Nx"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="p9K-Ea-iXe"/>
+                                                    <exclude reference="nJA-tg-IRp"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="8i0-rH-ifT"/>
+                                                    <exclude reference="nuK-Nt-4Nx"/>
+                                                    <exclude reference="74c-Lf-4ky"/>
+                                                    <exclude reference="Lxh-t8-Jk8"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="p9K-Ea-iXe"/>
+                                                    <include reference="nJA-tg-IRp"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="8i0-rH-ifT"/>
+                                                    <include reference="nuK-Nt-4Nx"/>
+                                                    <include reference="74c-Lf-4ky"/>
+                                                    <include reference="Lxh-t8-Jk8"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CellId" rowHeight="50" id="efz-g6-lLW">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="efz-g6-lLW" id="yFb-ou-96P">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享到微信好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dok-ag-r6n">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="215" id="Bo7-Sy-nwD"/>
+                                                        <constraint firstAttribute="height" constant="33" id="FMk-yd-kUs"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="Bo7-Sy-nwD"/>
+                                                            <exclude reference="FMk-yd-kUs"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="Bo7-Sy-nwD"/>
+                                                            <include reference="FMk-yd-kUs"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="251" image="weixinhaoyou" translatesAutoresizingMaskIntoConstraints="NO" id="FJX-GA-V4F">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="Vcv-Yl-dMv">
+                                                            <variation key="heightClass=regular-widthClass=compact" constant="32"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="width" constant="40" id="qSd-tl-V1d">
+                                                            <variation key="heightClass=regular-widthClass=compact" constant="32"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="qSd-tl-V1d"/>
+                                                            <exclude reference="Vcv-Yl-dMv"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="qSd-tl-V1d"/>
+                                                            <include reference="Vcv-Yl-dMv"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="Dok-ag-r6n" firstAttribute="centerY" secondItem="yFb-ou-96P" secondAttribute="centerY" id="6ya-2q-6C8"/>
+                                                <constraint firstItem="Dok-ag-r6n" firstAttribute="leading" secondItem="FJX-GA-V4F" secondAttribute="trailing" constant="8" id="k0J-gU-9Hj"/>
+                                                <constraint firstItem="FJX-GA-V4F" firstAttribute="leading" secondItem="yFb-ou-96P" secondAttribute="leading" constant="15" id="u67-18-EDI"/>
+                                                <constraint firstItem="FJX-GA-V4F" firstAttribute="centerY" secondItem="yFb-ou-96P" secondAttribute="centerY" id="wAH-B0-w3K"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="Dok-ag-r6n"/>
+                                                    <exclude reference="FJX-GA-V4F"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="wAH-B0-w3K"/>
+                                                    <exclude reference="u67-18-EDI"/>
+                                                    <exclude reference="6ya-2q-6C8"/>
+                                                    <exclude reference="k0J-gU-9Hj"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="Dok-ag-r6n"/>
+                                                    <include reference="FJX-GA-V4F"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="wAH-B0-w3K"/>
+                                                    <include reference="u67-18-EDI"/>
+                                                    <include reference="6ya-2q-6C8"/>
+                                                    <include reference="k0J-gU-9Hj"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="adC-lx-YOj" id="pFr-Ht-r2l"/>
+                            <outlet property="delegate" destination="adC-lx-YOj" id="SAu-9F-NMl"/>
+                        </connections>
+                    </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="firstImageView" destination="nJA-tg-IRp" id="k6A-IJ-bVC"/>
+                        <outlet property="firstTitlelabel" destination="p9K-Ea-iXe" id="COU-LJ-ccA"/>
+                        <outlet property="secImageView" destination="FJX-GA-V4F" id="WHb-OC-ypg"/>
+                        <outlet property="secTitleLabel" destination="Dok-ag-r6n" id="zTV-BG-IJi"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GMH-a7-ICC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4956.75" y="3.375"/>
+        </scene>
         <!--Chat List Table View Controller-->
         <scene sceneID="14Y-vS-Ltt">
             <objects>
@@ -3189,6 +3395,8 @@
         <image name="linxin_1" width="22" height="22"/>
         <image name="linyou" width="22" height="22"/>
         <image name="linyou_1" width="22" height="22"/>
+        <image name="pengyouquan" width="300" height="300"/>
+        <image name="weixinhaoyou" width="32" height="32"/>
         <image name="wo" width="22" height="22"/>
         <image name="wo_1" width="22" height="22"/>
     </resources>

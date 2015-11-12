@@ -11,6 +11,7 @@
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
 		152877141BF251CE00321E50 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877131BF251CE00321E50 /* InvitationManager.m */; };
+		1531670D1BF463E800B88CF4 /* WechatShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1531670C1BF463E800B88CF4 /* WechatShareController.m */; };
 		153CE0151BE50D910032517E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0141BE50D910032517E /* main.m */; };
 		153CE0181BE50D910032517E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0171BE50D910032517E /* AppDelegate.m */; };
 		153CE01E1BE50D910032517E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153CE01C1BE50D910032517E /* Main.storyboard */; };
@@ -216,6 +217,8 @@
 		152877101BF23B7100321E50 /* EMHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHelper.m; sourceTree = "<group>"; };
 		152877121BF251CA00321E50 /* InvitationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		152877131BF251CE00321E50 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
+		1531670B1BF463E800B88CF4 /* WechatShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatShareController.h; sourceTree = "<group>"; };
+		1531670C1BF463E800B88CF4 /* WechatShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatShareController.m; sourceTree = "<group>"; };
 		153CE0101BE50D910032517E /* Linzihui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linzihui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		153CE0141BE50D910032517E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		153CE0161BE50D910032517E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -741,6 +744,15 @@
 				152877131BF251CE00321E50 /* InvitationManager.m */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		1531670A1BF4639E00B88CF4 /* wechatShareController */ = {
+			isa = PBXGroup;
+			children = (
+				1531670B1BF463E800B88CF4 /* WechatShareController.h */,
+				1531670C1BF463E800B88CF4 /* WechatShareController.m */,
+			);
+			name = wechatShareController;
 			sourceTree = "<group>";
 		};
 		153CE0071BE50D900032517E = {
@@ -1819,6 +1831,7 @@
 		15EE46F61BE8796200538EA5 /* linyou */ = {
 			isa = PBXGroup;
 			children = (
+				1531670A1BF4639E00B88CF4 /* wechatShareController */,
 				15BE66ED1BF3F6ED000A9D1F /* guanzhu */,
 				15BE66D11BF3BE6E000A9D1F /* tongxunlu */,
 				15EE46FD1BE891D500538EA5 /* addNewFriends */,
@@ -2011,6 +2024,7 @@
 				152579C71BF1872900F91C06 /* STScratchView.m in Sources */,
 				15B7A55B1BE730460052115F /* PSTGridLayoutRow.m in Sources */,
 				15B7A5841BE730580052115F /* wav.mm in Sources */,
+				1531670D1BF463E800B88CF4 /* WechatShareController.m in Sources */,
 				15EE46DF1BE85C1700538EA5 /* JSONModel.m in Sources */,
 				15B7A4521BE72FBC0052115F /* ChatListCellTableViewCell.m in Sources */,
 				15B7A5541BE730460052115F /* PSTCollectionViewData.m in Sources */,
@@ -2233,7 +2247,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "25aa2349-5e76-49d2-a8c3-bba436af0d85";
 			};
 			name = Debug;
 		};

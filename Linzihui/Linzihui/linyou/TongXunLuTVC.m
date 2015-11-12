@@ -250,19 +250,23 @@ static NSString *ContactsCell = @"ContactsCell";
     
     if ([addButton.titleLabel.text isEqualToString:@"邀请"]) {
         
-        _yaoqingActionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+        NSString *text = [NSString stringWithFormat:@"您的好友邀请您加入邻子会，社区邻妈互助众扶App,大量就近免费活动与奖励，邀请码为:%@,下载地址为:%@",yaoqingma,kAppDownloadURL];
+    
+        [self sendSMSMessageWithPhoneNum:model.phoneNum content:text];
         
-        [_yaoqingActionsheet addButtonWithTitle:@"短信邀请"];
-        [_yaoqingActionsheet addButtonWithTitle:@"微信邀请"];
-        [_yaoqingActionsheet addButtonWithTitle:@"QQ邀请"];
-        
-        [_yaoqingActionsheet addButtonWithTitle:@"取消"];
-        
-        _yaoqingActionsheet.tag = [addButton superview].tag ;
-                                   
-        _yaoqingActionsheet.cancelButtonIndex = 3;
-     
-        [_yaoqingActionsheet showInView:self.view];
+//        _yaoqingActionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+//        
+//        [_yaoqingActionsheet addButtonWithTitle:@"短信邀请"];
+//        [_yaoqingActionsheet addButtonWithTitle:@"微信邀请"];
+//        [_yaoqingActionsheet addButtonWithTitle:@"QQ邀请"];
+//        
+//        [_yaoqingActionsheet addButtonWithTitle:@"取消"];
+//        
+//        _yaoqingActionsheet.tag = [addButton superview].tag ;
+//                                   
+//        _yaoqingActionsheet.cancelButtonIndex = 3;
+//     
+//        [_yaoqingActionsheet showInView:self.view];
         
      
     }
