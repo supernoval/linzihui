@@ -17,18 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qT4-YX-gh9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邻子会" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7r-RR-yrK">
+                                <rect key="frame" x="106" y="274" width="388" height="51"/>
                                 <animations/>
-                            </imageView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="388" id="sVo-Hc-38t"/>
+                                    <constraint firstAttribute="height" constant="51" id="x21-Cc-l9v"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qT4-YX-gh9" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="H8M-7F-5Bx"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="qT4-YX-gh9" secondAttribute="bottom" id="Tvz-tQ-vul"/>
-                            <constraint firstAttribute="trailing" secondItem="qT4-YX-gh9" secondAttribute="trailing" id="ivs-j7-3CM"/>
-                            <constraint firstItem="qT4-YX-gh9" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="qTM-I1-ZpN"/>
+                            <constraint firstItem="R7r-RR-yrK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3vw-eq-wLY"/>
+                            <constraint firstItem="R7r-RR-yrK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tQp-Jz-wYi"/>
                         </constraints>
                     </view>
                 </viewController>

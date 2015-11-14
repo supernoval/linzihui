@@ -160,9 +160,9 @@ static NSInteger sextActionSheetTag  = 100;
                 
                 titleLabel.text = [_titlesArray objectAtIndex:indexPath.row];
                 
-//                [imageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];
                 
-                imageView.image = temImage;
+                [imageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];
+                
                 
                 
                 
