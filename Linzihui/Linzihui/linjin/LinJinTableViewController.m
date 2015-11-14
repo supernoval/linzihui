@@ -42,6 +42,11 @@ static NSString *CellID = @"CellID";
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+}
 
 
 

@@ -6,8 +6,8 @@
 //  Copyright © 2015年 haikunZhu. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseHomeTableViewController.h"
 
-@interface LinJinTableViewController : BaseTableViewController
+@interface LinJinTableViewController : BaseHomeTableViewController
 
 @end

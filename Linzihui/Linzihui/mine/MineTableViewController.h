@@ -6,8 +6,8 @@
 //  Copyright © 2015年 haikunZhu. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseHomeTableViewController.h"
 
-@interface MineTableViewController : BaseTableViewController
+@interface MineTableViewController : BaseHomeTableViewController
 
 @end

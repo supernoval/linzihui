@@ -55,6 +55,13 @@ static NSInteger sextActionSheetTag  = 100;
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+}
+
+
 -(NSArray *)titlesArray
 {
     NSArray *titles = @[@"头像",@"昵称",@"邻子号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"地区",@"个性签名"];

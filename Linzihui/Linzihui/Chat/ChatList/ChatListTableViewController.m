@@ -75,6 +75,12 @@ static NSString *cellId = @"ChatListCell";
    
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+}
+
 -(void)headerRefresh
 {
     

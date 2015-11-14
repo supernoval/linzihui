@@ -6,10 +6,10 @@
 //  Copyright © 2015年 ZhuHaikun. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseHomeTableViewController.h"
 #import "EaseMob.h"
 
-@interface ChatListTableViewController : BaseTableViewController
+@interface ChatListTableViewController : BaseHomeTableViewController
 
 @property (weak, nonatomic) IBOutlet UIView *chatHeadView;
 

@@ -6,9 +6,9 @@
 //  Copyright © 2015年 haikunZhu. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseHomeTableViewController.h"
 
-@interface LinYouTableViewController : BaseTableViewController
+@interface LinYouTableViewController : BaseHomeTableViewController
 
 
 @property (weak, nonatomic) IBOutlet UIView *headView;

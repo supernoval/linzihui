@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1506EC1F1BF702C80010F349 /* PullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC1E1BF702C80010F349 /* PullView.m */; };
+		1506EC221BF7093A0010F349 /* BaseHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC211BF7093A0010F349 /* BaseHomeTableViewController.m */; };
+		1506EC261BF712620010F349 /* CreateChatRoomTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC251BF712620010F349 /* CreateChatRoomTVC.m */; };
 		152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C31BF1872900F91C06 /* EditPhotoViewController.m */; };
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
@@ -209,6 +212,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1506EC1D1BF702C80010F349 /* PullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullView.h; sourceTree = "<group>"; };
+		1506EC1E1BF702C80010F349 /* PullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullView.m; sourceTree = "<group>"; };
+		1506EC201BF7093A0010F349 /* BaseHomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHomeTableViewController.h; sourceTree = "<group>"; };
+		1506EC211BF7093A0010F349 /* BaseHomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseHomeTableViewController.m; sourceTree = "<group>"; };
+		1506EC241BF712620010F349 /* CreateChatRoomTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateChatRoomTVC.h; sourceTree = "<group>"; };
+		1506EC251BF712620010F349 /* CreateChatRoomTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateChatRoomTVC.m; sourceTree = "<group>"; };
 		152579C21BF1872900F91C06 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		152579C31BF1872900F91C06 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		152579C41BF1872900F91C06 /* STScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScratchView.h; sourceTree = "<group>"; };
@@ -722,6 +731,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1506EC1C1BF702A70010F349 /* MyViews */ = {
+			isa = PBXGroup;
+			children = (
+				1506EC1D1BF702C80010F349 /* PullView.h */,
+				1506EC1E1BF702C80010F349 /* PullView.m */,
+			);
+			name = MyViews;
+			sourceTree = "<group>";
+		};
+		1506EC231BF7122B0010F349 /* CreateChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				1506EC241BF712620010F349 /* CreateChatRoomTVC.h */,
+				1506EC251BF712620010F349 /* CreateChatRoomTVC.m */,
+			);
+			name = CreateChatRoom;
+			sourceTree = "<group>";
+		};
 		152579C11BF1872900F91C06 /* STSCropPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +802,8 @@
 		153CE0121BE50D910032517E /* Linzihui */ = {
 			isa = PBXGroup;
 			children = (
+				1506EC231BF7122B0010F349 /* CreateChatRoom */,
+				1506EC1C1BF702A70010F349 /* MyViews */,
 				1528770E1BF23B4100321E50 /* Helper */,
 				15BE66CD1BF3AC7C000A9D1F /* linxin */,
 				15EE46F61BE8796200538EA5 /* linyou */,
@@ -1370,6 +1399,8 @@
 				15B7A4AD1BE730150052115F /* BaseTableViewController.m */,
 				15B7A4AE1BE730150052115F /* BaseViewController.h */,
 				15B7A4AF1BE730150052115F /* BaseViewController.m */,
+				1506EC201BF7093A0010F349 /* BaseHomeTableViewController.h */,
+				1506EC211BF7093A0010F349 /* BaseHomeTableViewController.m */,
 			);
 			path = BaseViewControllers;
 			sourceTree = "<group>";
@@ -1944,6 +1975,7 @@
 				15B7A4D41BE730320052115F /* UIScrollView+MJExtension.m in Sources */,
 				15B7A55C1BE730460052115F /* PSTGridLayoutSection.m in Sources */,
 				15B7A5B81BE7305D0052115F /* UIImageView+WebCache.m in Sources */,
+				1506EC221BF7093A0010F349 /* BaseHomeTableViewController.m in Sources */,
 				15FB7FF11BEF5206007D6EC8 /* ChangePersonInfoVC.m in Sources */,
 				15B7A4381BE72F800052115F /* EMAudioPlayerUtil.m in Sources */,
 				15B7A5B21BE7305D0052115F /* SDWebImagePrefetcher.m in Sources */,
@@ -1987,6 +2019,7 @@
 				15B7A4591BE72FE30052115F /* UIViewController+HUD.m in Sources */,
 				15B7A4A41BE72FEE0052115F /* MessageModel.m in Sources */,
 				15B7A53C1BE730460052115F /* MWTapDetectingImageView.m in Sources */,
+				1506EC261BF712620010F349 /* CreateChatRoomTVC.m in Sources */,
 				15EE46E41BE85C1700538EA5 /* JSONAPI.m in Sources */,
 				15B7A4A51BE72FEE0052115F /* MessageModelManager.m in Sources */,
 				15B7A4941BE72FEE0052115F /* ConvertToCommonEmoticonsHelper.m in Sources */,
@@ -2085,6 +2118,7 @@
 				15BE66D41BF3BE9F000A9D1F /* TongXunLuTVC.m in Sources */,
 				15EE46C11BE84C2000538EA5 /* PrivacyViewController.m in Sources */,
 				15B7A5AD1BE7305D0052115F /* SDWebImageCompat.m in Sources */,
+				1506EC1F1BF702C80010F349 /* PullView.m in Sources */,
 				15B7A49F1BE72FEE0052115F /* EMChatTextBubbleView.m in Sources */,
 				15B7A4951BE72FEE0052115F /* LocationViewController.m in Sources */,
 				15B7A5371BE730460052115F /* MWCaptionView.m in Sources */,

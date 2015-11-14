@@ -61,6 +61,13 @@ static NSString *CellId  = @"CellId";
     [self reloadDataSource];
     
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+}
+
 #pragma mark - dataSource
 
 - (void)reloadDataSource
