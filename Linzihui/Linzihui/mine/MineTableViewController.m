@@ -71,7 +71,7 @@ static NSInteger sextActionSheetTag  = 100;
 
 -(NSArray *)titlesArray
 {
-    NSArray *titles = @[@"头像",@"昵称",@"邻子号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"地区",@"个性签名"];
+    NSArray *titles = @[@"头像",@"昵称",@"邻号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"地区",@"个性签名"];
     
     return titles;
     
@@ -161,7 +161,7 @@ static NSInteger sextActionSheetTag  = 100;
     if (indexPath.section == 0) {
         
         
-        if (indexPath.row == 0) {
+        if (indexPath.row == 0 || indexPath.row == 4) {
             
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeadPhotoCell"];
             
@@ -175,7 +175,16 @@ static NSInteger sextActionSheetTag  = 100;
                 titleLabel.text = [_titlesArray objectAtIndex:indexPath.row];
                 
                 
-                [imageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];
+                if (indexPath.row == 0) {
+                    
+                    [imageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];
+                }
+                else
+                {
+                    imageView.image = [UIImage imageNamed:@"erweima"];
+                    
+                    
+                }
                 
                 
                 
@@ -213,15 +222,21 @@ static NSInteger sextActionSheetTag  = 100;
                         break;
                     case 2:  //林子号
                     {
-                        contentLabel.text = _model.objectId;
+                        contentLabel.text = _model.username;
                         
                     }
                         break;
-                    case 3:
+                    case 3: //邀请码
                     {
+                        NSString *yaoqingma = [_model.objectId substringToIndex:4];
+                        
+                        contentLabel.text = yaoqingma;
+                        
                         
                     }
                         break;
+                 
+                        
                         
                         
                     default:

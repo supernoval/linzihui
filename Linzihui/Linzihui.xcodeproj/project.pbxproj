@@ -12,6 +12,7 @@
 		1506EC261BF712620010F349 /* CreateChatRoomTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC251BF712620010F349 /* CreateChatRoomTVC.m */; };
 		1506EC2A1BF82CAA0010F349 /* MygroupListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC291BF82CAA0010F349 /* MygroupListTVC.m */; };
 		1506EC2D1BF839220010F349 /* ChatSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2C1BF839220010F349 /* ChatSettingTVC.m */; };
+		1506EC301BF860A80010F349 /* SignUpTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2F1BF860A80010F349 /* SignUpTableView.m */; };
 		152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C31BF1872900F91C06 /* EditPhotoViewController.m */; };
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
@@ -224,6 +225,8 @@
 		1506EC291BF82CAA0010F349 /* MygroupListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MygroupListTVC.m; sourceTree = "<group>"; };
 		1506EC2B1BF839220010F349 /* ChatSettingTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSettingTVC.h; sourceTree = "<group>"; };
 		1506EC2C1BF839220010F349 /* ChatSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSettingTVC.m; sourceTree = "<group>"; };
+		1506EC2E1BF860A80010F349 /* SignUpTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTableView.h; sourceTree = "<group>"; };
+		1506EC2F1BF860A80010F349 /* SignUpTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableView.m; sourceTree = "<group>"; };
 		152579C21BF1872900F91C06 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		152579C31BF1872900F91C06 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		152579C41BF1872900F91C06 /* STScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScratchView.h; sourceTree = "<group>"; };
@@ -1739,6 +1742,8 @@
 				15EE46F11BE8640600538EA5 /* ForgetCodeTVC.m */,
 				15EE46F31BE8643D00538EA5 /* ChangeCodeTVC.h */,
 				15EE46F41BE8644100538EA5 /* ChangeCodeTVC.m */,
+				1506EC2E1BF860A80010F349 /* SignUpTableView.h */,
+				1506EC2F1BF860A80010F349 /* SignUpTableView.m */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -2027,6 +2032,7 @@
 				15B7A4B01BE730150052115F /* BaseTableViewController.m in Sources */,
 				15B7A5AA1BE7305D0052115F /* MKAnnotationView+WebCache.m in Sources */,
 				15FB7FF71BEF6E39007D6EC8 /* ChineseToPinyin.m in Sources */,
+				1506EC301BF860A80010F349 /* SignUpTableView.m in Sources */,
 				15EE46F51BE8644100538EA5 /* ChangeCodeTVC.m in Sources */,
 				15B7A4CC1BE730320052115F /* MJRefreshComponent.m in Sources */,
 				15B7A5391BE730460052115F /* MWGridViewController.m in Sources */,
