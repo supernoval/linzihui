@@ -42,7 +42,7 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 + (void)checkFollowEachOtherWithItemArray:(NSArray*)itemArray searchResult:(void(^)(NSArray*array))resultBlock;
 
 
-#pragma mark -  通过环信好友username 获取bmob 对应用户信息
+#pragma mark -  获取好友列表  通过环信好友username 获取bmob 对应用户信息
 + (void)getBmobBuddyUsers:(void(^)(NSArray*))block;
 
 #pragma mark - 批量获取聊天记录里面用户的nickName headImageURL

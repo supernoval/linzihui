@@ -32,6 +32,9 @@ typedef enum{
 #pragma mark  - 检查是否为好友
 +(BOOL)isBuddyWithUsername:(NSString*)userName;
 
+#pragma mark - 创建群组 
++ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg;
+
 
 
 

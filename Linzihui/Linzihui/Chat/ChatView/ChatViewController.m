@@ -34,7 +34,7 @@
 
 #import "EMCDDeviceManager.h"
 #import "EMCDDeviceManagerDelegate.h"
-
+#import "ChatSettingTVC.h"
 
 
 #define KPageCount 20
@@ -99,6 +99,9 @@
         _conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:chatter
                                                                     conversationType:type];
         [_conversation markAllMessagesAsRead:YES];
+        
+        self.isChatGroup = type;
+        
     }
     
     return self;
@@ -198,9 +201,34 @@
     {
         [self joinChatroom:_chatter];
     }
+    
+    
+    if (_isChatGroup) {
+        
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"linyou_1"] style:UIBarButtonItemStylePlain target:self action:@selector(showGroupSettingView)];
+        
+        self.navigationItem.rightBarButtonItem = rightButton;
+    }
+  
+    
+    
 }
 
 
+
+-(void)showGroupSettingView
+{
+    
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    
+    
+    ChatSettingTVC *_settingTVC = [SB instantiateViewControllerWithIdentifier:@"ChatSettingTVC"];
+    
+    
+    [self.navigationController pushViewController:_settingTVC animated:YES];
+    
+    
+}
 
 
 

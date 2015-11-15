@@ -145,4 +145,42 @@ static EMHelper *_helper;
     
 }
 
+#pragma mark - 创建群组
++ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg
+{
+    EMGroupStyleSetting *setting = [[EMGroupStyleSetting alloc]init];
+    setting.groupStyle = eGroupStyle_PrivateMemberCanInvite;
+    
+    
+    
+    [[EaseMob sharedInstance].chatManager asyncCreateGroupWithSubject:title description:description invitees:invitees initialWelcomeMessage:welcomeMsg styleSetting:setting completion:^(EMGroup *group, EMError *error) {
+        
+        if (!error && group) {
+            
+            
+            [[NSNotificationCenter defaultCenter ] postNotificationName:kCreategroupSuccessNoti object:group userInfo:@{@"groupid":group.groupId}];
+            
+            
+            
+            
+        }
+        else
+        {
+            
+            NSLog(@"%s,error:%@",__func__,error);
+            
+            
+            [CommonMethods showDefaultErrorString:@"创建群组失败，请重试"];
+            
+            
+        }
+        
+        
+        
+    } onQueue:nil];
+    
+    
+    
+}
+
 @end

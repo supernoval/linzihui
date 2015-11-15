@@ -18,7 +18,7 @@ static NSInteger photoActionSheetTag = 99;
 static NSInteger sextActionSheetTag  = 100;
 
 
-@interface MineTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,EditPhotoViewDelegate>
+@interface MineTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,EditPhotoViewDelegate,UIAlertViewDelegate>
 {
     NSArray *_titlesArray;
     
@@ -27,6 +27,9 @@ static NSInteger sextActionSheetTag  = 100;
     UIImage *temImage;
     
     UIImage *showImage;
+    UIAlertView *_logoutAlert;
+    
+    
     
     
     
@@ -41,6 +44,10 @@ static NSInteger sextActionSheetTag  = 100;
     _titlesArray = [self titlesArray];
 
     _model = [[UserModel alloc]init];
+    
+    self.footerView.frame = CGRectMake(0, 0, ScreenWidth, 120);
+    
+    
     
 
     
@@ -575,6 +582,8 @@ static NSInteger sextActionSheetTag  = 100;
     }];
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -582,4 +591,42 @@ static NSInteger sextActionSheetTag  = 100;
 
 
 
+- (IBAction)logoutAction:(id)sender {
+    
+    _logoutAlert = [[UIAlertView alloc]initWithTitle:nil message:@"确定退出?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    
+    [_logoutAlert show];
+    
+    
+    
+}
+
+
+
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (alertView == _logoutAlert) {
+        
+        if (buttonIndex == 1) {
+            
+            [BmobUser logout];
+            
+            [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:NO];
+            
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kHadLogin];
+            
+            [[NSUserDefaults standardUserDefaults ] setBool:NO forKey:kEasyMobHadLogin];
+            
+            [[NSUserDefaults standardUserDefaults ] synchronize];
+            UINavigationController *logNav = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+            
+            [self presentViewController:logNav animated:YES completion:nil];
+            
+            
+            
+        }
+    }
+}
 @end

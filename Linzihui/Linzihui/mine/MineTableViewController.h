@@ -9,5 +9,7 @@
 #import "BaseHomeTableViewController.h"
 
 @interface MineTableViewController : BaseHomeTableViewController
+@property (weak, nonatomic) IBOutlet UIView *footerView;
+- (IBAction)logoutAction:(id)sender;
 
 @end

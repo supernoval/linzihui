@@ -55,3 +55,5 @@
 //本地好友列表
 #define kLocateFriends  @"LocateFriends"
 
+
+

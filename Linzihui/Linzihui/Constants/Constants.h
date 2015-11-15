@@ -63,3 +63,7 @@
 
 //默认头像
 #define kDefaultHeadImage   [UIImage imageNamed:@"wo_1"]
+
+
+//创建群成功 通知名称
+#define kCreategroupSuccessNoti       @"CreategroupSuccessNoti"

@@ -12,6 +12,8 @@
 #import "AddNewFriendsTVC.h"
 #import "ChatViewController.h"
 #import "GZViewController.h"
+#import "MygroupListTVC.h"
+
 
 
 
@@ -291,8 +293,14 @@ static NSString *CellId  = @"CellId";
             
         }
             break;
-        case 1:
+        case 1:  //群聊
         {
+            MygroupListTVC *_groupListTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MygroupListTVC"];
+            
+            _groupListTVC.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController pushViewController:_groupListTVC animated:YES];
+            
             
         }
             break;

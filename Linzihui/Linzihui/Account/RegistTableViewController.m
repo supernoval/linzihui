@@ -52,28 +52,38 @@
 
 - (IBAction)sendCodeAction:(id)sender {
     
+    
+
     if ([CommonMethods checkTel:_phoneTF.text])
     {
         
-  
+    
+        //检测是否注册过
         
-        _sendCodeButton.enabled = NO;
-       
-        [self getAutoCodeTime];
+        BmobQuery *query = [BmobQuery queryForUser];
         
-     [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:_phoneTF.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
-         if (!error) {
-             
-             NSLog(@"sendsms!");
-             
-             
-         }
-         else
-         {
-             NSLog(@"error:%@",error);
-             
-         }
-     }];
+        [query whereKey:@"username" equalTo:_phoneTF.text];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            if (!error ) {
+                
+                if (array.count > 0) {
+                    
+                    [CommonMethods showDefaultErrorString:@"该用户已注册"];
+                    
+                }
+                else
+                {
+                    [self getCode];
+                    
+                    
+                }
+            }
+            
+        }];
+        
+        
         
      
         
@@ -86,12 +96,38 @@
     }
     
 }
+
+- (void)getCode
+{
+    _sendCodeButton.enabled = NO;
+    
+    [self getAutoCodeTime];
+    
+    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:_phoneTF.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
+        if (!error) {
+            
+            NSLog(@"sendsms!");
+            
+            
+        }
+        else
+        {
+            NSLog(@"error:%@",error);
+            
+        }
+    }];
+}
 - (IBAction)registAction:(id)sender {
     
-    
-//     [self summitRegist];
+//#warning test
+//    
+//    [self summitRegist];
 //    
 //    return;
+//    
+//    
+//#warning  test
+
     
     if (![CommonMethods checkTel:_phoneTF.text]) {
         
@@ -187,12 +223,16 @@
     
     NSLog(@"param:%@",param);
     
-    BmobObject *object = [[BmobObject alloc]initWithClassName:kUserTableName];
+//    BmobObject *object = [[BmobObject alloc]initWithClassName:kUserTableName];
+    BmobUser *object = [[BmobUser alloc]init];
     
-    [object saveAllWithDictionary:param];
+    object.username = _phoneTF.text;
+    object.password = _codeTF.text;
+    object.mobilePhoneNumber = _phoneTF.text;
     
     
-    [object saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+    [object signUpInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+       
         
         [MyProgressHUD dismiss];
         
@@ -203,8 +243,17 @@
             [self.navigationController popViewControllerAnimated:YES];
             
         }
+        else
+        {
+            NSLog(@"error:%@",error);
+            
+            [CommonMethods showDefaultErrorString:@"注册失败"];
+            
+            
+        }
     }];
     
+
     
     
     

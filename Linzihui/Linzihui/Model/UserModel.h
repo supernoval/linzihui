@@ -29,5 +29,8 @@
 @property (nonatomic,assign) BOOL followEach; //额外添加 标识是否互相关注
 
 
+@property (nonatomic,assign) BOOL hadSelected;  //额外添加 是否选中  （群聊）
+
+
 
 @end

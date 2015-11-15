@@ -40,6 +40,10 @@ static NSString *cellId = @"ChatListCell";
     
     _conversations = [[NSMutableArray alloc]init];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivegroupNoti:) name:kCreategroupSuccessNoti object:nil];
+    
+    
 //    [self addHeaderRefresh];
 //    [self addFooterRefresh];
     
@@ -329,6 +333,24 @@ static NSString *cellId = @"ChatListCell";
 }
 
 
+
+- (void)receivegroupNoti:(NSNotification*)noti
+{
+    
+    EMGroup *group = noti.object;
+    
+    NSDictionary *dic = noti.userInfo;
+    
+    NSString *groupid = dic[@"groupid"];
+    
+    ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:groupid isGroup:YES];
+    chatController.title = group.groupSubject;
+    
+    chatController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:chatController animated:YES];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

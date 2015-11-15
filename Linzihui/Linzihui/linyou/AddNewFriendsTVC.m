@@ -385,6 +385,15 @@ static NSString * RequestCell = @"RequestCell";
     
 }
 
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    
+    
+    [_searResults removeAllObjects];
+    
+    
+}
+
 #pragma mark - UISearchDisplayDelegate 
 -(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
 {
@@ -433,6 +442,9 @@ static NSString * RequestCell = @"RequestCell";
       
         [EMHelper sendFriendRequestWithBuddyName:model.username Mesage:@"请求加为好友"];
         
+        [_searchController setActive:NO animated:YES];
+        
+        [_searResults removeAllObjects];
         
     }
     else
@@ -440,6 +452,15 @@ static NSString * RequestCell = @"RequestCell";
     [BmobHelper addFollowWithFollowedUserModel:model result:^(BOOL isSuccess) {
        
         if (isSuccess) {
+            
+            
+            [CommonMethods showDefaultErrorString:@"关注成功"];
+            
+            [_searchController setActive:NO animated:YES];
+            
+            [_searResults removeAllObjects];
+            
+            
             
             NSLog(@"添加关注成功");
             

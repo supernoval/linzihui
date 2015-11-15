@@ -8,6 +8,8 @@
 
 #import "BaseHomeTableViewController.h"
 #import "PullView.h"
+#import "CreateChatRoomTVC.h"
+
 
 static CGFloat pullViewWith = 150;
 static CGFloat pullViewHeight = 225;
@@ -216,7 +218,47 @@ static CGFloat pullViewHeight = 225;
 #pragma mark - PullViewDelegate
 -(void)didSelectedIndex:(NSInteger)index
 {
-    
+    switch (index) {
+        case 0: // 发起群聊
+        {
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+            
+            
+            CreateChatRoomTVC *_createChatRoom = [storyboard  instantiateViewControllerWithIdentifier:@"CreateNav"];
+//            CreateChatRoomTVC *_createChatRoom = [[CreateChatRoomTVC alloc]init];
+            
+            
+            [self presentViewController:_createChatRoom animated:YES completion:nil];
+            
+            
+        }
+            break;
+        case 1:  //添加朋友
+        {
+            
+        }
+            break;
+            
+        case 2:  //扫一扫
+        {
+            
+        }
+            break;
+        case 3:  //摇一摇
+        {
+            
+        }
+            break;
+        case 4:  //意见反馈
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 
