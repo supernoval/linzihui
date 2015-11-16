@@ -165,7 +165,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="nB0-u0-RCM">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="192" width="375" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTK-Gy-ig3">
@@ -1827,7 +1827,7 @@
                                 <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mxE-Xn-i67" id="hsY-mK-6bT">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="wge-T6-Pmb">
@@ -2851,7 +2851,7 @@
                             <tableViewSection id="JIK-ni-xdV">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="8GE-7y-bpc">
-                                        <rect key="frame" x="0.0" y="419" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="227" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8GE-7y-bpc" id="p8h-vn-psR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -2934,6 +2934,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SignUpTableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DHI-K8-yKK" customClass="SignUpTableView" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="avD-2b-M7u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2941,8 +2942,10 @@
                             <tableViewSection id="EHr-p3-PRc">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3lp-WA-U0C">
+                                        <rect key="frame" x="0.0" y="99" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lp-WA-U0C" id="KgT-R6-qEM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密      码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJI-4i-GxC">
@@ -3002,12 +3005,12 @@
                                                     <exclude reference="OXv-VO-iFQ"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="1GJ-fr-DqQ"/>
-                                                    <exclude reference="swh-YR-CdI"/>
-                                                    <exclude reference="zPX-Ct-X5F"/>
                                                     <exclude reference="9Yw-J0-5ka"/>
                                                     <exclude reference="QrJ-ST-pQB"/>
                                                     <exclude reference="ru9-fD-bUp"/>
+                                                    <exclude reference="1GJ-fr-DqQ"/>
+                                                    <exclude reference="swh-YR-CdI"/>
+                                                    <exclude reference="zPX-Ct-X5F"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3016,19 +3019,19 @@
                                                     <include reference="OXv-VO-iFQ"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="1GJ-fr-DqQ"/>
-                                                    <include reference="swh-YR-CdI"/>
-                                                    <include reference="zPX-Ct-X5F"/>
                                                     <include reference="9Yw-J0-5ka"/>
                                                     <include reference="QrJ-ST-pQB"/>
                                                     <include reference="ru9-fD-bUp"/>
+                                                    <include reference="1GJ-fr-DqQ"/>
+                                                    <include reference="swh-YR-CdI"/>
+                                                    <include reference="zPX-Ct-X5F"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ozO-Js-0GR">
-                                        <rect key="frame" x="0.0" y="291" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="143" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ozO-Js-0GR" id="c2b-eS-PV1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -3119,8 +3122,10 @@
                             <tableViewSection id="ebi-bs-XIT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0D4-Y7-XyL">
+                                        <rect key="frame" x="0.0" y="223" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0D4-Y7-XyL" id="fk0-9R-4Tr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBO-sp-csP">
@@ -3180,12 +3185,12 @@
                                                     <exclude reference="yGv-wu-ZFl"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="wKF-Db-Pja"/>
-                                                    <exclude reference="99p-Ef-g0j"/>
-                                                    <exclude reference="hJI-WD-AaM"/>
+                                                    <exclude reference="4Bz-Ox-T5P"/>
                                                     <exclude reference="Hh1-fe-pID"/>
                                                     <exclude reference="vXN-pq-MWH"/>
-                                                    <exclude reference="4Bz-Ox-T5P"/>
+                                                    <exclude reference="99p-Ef-g0j"/>
+                                                    <exclude reference="hJI-WD-AaM"/>
+                                                    <exclude reference="wKF-Db-Pja"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3194,20 +3199,22 @@
                                                     <include reference="yGv-wu-ZFl"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="wKF-Db-Pja"/>
-                                                    <include reference="99p-Ef-g0j"/>
-                                                    <include reference="hJI-WD-AaM"/>
+                                                    <include reference="4Bz-Ox-T5P"/>
                                                     <include reference="Hh1-fe-pID"/>
                                                     <include reference="vXN-pq-MWH"/>
-                                                    <include reference="4Bz-Ox-T5P"/>
+                                                    <include reference="99p-Ef-g0j"/>
+                                                    <include reference="hJI-WD-AaM"/>
+                                                    <include reference="wKF-Db-Pja"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WRS-hX-wcc">
+                                        <rect key="frame" x="0.0" y="267" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WRS-hX-wcc" id="lkE-JL-bWF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*邀请码选填,填写邀请码自动加邀请人为好友" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q22-XO-aWI">
@@ -3265,7 +3272,7 @@
                             <tableViewSection id="w97-UC-fwy">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="0tB-9a-I0c">
-                                        <rect key="frame" x="0.0" y="419" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="347" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0tB-9a-I0c" id="jaA-fd-7J3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -3302,10 +3309,10 @@
                                                     <exclude reference="yDN-RW-mmL"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="ied-9L-2fl"/>
                                                     <exclude reference="e2j-oA-xPF"/>
-                                                    <exclude reference="hQ8-5W-rKC"/>
                                                     <exclude reference="fuk-Ck-wcP"/>
+                                                    <exclude reference="hQ8-5W-rKC"/>
+                                                    <exclude reference="ied-9L-2fl"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3313,10 +3320,10 @@
                                                     <include reference="yDN-RW-mmL"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="ied-9L-2fl"/>
                                                     <include reference="e2j-oA-xPF"/>
-                                                    <include reference="hQ8-5W-rKC"/>
                                                     <include reference="fuk-Ck-wcP"/>
+                                                    <include reference="hQ8-5W-rKC"/>
+                                                    <include reference="ied-9L-2fl"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -3328,7 +3335,7 @@
                             <tableViewSection id="OSR-mA-0Ak">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="132-aJ-xzq">
-                                        <rect key="frame" x="0.0" y="483" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="427" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="132-aJ-xzq" id="PEw-Gl-aa8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -3402,11 +3409,11 @@
                                                     <exclude reference="kQu-wk-Tbz"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="48Y-z4-j1c"/>
                                                     <exclude reference="pJD-nP-9QY"/>
                                                     <exclude reference="pvS-LE-IwE"/>
-                                                    <exclude reference="48Y-z4-j1c"/>
-                                                    <exclude reference="fL5-Eq-hL2"/>
                                                     <exclude reference="Lha-8N-teT"/>
+                                                    <exclude reference="fL5-Eq-hL2"/>
                                                     <exclude reference="zcF-u2-5NJ"/>
                                                 </mask>
                                             </variation>
@@ -3416,11 +3423,11 @@
                                                     <include reference="kQu-wk-Tbz"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="48Y-z4-j1c"/>
                                                     <include reference="pJD-nP-9QY"/>
                                                     <include reference="pvS-LE-IwE"/>
-                                                    <include reference="48Y-z4-j1c"/>
-                                                    <include reference="fL5-Eq-hL2"/>
                                                     <include reference="Lha-8N-teT"/>
+                                                    <include reference="fL5-Eq-hL2"/>
                                                     <include reference="zcF-u2-5NJ"/>
                                                 </mask>
                                             </variation>

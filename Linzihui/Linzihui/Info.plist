@@ -37,12 +37,26 @@
 				<string>wx08f14afb1a1bcf1a</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>mqq</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent1104890893</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.01</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>mqzone</string>
+		<string>mqqapi</string>
+		<string>wechat</string>
 		<string>weixin</string>
+		<string>mqq</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

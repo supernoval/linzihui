@@ -13,9 +13,14 @@
 #import "EaseMob.h"
 #import "EMHelper.h"
 #import "WXApi.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 @interface AppDelegate ()<WXApiDelegate>
-
+{
+   
+    
+}
 @end
 
 @implementation AppDelegate
@@ -61,6 +66,12 @@
     {
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
     }
+    
+    
+    
+  
+    
+  
     
     return YES;
 }
@@ -108,6 +119,13 @@
         
           return [WXApi handleOpenURL:url delegate:self];
     }
+    else if([url.host isEqualToString:@"response_from_qq"])
+    {
+        
+        return  [TencentOAuth HandleOpenURL:url];
+        
+    }
+    
   
     return NO;
     
@@ -149,5 +167,6 @@
     NSLog(@"resp:%@",resp);
     NSLog(@"errorCode:%d,errorStr:%@",resp.errCode,resp.errStr);
 }
+
 
 @end

@@ -13,11 +13,13 @@
 		1506EC2A1BF82CAA0010F349 /* MygroupListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC291BF82CAA0010F349 /* MygroupListTVC.m */; };
 		1506EC2D1BF839220010F349 /* ChatSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2C1BF839220010F349 /* ChatSettingTVC.m */; };
 		1506EC301BF860A80010F349 /* SignUpTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2F1BF860A80010F349 /* SignUpTableView.m */; };
+		151671521BF96ED000AD4C56 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151671511BF96ED000AD4C56 /* TencentOpenAPI.framework */; };
 		152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C31BF1872900F91C06 /* EditPhotoViewController.m */; };
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
 		152877141BF251CE00321E50 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877131BF251CE00321E50 /* InvitationManager.m */; };
 		1531670D1BF463E800B88CF4 /* WechatShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1531670C1BF463E800B88CF4 /* WechatShareController.m */; };
+		153723511BF59F2B005A4340 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153723501BF59F2B005A4340 /* libstdc++.tbd */; };
 		153CE0151BE50D910032517E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0141BE50D910032517E /* main.m */; };
 		153CE0181BE50D910032517E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0171BE50D910032517E /* AppDelegate.m */; };
 		153CE01E1BE50D910032517E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153CE01C1BE50D910032517E /* Storyboard.storyboard */; };
@@ -227,6 +229,7 @@
 		1506EC2C1BF839220010F349 /* ChatSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSettingTVC.m; sourceTree = "<group>"; };
 		1506EC2E1BF860A80010F349 /* SignUpTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTableView.h; sourceTree = "<group>"; };
 		1506EC2F1BF860A80010F349 /* SignUpTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableView.m; sourceTree = "<group>"; };
+		151671511BF96ED000AD4C56 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		152579C21BF1872900F91C06 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		152579C31BF1872900F91C06 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		152579C41BF1872900F91C06 /* STScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScratchView.h; sourceTree = "<group>"; };
@@ -237,6 +240,7 @@
 		152877131BF251CE00321E50 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		1531670B1BF463E800B88CF4 /* WechatShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatShareController.h; sourceTree = "<group>"; };
 		1531670C1BF463E800B88CF4 /* WechatShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatShareController.m; sourceTree = "<group>"; };
+		153723501BF59F2B005A4340 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		153CE0101BE50D910032517E /* Linzihui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linzihui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		153CE0141BE50D910032517E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		153CE0161BE50D910032517E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -704,20 +708,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15BE66E81BF3F5B5000A9D1F /* libz.tbd in Frameworks */,
+				153723511BF59F2B005A4340 /* libstdc++.tbd in Frameworks */,
+				154A39731BE5E4570042632E /* CoreTelephony.framework in Frameworks */,
+				154A397B1BE5E4830042632E /* libsqlite3.tbd in Frameworks */,
+				154A396D1BE5E4450042632E /* CoreGraphics.framework in Frameworks */,
+				154A39751BE5E4690042632E /* SystemConfiguration.framework in Frameworks */,
+				154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */,
+				154A396B1BE5E43F0042632E /* Security.framework in Frameworks */,
 				15BE66EC1BF3F5CA000A9D1F /* libc++.tbd in Frameworks */,
 				15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */,
-				15BE66E81BF3F5B5000A9D1F /* libz.tbd in Frameworks */,
-				154A39751BE5E4690042632E /* SystemConfiguration.framework in Frameworks */,
 				15BE66DF1BF3E79F000A9D1F /* MessageUI.framework in Frameworks */,
 				15BE66DA1BF3C34E000A9D1F /* Contacts.framework in Frameworks */,
 				15BE66D81BF3BEBA000A9D1F /* AddressBookUI.framework in Frameworks */,
 				15BE66D61BF3BEB4000A9D1F /* AddressBook.framework in Frameworks */,
 				154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */,
 				15B7A5C21BE730780052115F /* SMS_SDK.framework in Frameworks */,
-				154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */,
 				154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */,
+				151671521BF96ED000AD4C56 /* TencentOpenAPI.framework in Frameworks */,
 				15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */,
-				154A397B1BE5E4830042632E /* libsqlite3.tbd in Frameworks */,
 				15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */,
 				154A39F41BE5E6F50042632E /* libstdc++.6.0.9.tbd in Frameworks */,
 				154A39711BE5E4520042632E /* CFNetwork.framework in Frameworks */,
@@ -729,9 +738,6 @@
 				154A39771BE5E4730042632E /* libz.1.2.5.tbd in Frameworks */,
 				15BE66E51BF3F3F0000A9D1F /* libWeChatSDK.a in Frameworks */,
 				154A39F11BE5E6930042632E /* libEaseMobClientSDKLite.a in Frameworks */,
-				154A39731BE5E4570042632E /* CoreTelephony.framework in Frameworks */,
-				154A396D1BE5E4450042632E /* CoreGraphics.framework in Frameworks */,
-				154A396B1BE5E43F0042632E /* Security.framework in Frameworks */,
 				154A39691BE5E4370042632E /* CoreLocation.framework in Frameworks */,
 				154A39661BE5E3D50042632E /* BmobSDK.framework in Frameworks */,
 			);
@@ -856,6 +862,7 @@
 		154A39641BE5E3BD0042632E /* ThirdPartFrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				151671511BF96ED000AD4C56 /* TencentOpenAPI.framework */,
 				15BE66E01BF3F3F0000A9D1F /* SDKExport */,
 				152579C11BF1872900F91C06 /* STSCropPhoto */,
 				15EE46C51BE85C1700538EA5 /* JSONModel */,
@@ -877,6 +884,7 @@
 		154A39671BE5E4010042632E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				153723501BF59F2B005A4340 /* libstdc++.tbd */,
 				15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */,
 				15BE66E91BF3F5C1000A9D1F /* libsqlite3.0.tbd */,
 				15BE66E71BF3F5B5000A9D1F /* libz.tbd */,
@@ -2304,7 +2312,10 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SDKExport",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "25aa2349-5e76-49d2-a8c3-bba436af0d85";
@@ -2333,7 +2344,10 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SDKExport",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "73f85890-c347-4e4d-9a71-8e2aec34ba27";

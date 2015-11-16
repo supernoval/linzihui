@@ -22,6 +22,9 @@
 #define kWeiChatAppID              @"wx08f14afb1a1bcf1a"
 #define kWeiChatURLScheme          @"wx08f14afb1a1bcf1a"
 
+#pragma mark - QQ
+#define kQQAppID                   @"1104890893"
+#define kQQAppKey                  @"bILqfDKzAuZe1Jjb"
 //app 下载地址
 #define kAppDownloadURL            @"https://itunes.apple.com/us/app/you-kang-fu-wu/id646300912?l=zh&ls=1&mt=8"
 
