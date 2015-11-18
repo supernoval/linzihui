@@ -137,7 +137,7 @@
     chatController.title = selectedGroup.groupSubject;
     
     chatController.hidesBottomBarWhenPushed = YES;
-    
+    chatController.group = selectedGroup;
     [self.navigationController pushViewController:chatController animated:YES];
     
    

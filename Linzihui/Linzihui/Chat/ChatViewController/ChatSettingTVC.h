@@ -10,5 +10,12 @@
 
 @interface ChatSettingTVC : BaseTableViewController
 
+
+@property (nonatomic,strong) EMGroup *group;
+
 @property (weak, nonatomic) IBOutlet UIView *footerView;
+
+@property (weak, nonatomic) IBOutlet UIButton *quiteButton;
+- (IBAction)quiteAction:(id)sender;
+
 @end

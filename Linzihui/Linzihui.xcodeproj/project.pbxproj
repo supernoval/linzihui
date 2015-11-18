@@ -13,10 +13,16 @@
 		1506EC2A1BF82CAA0010F349 /* MygroupListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC291BF82CAA0010F349 /* MygroupListTVC.m */; };
 		1506EC2D1BF839220010F349 /* ChatSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2C1BF839220010F349 /* ChatSettingTVC.m */; };
 		1506EC301BF860A80010F349 /* SignUpTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2F1BF860A80010F349 /* SignUpTableView.m */; };
+		151671561BF972D900AD4C56 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151671551BF972D900AD4C56 /* TencentOpenAPI.framework */; };
 		152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C31BF1872900F91C06 /* EditPhotoViewController.m */; };
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
 		152877141BF251CE00321E50 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877131BF251CE00321E50 /* InvitationManager.m */; };
+		1530E8441BFC6B2100A78DB5 /* ShengHuoQuanTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E8431BFC6B2100A78DB5 /* ShengHuoQuanTVC.m */; };
+		1530E8471BFC730900A78DB5 /* ShenghuoQuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E8461BFC730900A78DB5 /* ShenghuoQuanCell.m */; };
+		1530E84C1BFC74CB00A78DB5 /* SendWXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E84A1BFC74CB00A78DB5 /* SendWXViewController.m */; };
+		1530E8501BFC910E00A78DB5 /* ShengHuoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E84F1BFC910E00A78DB5 /* ShengHuoModel.m */; };
+		1530E8541BFCA6E000A78DB5 /* NewMineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */; };
 		1531670D1BF463E800B88CF4 /* WechatShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1531670C1BF463E800B88CF4 /* WechatShareController.m */; };
 		153723511BF59F2B005A4340 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153723501BF59F2B005A4340 /* libstdc++.tbd */; };
 		153CE0151BE50D910032517E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0141BE50D910032517E /* main.m */; };
@@ -228,6 +234,7 @@
 		1506EC2C1BF839220010F349 /* ChatSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSettingTVC.m; sourceTree = "<group>"; };
 		1506EC2E1BF860A80010F349 /* SignUpTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTableView.h; sourceTree = "<group>"; };
 		1506EC2F1BF860A80010F349 /* SignUpTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableView.m; sourceTree = "<group>"; };
+		151671551BF972D900AD4C56 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		152579C21BF1872900F91C06 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		152579C31BF1872900F91C06 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		152579C41BF1872900F91C06 /* STScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScratchView.h; sourceTree = "<group>"; };
@@ -236,6 +243,16 @@
 		152877101BF23B7100321E50 /* EMHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHelper.m; sourceTree = "<group>"; };
 		152877121BF251CA00321E50 /* InvitationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		152877131BF251CE00321E50 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
+		1530E8421BFC6B2100A78DB5 /* ShengHuoQuanTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShengHuoQuanTVC.h; sourceTree = "<group>"; };
+		1530E8431BFC6B2100A78DB5 /* ShengHuoQuanTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShengHuoQuanTVC.m; sourceTree = "<group>"; };
+		1530E8451BFC730900A78DB5 /* ShenghuoQuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShenghuoQuanCell.h; sourceTree = "<group>"; };
+		1530E8461BFC730900A78DB5 /* ShenghuoQuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShenghuoQuanCell.m; sourceTree = "<group>"; };
+		1530E8491BFC74CB00A78DB5 /* SendWXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendWXViewController.h; sourceTree = "<group>"; };
+		1530E84A1BFC74CB00A78DB5 /* SendWXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendWXViewController.m; sourceTree = "<group>"; };
+		1530E84E1BFC910E00A78DB5 /* ShengHuoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShengHuoModel.h; sourceTree = "<group>"; };
+		1530E84F1BFC910E00A78DB5 /* ShengHuoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShengHuoModel.m; sourceTree = "<group>"; };
+		1530E8521BFCA6E000A78DB5 /* NewMineTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMineTableViewController.h; sourceTree = "<group>"; };
+		1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMineTableViewController.m; sourceTree = "<group>"; };
 		1531670B1BF463E800B88CF4 /* WechatShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatShareController.h; sourceTree = "<group>"; };
 		1531670C1BF463E800B88CF4 /* WechatShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatShareController.m; sourceTree = "<group>"; };
 		153723501BF59F2B005A4340 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -723,6 +740,7 @@
 				154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */,
 				15B7A5C21BE730780052115F /* SMS_SDK.framework in Frameworks */,
 				154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */,
+				151671561BF972D900AD4C56 /* TencentOpenAPI.framework in Frameworks */,
 				15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */,
 				15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */,
 				154A39F41BE5E6F50042632E /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -759,15 +777,16 @@
 				1506EC251BF712620010F349 /* CreateChatRoomTVC.m */,
 			);
 			name = CreateChatRoom;
+			path = ..;
 			sourceTree = "<group>";
 		};
-		1506EC271BF82C8B0010F349 /* qunliao */ = {
+		1506EC271BF82C8B0010F349 /* mygrouplist */ = {
 			isa = PBXGroup;
 			children = (
 				1506EC281BF82CAA0010F349 /* MygroupListTVC.h */,
 				1506EC291BF82CAA0010F349 /* MygroupListTVC.m */,
 			);
-			name = qunliao;
+			name = mygrouplist;
 			sourceTree = "<group>";
 		};
 		152579C11BF1872900F91C06 /* STSCropPhoto */ = {
@@ -792,6 +811,36 @@
 				152877131BF251CE00321E50 /* InvitationManager.m */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		1530E8411BFC6AF000A78DB5 /* shenghuoquan */ = {
+			isa = PBXGroup;
+			children = (
+				1530E8481BFC746300A78DB5 /* publish */,
+				1530E8421BFC6B2100A78DB5 /* ShengHuoQuanTVC.h */,
+				1530E8431BFC6B2100A78DB5 /* ShengHuoQuanTVC.m */,
+				1530E8451BFC730900A78DB5 /* ShenghuoQuanCell.h */,
+				1530E8461BFC730900A78DB5 /* ShenghuoQuanCell.m */,
+			);
+			name = shenghuoquan;
+			sourceTree = "<group>";
+		};
+		1530E8481BFC746300A78DB5 /* publish */ = {
+			isa = PBXGroup;
+			children = (
+				1530E8491BFC74CB00A78DB5 /* SendWXViewController.h */,
+				1530E84A1BFC74CB00A78DB5 /* SendWXViewController.m */,
+			);
+			name = publish;
+			sourceTree = "<group>";
+		};
+		1530E8511BFCA6B800A78DB5 /* personInfo */ = {
+			isa = PBXGroup;
+			children = (
+				15B7A5E01BE772CE0052115F /* MineTableViewController.h */,
+				15B7A5E11BE772CE0052115F /* MineTableViewController.m */,
+			);
+			name = personInfo;
 			sourceTree = "<group>";
 		};
 		1531670A1BF4639E00B88CF4 /* wechatShareController */ = {
@@ -823,9 +872,8 @@
 		153CE0121BE50D910032517E /* Linzihui */ = {
 			isa = PBXGroup;
 			children = (
-				1506EC231BF7122B0010F349 /* CreateChatRoom */,
-				1506EC1C1BF702A70010F349 /* MyViews */,
 				1528770E1BF23B4100321E50 /* Helper */,
+				1506EC1C1BF702A70010F349 /* MyViews */,
 				15BE66CD1BF3AC7C000A9D1F /* linxin */,
 				15EE46F61BE8796200538EA5 /* linyou */,
 				15B7A5DC1BE74E490052115F /* linjin */,
@@ -859,6 +907,7 @@
 		154A39641BE5E3BD0042632E /* ThirdPartFrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				151671551BF972D900AD4C56 /* TencentOpenAPI.framework */,
 				15BE66E01BF3F3F0000A9D1F /* SDKExport */,
 				152579C11BF1872900F91C06 /* STSCropPhoto */,
 				15EE46C51BE85C1700538EA5 /* JSONModel */,
@@ -1197,6 +1246,7 @@
 			children = (
 				15B7A4A81BE72FFE0052115F /* ChatAccountManager.h */,
 				15B7A4A91BE72FFE0052115F /* ChatAccountManager.m */,
+				1506EC231BF7122B0010F349 /* CreateChatRoom */,
 				15B7A45A1BE72FEE0052115F /* ChatView */,
 				15B7A4531BE72FD80052115F /* ChatViewController */,
 				15B7A4401BE72FB30052115F /* Emoji */,
@@ -1755,9 +1805,10 @@
 		15B7A5DB1BE744FA0052115F /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				1530E8511BFCA6B800A78DB5 /* personInfo */,
 				15FB7FEE1BEF51CA007D6EC8 /* changePersonInfo */,
-				15B7A5E01BE772CE0052115F /* MineTableViewController.h */,
-				15B7A5E11BE772CE0052115F /* MineTableViewController.m */,
+				1530E8521BFCA6E000A78DB5 /* NewMineTableViewController.h */,
+				1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */,
 			);
 			path = mine;
 			sourceTree = "<group>";
@@ -1765,6 +1816,7 @@
 		15B7A5DC1BE74E490052115F /* linjin */ = {
 			isa = PBXGroup;
 			children = (
+				1530E8411BFC6AF000A78DB5 /* shenghuoquan */,
 				15B7A5DD1BE74E790052115F /* LinJinTableViewController.h */,
 				15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */,
 			);
@@ -1881,6 +1933,8 @@
 				15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */,
 				15BE66DB1BF3CD6B000A9D1F /* ContactModel.h */,
 				15BE66DC1BF3CD6B000A9D1F /* ContactModel.m */,
+				1530E84E1BFC910E00A78DB5 /* ShengHuoModel.h */,
+				1530E84F1BFC910E00A78DB5 /* ShengHuoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1888,7 +1942,7 @@
 		15EE46F61BE8796200538EA5 /* linyou */ = {
 			isa = PBXGroup;
 			children = (
-				1506EC271BF82C8B0010F349 /* qunliao */,
+				1506EC271BF82C8B0010F349 /* mygrouplist */,
 				1531670A1BF4639E00B88CF4 /* wechatShareController */,
 				15BE66ED1BF3F6ED000A9D1F /* guanzhu */,
 				15BE66D11BF3BE6E000A9D1F /* tongxunlu */,
@@ -2044,6 +2098,7 @@
 				15B7A5451BE730460052115F /* EMSDWebImageManager.m in Sources */,
 				15B7A5D71BE744A70052115F /* LoginViewController.m in Sources */,
 				15B7A5DF1BE74E790052115F /* LinJinTableViewController.m in Sources */,
+				1530E8441BFC6B2100A78DB5 /* ShengHuoQuanTVC.m in Sources */,
 				15B7A4591BE72FE30052115F /* UIViewController+HUD.m in Sources */,
 				15B7A4A41BE72FEE0052115F /* MessageModel.m in Sources */,
 				15B7A53C1BE730460052115F /* MWTapDetectingImageView.m in Sources */,
@@ -2094,6 +2149,7 @@
 				15B7A49D1BE72FEE0052115F /* EMChatImageBubbleView.m in Sources */,
 				15B7A5B61BE7305D0052115F /* UIImage+WebP.m in Sources */,
 				15B7A5B71BE7305D0052115F /* UIImageView+HighlightedWebCache.m in Sources */,
+				1530E8541BFCA6E000A78DB5 /* NewMineTableViewController.m in Sources */,
 				15B7A4D61BE730320052115F /* UIView+MJExtension.m in Sources */,
 				15B7A49C1BE72FEE0052115F /* EMChatBaseBubbleView.m in Sources */,
 				15B7A4D11BE730320052115F /* MJRefreshHeader.m in Sources */,
@@ -2139,11 +2195,14 @@
 				15B7A5561BE730460052115F /* PSTCollectionViewItemKey.m in Sources */,
 				152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */,
 				15FB7FED1BEF48E6007D6EC8 /* BaseBmobModel.m in Sources */,
+				1530E84C1BFC74CB00A78DB5 /* SendWXViewController.m in Sources */,
 				15B7A4461BE72FB30052115F /* EmojiEmoticons.m in Sources */,
 				15B7A54D1BE730460052115F /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				15B7A56C1BE7304D0052115F /* SDPhotoGroup.m in Sources */,
 				15B7A4581BE72FE30052115F /* XHMessageTextView.m in Sources */,
+				1530E8471BFC730900A78DB5 /* ShenghuoQuanCell.m in Sources */,
 				15EE46E81BE85C1700538EA5 /* JSONValueTransformer.m in Sources */,
+				1530E8501BFC910E00A78DB5 /* ShengHuoModel.m in Sources */,
 				15BE66D41BF3BE9F000A9D1F /* TongXunLuTVC.m in Sources */,
 				15EE46C11BE84C2000538EA5 /* PrivacyViewController.m in Sources */,
 				1506EC2A1BF82CAA0010F349 /* MygroupListTVC.m in Sources */,
@@ -2314,7 +2373,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25aa2349-5e76-49d2-a8c3-bba436af0d85";
+				PROVISIONING_PROFILE = "e291c8ee-3b8c-47f5-bdfe-31514a00864b";
 			};
 			name = Debug;
 		};
@@ -2346,7 +2405,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "73f85890-c347-4e4d-9a71-8e2aec34ba27";
+				PROVISIONING_PROFILE = "627cf2ec-2db6-4061-9c1b-f13ea846dca9";
 			};
 			name = Release;
 		};

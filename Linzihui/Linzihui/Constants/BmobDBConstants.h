@@ -10,3 +10,11 @@
 
 //用户表
 #define kUserTableName               @"_User"
+
+//关注表
+#define kFollowTableName             @"Follow"
+//聊天表
+#define kChatGroupTableName          @"ChatGroup"
+
+//生活圈
+#define kShengHuoQuanTableName        @"ShengHuoQuan"

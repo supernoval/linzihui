@@ -126,7 +126,7 @@
         case 3:
         {
             title = @"摇一摇";
-            imageName = @"addpeople";
+            imageName = @"shake";
         }
             break;
         case 4:

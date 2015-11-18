@@ -7,6 +7,7 @@
 //
 
 #import "LinJinTableViewController.h"
+#import "ShengHuoQuanTVC.h"
 
 static NSString *CellID = @"CellID";
 
@@ -119,6 +120,21 @@ static NSString *CellID = @"CellID";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
+    if (indexPath.section == 0) {
+        
+        
+        ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+        
+        
+        _shengHuoquan.hidesBottomBarWhenPushed = YES;
+        
+        
+        
+        [self.navigationController pushViewController:_shengHuoquan animated:YES];
+        
+        
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }

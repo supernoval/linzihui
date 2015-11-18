@@ -11,6 +11,7 @@
 #import "CommonMethods.h"
 #import "MyProgressHUD.h"
 #import "PrivacyViewController.h"
+#import "SignUpTableView.h"
 
 
 
@@ -33,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"注册";
+    self.title = @"验证手机";
     
     _registButton.clipsToBounds = YES;
     _registButton.layer.cornerRadius = 5.0;
@@ -53,47 +54,51 @@
 - (IBAction)sendCodeAction:(id)sender {
     
     
-
-    if ([CommonMethods checkTel:_phoneTF.text])
-    {
-        
+#warning test
+    [self getCode];
+#warning test
     
-        //检测是否注册过
-        
-        BmobQuery *query = [BmobQuery queryForUser];
-        
-        [query whereKey:@"username" equalTo:_phoneTF.text];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-            
-            if (!error ) {
-                
-                if (array.count > 0) {
-                    
-                    [CommonMethods showDefaultErrorString:@"该用户已注册"];
-                    
-                }
-                else
-                {
-                    [self getCode];
-                    
-                    
-                }
-            }
-            
-        }];
-        
-        
-        
-     
-        
-        
-    }
-    else
-    {
-        [MyProgressHUD showError:@"手机号码不正确"];
-        
-    }
+    
+//    if ([CommonMethods checkTel:_phoneTF.text])
+//    {
+//        
+//    
+//        //检测是否注册过
+//        
+//        BmobQuery *query = [BmobQuery queryForUser];
+//        
+//        [query whereKey:@"username" equalTo:_phoneTF.text];
+//        
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+//            
+//            if (!error ) {
+//                
+//                if (array.count > 0) {
+//                    
+//                    [CommonMethods showDefaultErrorString:@"该用户已注册"];
+//                    
+//                }
+//                else
+//                {
+//                    [self getCode];
+//                    
+//                    
+//                }
+//            }
+//            
+//        }];
+//        
+//        
+//        
+//     
+//        
+//        
+//    }
+//    else
+//    {
+//        [MyProgressHUD showError:@"手机号码不正确"];
+//        
+//    }
     
 }
 
@@ -119,14 +124,6 @@
 }
 - (IBAction)registAction:(id)sender {
     
-//#warning test
-//    
-//    [self summitRegist];
-//    
-//    return;
-//    
-//    
-//#warning  test
 
     
     if (![CommonMethods checkTel:_phoneTF.text]) {
@@ -147,31 +144,7 @@
         
     }
     
-    if (_codeTF.text.length > 16 || _codeTF.text.length == 0) {
-        
-        [MyProgressHUD showError:@"请输入小于16位的密码"];
-        
-        return;
-        
-        
-    }
-    
-    if (![_codeTF.text isEqualToString:_checkCodeTF.text]) {
-        
-        
-        [MyProgressHUD showError:@"两次输入的密码不一致"];
-        
-        return;
-    }
-    
-    if (_recommendPhone.text.length > 0 && ![CommonMethods checkTel:_recommendPhone.text]) {
-        
-        [MyProgressHUD showError:@"推荐人手机号码不正确"];
-        
-        return;
-        
-        
-    }
+
     
     
     [self checkSMSCode:_SMSCodeTF.text];
@@ -209,51 +182,18 @@
     
 }
 
-#pragma mark - 提交注册
+#pragma mark - 下一步
 -(void)summitRegist
 {
-//    NSDictionary *param = @{@"username":_phoneTF.text,@"password":_codeTF.text};
-    
-    UserModel *user = [[UserModel alloc]init];
-    user.username = _phoneTF.text;
-    user.password = _codeTF.text;
-    user.mobilePhoneNumber = _phoneTF.text;
-    
-    NSDictionary *param = [user toDictionary];
-    
-    NSLog(@"param:%@",param);
-    
-//    BmobObject *object = [[BmobObject alloc]initWithClassName:kUserTableName];
-    BmobUser *object = [[BmobUser alloc]init];
-    
-    object.username = _phoneTF.text;
-    object.password = _codeTF.text;
-    object.mobilePhoneNumber = _phoneTF.text;
-    
-    
-    [object signUpInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
-       
-        
-        [MyProgressHUD dismiss];
-        
-        if (isSuccessful) {
-            
-            [CommonMethods showDefaultErrorString:@"注册成功"];
-            
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        }
-        else
-        {
-            NSLog(@"error:%@",error);
-            
-            [CommonMethods showDefaultErrorString:@"注册失败"];
-            
-            
-        }
-    }];
-    
 
+     [MyProgressHUD dismiss];
+    
+    SignUpTableView *_signUpTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SignUpTableView"];
+    _signUpTVC.phone = _phoneTF.text;
+    
+    [self.navigationController pushViewController:_signUpTVC animated:YES];
+    
+    
     
     
     

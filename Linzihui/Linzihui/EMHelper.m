@@ -148,17 +148,49 @@ static EMHelper *_helper;
 #pragma mark - 创建群组
 + (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg
 {
+    
+    [MyProgressHUD showProgress];
+    
+    
     EMGroupStyleSetting *setting = [[EMGroupStyleSetting alloc]init];
     setting.groupStyle = eGroupStyle_PrivateMemberCanInvite;
-    
-    
     
     [[EaseMob sharedInstance].chatManager asyncCreateGroupWithSubject:title description:description invitees:invitees initialWelcomeMessage:welcomeMsg styleSetting:setting completion:^(EMGroup *group, EMError *error) {
         
         if (!error && group) {
             
             
-            [[NSNotificationCenter defaultCenter ] postNotificationName:kCreategroupSuccessNoti object:group userInfo:@{@"groupid":group.groupId}];
+            BmobObject *_groupOb = [[BmobObject alloc]initWithClassName:kChatGroupTableName];
+            
+            [_groupOb setObject:group.groupId forKey:@"groupId"];
+            
+            [_groupOb setObject:group.owner forKey:@"owner_username"];
+            
+            [_groupOb setObject:group.groupSubject forKey:@"subTitle"];
+            [_groupOb setObject:group.description forKey:@"description"];
+            [_groupOb setObject:group.members forKey:@"members"];
+            
+            
+         [_groupOb saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+             [MyProgressHUD dismiss];
+             
+             if (isSuccessful) {
+                 
+                 
+                  [[NSNotificationCenter defaultCenter ] postNotificationName:kCreategroupSuccessNoti object:group userInfo:@{@"groupid":group.groupId}];
+             }
+             else
+             {
+                 NSLog(@"saveGroupError:%@",error);
+                 
+                 
+             }
+             
+         }];
+            
+            
+          
             
             
             
@@ -169,7 +201,7 @@ static EMHelper *_helper;
             
             NSLog(@"%s,error:%@",__func__,error);
             
-            
+                 [MyProgressHUD dismiss];
             [CommonMethods showDefaultErrorString:@"创建群组失败，请重试"];
             
             

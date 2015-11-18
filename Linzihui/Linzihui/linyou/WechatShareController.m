@@ -35,7 +35,7 @@ static NSString *kLinkTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
     description =  [NSString stringWithFormat:@"您的好友邀请您加入邻子会，社区邻妈互助众扶App,大量就近免费活动与奖励，邀请码为:%@,下载地址为:%@",yaoqingma,kAppDownloadURL];
     thumbImage = kDefaultHeadImage;
     
-  TencentOAuth *_tencentOAuth =  [[TencentOAuth alloc]initWithAppId:kQQAppID andDelegate:self];
+   [[TencentOAuth alloc]initWithAppId:kQQAppID andDelegate:self];
     
     if (_shareType == 2) {
         

@@ -19,6 +19,7 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 @interface BmobHelper : NSObject
 
 
+
 #pragma mark - 获取当前用户 UserModel
 +(UserModel*)getCurrentUserModel;
 

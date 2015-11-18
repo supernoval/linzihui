@@ -11,6 +11,8 @@
 @interface SignUpTableView : BaseTableViewController
 
 
+@property (nonatomic,strong ) NSString *phone;
+
 @property (weak, nonatomic) IBOutlet UITextField *codeTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *checkCodeTF;

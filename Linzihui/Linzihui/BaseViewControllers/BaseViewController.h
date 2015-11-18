@@ -16,6 +16,8 @@
 #import "Constants.h"
 
 #import "UIImageView+WebCache.h"
+#import "BmobDBConstants.h"
+
 
 
 @interface BaseViewController : UIViewController

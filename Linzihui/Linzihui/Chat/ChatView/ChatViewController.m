@@ -215,17 +215,22 @@
 }
 
 
-
+#pragma mark -  显示聊天设置
 -(void)showGroupSettingView
 {
+    
+
     
     UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
     
     
     ChatSettingTVC *_settingTVC = [SB instantiateViewControllerWithIdentifier:@"ChatSettingTVC"];
     
+    _settingTVC.group =_group;
     
     [self.navigationController pushViewController:_settingTVC animated:YES];
+    
+
     
     
 }

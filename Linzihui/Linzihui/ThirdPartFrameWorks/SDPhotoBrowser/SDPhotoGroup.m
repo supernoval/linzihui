@@ -38,9 +38,9 @@
         
     }
     _photoItemArray = photoItemArray;
-    [photoItemArray enumerateObjectsUsingBlock:^(SDPhotoItem *obj, NSUInteger idx, BOOL *stop) {
+    [photoItemArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
         UIButton *btn = [[UIButton alloc] init];
-        [btn sd_setImageWithURL:[NSURL URLWithString:obj.thumbnail_pic] forState:UIControlStateNormal];
+        [btn sd_setImageWithURL:[NSURL URLWithString:obj] forState:UIControlStateNormal];
         
         
         btn.tag = idx;
@@ -95,7 +95,8 @@
 // 返回高质量图片的url
 - (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
 {
-    NSString *urlStr = [[self.photoItemArray[index] thumbnail_pic] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+    NSString *urlStr =self.photoItemArray[index];
+                       
     return [NSURL URLWithString:urlStr];
 }
 

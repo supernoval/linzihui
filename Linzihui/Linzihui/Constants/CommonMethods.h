@@ -72,6 +72,8 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 #pragma mark - 判断email格式是否正确
 + (BOOL)isValidateEmail:(NSString *)Email;
 
+#pragma mark - 自动压缩图片
++ (UIImage*)autoSizeImageWithImage:(UIImage *)image;
 
 
 

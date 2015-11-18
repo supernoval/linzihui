@@ -24,6 +24,9 @@
 @end
 
 @interface ChatViewController : BaseViewController
+
+@property (nonatomic,strong ) EMGroup *group;
+
 @property (nonatomic,strong) UserModel*userModel;
 @property (strong, nonatomic, readonly) NSString *chatter;
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源

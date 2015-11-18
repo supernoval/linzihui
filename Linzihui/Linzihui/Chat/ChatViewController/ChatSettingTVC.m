@@ -28,6 +28,14 @@
     
     
     _titles = @[@"群组成员",@"邀请好友",@"群聊名称",@"群二维码"];
+    
+    
+    if ([_group.owner isEqualToString:[BmobHelper getCurrentUserModel].username]) {
+        
+        [_quiteButton setTitle:@"解散该群" forState:UIControlStateNormal];
+        
+    }
+
 }
 
 - (CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,11 +111,60 @@
 }
 
 
+- (IBAction)quiteAction:(id)sender {
+    
+    
+  
+    
+    BmobUser *CurrentUser = [BmobUser getCurrentUser];
+    
+    if ([_group.owner isEqualToString:CurrentUser.username]) {
+        
+        
+        [[EaseMob sharedInstance].chatManager  asyncDestroyGroup:_group.groupId completion:^(EMGroup *group, EMGroupLeaveReason reason, EMError *error) {
+        
+            if (!error) {
+                
+                NSLog(@"解散成功");
+            }
+            else
+            {
+                NSLog(@"解散 error:%@",error);
+                
+                
+            }
+            
+        } onQueue:nil];
+        
+        
+    }
+    else
+    {
+        
+        [[EaseMob sharedInstance].chatManager asyncLeaveGroup:_group.groupId completion:^(EMGroup *group, EMGroupLeaveReason reason, EMError *error) {
+        
+            if (!error) {
+               
+                NSLog(@"退出群成功");
+                
+                
+            }
+            else
+            {
+                NSLog(@"leave group Error:%@",error);
+                
+            }
+        } onQueue:nil];
+        
+        
+        
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

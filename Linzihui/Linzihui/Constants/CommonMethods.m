@@ -68,6 +68,23 @@
     
 }
 
++ (UIImage*)autoSizeImageWithImage:(UIImage *)image
+{
+    CGSize imageSize = image.size;
+    
+    
+    CGFloat imagewith = 300.0;
+    
+    CGFloat imageHeight = imageSize.height *imagewith/imageSize.width;
+    
+    
+    
+    return [self imageWithImage:image scaledToSize:CGSizeMake(imagewith, imageHeight)];
+    
+    
+    
+}
+
 +(NSDate*)getYYYMMddFromString:(NSString *)dateStr
 {
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc]init];
@@ -670,14 +687,14 @@
         
         
         
-        [MyProgressHUD showProgress];
+       
         
         
         [BmobProFile uploadFilesWithDatas:photosDataArray resultBlock:^(NSArray *filenameArray, NSArray *urlArray, NSArray *bmobFileArray, NSError *error) {
             
             
-            [MyProgressHUD dismiss];
             
+         
             if (error) {
                 
                 NSLog(@"%s,error:%@",__func__,error);

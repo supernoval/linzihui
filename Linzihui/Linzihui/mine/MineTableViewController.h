@@ -7,8 +7,9 @@
 //
 
 #import "BaseHomeTableViewController.h"
+#import "BaseTableViewController.h"
 
-@interface MineTableViewController : BaseHomeTableViewController
+@interface MineTableViewController : BaseTableViewController
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 - (IBAction)logoutAction:(id)sender;
 

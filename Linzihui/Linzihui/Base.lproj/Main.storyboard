@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qQM-Ug-1g7">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
@@ -2566,7 +2565,7 @@
                             <tableViewSection id="jGK-fk-Sz1">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Zh7-Tj-5BU">
-                                        <rect key="frame" x="0.0" y="291" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="355" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zh7-Tj-5BU" id="ZD3-kM-QIa">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -2617,13 +2616,13 @@
                                                     <exclude reference="Frb-lO-EQy"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="6Ir-5V-OPR"/>
                                                     <exclude reference="6Ip-qA-R92"/>
+                                                    <exclude reference="6Ir-5V-OPR"/>
                                                     <exclude reference="gjQ-MK-49d"/>
                                                     <exclude reference="9Vg-Sl-vxg"/>
                                                     <exclude reference="dm1-Cf-3nK"/>
-                                                    <exclude reference="ph1-k1-L17"/>
                                                     <exclude reference="gUe-XN-TqC"/>
+                                                    <exclude reference="ph1-k1-L17"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -2632,13 +2631,13 @@
                                                     <include reference="Frb-lO-EQy"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="6Ir-5V-OPR"/>
                                                     <include reference="6Ip-qA-R92"/>
+                                                    <include reference="6Ir-5V-OPR"/>
                                                     <include reference="gjQ-MK-49d"/>
                                                     <include reference="9Vg-Sl-vxg"/>
                                                     <include reference="dm1-Cf-3nK"/>
-                                                    <include reference="ph1-k1-L17"/>
                                                     <include reference="gUe-XN-TqC"/>
+                                                    <include reference="ph1-k1-L17"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -2649,7 +2648,7 @@
                             <tableViewSection id="JIK-ni-xdV">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="8GE-7y-bpc">
-                                        <rect key="frame" x="0.0" y="355" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="419" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8GE-7y-bpc" id="p8h-vn-psR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -2711,7 +2710,7 @@
                             <tableViewSection id="IP8-Cr-agO">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="IVT-H8-lSz">
-                                        <rect key="frame" x="0.0" y="419" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="483" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IVT-H8-lSz" id="WHX-gX-Di0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
