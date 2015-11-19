@@ -112,6 +112,22 @@
             [ob setObject:text forKey:@"text"];
             [ob setObject:@[] forKey:@"comment"];
             
+            
+            CGFloat longitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];
+            
+            CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
+            
+            if (longitude > 0 && latitude > 0) {
+                
+                BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:longitude WithLatitude:latitude];
+                
+                
+                [ob setObject:point forKey:@"location"];
+                
+                
+            }
+            
+            
             [ob saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                
                    [MyProgressHUD dismiss];
@@ -148,11 +164,7 @@
     
 }
 
--(void)saveima:(NSString*)sender{
-    
 
-
-}
 
 
 

@@ -553,6 +553,25 @@
     }
 }
 
++(CGFloat)distanceFromLocation:(CGFloat)latitude  longitude:(CGFloat)longitude
+{
+    CGFloat currentlongitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];
+    
+    CGFloat currentlatitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLatitude];
+    
+    CLLocation *fromLocation = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+    
+    CLLocation *toLocation = [[CLLocation alloc]initWithLatitude:currentlatitude longitude:currentlongitude];
+    
+    
+    CGFloat meter = [toLocation distanceFromLocation:fromLocation];
+    
+    
+    return meter;
+    
+    
+    
+}
 +(NSString*)timeStringFromNow:(NSDate*)Thattime
 {
     

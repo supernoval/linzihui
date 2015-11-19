@@ -15,10 +15,11 @@
 #import "WXApi.h"
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
-
-@interface AppDelegate ()<WXApiDelegate>
+#import <CoreLocation/CoreLocation.h>
+@interface AppDelegate ()<WXApiDelegate,CLLocationManagerDelegate>
 {
-   
+    CLLocationManager *_locationManager;
+    
     
 }
 @end
@@ -67,6 +68,8 @@
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
     }
     
+    
+    _locationManager = [[CLLocationManager alloc]init];
     
     
   
@@ -167,6 +170,64 @@
     NSLog(@"resp:%@",resp);
     NSLog(@"errorCode:%d,errorStr:%@",resp.errCode,resp.errStr);
 }
+
+
+
+#pragma mark - CLLocationManagerDelegate
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status ==kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways ) {
+        
+        
+        [_locationManager startUpdatingLocation];
+        
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    
+    
+    CLLocation *_location = [locations lastObject];
+    
+    if (_location.coordinate.latitude > 0 && _location.coordinate.longitude > 0) {
+        
+        [_locationManager stopUpdatingLocation];
+        
+        [[NSUserDefaults standardUserDefaults ] setFloat:_location.coordinate.latitude forKey:kCurrentLatitude];
+        
+        [[NSUserDefaults standardUserDefaults] setFloat:_location.coordinate.longitude forKey:kCurrentLongitude];
+        
+        [[NSUserDefaults standardUserDefaults]  synchronize];
+        
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
+            
+            BmobUser *currentUser = [BmobUser getCurrentUser];
+            
+            BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:_location.coordinate.longitude WithLatitude:_location.coordinate.latitude];
+            
+            [currentUser setObject:point forKey:@"location"];
+            
+            
+            [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    NSLog(@"地理坐标保存成功");
+                    
+                }
+                else
+                {
+                    NSLog(@"地理位置保存失败 ：%@",error);
+                    
+                    
+                }
+            }];
+        }
+        
+    }
+}
+
 
 
 @end

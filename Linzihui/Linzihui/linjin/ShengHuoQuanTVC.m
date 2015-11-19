@@ -243,7 +243,15 @@ static NSString *contentCell = @"ShenghuoQuanCell";
         cell.contentextLabel.text = oneModel.text;
         
         
-        
+        if (oneModel.location) {
+            
+            NSString *distanceStr = [CommonMethods distanceStringWithLatitude:oneModel.location.latitude longitude:oneModel.location.longitude];
+            
+            
+            cell.distanceLabel.text = distanceStr;
+            
+            
+        }
         
         
         

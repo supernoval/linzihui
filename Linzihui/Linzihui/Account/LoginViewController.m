@@ -51,6 +51,39 @@
         
         if (!error) {
             
+            CGFloat longitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];
+            
+            CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
+            
+            if (longitude > 0 && latitude > 0) {
+                
+                BmobUser *currentUser = [BmobUser getCurrentUser];
+                
+                BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:longitude WithLatitude:latitude];
+                
+                [currentUser setObject:point forKey:@"location"];
+                
+                
+                [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    
+                    if (isSuccessful) {
+                        
+                        NSLog(@"地理坐标保存成功");
+                        
+                    }
+                    else
+                    {
+                        NSLog(@"地理位置保存失败 ：%@",error);
+                        
+                        
+                    }
+                }];
+
+                
+            }
+            
+
+            
             [[ChatAccountManager shareChatAccountManager] loginWithAccount:_usernameTF.text successBlock:^(BOOL isSuccess) {
                
                 if (isSuccess) {

@@ -17,6 +17,7 @@
 
 #import <BmobSDK/Bmob.h>
 #import <BmobSDK/BmobProFile.h>
+#import "NSUserDefaultKeys.h"
 
 
 typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
@@ -101,7 +102,7 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 
 
 #pragma mark - 计算距离
-+(double)distanceFromLocation:(CGFloat)latitude  longitude:(CGFloat)longitude;
++(CGFloat)distanceFromLocation:(CGFloat)latitude  longitude:(CGFloat)longitude;
 
 #pragma  mark - 得到距离字符串
 +(NSString*)distanceStringWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
@@ -121,6 +122,9 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 
 #pragma mark - 整理手机号码格式
 +(NSString*)getRightPhoneNum:(NSString*)phoneNum;
+
+
+
 
 
 
