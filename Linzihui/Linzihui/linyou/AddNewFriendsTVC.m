@@ -511,7 +511,11 @@ static NSString * RequestCell = @"RequestCell";
     if ([[EMHelper getHelper] accepBuddyRequestWithUserName:entity.applicantUsername error:&error])
     {
         
-        [self.tableView reloadData];
+        
+        [self getLocateInviteData];
+        
+        
+      
         
     }
     

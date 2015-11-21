@@ -93,8 +93,16 @@
         
     }
     
+    
+    
+    
      [MyProgressHUD showProgress];
     
+   
+    if (_image_list.count > 0) {
+        
+        
+
     [CommonMethods upLoadPhotos:_image_list resultBlock:^(BOOL success, NSArray *results) {
         
         if (success) {
@@ -161,7 +169,56 @@
     }];
   
     
-    
+      }
+    else  //纯文字
+    {
+        BmobUser *currentUser = [BmobUser getCurrentUser];
+        
+        BmobObject *ob = [BmobObject objectWithClassName:kShengHuoQuanTableName];
+        
+        [ob setObject:currentUser forKey:@"publisher"];
+        
+        [ob setObject:@[] forKey:@"image_url"];
+        [ob setObject:text forKey:@"text"];
+        [ob setObject:@[] forKey:@"comment"];
+        
+        
+        CGFloat longitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];
+        
+        CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
+        
+        if (longitude > 0 && latitude > 0) {
+            
+            BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:longitude WithLatitude:latitude];
+            
+            
+            [ob setObject:point forKey:@"location"];
+            
+            
+        }
+        
+        
+        [ob saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            [MyProgressHUD dismiss];
+            
+            if (isSuccessful) {
+                
+                [CommonMethods showDefaultErrorString:@"发送成功"];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+                
+            }
+            else
+            {
+                
+                [CommonMethods showDefaultErrorString:@"发送失败"];
+                
+            }
+            
+        }];
+    }
 }
 
 

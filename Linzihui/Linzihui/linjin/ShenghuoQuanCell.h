@@ -16,6 +16,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentextLabel;
 @property (weak, nonatomic) IBOutlet SDPhotoGroup *photoView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoViewHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textLabelHeight;
+
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *zanButton;
 @property (weak, nonatomic) IBOutlet UIButton *replayButton;

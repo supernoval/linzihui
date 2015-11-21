@@ -189,7 +189,7 @@
 		15BE66D41BF3BE9F000A9D1F /* TongXunLuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66D31BF3BE9F000A9D1F /* TongXunLuTVC.m */; };
 		15BE66D61BF3BEB4000A9D1F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66D51BF3BEB4000A9D1F /* AddressBook.framework */; };
 		15BE66D81BF3BEBA000A9D1F /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66D71BF3BEBA000A9D1F /* AddressBookUI.framework */; };
-		15BE66DA1BF3C34E000A9D1F /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66D91BF3C34E000A9D1F /* Contacts.framework */; };
+		15BE66DA1BF3C34E000A9D1F /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66D91BF3C34E000A9D1F /* Contacts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		15BE66DD1BF3CD6B000A9D1F /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66DC1BF3CD6B000A9D1F /* ContactModel.m */; };
 		15BE66DF1BF3E79F000A9D1F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66DE1BF3E79F000A9D1F /* MessageUI.framework */; };
 		15BE66E51BF3F3F0000A9D1F /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66E11BF3F3F0000A9D1F /* libWeChatSDK.a */; };

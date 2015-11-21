@@ -383,6 +383,45 @@ static NSString *commentCellID = @"CommentCell";
                               placeholderImage:kDefaultHeadImage];
         
         
+            
+            CGFloat photoViewHeight = 0;
+            
+            NSArray *imgs = oneModel.image_url;
+            
+            long imageCount = imgs.count;
+            int perRowImageCount = ((imageCount == 4) ? 2 : 3);
+            CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
+            int totalRowCount = ceil(imageCount / perRowImageCountF);
+            
+            photoViewHeight = 95 * totalRowCount;
+            
+            
+            
+            CGFloat textHeight = 0;
+            
+            
+            NSString *text =oneModel.text;
+            
+            
+            textHeight = [StringHeight heightWithText:text font:FONT_17 constrainedToWidth:ScreenWidth - 25];
+            
+            if (textHeight < 30)
+            {
+                
+                textHeight = 30;
+                
+                
+            }
+            
+            
+            //设置 photoview 和 textlabel 的高度
+            cell.photoViewHeight.constant = photoViewHeight;
+            
+            cell.textLabelHeight.constant = textHeight;
+            
+            
+            
+            
         cell.nickNameLabel.text = [user objectForKey:@"nick"];
         
         if (!cell.nickNameLabel.text) {

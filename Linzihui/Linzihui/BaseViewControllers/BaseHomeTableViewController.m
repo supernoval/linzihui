@@ -11,8 +11,7 @@
 #import "CreateChatRoomTVC.h"
 
 
-static CGFloat pullViewWith = 150;
-static CGFloat pullViewHeight = 225;
+
 
 @interface BaseHomeTableViewController ()<PullViewDelegate>
 {
@@ -165,7 +164,7 @@ static CGFloat pullViewHeight = 225;
 
 - (void)initWithPullView
 {
-    _pullView = [[PullView alloc]initWithFrame:CGRectMake(ScreenWidth - pullViewWith , 64, pullViewWith, 0)];
+    _pullView = [[PullView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     _pullView.delegate = self;
     _pullView.clipsToBounds = YES;
     
@@ -178,38 +177,19 @@ static CGFloat pullViewHeight = 225;
     if (hadShowedPullView) {
         
         hadShowedPullView =NO;
-        [UIView animateWithDuration:0.3 animations:^{
-            
-            CGRect originFrame = _pullView.frame;
-            
-            _pullView.frame = CGRectMake(originFrame.origin.x, originFrame.origin.y, pullViewWith, 0);
-            
-            
-        } completion:^(BOOL finished) {
-            
-            if (finished) {
-                
-                [_pullView removeFromSuperview];
-                
-            }
-        }];
+        [_pullView removeFromSuperview];
+        
+    
     }
     else
     {
      
         hadShowedPullView = YES;
         
-        [self.navigationController.view addSubview:_pullView];
+        [self.tabBarController.view addSubview:_pullView];
         
         
-        [UIView animateWithDuration:0.3 animations:^{
-       
-        CGRect originFrame = _pullView.frame;
-        
-        _pullView.frame = CGRectMake(originFrame.origin.x, originFrame.origin.y, pullViewWith, pullViewHeight);
-        
-       
-    }];
+ 
     }
 }
 
@@ -261,7 +241,12 @@ static CGFloat pullViewHeight = 225;
     }
 }
 
-
+-(void)tapResgin
+{
+    
+    hadShowedPullView = NO;
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

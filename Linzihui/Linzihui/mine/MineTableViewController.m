@@ -523,19 +523,14 @@ static NSInteger sextActionSheetTag  = 100;
             case 1:
             {
                 
-                EditPhotoViewController *_editrVC = [[EditPhotoViewController alloc]init];
-                _editrVC.delegate = self;
+             ;
                 
-                _editrVC.sourseImg = temImage;
+                UIImagePickerController *_picker = [[UIImagePickerController alloc]init];
+                _picker.editing = NO;
+                _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                _picker.delegate = self;
                 
-                [self presentViewController:_editrVC animated:YES completion:nil];
-                
-//                UIImagePickerController *_picker = [[UIImagePickerController alloc]init];
-//                _picker.editing = NO;
-//                _picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//                _picker.delegate = self;
-//                
-//                [self presentViewController:_picker animated:YES completion:nil];
+                [self presentViewController:_picker animated:YES completion:nil];
             }
                 break;
                 

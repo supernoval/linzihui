@@ -9,16 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "ConstantsHeaders.h"
 
+static CGFloat pullViewWith = 150;
+static CGFloat pullViewHeight = 225;
+
 @protocol PullViewDelegate <NSObject>
 
 -(void)didSelectedIndex:(NSInteger)index;
+
+-(void)tapResgin;
 
 
 @end
 
 @interface PullView : UIView<UITableViewDataSource,UITableViewDelegate>
 {
-    UITapGestureRecognizer *_tap;
+    
+    
+    
+    UIControl *_control;
+    
+    
     
     
 }

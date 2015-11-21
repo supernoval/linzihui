@@ -14,18 +14,28 @@
 {
     if (self == [super initWithFrame:frame]) {
         
-        self.backgroundColor = kNavigationBarColor;
+        self.backgroundColor = [UIColor clearColor];
         
-        self.frame = frame;
+        self.frame =frame;
         
-        _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 150, 225) style:UITableViewStylePlain];
+        
+        _control = [[UIControl alloc]initWithFrame:self.frame];
+        
+        _control.backgroundColor = [UIColor clearColor];
+        
+        [_control addTarget:self action:@selector(resign) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:_control];
+        
+        
+        _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(ScreenWidth - pullViewWith , 64, pullViewWith, pullViewHeight) style:UITableViewStylePlain];
         
         _listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         _listTableView.dataSource = self;
         
         _listTableView.delegate = self;
-        _listTableView.backgroundColor = [UIColor clearColor];
+        _listTableView.backgroundColor = kNavigationBarColor;
         
         [self addSubview:_listTableView];
         
@@ -37,6 +47,20 @@
     }
     
     return self;
+}
+
+-(void)resign
+{
+    
+    if ([self.delegate respondsToSelector:@selector(tapResgin)]) {
+        
+        [self.delegate  tapResgin];
+        
+        
+    }
+   
+    [self removeFromSuperview];
+    
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
