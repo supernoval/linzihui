@@ -8,6 +8,7 @@
 
 #import "BaseTableViewController.h"
 #import "ShenghuoQuanCell.h"
+#import "CommentCell.h"
 
 @interface ShengHuoQuanTVC : BaseTableViewController
 

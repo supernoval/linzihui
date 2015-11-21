@@ -14,6 +14,8 @@
 		1506EC2D1BF839220010F349 /* ChatSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2C1BF839220010F349 /* ChatSettingTVC.m */; };
 		1506EC301BF860A80010F349 /* SignUpTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2F1BF860A80010F349 /* SignUpTableView.m */; };
 		151671561BF972D900AD4C56 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151671551BF972D900AD4C56 /* TencentOpenAPI.framework */; };
+		151943BC1C0050A400E4E711 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 151943BB1C0050A400E4E711 /* CommentModel.m */; };
+		151943BF1C00543300E4E711 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 151943BE1C00543300E4E711 /* CommentCell.m */; };
 		152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C31BF1872900F91C06 /* EditPhotoViewController.m */; };
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
@@ -235,6 +237,10 @@
 		1506EC2E1BF860A80010F349 /* SignUpTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTableView.h; sourceTree = "<group>"; };
 		1506EC2F1BF860A80010F349 /* SignUpTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableView.m; sourceTree = "<group>"; };
 		151671551BF972D900AD4C56 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		151943BA1C0050A400E4E711 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		151943BB1C0050A400E4E711 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		151943BD1C00543300E4E711 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		151943BE1C00543300E4E711 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		152579C21BF1872900F91C06 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		152579C31BF1872900F91C06 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		152579C41BF1872900F91C06 /* STScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScratchView.h; sourceTree = "<group>"; };
@@ -789,6 +795,16 @@
 			name = mygrouplist;
 			sourceTree = "<group>";
 		};
+		151943B91C00508600E4E711 /* comentModel */ = {
+			isa = PBXGroup;
+			children = (
+				151943BA1C0050A400E4E711 /* CommentModel.h */,
+				151943BB1C0050A400E4E711 /* CommentModel.m */,
+			);
+			name = comentModel;
+			path = ../linjin;
+			sourceTree = "<group>";
+		};
 		152579C11BF1872900F91C06 /* STSCropPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -821,6 +837,8 @@
 				1530E8431BFC6B2100A78DB5 /* ShengHuoQuanTVC.m */,
 				1530E8451BFC730900A78DB5 /* ShenghuoQuanCell.h */,
 				1530E8461BFC730900A78DB5 /* ShenghuoQuanCell.m */,
+				151943BD1C00543300E4E711 /* CommentCell.h */,
+				151943BE1C00543300E4E711 /* CommentCell.m */,
 			);
 			name = shenghuoquan;
 			sourceTree = "<group>";
@@ -1926,6 +1944,7 @@
 		15EE46E91BE85C4400538EA5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				151943B91C00508600E4E711 /* comentModel */,
 				15EE46ED1BE85CD100538EA5 /* ModelHeader.h */,
 				15EE46EA1BE85C5D00538EA5 /* UserModel.h */,
 				15EE46EB1BE85C5D00538EA5 /* UserModel.m */,
@@ -2094,6 +2113,7 @@
 				15EE46F51BE8644100538EA5 /* ChangeCodeTVC.m in Sources */,
 				15B7A4CC1BE730320052115F /* MJRefreshComponent.m in Sources */,
 				15B7A5391BE730460052115F /* MWGridViewController.m in Sources */,
+				151943BC1C0050A400E4E711 /* CommentModel.m in Sources */,
 				153CE0181BE50D910032517E /* AppDelegate.m in Sources */,
 				15B7A5451BE730460052115F /* EMSDWebImageManager.m in Sources */,
 				15B7A5D71BE744A70052115F /* LoginViewController.m in Sources */,
@@ -2188,6 +2208,7 @@
 				15B7A5531BE730460052115F /* PSTCollectionViewController.m in Sources */,
 				15B7A4221BE72F760052115F /* SRSlimeView.m in Sources */,
 				15B7A5421BE730460052115F /* EMSDWebImageDecoder.m in Sources */,
+				151943BF1C00543300E4E711 /* CommentCell.m in Sources */,
 				15B7A4961BE72FEE0052115F /* DXMessageToolBar.m in Sources */,
 				15B7A53D1BE730460052115F /* MWTapDetectingView.m in Sources */,
 				15B7A49A1BE72FEE0052115F /* DXRecordView.m in Sources */,
@@ -2373,7 +2394,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e291c8ee-3b8c-47f5-bdfe-31514a00864b";
+				PROVISIONING_PROFILE = "25aa2349-5e76-49d2-a8c3-bba436af0d85";
 			};
 			name = Debug;
 		};
@@ -2405,7 +2426,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "627cf2ec-2db6-4061-9c1b-f13ea846dca9";
+				PROVISIONING_PROFILE = "bcd0de4b-bb76-4346-8569-3022ceede315";
 			};
 			name = Release;
 		};

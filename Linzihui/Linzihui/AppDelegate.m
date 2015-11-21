@@ -58,18 +58,30 @@
     [WXApi registerApp:kWeiChatAppID];
     
     
+    //定位
+    _locationManager = [[CLLocationManager alloc]init];
+    
+    _locationManager.delegate = self;
+    
+    
     if ([[UIDevice currentDevice].systemVersion floatValue] >=8.0)
     {
+        [_locationManager requestWhenInUseAuthorization];
+        
+        
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
         
     }
     else
     {
+        
+        [_locationManager startUpdatingLocation];
+        
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
     }
     
     
-    _locationManager = [[CLLocationManager alloc]init];
+    
     
     
   
@@ -176,7 +188,7 @@
 #pragma mark - CLLocationManagerDelegate
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    if (status ==kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways ) {
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways ) {
         
         
         [_locationManager startUpdatingLocation];

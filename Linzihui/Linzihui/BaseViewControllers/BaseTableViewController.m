@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-@interface BaseTableViewController ()
+@interface BaseTableViewController ()<UIScrollViewDelegate>
 {
      UITapGestureRecognizer *_tapResign;
 }
@@ -141,7 +141,12 @@
 
 
 
-
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    [self.view endEditing:YES];
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -18,6 +18,12 @@
 @property (weak, nonatomic) IBOutlet SDPhotoGroup *photoView;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *zanButton;
-@property (weak, nonatomic) IBOutlet UIImageView *replayButton;
+@property (weak, nonatomic) IBOutlet UIButton *replayButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *commentNumLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *zanNumLabel;
+
+
 
 @end

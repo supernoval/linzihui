@@ -13,6 +13,7 @@
 @property (nonatomic,strong) NSString *text;
 @property (nonatomic,strong ) NSArray *image_url;
 @property (nonatomic,strong)  NSArray *comment;
+@property (nonatomic,strong)  NSArray *zan;
 @property (nonatomic,strong)  BmobUser *publisher;
 @property (nonatomic,strong) NSString *objectId;
 @property (nonatomic,strong) NSDate *createdAt;

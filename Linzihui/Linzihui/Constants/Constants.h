@@ -42,6 +42,8 @@
 
 #define kBackgroundColor           RGB(240,240,240,1)
 
+#define kLineColor               RGB(220,220,220,1)
+
 #define kOrangeTextColor           RGB(255,105,0,0.9)
 
 #define kBlueBackColor            RGB(68,180,205,1)
