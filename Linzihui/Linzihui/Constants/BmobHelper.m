@@ -62,6 +62,19 @@
     }];
 }
 
+
+#pragma mark - 设置单个 bmobobject 到 model
++(void)setModelWithObject:(BmobObject*)ob model:(id)model
+{
+    
+    
+    NSDictionary *dataDict = [ob valueForKey:@"bmobDataDic"];
+    
+    [model setValuesForKeysWithDictionary:dataDict];
+    
+    
+    
+}
 #pragma mark - 保存单个信息
 + (void)updateBmobWithKey:(NSString*)key value:(id)value  usermodel:(UserModel*)model result:(void(^)(BOOL success))result
 {

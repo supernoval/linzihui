@@ -8,6 +8,7 @@
 
 #import "NewMineTableViewController.h"
 #import "MineTableViewController.h"
+#import "MyPhotosViewController.h"
 
 @interface NewMineTableViewController ()
 
@@ -55,6 +56,19 @@
         [self.navigationController pushViewController:_mine animated:YES];
         
         
+        
+        
+    }
+    
+    if (indexPath.section == 2) //相册
+    {
+        MyPhotosViewController *_myPhotoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPhotosViewController"];
+        
+        
+        _myPhotoVC.hidesBottomBarWhenPushed = YES;
+        
+        
+        [self.navigationController pushViewController:_myPhotoVC animated:YES];
         
         
     }

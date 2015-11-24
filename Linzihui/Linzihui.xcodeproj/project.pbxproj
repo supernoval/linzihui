@@ -197,6 +197,7 @@
 		15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66E91BF3F5C1000A9D1F /* libsqlite3.0.tbd */; };
 		15BE66EC1BF3F5CA000A9D1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */; };
 		15BE66F31BF3F932000A9D1F /* GZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66F21BF3F932000A9D1F /* GZViewController.m */; };
+		15D05C101C0433F600E0EA0D /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */; };
 		15EE46BE1BE84BE200538EA5 /* RegistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46BD1BE84BE200538EA5 /* RegistTableViewController.m */; };
 		15EE46C11BE84C2000538EA5 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46C01BE84C2000538EA5 /* PrivacyViewController.m */; };
 		15EE46DF1BE85C1700538EA5 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46C81BE85C1700538EA5 /* JSONModel.m */; };
@@ -674,6 +675,8 @@
 		15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		15BE66F11BF3F932000A9D1F /* GZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZViewController.h; sourceTree = "<group>"; };
 		15BE66F21BF3F932000A9D1F /* GZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZViewController.m; sourceTree = "<group>"; };
+		15D05C0E1C0433F600E0EA0D /* MyPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPhotosViewController.h; sourceTree = "<group>"; };
+		15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPhotosViewController.m; sourceTree = "<group>"; };
 		15EE46BC1BE84BDE00538EA5 /* RegistTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistTableViewController.h; sourceTree = "<group>"; };
 		15EE46BD1BE84BE200538EA5 /* RegistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistTableViewController.m; sourceTree = "<group>"; };
 		15EE46BF1BE84C1C00538EA5 /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
@@ -1823,6 +1826,7 @@
 		15B7A5DB1BE744FA0052115F /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				15D05C0D1C0432C300E0EA0D /* photos */,
 				1530E8511BFCA6B800A78DB5 /* personInfo */,
 				15FB7FEE1BEF51CA007D6EC8 /* changePersonInfo */,
 				1530E8521BFCA6E000A78DB5 /* NewMineTableViewController.h */,
@@ -1879,6 +1883,15 @@
 				15BE66F21BF3F932000A9D1F /* GZViewController.m */,
 			);
 			name = guanzhu;
+			sourceTree = "<group>";
+		};
+		15D05C0D1C0432C300E0EA0D /* photos */ = {
+			isa = PBXGroup;
+			children = (
+				15D05C0E1C0433F600E0EA0D /* MyPhotosViewController.h */,
+				15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */,
+			);
+			name = photos;
 			sourceTree = "<group>";
 		};
 		15EE46C51BE85C1700538EA5 /* JSONModel */ = {
@@ -2213,6 +2226,7 @@
 				15B7A53D1BE730460052115F /* MWTapDetectingView.m in Sources */,
 				15B7A49A1BE72FEE0052115F /* DXRecordView.m in Sources */,
 				15B7A5AC1BE7305D0052115F /* SDImageCache.m in Sources */,
+				15D05C101C0433F600E0EA0D /* MyPhotosViewController.m in Sources */,
 				15B7A5561BE730460052115F /* PSTCollectionViewItemKey.m in Sources */,
 				152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */,
 				15FB7FED1BEF48E6007D6EC8 /* BaseBmobModel.m in Sources */,
@@ -2394,7 +2408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25aa2349-5e76-49d2-a8c3-bba436af0d85";
+				PROVISIONING_PROFILE = "e291c8ee-3b8c-47f5-bdfe-31514a00864b";
 			};
 			name = Debug;
 		};

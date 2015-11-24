@@ -1205,6 +1205,119 @@
             </objects>
             <point key="canvasLocation" x="2739.75" y="1546.875"/>
         </scene>
+        <!--My Photos View Controller-->
+        <scene sceneID="1AA-CR-nPb">
+            <objects>
+                <viewController storyboardIdentifier="MyPhotosViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a70-bi-24b" customClass="MyPhotosViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7eR-R9-d3M"/>
+                        <viewControllerLayoutGuide type="bottom" id="lOd-BM-u4G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1sp-7Y-Tl3">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2gx-2a-6jM">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sQS-hd-03i">
+                                    <size key="itemSize" width="110" height="101"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCellID" id="1UN-yi-78V">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="101"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-hB-HkW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstItem="Lja-hB-HkW" firstAttribute="leading" secondItem="1UN-yi-78V" secondAttribute="leading" constant="2" id="1GR-cj-pIb"/>
+                                            <constraint firstAttribute="bottom" secondItem="Lja-hB-HkW" secondAttribute="bottom" constant="3" id="WRo-xN-m0W"/>
+                                            <constraint firstItem="Lja-hB-HkW" firstAttribute="top" secondItem="1UN-yi-78V" secondAttribute="top" constant="2" id="Wfg-uo-bga"/>
+                                            <constraint firstAttribute="trailing" secondItem="Lja-hB-HkW" secondAttribute="trailing" constant="12" id="pWR-pf-fCe">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="2"/>
+                                            </constraint>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="Lja-hB-HkW"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="1GR-cj-pIb"/>
+                                                <exclude reference="WRo-xN-m0W"/>
+                                                <exclude reference="Wfg-uo-bga"/>
+                                                <exclude reference="pWR-pf-fCe"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="Lja-hB-HkW"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <include reference="1GR-cj-pIb"/>
+                                                <include reference="WRo-xN-m0W"/>
+                                                <include reference="Wfg-uo-bga"/>
+                                                <include reference="pWR-pf-fCe"/>
+                                            </mask>
+                                        </variation>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2gx-2a-6jM" firstAttribute="leading" secondItem="1sp-7Y-Tl3" secondAttribute="leading" id="U7v-j7-8ts"/>
+                            <constraint firstAttribute="trailing" secondItem="2gx-2a-6jM" secondAttribute="trailing" id="ssk-Su-pfK"/>
+                            <constraint firstItem="2gx-2a-6jM" firstAttribute="top" secondItem="7eR-R9-d3M" secondAttribute="bottom" id="vcI-tV-nah"/>
+                            <constraint firstItem="lOd-BM-u4G" firstAttribute="top" secondItem="2gx-2a-6jM" secondAttribute="bottom" id="wpF-2z-qsy"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="2gx-2a-6jM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="U7v-j7-8ts"/>
+                                <exclude reference="ssk-Su-pfK"/>
+                                <exclude reference="vcI-tV-nah"/>
+                                <exclude reference="wpF-2z-qsy"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="2gx-2a-6jM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="U7v-j7-8ts"/>
+                                <include reference="ssk-Su-pfK"/>
+                                <include reference="vcI-tV-nah"/>
+                                <include reference="wpF-2z-qsy"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="myCollectionView" destination="2gx-2a-6jM" id="7Qd-pg-hHr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1JO-3V-ITG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3504.75" y="1546.875"/>
+        </scene>
         <!--我-->
         <scene sceneID="IyG-M1-1zd">
             <objects>

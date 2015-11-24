@@ -26,6 +26,8 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 获取 bmobobject 的model
 +(void)queryWithObject:(BmobQuery*)queryObject model:(id)model result:(getObjectModelBlock)block;
 
+#pragma mark - 设置单个 bmobobject 到 model
++(void)setModelWithObject:(BmobObject*)ob model:(id)model;
 
 
 #pragma mark - 保存单个信息
