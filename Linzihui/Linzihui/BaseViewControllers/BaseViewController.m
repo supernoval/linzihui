@@ -68,7 +68,7 @@
 }
 -(void)hideKeyboard
 {
-    [self.view endEditing:YES];
+//    [self.view endEditing:YES];
     
     [self.view removeGestureRecognizer:_tapResign];
     

@@ -17,7 +17,11 @@ static NSString * RequestCell = @"RequestCell";
 
 @interface AddNewFriendsTVC ()<UISearchDisplayDelegate,UISearchBarDelegate>
 @property (nonatomic,strong) UISearchDisplayController *searchController;
+@property (nonatomic,strong) UISearchController *mySearchController;
+
 @property ( nonatomic) UISearchBar *searchbar;
+@property (nonatomic) UISearchBar *headerSearchBar;
+
 @property (nonatomic,strong) NSMutableArray *searResults;
 @property (nonatomic,strong) NSMutableArray *dataSource;
 
@@ -34,12 +38,13 @@ static NSString * RequestCell = @"RequestCell";
      _searResults = [[NSMutableArray alloc]init];
     _dataSource = [[NSMutableArray alloc]init];
     
-    
-    [self searchbar];
+
     
     [self searchController];
+   
+    self.tableView.tableHeaderView = _searchController.searchBar;
     
-    self.tableView.tableHeaderView = _searchbar;
+    
     
     [self getLocateInviteData];
     
@@ -78,15 +83,31 @@ static NSString * RequestCell = @"RequestCell";
     return _searchbar;
     
 }
+
+-(UISearchBar*)headerSearchBar
+{
+    if (!_headerSearchBar) {
+        
+        _headerSearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        
+        _headerSearchBar.delegate = self;
+        
+    }
+    
+    return _headerSearchBar;
+    
+    
+}
 -(UISearchDisplayController*)searchController
 {
     if (!_searchController) {
         
-        _searchController = [[UISearchDisplayController alloc]initWithSearchBar:_searchbar contentsController:self];
+        _searchController = [[UISearchDisplayController alloc]initWithSearchBar:[self searchbar] contentsController:self];
         
         _searchController.delegate = self;
         _searchController.searchResultsDataSource = self;
         _searchController.searchResultsDelegate = self;
+        _searchController.displaysSearchBarInNavigationBar = NO;
         
         _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
@@ -152,31 +173,35 @@ static NSString * RequestCell = @"RequestCell";
             button.clipsToBounds = YES;
             button.layer.cornerRadius = 5.0;
             
-            UserModel *model = [_searResults objectAtIndex:indexPath.row];
-            
-            if (model.followEach) {
-                
-                [button setTitle:@"添加好友" forState:UIControlStateNormal];
-                
-            }else
-            {
-                [button setTitle:@"关注" forState:UIControlStateNormal];
-            }
-            
-            
-            [imageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
-            
-            if (model.nickName) {
-                
-                titleLabel.text = model.nickName;
-            }else
-            {
-                titleLabel.text = model.username;
-                
-            }
-            
-        
-            cell.accessoryType = UITableViewCellAccessoryNone;
+                if (_searResults.count > indexPath.row) {
+                    
+                    UserModel *model = [_searResults objectAtIndex:indexPath.row];
+                    
+                    if (model.followEach) {
+                        
+                        [button setTitle:@"添加好友" forState:UIControlStateNormal];
+                        
+                    }else
+                    {
+                        [button setTitle:@"关注" forState:UIControlStateNormal];
+                    }
+                    
+                    
+                    [imageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
+                    
+                    if (model.nickName) {
+                        
+                        titleLabel.text = model.nickName;
+                    }else
+                    {
+                        titleLabel.text = model.username;
+                        
+                    }
+                    
+                    
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+
                 
              });
             
@@ -360,7 +385,18 @@ static NSString * RequestCell = @"RequestCell";
 }
 
 #pragma mark - UISearchBarDelegate
-
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    return YES;
+}
+-(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    
+    [searchBar resignFirstResponder];
+    
+    return YES;
+    
+}
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     if (searchBar.text.length > 0) {
@@ -373,43 +409,62 @@ static NSString * RequestCell = @"RequestCell";
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     
+   
+        
     [[UIApplication sharedApplication ] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    
-    [_searchController setActive:YES animated:YES];
+        
+//
+//    [_searchController setActive:YES animated:YES];
+//        
+
+  
+
     
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-     _searchbar.delegate = self;
+  
+   
     
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     
+    if (searchBar == _searchbar) {
+        
+        searchBar.text = nil;
+        
+        [_searchController.searchBar resignFirstResponder];
+        [_searResults removeAllObjects];
+    }
     
-    [_searResults removeAllObjects];
     
     
 }
 
 #pragma mark - UISearchDisplayDelegate 
--(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+- (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
 {
-
-    
-    [_searResults removeAllObjects];
+   
     
     
-    //要加这句 不然没法再次搜 我日啊，搞了好久
+    
+    
     [_searchController.searchBar resignFirstResponder];
-    
+
     
     [[UIApplication sharedApplication ] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     
-    [_searchController setActive: NO animated:YES];
+//    [_searchController setActive: NO animated:YES];
+}
+-(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+
+    
+     [_searResults removeAllObjects];
     
     
 }

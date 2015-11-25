@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 #import "ModelHeader.h"
-@interface AddNewFriendsTVC : BaseTableViewController
+@interface AddNewFriendsTVC : UITableViewController
 
 
 @end
