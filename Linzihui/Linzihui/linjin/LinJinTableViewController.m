@@ -8,6 +8,7 @@
 
 #import "LinJinTableViewController.h"
 #import "ShengHuoQuanTVC.h"
+#import "HuodongTVCViewController.h"
 
 static NSString *CellID = @"CellID";
 
@@ -121,7 +122,8 @@ static NSString *CellID = @"CellID";
 {
     
     
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0) // 生活圈
+    {
         
         
         ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
@@ -132,6 +134,20 @@ static NSString *CellID = @"CellID";
         
         
         [self.navigationController pushViewController:_shengHuoquan animated:YES];
+        
+        
+    }
+    
+    
+    if (indexPath.section == 1)//邻近活动
+    {
+        
+        HuodongTVCViewController *_huodongTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"HuodongTVCViewController"];
+        
+        _huodongTVC.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:_huodongTVC animated:YES];
+        
         
         
     }

@@ -16,8 +16,7 @@
 @interface SendWXViewController ()<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSMutableArray *_image_list;
-    NSMutableArray *_image_list1;
-     NSMutableArray *_image_list2;
+  
     NSInteger _select_imageview_index;
     
     UIImage *addImage;
@@ -43,8 +42,7 @@
     UIBarButtonItem *submit_btn = [[UIBarButtonItem alloc]initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(submit_clicked)];
     self.navigationItem.rightBarButtonItem =submit_btn;
     _image_list = [[NSMutableArray alloc]init];
-     _image_list1 = [[NSMutableArray alloc]init];
-     _image_list2 = [[NSMutableArray alloc]init];
+    
     addImage  = [UIImage imageNamed:@"tianjiazhaopian"];
     
     [_image_list addObject:addImage];

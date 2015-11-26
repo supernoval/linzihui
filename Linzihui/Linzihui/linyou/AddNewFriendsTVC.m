@@ -235,7 +235,7 @@ static NSString * RequestCell = @"RequestCell";
                     case 0:
                     {
                         imageName  = @"tongxunlu";
-                        title =  @"通讯录";
+                        title =  @"手机联系人";
                     }
                         break;
                     case 1:

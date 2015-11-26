@@ -50,6 +50,8 @@
 		154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F51BE5E7030042632E /* libxml2.tbd */; };
 		154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F71BE5E70B0042632E /* libiconv.tbd */; };
 		154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F91BE5E7110042632E /* libresolv.tbd */; };
+		15B6864A1C069B60007EE8CB /* HuodongTVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B686491C069B60007EE8CB /* HuodongTVCViewController.m */; };
+		15B6864E1C069C1B007EE8CB /* PublishActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B6864D1C069C1B007EE8CB /* PublishActivity.m */; };
 		15B7A41F1BE72F760052115F /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B7A4181BE72F760052115F /* sr_refresh.png */; };
 		15B7A4201BE72F760052115F /* sr_refresh@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B7A4191BE72F760052115F /* sr_refresh@2X.png */; };
 		15B7A4211BE72F760052115F /* SRRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B7A41C1BE72F760052115F /* SRRefreshView.m */; };
@@ -374,6 +376,10 @@
 		154A39F51BE5E7030042632E /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		154A39F71BE5E70B0042632E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		154A39F91BE5E7110042632E /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		15B686481C069B60007EE8CB /* HuodongTVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuodongTVCViewController.h; sourceTree = "<group>"; };
+		15B686491C069B60007EE8CB /* HuodongTVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuodongTVCViewController.m; sourceTree = "<group>"; };
+		15B6864C1C069C1B007EE8CB /* PublishActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishActivity.h; sourceTree = "<group>"; };
+		15B6864D1C069C1B007EE8CB /* PublishActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishActivity.m; sourceTree = "<group>"; };
 		15B7A4181BE72F760052115F /* sr_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sr_refresh.png; sourceTree = "<group>"; };
 		15B7A4191BE72F760052115F /* sr_refresh@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@2X.png"; sourceTree = "<group>"; };
 		15B7A41A1BE72F760052115F /* SRDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDefine.h; sourceTree = "<group>"; };
@@ -1262,6 +1268,25 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		15B686471C069B36007EE8CB /* huodong */ = {
+			isa = PBXGroup;
+			children = (
+				15B6864B1C069BFC007EE8CB /* publishActivity */,
+				15B686481C069B60007EE8CB /* HuodongTVCViewController.h */,
+				15B686491C069B60007EE8CB /* HuodongTVCViewController.m */,
+			);
+			name = huodong;
+			sourceTree = "<group>";
+		};
+		15B6864B1C069BFC007EE8CB /* publishActivity */ = {
+			isa = PBXGroup;
+			children = (
+				15B6864C1C069C1B007EE8CB /* PublishActivity.h */,
+				15B6864D1C069C1B007EE8CB /* PublishActivity.m */,
+			);
+			name = publishActivity;
+			sourceTree = "<group>";
+		};
 		15B7A4161BE72F6B0052115F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -1838,6 +1863,7 @@
 		15B7A5DC1BE74E490052115F /* linjin */ = {
 			isa = PBXGroup;
 			children = (
+				15B686471C069B36007EE8CB /* huodong */,
 				1530E8411BFC6AF000A78DB5 /* shenghuoquan */,
 				15B7A5DD1BE74E790052115F /* LinJinTableViewController.h */,
 				15B7A5DE1BE74E790052115F /* LinJinTableViewController.m */,
@@ -2208,6 +2234,7 @@
 				15B7A54F1BE730460052115F /* UIView+EMWebCacheOperation.m in Sources */,
 				15EE46BE1BE84BE200538EA5 /* RegistTableViewController.m in Sources */,
 				15BE66DD1BF3CD6B000A9D1F /* ContactModel.m in Sources */,
+				15B6864A1C069B60007EE8CB /* HuodongTVCViewController.m in Sources */,
 				15B7A4A21BE72FEE0052115F /* EMChatViewBaseCell.m in Sources */,
 				15B7A55A1BE730460052115F /* PSTGridLayoutItem.m in Sources */,
 				15B7A43C1BE72F800052115F /* EMCDDeviceManager+ProximitySensor.m in Sources */,
@@ -2248,6 +2275,7 @@
 				15B7A5371BE730460052115F /* MWCaptionView.m in Sources */,
 				15B7A5CF1BE730E40052115F /* MyProgressHUD.m in Sources */,
 				15B7A4AA1BE72FFE0052115F /* ChatAccountManager.m in Sources */,
+				15B6864E1C069C1B007EE8CB /* PublishActivity.m in Sources */,
 				15B7A4921BE72FEE0052115F /* ChatViewController+Category.m in Sources */,
 				15B7A5481BE730460052115F /* NSData+EMImageContentType.m in Sources */,
 				15B7A4911BE72FEE0052115F /* ChatSendHelper.m in Sources */,

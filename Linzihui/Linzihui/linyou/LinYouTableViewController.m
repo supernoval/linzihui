@@ -103,7 +103,7 @@ static NSString *CellId  = @"CellId";
     
     NSMutableArray *muArray = [[NSMutableArray alloc]init];
     
-    NSArray *topContentArray = @[@{@"image":@"newfriends",@"title":@"新朋友"},@{@"image":@"groupchat",@"title":@"群聊"},@{@"image":@"follow",@"title":@"关注"}];
+    NSArray *topContentArray = @[@{@"image":@"newfriends",@"title":@"通讯录"},@{@"image":@"groupchat",@"title":@"群聊"},@{@"image":@"follow",@"title":@"关注"}];
 
     [muArray addObjectsFromArray:topContentArray];
     
