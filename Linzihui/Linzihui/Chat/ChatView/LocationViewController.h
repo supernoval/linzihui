@@ -25,5 +25,6 @@
 @property (nonatomic, assign) id<LocationViewDelegate> delegate;
 
 - (instancetype)initWithLocation:(CLLocationCoordinate2D)locationCoordinate;
++ (instancetype)defaultLocation;
 
 @end

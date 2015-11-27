@@ -18,3 +18,6 @@
 
 //生活圈
 #define kShengHuoQuanTableName        @"ShengHuoQuan"
+
+//活动
+#define kHuoDongTableName           @"HuoDong"

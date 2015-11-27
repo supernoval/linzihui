@@ -40,8 +40,9 @@
     
 //    self.tabBarController.tabBar.tintColor = TabbarTintColor;
     
-     _tapResign = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
+//     _tapResign = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
     
+//    [self.view addGestureRecognizer:_tapResign];
     
 //    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftArrow"] style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
 //    
@@ -59,9 +60,7 @@
     [super viewWillAppear:animated];
     
     
-  
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboarddidShow) name:UIKeyboardDidShowNotification object:nil];
+ 
 }
 
 
@@ -70,17 +69,12 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
--(void)keyboarddidShow
-{
-    [self.view addGestureRecognizer:_tapResign];
-    
-    
-}
+
 -(void)hideKeyboard
 {
     [self.view endEditing:YES];
     
-    [self.view removeGestureRecognizer:_tapResign];
+   
     
 }
 

@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-@interface PublishActivity : BaseTableViewController
+@interface PublishActivity : UITableViewController
 
 
 @property (weak, nonatomic) IBOutlet UIView *photoFooterView;
