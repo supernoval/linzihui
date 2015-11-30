@@ -13,4 +13,5 @@
 #import "ContactModel.h"
 #import "CommentModel.h"
 #import "ShengHuoModel.h"
+#import "HuoDongModel.h"
 

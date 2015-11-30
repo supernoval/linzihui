@@ -609,6 +609,8 @@ static NSString *commentCellID = @"CommentCell";
 - (IBAction)publishAction:(id)sender {
     
     
+    [self.view endEditing:YES];
+    
     SendWXViewController *_sendVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SendWXViewController"];
     
     

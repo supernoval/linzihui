@@ -7,7 +7,15 @@
 //
 
 #import "BaseTableViewController.h"
+#import "SDPhotoGroup.h"
 
 @interface HuodongTVCViewController : BaseTableViewController
+
+
+
+
+
+
+
 
 @end

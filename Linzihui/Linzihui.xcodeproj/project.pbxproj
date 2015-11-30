@@ -20,6 +20,10 @@
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
 		152877141BF251CE00321E50 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877131BF251CE00321E50 /* InvitationManager.m */; };
+		152F408B1C0BF056003C1C62 /* HuoDongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F408A1C0BF056003C1C62 /* HuoDongCell.m */; };
+		152F408E1C0BF583003C1C62 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F408D1C0BF583003C1C62 /* PhotoCell.m */; };
+		152F40911C0C1EEB003C1C62 /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F40901C0C1EEB003C1C62 /* PersonCell.m */; };
+		152F40941C0C37CD003C1C62 /* HuoDongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F40931C0C37CD003C1C62 /* HuoDongModel.m */; };
 		1530E8441BFC6B2100A78DB5 /* ShengHuoQuanTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E8431BFC6B2100A78DB5 /* ShengHuoQuanTVC.m */; };
 		1530E8471BFC730900A78DB5 /* ShenghuoQuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E8461BFC730900A78DB5 /* ShenghuoQuanCell.m */; };
 		1530E84C1BFC74CB00A78DB5 /* SendWXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E84A1BFC74CB00A78DB5 /* SendWXViewController.m */; };
@@ -252,6 +256,14 @@
 		152877101BF23B7100321E50 /* EMHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHelper.m; sourceTree = "<group>"; };
 		152877121BF251CA00321E50 /* InvitationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		152877131BF251CE00321E50 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
+		152F40891C0BF056003C1C62 /* HuoDongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongCell.h; sourceTree = "<group>"; };
+		152F408A1C0BF056003C1C62 /* HuoDongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongCell.m; sourceTree = "<group>"; };
+		152F408C1C0BF583003C1C62 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		152F408D1C0BF583003C1C62 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		152F408F1C0C1EEB003C1C62 /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
+		152F40901C0C1EEB003C1C62 /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
+		152F40921C0C37CD003C1C62 /* HuoDongModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongModel.h; sourceTree = "<group>"; };
+		152F40931C0C37CD003C1C62 /* HuoDongModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongModel.m; sourceTree = "<group>"; };
 		1530E8421BFC6B2100A78DB5 /* ShengHuoQuanTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShengHuoQuanTVC.h; sourceTree = "<group>"; };
 		1530E8431BFC6B2100A78DB5 /* ShengHuoQuanTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShengHuoQuanTVC.m; sourceTree = "<group>"; };
 		1530E8451BFC730900A78DB5 /* ShenghuoQuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShenghuoQuanCell.h; sourceTree = "<group>"; };
@@ -1274,6 +1286,12 @@
 				15B6864B1C069BFC007EE8CB /* publishActivity */,
 				15B686481C069B60007EE8CB /* HuodongTVCViewController.h */,
 				15B686491C069B60007EE8CB /* HuodongTVCViewController.m */,
+				152F40891C0BF056003C1C62 /* HuoDongCell.h */,
+				152F408A1C0BF056003C1C62 /* HuoDongCell.m */,
+				152F408C1C0BF583003C1C62 /* PhotoCell.h */,
+				152F408D1C0BF583003C1C62 /* PhotoCell.m */,
+				152F408F1C0C1EEB003C1C62 /* PersonCell.h */,
+				152F40901C0C1EEB003C1C62 /* PersonCell.m */,
 			);
 			name = huodong;
 			sourceTree = "<group>";
@@ -1993,6 +2011,8 @@
 				15BE66DC1BF3CD6B000A9D1F /* ContactModel.m */,
 				1530E84E1BFC910E00A78DB5 /* ShengHuoModel.h */,
 				1530E84F1BFC910E00A78DB5 /* ShengHuoModel.m */,
+				152F40921C0C37CD003C1C62 /* HuoDongModel.h */,
+				152F40931C0C37CD003C1C62 /* HuoDongModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2111,6 +2131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				152F408E1C0BF583003C1C62 /* PhotoCell.m in Sources */,
 				15B7A4D41BE730320052115F /* UIScrollView+MJExtension.m in Sources */,
 				15B7A55C1BE730460052115F /* PSTGridLayoutSection.m in Sources */,
 				15B7A5B81BE7305D0052115F /* UIImageView+WebCache.m in Sources */,
@@ -2152,6 +2173,7 @@
 				15EE46F51BE8644100538EA5 /* ChangeCodeTVC.m in Sources */,
 				15B7A4CC1BE730320052115F /* MJRefreshComponent.m in Sources */,
 				15B7A5391BE730460052115F /* MWGridViewController.m in Sources */,
+				152F40911C0C1EEB003C1C62 /* PersonCell.m in Sources */,
 				151943BC1C0050A400E4E711 /* CommentModel.m in Sources */,
 				153CE0181BE50D910032517E /* AppDelegate.m in Sources */,
 				15B7A5451BE730460052115F /* EMSDWebImageManager.m in Sources */,
@@ -2207,7 +2229,9 @@
 				15B7A4A31BE72FEE0052115F /* EMChatViewCell.m in Sources */,
 				15B7A49D1BE72FEE0052115F /* EMChatImageBubbleView.m in Sources */,
 				15B7A5B61BE7305D0052115F /* UIImage+WebP.m in Sources */,
+				152F40941C0C37CD003C1C62 /* HuoDongModel.m in Sources */,
 				15B7A5B71BE7305D0052115F /* UIImageView+HighlightedWebCache.m in Sources */,
+				152F408B1C0BF056003C1C62 /* HuoDongCell.m in Sources */,
 				1530E8541BFCA6E000A78DB5 /* NewMineTableViewController.m in Sources */,
 				15B7A4D61BE730320052115F /* UIView+MJExtension.m in Sources */,
 				15B7A49C1BE72FEE0052115F /* EMChatBaseBubbleView.m in Sources */,
