@@ -14,4 +14,5 @@
 #import "CommentModel.h"
 #import "ShengHuoModel.h"
 #import "HuoDongModel.h"
+#import "AttendUserModel.h"
 

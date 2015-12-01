@@ -20,6 +20,7 @@
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
 		152877141BF251CE00321E50 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877131BF251CE00321E50 /* InvitationManager.m */; };
+		152C0BED1C0D700000615A33 /* AttendUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 152C0BEC1C0D700000615A33 /* AttendUserModel.m */; };
 		152F408B1C0BF056003C1C62 /* HuoDongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F408A1C0BF056003C1C62 /* HuoDongCell.m */; };
 		152F408E1C0BF583003C1C62 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F408D1C0BF583003C1C62 /* PhotoCell.m */; };
 		152F40911C0C1EEB003C1C62 /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F40901C0C1EEB003C1C62 /* PersonCell.m */; };
@@ -256,6 +257,8 @@
 		152877101BF23B7100321E50 /* EMHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHelper.m; sourceTree = "<group>"; };
 		152877121BF251CA00321E50 /* InvitationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		152877131BF251CE00321E50 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
+		152C0BEB1C0D700000615A33 /* AttendUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendUserModel.h; sourceTree = "<group>"; };
+		152C0BEC1C0D700000615A33 /* AttendUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendUserModel.m; sourceTree = "<group>"; };
 		152F40891C0BF056003C1C62 /* HuoDongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongCell.h; sourceTree = "<group>"; };
 		152F408A1C0BF056003C1C62 /* HuoDongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongCell.m; sourceTree = "<group>"; };
 		152F408C1C0BF583003C1C62 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
@@ -2013,6 +2016,8 @@
 				1530E84F1BFC910E00A78DB5 /* ShengHuoModel.m */,
 				152F40921C0C37CD003C1C62 /* HuoDongModel.h */,
 				152F40931C0C37CD003C1C62 /* HuoDongModel.m */,
+				152C0BEB1C0D700000615A33 /* AttendUserModel.h */,
+				152C0BEC1C0D700000615A33 /* AttendUserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2192,6 +2197,7 @@
 				15B7A5AB1BE7305D0052115F /* NSData+ImageContentType.m in Sources */,
 				15B7A54E1BE730460052115F /* UIImageView+EMWebCache.m in Sources */,
 				15B7A5381BE730460052115F /* MWGridCell.m in Sources */,
+				152C0BED1C0D700000615A33 /* AttendUserModel.m in Sources */,
 				15B7A43A1BE72F800052115F /* EMCDDeviceManager+Media.m in Sources */,
 				15B7A5721BE730530052115F /* THProgressView.m in Sources */,
 				15B7A5C81BE730AA0052115F /* StringHeight.m in Sources */,
@@ -2460,7 +2466,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e291c8ee-3b8c-47f5-bdfe-31514a00864b";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};

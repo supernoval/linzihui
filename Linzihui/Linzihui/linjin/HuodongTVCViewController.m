@@ -9,9 +9,14 @@
 #import "HuodongTVCViewController.h"
 #import "PublishActivity.h"
 #import "HuoDongCell.h"
+#import "PhotoCell.h"
+#import "PersonCell.h"
+
 
 static NSString *huodongCellID = @"HuoDongCell";
-
+static NSString *photoCellID = @"photoCell";
+static NSString *personCellID = @"PersonCell";
+static NSString *headerCellID = @"headerCell";
 
 @interface HuodongTVCViewController ()
 {
@@ -85,7 +90,8 @@ static NSString *huodongCellID = @"HuoDongCell";
     
     query.limit = pageSize;
     
-   
+    [query includeKey:@"starter"];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
         [self endHeaderRefresh];
@@ -109,6 +115,8 @@ static NSString *huodongCellID = @"HuoDongCell";
                 NSDictionary *dataDict = [ob valueForKey:@"bmobDataDic"];
                 
                 [model setValuesForKeysWithDictionary:dataDict];
+                
+                model.objectId = ob.objectId;
                 
                 [_dataSource addObject:model];
                 
@@ -141,6 +149,89 @@ static NSString *huodongCellID = @"HuoDongCell";
 
 
 #pragma mark  - UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+        HuoDongModel *model = [_dataSource objectAtIndex:indexPath.section];
+    if (indexPath.row == 0) {
+        
+        CGFloat totalHeight = 440 - 21*4;
+        
+        
+        CGFloat xiangqingHeight = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+        
+        if (xiangqingHeight < 21) {
+            
+            xiangqingHeight = 21;
+        }
+      
+        totalHeight += xiangqingHeight;
+        
+        
+        CGFloat teDianHeight = [StringHeight heightWithText:model.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+        if (teDianHeight < 21) {
+            
+            teDianHeight = 21;
+            
+        }
+  
+        totalHeight += teDianHeight;
+        
+        
+        CGFloat liuchengHeight = [StringHeight heightWithText:model.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+        
+        if (liuchengHeight < 21) {
+            
+            liuchengHeight = 21;
+        }
+        totalHeight += liuchengHeight;
+        
+        
+        CGFloat zhuyiHeight = [StringHeight heightWithText:model.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+        
+        if (zhuyiHeight < 21) {
+            
+            zhuyiHeight = 21;
+            
+        }
+        
+        totalHeight += zhuyiHeight;
+        
+        
+        
+        return totalHeight;
+        
+        
+    }
+    
+    if (indexPath.row == 1) {
+        
+        CGFloat photoViewHeight = 0;
+        
+        NSArray *imgs = model.photoURL;
+        
+        long imageCount = imgs.count;
+        int perRowImageCount = ((imageCount == 4) ? 2 : 3);
+        CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
+        int totalRowCount = ceil(imageCount / perRowImageCountF);
+        
+        photoViewHeight = 95 * totalRowCount;
+        
+        return photoViewHeight;
+        
+        
+    }
+    
+    if (indexPath.row == 2) {
+        
+        return 40;
+    }
+    
+
+    
+    return 50;
+    
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
@@ -163,7 +254,16 @@ static NSString *huodongCellID = @"HuoDongCell";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 1;
+   HuoDongModel *model = [_dataSource objectAtIndex:section];
+    
+    if (model.AttendUsers.count > 0) {
+        
+        return 3 + model.AttendUsers.count;
+        
+    }
+    
+    
+    return 2 ;
 }
 
 
@@ -196,18 +296,207 @@ static NSString *huodongCellID = @"HuoDongCell";
         
         _huodongCell.publisherLabel.text = model.realName;
         
+        _huodongCell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:[[model.location valueForKey:@"latitude"]floatValue] longitude:[[model.location valueForKey:@"longitude"]floatValue]];
+        
+        _huodongCell.attendNumLabel.text = [NSString stringWithFormat:@"%ld人已参加",(long)model.AttendUsers.count];
+        
+       
+        _huodongCell.xiangqingLabel.text = model.content;
+        
+        CGFloat xiangqingHeight = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+        if (xiangqingHeight < 21) {
+            
+            xiangqingHeight = 21;
+        }
+        _huodongCell.xiangqingHeight.constant = xiangqingHeight;
+        
+        
+        _huodongCell.teDianLabel.text = model.TeDian;
+        
+        CGFloat teDianHeight = [StringHeight heightWithText:model.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+        if (teDianHeight < 21) {
+            
+            teDianHeight = 21;
+            
+        }
+        _huodongCell.tedianHeight.constant = teDianHeight;
+        
+        
+         _huodongCell.liuchengLabel.text = model.LiuCheng;
+        
+        
+        CGFloat liuchengHeight = [StringHeight heightWithText:model.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+        
+        if (liuchengHeight < 21) {
+            
+            liuchengHeight = 21;
+        }
+       
+        _huodongCell.liuchengHeight.constant = liuchengHeight;
+        
+        
+        _huodongCell.zhuyiLabel.text = model.ZhuYiShiXiang;
+        
+        CGFloat zhuyiHeight = [StringHeight heightWithText:model.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+        
+        _huodongCell.zhuyiHeight.constant = zhuyiHeight;
+        
+        
+        _huodongCell.jiezhiLabel.text = model.endRegistTime;
+        
+        
+        _huodongCell.contentView.tag = indexPath.section;
+        
+        [_huodongCell.attendButton addTarget:self action:@selector(attendHuoDong:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
         
         
         
         
         return _huodongCell;
+     }
+    
+    
+    if (indexPath.row == 1) {
+        
+        PhotoCell *_photoCell = [tableView dequeueReusableCellWithIdentifier:photoCellID];
+        
+        _photoCell.imagesView.photoItemArray = model.photoURL;
+        
+        
+        
+        
+        
+        return _photoCell;
+     }
+    
+    
+    // person header
+    if (indexPath.row == 2) {
+        
+        UITableViewCell *_headerCell = [tableView dequeueReusableCellWithIdentifier:headerCellID];
+        
+        
+        
+        return _headerCell;
+        
     }
+    
+    
+    if (indexPath.row  > 2) {
+        
+        PersonCell *_personCell = [tableView dequeueReusableCellWithIdentifier:personCellID];
+        
+        
+        NSArray *personsArray = model.AttendUsers;
+        
+        NSDictionary *onePerson = [personsArray objectAtIndex:indexPath.row - 3];
+        
+        AttendUserModel * _usermodel = [[AttendUserModel alloc]init];
+        
+        [_usermodel setValuesForKeysWithDictionary:onePerson];
+        
+        
+        [_personCell.headImageView sd_setImageWithURL:[NSURL URLWithString:_usermodel.headImageURL] placeholderImage:kDefaultHeadImage];
+        
+        NSString *name = _usermodel.nickName;
+        
+        if (!name) {
+            
+            name = _usermodel.userName;
+            
+        }
+        _personCell.nameLabel.text = name;
+        
+        _personCell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:_usermodel.latitude longitude:_usermodel.longitude];
+        
+        
+        
+        
+        return _personCell;
+    }
+    
     
     return nil;
     
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
+-(void)attendHuoDong:(UIButton*)sender
+{
+    
+    NSInteger tag = [sender superview].tag;
+    
+    HuoDongModel *_model = [_dataSource objectAtIndex:tag];
+    
+    BmobObject *_ob  = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_model.objectId];
+    
+    
+    UserModel *currentUser = [BmobHelper getCurrentUserModel];
+    
+    NSString *nick = currentUser.nickName;
+    if (!nick) {
+        
+        nick = @"";
+    }
+    NSString *headImageURL = currentUser.headImageURL;
+    
+    if (!headImageURL) {
+        
+        headImageURL = @"";
+        
+    }
+    BmobGeoPoint *location = currentUser.location;
+    
+    CGFloat latitude = [[location valueForKey:@"latitude"] floatValue];
+    
+    CGFloat longitude = [[location valueForKey:@"longitude"]floatValue];
+    
+    AttendUserModel *_attendModel = [[AttendUserModel alloc]init];
+    
+    _attendModel.nickName = nick;
+    _attendModel.userName = currentUser.username;
+    _attendModel.headImageURL = headImageURL;
+    _attendModel.latitude = latitude;
+    _attendModel.longitude = longitude;
+    
+    NSDictionary *param = [_attendModel toDictionary];
+    
+    
+    [_ob addObjectsFromArray:@[param] forKey:@"AttendUsers"];
+    
+    [_ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+       
+        if (isSuccessful) {
+            
+            NSLog(@"updateSuccess");
+            
+            [CommonMethods showDefaultErrorString:@"报名成功"];
+            
+        }
+        else
+        {
+            NSLog(@"error:%@",error);
+            
+             [CommonMethods showDefaultErrorString:@"报名失败"];
+            
+        }
+    }];
+    
+
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

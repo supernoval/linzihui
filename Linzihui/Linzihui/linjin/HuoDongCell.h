@@ -31,6 +31,32 @@
 @property (weak, nonatomic) IBOutlet UILabel *attendNumLabel;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *xiangqingLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *xiangqingHeight;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *teDianLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tedianHeight;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *liuchengLabel;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *liuchengHeight;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *zhuyiLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyiHeight;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *jiezhiLabel;
+
+
+
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 
 @end

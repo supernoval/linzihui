@@ -24,6 +24,7 @@
 #import "ConstantsHeaders.h"
 #import <BmobSDK/Bmob.h>
 
+#import "ModelHeader.h"
 
 
 

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDPhotoGroup.h"
 
 @interface PhotoCell : UITableViewCell
 
 
-@property (weak, nonatomic) IBOutlet UIView *photoView;
+
+@property (weak, nonatomic) IBOutlet SDPhotoGroup *imagesView;
 
 
 
