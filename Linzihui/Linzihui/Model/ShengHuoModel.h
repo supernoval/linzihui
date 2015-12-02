@@ -15,6 +15,7 @@
 @property (nonatomic,strong)  NSArray *comment;
 @property (nonatomic,strong)  NSArray *zan;
 @property (nonatomic,strong)  BmobUser *publisher;
+@property (nonatomic,strong)  NSString *username;
 @property (nonatomic,strong) NSString *objectId;
 @property (nonatomic,strong) NSDate *createdAt;
 @property (nonatomic,strong)  NSDate *updatedAt;

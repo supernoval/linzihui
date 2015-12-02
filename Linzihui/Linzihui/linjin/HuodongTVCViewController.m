@@ -350,6 +350,27 @@ static NSString *headerCellID = @"headerCell";
         _huodongCell.contentView.tag = indexPath.section;
         
         
+        NSInteger status = [CommonMethods activityStatusWithStartTime:model.startTime endTime:model.endTime];
+        
+        if (status == 1) {
+            
+            
+            _huodongCell.statusLabel.text =[NSString stringWithFormat:@"离活动开始:%@",[CommonMethods timeStringFromNow:[CommonMethods getYYYYMMddhhmmssFromString:model.startTime]]];
+            
+            
+            
+            
+        }
+        if (status == 2) {
+            
+            _huodongCell.statusLabel.text = @"活动进行中";
+        }
+        if (status == 3) {
+            
+            _huodongCell.statusLabel.text = @"活动已结束";
+            
+            
+        }
         if ([self hadAttend:model]) {
             
             _huodongCell.attendButton.enabled = NO;
@@ -402,20 +423,25 @@ static NSString *headerCellID = @"headerCell";
         
         UITableViewCell *_headerCell = [tableView dequeueReusableCellWithIdentifier:headerCellID];
         
-        UILabel *_peopleNumLabel = (UILabel*)[_headerCell viewWithTag:100];
-        
-        
-        if (model.AttendUsers.count > 0) {
-            
-            _peopleNumLabel.text = [NSString stringWithFormat:@"%ld人",(long)model.AttendUsers.count];
-            
-        }
-        else
-        {
-            _peopleNumLabel.text = nil;
+        dispatch_async(dispatch_get_main_queue(), ^{
+          
+            UILabel *_peopleNumLabel = (UILabel*)[_headerCell viewWithTag:100];
             
             
-        }
+            if (model.AttendUsers.count > 0) {
+                
+                _peopleNumLabel.text = [NSString stringWithFormat:@"%ld人",(long)model.AttendUsers.count];
+                
+            }
+            else
+            {
+                _peopleNumLabel.text = nil;
+                
+                
+            }
+            
+        });
+ 
         
         
         
@@ -522,6 +548,21 @@ static NSString *headerCellID = @"headerCell";
             NSLog(@"updateSuccess");
             
             [CommonMethods showDefaultErrorString:@"报名成功"];
+            
+            
+            NSMutableArray *_muarray = [[NSMutableArray alloc]initWithArray:_model.AttendUsers];
+            
+            [_muarray addObject:param];
+            
+            
+            _model.AttendUsers = _muarray;
+            
+            
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:tag] withRowAnimation:UITableViewRowAnimationNone];
+            
+            
+            
+            
             
         }
         else

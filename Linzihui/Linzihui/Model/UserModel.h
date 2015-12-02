@@ -16,7 +16,10 @@
 @property (nonatomic,strong)  NSString *mobilePhoneNumber;
 @property (nonatomic,strong)  NSString *headImageURL;
 @property (nonatomic,strong)  NSString *nickName;
+
 @property (nonatomic,strong)   BmobGeoPoint *location;
+
+
 
 @property (nonatomic,strong ) NSString *card;
 @property (nonatomic,strong)  NSString *address;

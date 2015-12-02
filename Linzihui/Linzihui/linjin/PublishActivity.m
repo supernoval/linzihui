@@ -101,7 +101,8 @@ static NSString *textViewCell  =@"textViewCell";
 
     _titlesArray = @[ @{@"title":@"真实姓名",@"content":@"",@"placeHolder":@"请输入真实姓名",@"key":@"realName"},
                     @{@"title":@"手机号",@"content":@"",@"placeHolder":@"请输入手机号码",@"key":@"phoneNum"},@{@"title":@"活动标题",@"content":@"",@"key":@"title"},
-                     @{@"title":@"活动时间",@"content":@"",@"key":@"startTime"},
+                     @{@"title":@"开始时间",@"content":@"",@"key":@"startTime"},
+                      @{@"title":@"结束时间",@"content":@"",@"key":@"endTime"},
                      @{@"title":@"活动地址",@"content":@"",@"placeHolder":@"请输入地址",@"key":@"address"},
                       @{@"title":@"地图位置",@"content":@"",@"placeHolder":@"请输入地址",@"key":@"location"},
                      @{@"title":@"活动详情",@"content":@"",@"key":@"content"},
@@ -420,61 +421,66 @@ static NSString *textViewCell  =@"textViewCell";
             _cellId = textFieldCell;
         }
             break;
-        case 3:  //活动时间
+        case 3:  //开始时间
         {
             _cellId = labelCell;
         }
             break;
-        case 4: //活动地址
+        case 4:  //开始时间
+        {
+            _cellId = labelCell;
+        }
+            break;
+        case 5: //活动地址
         {
             _cellId = textFieldCell;
         }
             break;
-        case 5: //地图位置
+        case 6: //地图位置
         {
             _cellId = labelCell;
             
         }
             break;
-        case 6: //活动详情
+        case 7: //活动详情
         {
             _cellId = textViewCell;
             
         }
             break;
  
-        case 7:  //截止报名时间
+        case 8:  //截止报名时间
         {
             _cellId = labelCell;
             
         }
             break;
-        case 8: //需要家庭数
+        case 9: //需要家庭数
         {
             _cellId = textFieldCell;
         }
             break;
-        case 9:  //年龄要求
+        case 10:  //年龄要求
         {
             _cellId = textFieldCell;
         }
             break;
-        case 10:  //费用情况
+        case 11:  //费用情况
         {
             _cellId = textFieldCell;
         }
             break;
-        case 11://活动特点
+        case 12://活动特点
         {
             _cellId = textViewCell;
         }
             break;
-        case 12: //活动流程
+        case 13: //活动流程
         {
             _cellId = textViewCell;
         }
             break;
-        case 13:  //注意事项
+        case 14:  //注意事项
         {
             _cellId = textViewCell;
             
@@ -506,7 +512,7 @@ static NSString *textViewCell  =@"textViewCell";
             
             textField.placeholder = [dict objectForKey:@"placeHolder"];
             
-            if (indexPath.section == 1 || indexPath.section == 8 ||  indexPath.section == 9 || indexPath.section == 10) {
+            if (indexPath.section == 1 || indexPath.section == 9 ||  indexPath.section == 10 || indexPath.section == 11) {
                 
                 textField.keyboardType = UIKeyboardTypeNumberPad;
                 
@@ -549,10 +555,17 @@ static NSString *textViewCell  =@"textViewCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+    
+    if (hadShowedPicker) {
+        
+        [self cancelPickDate];
+        
+    }
     
     [self.view endEditing:YES];
     
-    if (indexPath.section == 3 || indexPath.section == 7) {
+    if (indexPath.section == 3 ||  indexPath.section == 4 ||  indexPath.section == 8) {
         
         
         pickIndex = indexPath.section;
@@ -565,7 +578,7 @@ static NSString *textViewCell  =@"textViewCell";
         
     }
     
-    if (indexPath.section == 5) {
+    if (indexPath.section == 6) {
         
         LocationViewController *_locateVC = [LocationViewController defaultLocation];
         
@@ -789,6 +802,12 @@ static NSString *textViewCell  =@"textViewCell";
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    if (hadShowedPicker) {
+        
+        [self cancelPickDate];
+        
+    }
+    
     
 }
 
@@ -825,8 +844,19 @@ static NSString *textViewCell  =@"textViewCell";
 }
 
 #pragma mark - UITextViewDelegate
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if (hadShowedPicker) {
+        
+        [self cancelPickDate];
+        
+    }
+}
 -(void)textViewDidChange:(UITextView *)textView
 {
+    
+ 
+    
     NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:_titlesArray];
     
     NSInteger tag = [textView superview].tag;
@@ -865,7 +895,7 @@ static NSString *textViewCell  =@"textViewCell";
     
     NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:_titlesArray];
     
-    NSInteger tag = 5;
+    NSInteger tag = 6;
     
     NSDictionary *dict = [muArray objectAtIndex:tag];
     

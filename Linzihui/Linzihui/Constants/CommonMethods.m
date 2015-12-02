@@ -583,23 +583,34 @@
     
     NSInteger hour = (NSInteger)time/60/60;
     
-    NSInteger minues = (NSInteger)time/60;
+    NSInteger minues = (NSInteger)time/60%60;
     
     
+    
+
+        
+  
     
     if (day > 0) {
         
-        return [NSString stringWithFormat:@"%ld天前",(long)day];
+       return  [NSString stringWithFormat:@"%ld天%ld小时%ld分钟",(long)day,(long)hour,(long)minues];
     }
     
     if (hour > 0) {
         
-        return [NSString stringWithFormat:@"%ld小时前",(long)hour];
-        
+        return  [NSString stringWithFormat:@"%ld小时%ld分钟",(long)hour,(long)minues];
     }
     
-   
-    return [NSString stringWithFormat:@"%ld分钟前",(long)minues];
+    return  [NSString stringWithFormat:@"%ld分钟",(long)minues];
+    
+//    if (hour > 0) {
+//        
+//        return [NSString stringWithFormat:@"%ld小时",(long)hour];
+//        
+//    }
+//    
+//   
+//    return [NSString stringWithFormat:@"%ld分钟",(long)minues];
     
     
 }
@@ -794,4 +805,55 @@
     
 }
 
++(NSDate*)getYYYYMMddhhmmssFromString:(NSString*)dateStr
+{
+    
+    NSDateFormatter *_dateFormater = [[NSDateFormatter alloc]init];
+    
+    [_dateFormater setDateFormat:@"YYYY-MM-dd hh:mm"];
+    
+    
+    NSDate*_date = [_dateFormater dateFromString:dateStr];
+    
+    
+    return _date;
+    
+}
+#pragma mark - 活动状态
++(NSInteger)activityStatusWithStartTime:(NSString*)startTime  endTime:(NSString*)endTime
+{
+    
+    
+ 
+    
+    NSDate *startDate = [self getYYYYMMddhhmmssFromString:startTime];
+    
+    NSDate *endDate = [self getYYYYMMddhhmmssFromString:endTime];
+    
+    
+    NSDate *_now = [NSDate date];
+    
+    
+    if ([_now isEqualToDate:[_now earlierDate:startDate]]) {
+        
+        return 1;  //活动未开始
+        
+    }
+    
+    if ([_now isEqualToDate:[_now earlierDate:endDate]] ) {
+        
+        
+        return 2; //活动进行中
+    }
+    
+    
+    return 3; //活动已结束
+    
+    
+
+    
+    
+    
+    
+}
 @end

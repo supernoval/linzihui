@@ -38,6 +38,7 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 
 
 +(NSDate*)getYYYMMddFromString:(NSString*)dateStr;
++(NSDate*)getYYYYMMddhhmmssFromString:(NSString*)dateStr;
 
 +(NSInteger)getDay:(NSString*)dateStr;
 
@@ -124,8 +125,11 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 +(NSString*)getRightPhoneNum:(NSString*)phoneNum;
 
 
+#pragma mark - 活动状态
++(NSInteger)activityStatusWithStartTime:(NSString*)startTime  endTime:(NSString*)endTime;
 
-
+//#pragma mark - 离某个时间还有多长时间
+//+(NSString*)timeStringFromNow:(NSDate *)Thattime
 
 
 

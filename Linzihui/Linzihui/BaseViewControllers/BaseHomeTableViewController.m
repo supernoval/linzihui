@@ -9,6 +9,7 @@
 #import "BaseHomeTableViewController.h"
 #import "PullView.h"
 #import "CreateChatRoomTVC.h"
+#import "AddNewFriendsTVC.h"
 
 
 
@@ -216,7 +217,11 @@
             break;
         case 1:  //添加朋友
         {
+            AddNewFriendsTVC *_addNewFriendsTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddNewFriendsTVC"];
             
+            _addNewFriendsTVC.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController pushViewController:_addNewFriendsTVC animated:YES];
         }
             break;
             

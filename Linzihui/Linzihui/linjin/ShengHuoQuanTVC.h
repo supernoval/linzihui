@@ -13,6 +13,7 @@
 @interface ShengHuoQuanTVC : BaseTableViewController
 
 
+@property (nonatomic,assign) BOOL isShuRenQuan;
 
 
 - (IBAction)publishAction:(id)sender;

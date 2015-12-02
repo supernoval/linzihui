@@ -14,9 +14,11 @@
 #import "ChatViewController.h"
 #import "LoginViewController.h"
 #import "MyConversation.h"
+#import "ShengHuoQuanTVC.h"
+
 
 static NSString *cellId = @"ChatListCell";
-
+static NSString *headCellID = @"CellID";
 
 @interface ChatListTableViewController ()<EMChatManagerDelegate,UITableViewDataSource,UITableViewDelegate,IChatManagerDelegate>
 {
@@ -113,7 +115,11 @@ static NSString *cellId = @"ChatListCell";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.section < 3) {
+        
+        return 50;
+        
+    }
     return 60;
     
     
@@ -128,11 +134,73 @@ static NSString *cellId = @"ChatListCell";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-       return _conversations.count;
+       return _conversations.count + 3;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section < 3) {
+        
+        UITableViewCell *_headCell = [tableView dequeueReusableCellWithIdentifier:headCellID];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+             UILabel *infoLabel = (UILabel*)[_headCell viewWithTag:99];
+            infoLabel.clipsToBounds = YES;
+            infoLabel.layer.cornerRadius = 5.0;
+            
+            
+            
+            UIImageView *_headImageView = (UIImageView*)[_headCell viewWithTag:100];
+            
+            UILabel *_titleLabel = (UILabel*)[_headCell viewWithTag:101];
+            
+           
+            
+            
+            NSString *imageName = nil;
+            NSString *title = nil;
+            
+            switch (indexPath.section) {
+                case 0:
+                {
+                    imageName = @"llni";
+                    
+                    title = @"熟人圈";
+                    
+                }
+                    break;
+                case 1:
+                {
+                    
+                    imageName = @"dss";
+                    title = @"群消息";
+                }
+                    break;
+                case 2:
+                {
+                    imageName = @"lingjids";
+                    title = @"活动消息";
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            _headImageView.image = [UIImage imageNamed:imageName];
+            
+            _titleLabel.text = title;
+            
+            
+            
+        });
+        
+        return _headCell;
+        
+        
+    }
     ChatListCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     MyConversation *model = [_conversations objectAtIndex:indexPath.row];
@@ -166,6 +234,47 @@ static NSString *cellId = @"ChatListCell";
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    if (indexPath.section < 3) {
+        
+        switch (indexPath.section) {
+            case 0:
+            {
+                ShengHuoQuanTVC *_shenghuoQuan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+                
+                _shenghuoQuan.hidesBottomBarWhenPushed = YES;
+                
+                _shenghuoQuan.isShuRenQuan = YES;
+                
+                
+                [self.navigationController pushViewController:_shenghuoQuan animated:YES];
+            }
+                break;
+            case 1:
+            {
+                
+            }
+                break;
+            case 2:
+            {
+                
+            }
+                break;
+                
+                
+            default:
+                break;
+        }
+       
+        
+        
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        return;
+        
+    }
     
     MyConversation *model = [_conversations objectAtIndex:indexPath.section];
     

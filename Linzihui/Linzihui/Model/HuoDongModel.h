@@ -31,6 +31,7 @@
 @property (nonatomic,strong) NSString *createdAt;
 @property (nonatomic,strong ) NSString *feeNum;
 @property (nonatomic,strong)  NSString *startTime;
+@property (nonatomic,strong ) NSString *endTime;
 
 
 

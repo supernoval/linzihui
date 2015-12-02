@@ -117,7 +117,7 @@
             [ob setObject:_photoImageURLs forKey:@"image_url"];
             [ob setObject:text forKey:@"text"];
             [ob setObject:@[] forKey:@"comment"];
-            
+            [ob setObject:currentUser.username forKey:@"username"];
             
             CGFloat longitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];
             
@@ -179,6 +179,8 @@
         [ob setObject:@[] forKey:@"image_url"];
         [ob setObject:text forKey:@"text"];
         [ob setObject:@[] forKey:@"comment"];
+        [ob setObject:currentUser.username forKey:@"username"];
+        
         
         
         CGFloat longitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];

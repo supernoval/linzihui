@@ -33,6 +33,8 @@ static NSString *commentCellID = @"CommentCell";
     
     BmobGeoPoint *_currentPoint;  // 当前位置
     
+    NSMutableArray *_shurenUserNameArray;
+    
     
     
     
@@ -46,13 +48,33 @@ static NSString *commentCellID = @"CommentCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"生活圈";
+  
     
     page = 0;
     limit = 10;
     
     _dataSource = [[NSMutableArray alloc]init];
+    _shurenUserNameArray = [[NSMutableArray alloc]init];
     
+    
+    if (_isShuRenQuan) {
+        
+        self.title = @"熟人圈";
+        NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
+        
+        
+        for (EMBuddy *buddy in buddyList) {
+            
+            [_shurenUserNameArray addObject:buddy.username];
+            
+            
+            
+        }
+    }
+    else
+    {
+          self.title = @"生活圈";
+    }
     
     self.tableView.backgroundColor = kBackgroundColor;
     
@@ -195,10 +217,18 @@ static NSString *commentCellID = @"CommentCell";
     [query orderByDescending:@"createdAt"];
     
 
+    if (_isShuRenQuan) {
+        
+        [query whereKey:@"username" containedIn:_shurenUserNameArray];
+        
+    }
+    else
+    {
+        
     //附近 3公里 条件限制
     [query whereKey:@"location" nearGeoPoint:_currentPoint  withinKilometers:3.0];
     
-    
+    }
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
         [self endHeaderRefresh];
@@ -608,9 +638,15 @@ static NSString *commentCellID = @"CommentCell";
 
 - (IBAction)publishAction:(id)sender {
     
+
     
-    [self.view endEditing:YES];
     
+        
+        _uiview_comment.frame = CGRectMake(0, ScreenHeight - 50, ScreenWidth, 50);
+        
+        [_uiview_comment removeFromSuperview];
+            
+ 
     SendWXViewController *_sendVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SendWXViewController"];
     
     
