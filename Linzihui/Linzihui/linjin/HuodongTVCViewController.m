@@ -90,6 +90,8 @@ static NSString *headerCellID = @"headerCell";
     
     query.limit = pageSize;
     
+    [query  orderByDescending:@"updatedAt"];
+    
     [query includeKey:@"starter"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
@@ -347,8 +349,30 @@ static NSString *headerCellID = @"headerCell";
         
         _huodongCell.contentView.tag = indexPath.section;
         
-        [_huodongCell.attendButton addTarget:self action:@selector(attendHuoDong:) forControlEvents:UIControlEventTouchUpInside];
         
+        if ([self hadAttend:model]) {
+            
+            _huodongCell.attendButton.enabled = NO;
+            
+            [_huodongCell.attendButton setTitle:@"已报名" forState:UIControlStateNormal];
+            
+        }
+        
+        else
+        {
+          
+
+            
+            _huodongCell.attendButton.enabled = YES;
+            
+            [_huodongCell.attendButton setTitle:@"报名参加" forState:UIControlStateNormal];
+            
+            [_huodongCell.attendButton addTarget:self action:@selector(attendHuoDong:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+        }
+        
+       
         
         
         
@@ -377,6 +401,21 @@ static NSString *headerCellID = @"headerCell";
     if (indexPath.row == 2) {
         
         UITableViewCell *_headerCell = [tableView dequeueReusableCellWithIdentifier:headerCellID];
+        
+        UILabel *_peopleNumLabel = (UILabel*)[_headerCell viewWithTag:100];
+        
+        
+        if (model.AttendUsers.count > 0) {
+            
+            _peopleNumLabel.text = [NSString stringWithFormat:@"%ld人",(long)model.AttendUsers.count];
+            
+        }
+        else
+        {
+            _peopleNumLabel.text = nil;
+            
+            
+        }
         
         
         
@@ -495,6 +534,39 @@ static NSString *headerCellID = @"headerCell";
     }];
     
 
+    
+}
+
+
+-(BOOL)hadAttend:(HuoDongModel*)model
+{
+      BOOL hadAttend = NO;
+    NSArray *dataArray = model.AttendUsers;
+    
+    BmobUser *currentUser = [BmobUser getCurrentUser];
+    
+    
+    for (NSDictionary *dict in dataArray) {
+        
+        AttendUserModel *_attendmodel = [[AttendUserModel alloc]init];
+        
+        [_attendmodel setValuesForKeysWithDictionary:dict];
+        
+        
+        if ([currentUser.username isEqualToString:_attendmodel.userName]) {
+           
+            hadAttend = YES;
+            
+        
+        }
+    }
+    
+  
+    
+    
+    
+    
+    return hadAttend;
     
 }
 

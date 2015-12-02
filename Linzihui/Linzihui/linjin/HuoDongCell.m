@@ -12,6 +12,11 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    
+    self.attendButton.clipsToBounds = YES;
+    self.attendButton.layer.cornerRadius = 5;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

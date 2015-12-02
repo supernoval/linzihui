@@ -565,7 +565,12 @@ static NSString * RequestCell = @"RequestCell";
     
     if ([[EMHelper getHelper] accepBuddyRequestWithUserName:entity.applicantUsername error:&error])
     {
-        
+        if (error) {
+            
+            NSLog(@"acceppt error:%@",error);
+            
+            
+        }
         
         [self getLocateInviteData];
         
