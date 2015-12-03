@@ -10,7 +10,7 @@
 #import "PullView.h"
 #import "CreateChatRoomTVC.h"
 #import "AddNewFriendsTVC.h"
-
+#import "LBXScanViewController.h"
 
 
 
@@ -227,6 +227,34 @@
             
         case 2:  //扫一扫
         {
+            //设置扫码区域参数
+            LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+            style.centerUpOffset = 44;
+            style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
+            style.photoframeLineW = 4;
+            style.photoframeAngleW = 28;
+            style.photoframeAngleH = 16;
+            style.isNeedShowRetangle = NO;
+            
+            style.anmiationStyle = LBXScanViewAnimationStyle_LineMove;
+            
+            style.animationImage = [self createImageWithColor:[UIColor redColor]];
+            //非正方形
+            //设置矩形宽高比
+            style.whRatio = 4.3/2.18;
+            
+            //离左边和右边距离
+            style.xScanRetangleOffset = 30;
+            
+            
+            
+            LBXScanViewController *_scanVC = [[LBXScanViewController alloc]init];
+            
+            _scanVC.style = style;
+            _scanVC.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController pushViewController:_scanVC animated:YES];
+            
             
         }
             break;
@@ -252,6 +280,20 @@
     hadShowedPullView = NO;
     
 }
+
+- (UIImage*) createImageWithColor: (UIColor*) color
+{
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

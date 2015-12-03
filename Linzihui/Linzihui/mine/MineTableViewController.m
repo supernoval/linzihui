@@ -12,6 +12,8 @@
 #import "ModelHeader.h"
 #import "ChangePersonInfoVC.h"
 #import "EditPhotoViewController.h"
+#import "ShowQRViewController.h"
+
 
 static NSInteger photoActionSheetTag = 99;
 
@@ -368,6 +370,15 @@ static NSInteger sextActionSheetTag  = 100;
                 break;
             case 4: //二维码名片
             {
+                ShowQRViewController *_showQRVC = [[ShowQRViewController alloc]init];
+                
+                _showQRVC.hidesBottomBarWhenPushed = YES;
+                
+                _showQRVC.qrString = [NSString stringWithFormat:@"p%@",_model.username];
+                
+                
+                
+                [self.navigationController pushViewController:_showQRVC animated:YES];
                 
             }
                 break;
