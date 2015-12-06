@@ -7,6 +7,7 @@
 //
 
 #import "ChatSettingTVC.h"
+#import "ShowQRViewController.h"
 
 @interface ChatSettingTVC ()
 {
@@ -105,6 +106,39 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    switch (indexPath.section) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        case 3:
+        {
+            ShowQRViewController *_QRVC = [[ShowQRViewController alloc]init];
+            
+            _QRVC.qrString = [NSString stringWithFormat:@"g%@",_group.groupId];
+            
+            
+            [self.navigationController pushViewController:_QRVC animated:YES];
+            
+            
+        }
+            break;
+            
+            
+        default:
+            break;
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     

@@ -14,7 +14,7 @@
 
 #import "StringHeight.h"
 
-
+#import <AVFoundation/AVFoundation.h>
 #import <BmobSDK/Bmob.h>
 #import <BmobSDK/BmobProFile.h>
 #import "NSUserDefaultKeys.h"
@@ -128,9 +128,14 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 #pragma mark - 活动状态
 +(NSInteger)activityStatusWithStartTime:(NSString*)startTime  endTime:(NSString*)endTime;
 
-//#pragma mark - 离某个时间还有多长时间
-//+(NSString*)timeStringFromNow:(NSDate *)Thattime
 
+#pragma mark- 震动、声音效果
+
++ (void)systemVibrate;
+
++ (void)systemSound;
+
++ (void)systemSound_1;
 
 
 @end

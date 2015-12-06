@@ -810,7 +810,7 @@
     
     NSDateFormatter *_dateFormater = [[NSDateFormatter alloc]init];
     
-    [_dateFormater setDateFormat:@"YYYY-MM-dd hh:mm"];
+    [_dateFormater setDateFormat:@"YYYY-MM-dd HH:mm"];
     
     
     NSDate*_date = [_dateFormater dateFromString:dateStr];
@@ -856,4 +856,26 @@
     
     
 }
+
+
+#pragma mark- 震动、声音效果
+
+#define SOUNDID  1109  //1012 -iphone   1152 ipad  1109 ipad
+#define SOUNDID_1 1012
++ (void)systemVibrate
+{
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+
++ (void)systemSound
+{
+    AudioServicesPlaySystemSound(SOUNDID);
+}
+
++ (void)systemSound_1
+{
+    AudioServicesPlaySystemSound(SOUNDID_1);
+}
+
+
 @end

@@ -21,3 +21,6 @@
 
 //活动
 #define kHuoDongTableName           @"HuoDong"
+
+//意见反馈
+#define kFeedBackTableName           @"FeedBack"

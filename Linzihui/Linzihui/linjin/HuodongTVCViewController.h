@@ -12,7 +12,9 @@
 @interface HuodongTVCViewController : BaseTableViewController
 
 
+@property (nonatomic,assign) BOOL isFromYaoYiYao;
 
+@property (nonatomic,strong)  NSMutableArray *dataSource;
 
 
 

@@ -288,6 +288,8 @@
 		154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F51BE5E7030042632E /* libxml2.tbd */; };
 		154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F71BE5E70B0042632E /* libiconv.tbd */; };
 		154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F91BE5E7110042632E /* libresolv.tbd */; };
+		15AB5AA81C140B5B0070F6DA /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */; };
+		15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */; };
 		15B6864A1C069B60007EE8CB /* HuodongTVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B686491C069B60007EE8CB /* HuodongTVCViewController.m */; };
 		15B6864E1C069C1B007EE8CB /* PublishActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B6864D1C069C1B007EE8CB /* PublishActivity.m */; };
 		15B7A41F1BE72F760052115F /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B7A4181BE72F760052115F /* sr_refresh.png */; };
@@ -1107,6 +1109,10 @@
 		154A39F51BE5E7030042632E /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		154A39F71BE5E70B0042632E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		154A39F91BE5E7110042632E /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		15AB5AA61C140B5B0070F6DA /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		15AB5AAA1C140F030070F6DA /* YaoYiYaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoYiYaoViewController.h; sourceTree = "<group>"; };
+		15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoYiYaoViewController.m; sourceTree = "<group>"; };
 		15B686481C069B60007EE8CB /* HuodongTVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuodongTVCViewController.h; sourceTree = "<group>"; };
 		15B686491C069B60007EE8CB /* HuodongTVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuodongTVCViewController.m; sourceTree = "<group>"; };
 		15B6864C1C069C1B007EE8CB /* PublishActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishActivity.h; sourceTree = "<group>"; };
@@ -2351,7 +2357,6 @@
 		1528770E1BF23B4100321E50 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				150F31F81C0FEEBF00E5CC8B /* TwoDemantion */,
 				15FB7FF21BEF53D5007D6EC8 /* BmobHelper.h */,
 				15FB7FF31BEF53D5007D6EC8 /* BmobHelper.m */,
 				1528770F1BF23B7100321E50 /* EMHelper.h */,
@@ -2423,6 +2428,7 @@
 		153CE0121BE50D910032517E /* Linzihui */ = {
 			isa = PBXGroup;
 			children = (
+				15AB5AA41C140B210070F6DA /* fuchuang */,
 				1528770E1BF23B4100321E50 /* Helper */,
 				1506EC1C1BF702A70010F349 /* MyViews */,
 				15BE66CD1BF3AC7C000A9D1F /* linxin */,
@@ -2792,6 +2798,34 @@
 				154A39F01BE5E6930042632E /* EaseMob.bundle */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		15AB5AA41C140B210070F6DA /* fuchuang */ = {
+			isa = PBXGroup;
+			children = (
+				15AB5AA91C140EF00070F6DA /* yaoyiyao */,
+				15AB5AA51C140B370070F6DA /* FeedBack */,
+				150F31F81C0FEEBF00E5CC8B /* TwoDemantion */,
+			);
+			name = fuchuang;
+			sourceTree = "<group>";
+		};
+		15AB5AA51C140B370070F6DA /* FeedBack */ = {
+			isa = PBXGroup;
+			children = (
+				15AB5AA61C140B5B0070F6DA /* FeedBackViewController.h */,
+				15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */,
+			);
+			name = FeedBack;
+			sourceTree = "<group>";
+		};
+		15AB5AA91C140EF00070F6DA /* yaoyiyao */ = {
+			isa = PBXGroup;
+			children = (
+				15AB5AAA1C140F030070F6DA /* YaoYiYaoViewController.h */,
+				15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */,
+			);
+			name = yaoyiyao;
 			sourceTree = "<group>";
 		};
 		15B686471C069B36007EE8CB /* huodong */ = {
@@ -3751,6 +3785,7 @@
 				151943BC1C0050A400E4E711 /* CommentModel.m in Sources */,
 				150F31211C0FEA5D00E5CC8B /* ZXAztecState.m in Sources */,
 				153CE0181BE50D910032517E /* AppDelegate.m in Sources */,
+				15AB5AA81C140B5B0070F6DA /* FeedBackViewController.m in Sources */,
 				150F315F1C0FEA5D00E5CC8B /* ZXHybridBinarizer.m in Sources */,
 				150F319E1C0FEA5D00E5CC8B /* ZXRSSExpandedPair.m in Sources */,
 				15B7A5451BE730460052115F /* EMSDWebImageManager.m in Sources */,
@@ -3787,6 +3822,7 @@
 				152C0BED1C0D700000615A33 /* AttendUserModel.m in Sources */,
 				15B7A43A1BE72F800052115F /* EMCDDeviceManager+Media.m in Sources */,
 				150F31A61C0FEA5D00E5CC8B /* ZXRSSUtils.m in Sources */,
+				15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */,
 				150F31E51C0FEA5D00E5CC8B /* ZXQRCodeAlignmentPatternFinder.m in Sources */,
 				150F312D1C0FEA5D00E5CC8B /* ZXEmailAddressParsedResult.m in Sources */,
 				150F31261C0FEA5D00E5CC8B /* ZXAbstractDoCoMoResultParser.m in Sources */,
@@ -4194,7 +4230,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SMS_SDK",
 				);
-				GCC_PREFIX_HEADER = /Users/zhuhaikun/Documents/myprojects/linzihui/Linzihui/Linzihui/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "/Users/zhuhaikun/Documents/My Projects/linzihuiapp/Linzihui/Linzihui/PrefixHeader.pch";
 				INFOPLIST_FILE = Linzihui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4211,7 +4247,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "20eac009-7df0-4d60-b359-4548b517676c";
+				PROVISIONING_PROFILE = "25aa2349-5e76-49d2-a8c3-bba436af0d85";
 			};
 			name = Debug;
 		};
@@ -4227,7 +4263,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SMS_SDK",
 				);
-				GCC_PREFIX_HEADER = /Users/zhuhaikun/Documents/myprojects/linzihui/Linzihui/Linzihui/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "/Users/zhuhaikun/Documents/My Projects/linzihuiapp/Linzihui/Linzihui/PrefixHeader.pch";
 				INFOPLIST_FILE = Linzihui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4244,7 +4280,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bcd0de4b-bb76-4346-8569-3022ceede315";
 			};
 			name = Release;
 		};

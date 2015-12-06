@@ -276,7 +276,7 @@ static NSString *headCellID = @"CellID";
         
     }
     
-    MyConversation *model = [_conversations objectAtIndex:indexPath.section];
+    MyConversation *model = [_conversations objectAtIndex:indexPath.section - 3];
     
     ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
     if (model.nickName) {

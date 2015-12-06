@@ -11,6 +11,9 @@
 #import "CreateChatRoomTVC.h"
 #import "AddNewFriendsTVC.h"
 #import "LBXScanViewController.h"
+#import "FeedBackViewController.h"
+#import "YaoYiYaoViewController.h"
+
 
 
 
@@ -260,11 +263,24 @@
             break;
         case 3:  //摇一摇
         {
+            YaoYiYaoViewController *_yaoyiyao =[self.storyboard instantiateViewControllerWithIdentifier:@"YaoYiYaoViewController"];
+            
+            
+            _yaoyiyao.hidesBottomBarWhenPushed = YES;
+            
+            
+            [self.navigationController pushViewController:_yaoyiyao animated:YES];
             
         }
             break;
         case 4:  //意见反馈
         {
+            FeedBackViewController *_feedBackVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedBackViewController"];
+            
+            _feedBackVC.hidesBottomBarWhenPushed  = YES;
+            
+            
+            [self.navigationController pushViewController:_feedBackVC animated:YES];
             
         }
             break;
@@ -292,6 +308,9 @@
     UIGraphicsEndImageContext();
     return theImage;
 }
+
+
+
 
 
 - (void)didReceiveMemoryWarning {

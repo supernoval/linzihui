@@ -24,7 +24,7 @@ static NSString *headerCellID = @"headerCell";
     
     NSInteger skip;
     
-    NSMutableArray *_dataSource;
+   
     
     
     
@@ -40,7 +40,7 @@ static NSString *headerCellID = @"headerCell";
     
     self.title = @"邻近活动";
     
-    _dataSource = [[NSMutableArray alloc]init];
+   
     
     pageSize = 10;
     skip = 0;
@@ -50,11 +50,26 @@ static NSString *headerCellID = @"headerCell";
     
     self.navigationItem.rightBarButtonItem = _item;
     
-    [self addHeaderRefresh];
     
-    [self addFooterRefresh];
+    if (_isFromYaoYiYao) {
+        
+        
+    }
+    else
+    {
+        
+         _dataSource = [[NSMutableArray alloc]init];
+        
+        [self addHeaderRefresh];
+        
+        [self addFooterRefresh];
+        
+         [self getData];
+        
+    }
+
     
-    [self getData];
+   
     
     
     
