@@ -15,4 +15,4 @@
 #import "ShengHuoModel.h"
 #import "HuoDongModel.h"
 #import "AttendUserModel.h"
-
+#import "GroupChatModel.h"

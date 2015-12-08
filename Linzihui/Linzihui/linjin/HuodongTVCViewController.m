@@ -151,7 +151,7 @@ static NSString *headerCellID = @"headerCell";
         
     }];
    
-}
+ }
 
 #pragma mark - 发布活动
 -(void)gotoPublishActivity

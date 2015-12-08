@@ -225,7 +225,7 @@ static NSString *commentCellID = @"CommentCell";
     else
     {
         
-    //附近 3公里 条件限制
+//    附近 3公里 条件限制
     [query whereKey:@"location" nearGeoPoint:_currentPoint  withinKilometers:3.0];
     
     }

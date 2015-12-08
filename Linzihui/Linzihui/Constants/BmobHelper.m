@@ -532,12 +532,23 @@
     
     BmobQuery *query = [BmobQuery queryForUser];
     
+    
+    NSMutableArray *_muArray = [[NSMutableArray alloc]init];
+    
+    
     for (EMConversation *_conver in conversations) {
         
-        [query whereKey:@"username" equalTo:_conver.chatter];
+        
+        [_muArray addObject:_conver.chatter];
+        
+      
         
     }
     
+    
+    [query whereKey:@"username" containedIn:_muArray];
+    
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
         if (!error && array.count > 0) {
@@ -561,8 +572,6 @@
                         myConModel.headImageURL = model.headImageURL;
                         myConModel.converstion = _myConver;
                         
-                        
-                    
                         [muArray addObject:myConModel];
                         
                         
@@ -574,6 +583,8 @@
             }
             
             if (result) {
+                
+                
                 result(muArray);
                 
             }

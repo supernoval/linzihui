@@ -290,6 +290,8 @@
 		154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F91BE5E7110042632E /* libresolv.tbd */; };
 		15AB5AA81C140B5B0070F6DA /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */; };
 		15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */; };
+		15AB5AAF1C1715440070F6DA /* GroupChatListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */; };
+		15AB5AB21C171C550070F6DA /* GroupChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AB11C171C550070F6DA /* GroupChatModel.m */; };
 		15B6864A1C069B60007EE8CB /* HuodongTVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B686491C069B60007EE8CB /* HuodongTVCViewController.m */; };
 		15B6864E1C069C1B007EE8CB /* PublishActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B6864D1C069C1B007EE8CB /* PublishActivity.m */; };
 		15B7A41F1BE72F760052115F /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B7A4181BE72F760052115F /* sr_refresh.png */; };
@@ -1113,6 +1115,10 @@
 		15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		15AB5AAA1C140F030070F6DA /* YaoYiYaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoYiYaoViewController.h; sourceTree = "<group>"; };
 		15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoYiYaoViewController.m; sourceTree = "<group>"; };
+		15AB5AAD1C1715440070F6DA /* GroupChatListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatListTVC.h; sourceTree = "<group>"; };
+		15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatListTVC.m; sourceTree = "<group>"; };
+		15AB5AB01C171C550070F6DA /* GroupChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatModel.h; sourceTree = "<group>"; };
+		15AB5AB11C171C550070F6DA /* GroupChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatModel.m; sourceTree = "<group>"; };
 		15B686481C069B60007EE8CB /* HuodongTVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuodongTVCViewController.h; sourceTree = "<group>"; };
 		15B686491C069B60007EE8CB /* HuodongTVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuodongTVCViewController.m; sourceTree = "<group>"; };
 		15B6864C1C069C1B007EE8CB /* PublishActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishActivity.h; sourceTree = "<group>"; };
@@ -3445,6 +3451,8 @@
 				15B7A43F1BE72FA60052115F /* ChatList */,
 				15BE66CE1BF3AD91000A9D1F /* MyConversation.h */,
 				15BE66CF1BF3AD91000A9D1F /* MyConversation.m */,
+				15AB5AAD1C1715440070F6DA /* GroupChatListTVC.h */,
+				15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */,
 			);
 			name = linxin;
 			sourceTree = "<group>";
@@ -3563,6 +3571,8 @@
 				152F40931C0C37CD003C1C62 /* HuoDongModel.m */,
 				152C0BEB1C0D700000615A33 /* AttendUserModel.h */,
 				152C0BEC1C0D700000615A33 /* AttendUserModel.m */,
+				15AB5AB01C171C550070F6DA /* GroupChatModel.h */,
+				15AB5AB11C171C550070F6DA /* GroupChatModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3800,6 +3810,7 @@
 				150F31C71C0FEA5D00E5CC8B /* ZXPDF417Codeword.m in Sources */,
 				15B7A4A41BE72FEE0052115F /* MessageModel.m in Sources */,
 				150F31731C0FEA5D00E5CC8B /* ZXDataMatrixDecoder.m in Sources */,
+				15AB5AB21C171C550070F6DA /* GroupChatModel.m in Sources */,
 				15B7A53C1BE730460052115F /* MWTapDetectingImageView.m in Sources */,
 				1506EC261BF712620010F349 /* CreateChatRoomTVC.m in Sources */,
 				15EE46E41BE85C1700538EA5 /* JSONAPI.m in Sources */,
@@ -3995,6 +4006,7 @@
 				150F31631C0FEA5D00E5CC8B /* ZXBinarizer.m in Sources */,
 				150F31EB1C0FEA5D00E5CC8B /* ZXQRCodeBlockPair.m in Sources */,
 				15B7A5AE1BE7305D0052115F /* SDWebImageDecoder.m in Sources */,
+				15AB5AAF1C1715440070F6DA /* GroupChatListTVC.m in Sources */,
 				15B7A54B1BE730460052115F /* UIImage+EMMultiFormat.m in Sources */,
 				150F31231C0FEA5D00E5CC8B /* ZXAztecDetectorResult.m in Sources */,
 				150F31411C0FEA5D00E5CC8B /* ZXURIParsedResult.m in Sources */,

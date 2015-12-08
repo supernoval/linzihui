@@ -1,101 +1,52 @@
 //
-//  ChatListTableViewController.m
-//  Taling
+//  GroupChatListTVC.m
+//  Linzihui
 //
-//  Created by Haikun Zhu on 15/10/14.
-//  Copyright © 2015年 ZhuHaikun. All rights reserved.
+//  Created by ZhuHaikun on 15/12/8.
+//  Copyright © 2015年 haikunZhu. All rights reserved.
 //
 
-#import "ChatListTableViewController.h"
-#import "ChatListCellTableViewCell.h"
-#import "IChatManagerDelegate.h"
+#import "GroupChatListTVC.h"
+#import "MyConversation.h"
 #import "NSDate+Category.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "ChatViewController.h"
-#import "LoginViewController.h"
-#import "MyConversation.h"
-#import "ShengHuoQuanTVC.h"
 
 
-static NSString *cellId = @"ChatListCell";
-static NSString *headCellID = @"CellID";
 
-@interface ChatListTableViewController ()<EMChatManagerDelegate,UITableViewDataSource,UITableViewDelegate,IChatManagerDelegate>
+static NSString *cellID = @"GroupCellID";
+
+
+@interface GroupChatListTVC ()<EMChatManagerDelegate,IChatManagerDelegate>
 {
-    NSMutableArray *_conversations;
-    
-    
+     NSMutableArray *_conversations;
 }
-
 @end
 
-@implementation ChatListTableViewController
+@implementation GroupChatListTVC
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-  
-    self.title = @"邻信";
     
-    self.chatHeadView.frame = CGRectMake(0, 0, ScreenWidth, 44);
-    
+    self.title = @"群消息";
     
     _conversations = [[NSMutableArray alloc]init];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivegroupNoti:) name:kCreategroupSuccessNoti object:nil];
     
-    
-//    [self addHeaderRefresh];
-//    [self addFooterRefresh];
-    
-  
-    
-//    [ MySearchBar setBackgroundColor :[ UIColor clearColor ]];
-    
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    [self reFreshDataSource];
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
-        
-        [self reFreshDataSource];
-        
-        [self registerNotifications];
-        
-        
-       
-    }
-    else
-    {
-       
-        UINavigationController *logNav = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
-        
-        [self presentViewController:logNav animated:YES completion:nil];
-        
-        
-    }
-    
-   
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
+    [self registerNotifications];
     
 }
 
--(void)headerRefresh
-{
-    
-}
-
--(void)footerRefresh
-{
-    
-}
 
 #pragma mark - UITableViewDataSource
 
@@ -115,12 +66,8 @@ static NSString *headCellID = @"CellID";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < 3) {
-        
-        return 50;
-        
-    }
-    return 60;
+  
+    return 50;
     
     
 }
@@ -134,94 +81,53 @@ static NSString *headCellID = @"CellID";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-       return _conversations.count + 3;
+    return _conversations.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section < 3) {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    MyConversation *model = [_conversations objectAtIndex:indexPath.section];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+      
         
-        UITableViewCell *_headCell = [tableView dequeueReusableCellWithIdentifier:headCellID];
+        UIImageView *_imageView = [cell viewWithTag:100];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-           
-             UILabel *infoLabel = (UILabel*)[_headCell viewWithTag:99];
-            infoLabel.clipsToBounds = YES;
-            infoLabel.layer.cornerRadius = 5.0;
-            
-            
-            UIImageView *_headImageView = (UIImageView*)[_headCell viewWithTag:100];
-            UILabel *_titleLabel = (UILabel*)[_headCell viewWithTag:101];
-            
+        UILabel *_titleLabel = [cell viewWithTag:101];
         
-            
-            NSString *imageName = nil;
-            NSString *title = nil;
-            
-            switch (indexPath.section) {
-                case 0:
-                {
-                    imageName = @"llni";
-                    title = @"熟人圈";
-                    
-                }
-                    break;
-                case 1:
-                {
-                    
-                    imageName = @"dss";
-                    title = @"群消息";
-                }
-                    break;
-                case 2:
-                {
-                    imageName = @"lingjids";
-                    title = @"活动消息";
-                }
-                    break;
-                    
-                default:
-                    break;
-            }
-            
-            _headImageView.image = [UIImage imageNamed:imageName];
-            
-            _titleLabel.text = title;
-            
-            
-            
-        });
-        
-        return _headCell;
+        _titleLabel.text = model.nickName;
         
         
-    }
-    
-    
-    
-    ChatListCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    
-    MyConversation *model = [_conversations objectAtIndex:indexPath.section - 3];
-    
-    if (model.nickName) {
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
         
-        cell.titleLabel.text = model.nickName;
-    }
-    else
-    {
-       cell.titleLabel.text = model.converstion.chatter; 
-    }
+        
+        
+        
+    });
     
     
     
-    cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
-    
-    
-    cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
-    cell.timeLabel.adjustsFontSizeToFitWidth = YES;
-    
-    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
+//    if (model.nickName) {
+//        
+//        cell.titleLabel.text = model.nickName;
+//    }
+//    else
+//    {
+//        cell.titleLabel.text = model.converstion.chatter;
+//    }
+//    
+//    
+//    
+//    cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
+//    
+//    
+//    cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
+//    cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+//    
+//    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
     
     
     
@@ -235,47 +141,9 @@ static NSString *headCellID = @"CellID";
 {
     
     
-    if (indexPath.section < 3) {
-        
-        switch (indexPath.section) {
-            case 0:
-            {
-                ShengHuoQuanTVC *_shenghuoQuan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
-                
-                _shenghuoQuan.hidesBottomBarWhenPushed = YES;
-                
-                _shenghuoQuan.isShuRenQuan = YES;
-                
-                
-                [self.navigationController pushViewController:_shenghuoQuan animated:YES];
-            }
-                break;
-            case 1:
-            {
-                
-            }
-                break;
-            case 2:
-            {
-                
-            }
-                break;
-                
-                
-            default:
-                break;
-        }
-       
-        
-        
-        
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
-        return;
-        
-    }
+ 
     
-    MyConversation *model = [_conversations objectAtIndex:indexPath.section - 3];
+    MyConversation *model = [_conversations objectAtIndex:indexPath.section ];
     
     ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
     if (model.nickName) {
@@ -291,11 +159,13 @@ static NSString *headCellID = @"CellID";
     [self.navigationController pushViewController:chatVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-
     
-   
+    
+    
     
 }
+
+
 
 #pragma mark -  得到最后消息时间
 -(NSString *)lastMessageTimeByConversation:(EMConversation *)conversation
@@ -333,13 +203,13 @@ static NSString *headCellID = @"CellID";
                 // 表情映射。
                 NSString *didReceiveText = [ConvertToCommonEmoticonsHelper
                                             convertToSystemEmoticons:((EMTextMessageBody *)messageBody).text];
-//                if ([[RobotManager sharedInstance] isRobotMenuMessage:lastMessage]) {
-//                    ret = [[RobotManager sharedInstance] getRobotMenuMessageDigest:lastMessage];
-//                } else {
-//                    ret = didReceiveText;
-//                }
+                //                if ([[RobotManager sharedInstance] isRobotMenuMessage:lastMessage]) {
+                //                    ret = [[RobotManager sharedInstance] getRobotMenuMessageDigest:lastMessage];
+                //                } else {
+                //                    ret = didReceiveText;
+                //                }
                 
-                 ret = didReceiveText;
+                ret = didReceiveText;
                 
             } break;
             case eMessageBodyType_Voice:{
@@ -358,8 +228,6 @@ static NSString *headCellID = @"CellID";
     
     return ret;
 }
-
-
 #pragma mark - 刷新
 -(void)reFreshDataSource
 {
@@ -367,7 +235,7 @@ static NSString *headCellID = @"CellID";
     
     [self loadDataSource];
     
-   
+    
     
     
 }
@@ -375,7 +243,7 @@ static NSString *headCellID = @"CellID";
 #pragma mark -获取聊天记录
 - (void)loadDataSource
 {
- 
+    
     NSArray *conversations = [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:YES];
     
     NSMutableArray *muArray = [[NSMutableArray alloc]init];
@@ -394,7 +262,7 @@ static NSString *headCellID = @"CellID";
     
     // get conversations nickname headImage
     [BmobHelper getConversionsNickNameHeadeImageURL:conversations results:^(NSArray *array) {
-       
+        
         if (array) {
             
             NSArray* sorte = [array sortedArrayUsingComparator:
@@ -418,12 +286,12 @@ static NSString *headCellID = @"CellID";
             
             
         }
-       
+        
         
         
     }];
     
- 
+    
 }
 
 
@@ -455,16 +323,18 @@ static NSString *headCellID = @"CellID";
 }
 
 
-
 - (void)receivegroupNoti:(NSNotification*)noti
 {
+    
+    
+    [self reFreshDataSource];
     
 //    EMGroup *group = noti.object;
 //    
 //    NSDictionary *dic = noti.userInfo;
 //    
 //    NSString *groupid = dic[@"groupid"];
-//    
+    
 //    ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:groupid isGroup:YES];
 //    chatController.title = group.groupSubject;
 //    
@@ -474,25 +344,18 @@ static NSString *headCellID = @"CellID";
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 - (void)dealloc
 {
     [self unregisterNotifications];
     
+    [[NSNotificationCenter defaultCenter ] removeObserver:self name:kCreategroupSuccessNoti object:nil];
+    
+    
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end
