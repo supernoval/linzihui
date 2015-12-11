@@ -24,3 +24,6 @@
 
 //意见反馈
 #define kFeedBackTableName           @"FeedBack"
+
+//bmob value key
+#define kBmobDataDic                 @"bmobDataDic"

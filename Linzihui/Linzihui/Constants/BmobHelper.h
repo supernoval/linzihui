@@ -51,6 +51,11 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 批量获取聊天记录里面用户的nickName headImageURL
 + (void)getConversionsNickNameHeadeImageURL:(NSArray*)conversations results:(void(^)(NSArray*array))result;
 
+#pragma mark - 获取群基本信息
++ (void)getGroupChatInfo:(NSArray*)groupConver results:(void(^)(NSArray*array))result;
+                                                        
+                                                        
+
 #pragma mark - 通讯录匹配
 +(void)tongxunluMatch:(NSArray*)contacts results:(void(^)(NSArray*array))result;
 

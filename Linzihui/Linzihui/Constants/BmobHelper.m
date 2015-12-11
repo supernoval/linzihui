@@ -605,6 +605,76 @@
     
 }
 
+#pragma mark - 获取群基本信息
++ (void)getGroupChatInfo:(NSArray*)groupConver results:(void(^)(NSArray*array))result
+{
+    BmobQuery *_query = [BmobQuery queryWithClassName:kChatGroupTableName];
+    
+    
+    NSMutableArray *_groups = [[NSMutableArray alloc]init];
+    
+    for (EMConversation *con in groupConver) {
+        
+        [_groups addObject:con.chatter];
+        
+    }
+    
+    [_query whereKey:@"groupId" containedIn:_groups];
+    
+    
+    [_query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (!error && array.count > 0) {
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            for (BmobObject *ob in array) {
+                
+                NSString *groupId = [ob objectForKey:@"groupId"];
+                
+                for (EMConversation *_temCon in groupConver) {
+                    
+                    if ([groupId isEqualToString:_temCon.chatter]) {
+                        
+                        NSDictionary *dataDict = [ob valueForKey:kBmobDataDic];
+                        
+                        MyConversation *_myConver = [[MyConversation alloc]init];
+                        
+                        [_myConver setValuesForKeysWithDictionary:dataDict];
+                        
+                        _myConver.converstion = _temCon;
+                        
+                        
+                        [muArray addObject:_myConver];
+                        
+                        
+                        
+                    }
+                }
+                
+                
+            }
+            
+            
+            if (result) {
+                
+                result(muArray);
+                
+            }
+        }
+        else
+        {
+            
+            NSLog(@"获取群信息失败：%@",error);
+            
+            if (result) {
+                
+                result(nil);
+            }
+        }
+    }];
+}
+                                                        
 
 #pragma mark - 通讯录匹配
 +(void)tongxunluMatch:(NSArray*)contacts results:(void(^)(NSArray*array))result

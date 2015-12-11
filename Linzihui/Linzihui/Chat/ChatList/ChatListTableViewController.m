@@ -15,6 +15,8 @@
 #import "LoginViewController.h"
 #import "MyConversation.h"
 #import "ShengHuoQuanTVC.h"
+#import "GroupChatListTVC.h"
+
 
 
 static NSString *cellId = @"ChatListCell";
@@ -252,6 +254,14 @@ static NSString *headCellID = @"CellID";
                 break;
             case 1:
             {
+                GroupChatListTVC *_groupChatTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GroupChatListTVC"];
+                
+                _groupChatTVC.hidesBottomBarWhenPushed = YES;
+                
+                
+                [self.navigationController pushViewController:_groupChatTVC animated:YES];
+                
+                
                 
             }
                 break;

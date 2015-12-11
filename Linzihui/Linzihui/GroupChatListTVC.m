@@ -98,7 +98,7 @@ static NSString *cellID = @"GroupCellID";
         
         UILabel *_titleLabel = [cell viewWithTag:101];
         
-        _titleLabel.text = model.nickName;
+        _titleLabel.text = model.subTitle;
         
         
         [_imageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
@@ -250,7 +250,7 @@ static NSString *cellID = @"GroupCellID";
     
     for (EMConversation *convert in conversations) {
         
-        if (convert.conversationType != eConversationTypeGroupChat) {
+        if (convert.conversationType != eConversationTypeChat) {
             
             
             [muArray addObject:convert];
@@ -261,8 +261,8 @@ static NSString *cellID = @"GroupCellID";
     
     
     // get conversations nickname headImage
-    [BmobHelper getConversionsNickNameHeadeImageURL:conversations results:^(NSArray *array) {
-        
+    [BmobHelper getGroupChatInfo:muArray results:^(NSArray *array) {
+       
         if (array) {
             
             NSArray* sorte = [array sortedArrayUsingComparator:
@@ -284,11 +284,11 @@ static NSString *cellID = @"GroupCellID";
             
             [self.tableView reloadData];
             
+        }
+        else
+        {
             
         }
-        
-        
-        
     }];
     
     
