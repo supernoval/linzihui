@@ -138,7 +138,7 @@
 +(NSString*)getYYYYMMddhhmmDateStr:(NSDate *)date
 {
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc]init];
-    [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm"];
+    [dateformatter setDateFormat:@"YYYY-MM-dd HH:mm"];
     
     
     NSString *timeStr = [dateformatter stringFromDate:date];
@@ -820,27 +820,25 @@
     
 }
 #pragma mark - 活动状态
-+(NSInteger)activityStatusWithStartTime:(NSString*)startTime  endTime:(NSString*)endTime
++(NSInteger)activityStatusWithStartTime:(NSDate*)startTime  endTime:(NSDate*)endTime
 {
     
     
  
     
-    NSDate *startDate = [self getYYYYMMddhhmmssFromString:startTime];
     
-    NSDate *endDate = [self getYYYYMMddhhmmssFromString:endTime];
     
     
     NSDate *_now = [NSDate date];
     
     
-    if ([_now isEqualToDate:[_now earlierDate:startDate]]) {
+    if ([_now isEqualToDate:[_now earlierDate:startTime]]) {
         
         return 1;  //活动未开始
         
     }
     
-    if ([_now isEqualToDate:[_now earlierDate:endDate]] ) {
+    if ([_now isEqualToDate:[_now earlierDate:endTime]] ) {
         
         
         return 2; //活动进行中
@@ -857,6 +855,24 @@
     
 }
 
+
+#pragma mark - 是否已过报名时间
++(NSInteger)activityRegistStatus:(NSDate*)endRegitstTime
+{
+    
+    
+    NSDate *_now = [NSDate date];
+    
+    
+    if ([_now isEqualToDate:[_now earlierDate:endRegitstTime]]) {
+        
+        return 1;  //未截止
+        
+    }
+    
+    return 2;  //已截止
+    
+}
 
 #pragma mark- 震动、声音效果
 

@@ -473,7 +473,7 @@
 
 
 #pragma mark -  通过环信好友username 获取bmob 对应用户信息
-+ (void)getBmobBuddyUsers:(void(^)(NSArray*))block{
++ (void)getBmobBuddyUsers:(void(^)(NSArray*array))block{
     
     
      NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
@@ -541,10 +541,9 @@
         
         [_muArray addObject:_conver.chatter];
         
-      
+        
         
     }
-    
     
     [query whereKey:@"username" containedIn:_muArray];
     
@@ -568,6 +567,7 @@
                         
                         MyConversation *myConModel = [[MyConversation alloc]init];
                         
+                        myConModel.username = model.username;
                         myConModel.nickName = model.nickName;
                         myConModel.headImageURL = model.headImageURL;
                         myConModel.converstion = _myConver;
@@ -593,6 +593,9 @@
         }
         else
         {
+            
+            NSLog(@"get userinfo error:%@",error);
+            
             if (result) {
                 
                 result(nil);
@@ -605,7 +608,56 @@
     
 }
 
-#pragma mark - 获取群基本信息
+#pragma mark - 获取群组成员信息
++ (void)getGroupMembersInfo:(NSArray*)membersusername results:(void(^)(NSArray*arary))result
+{
+    BmobQuery *query = [BmobQuery queryForUser];
+    
+    [query whereKey:@"username" containedIn:membersusername];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        NSMutableArray *muArray = [[NSMutableArray alloc]init];
+        
+        for (int i = 0;i < array.count; i++) {
+            
+            BmobObject *object = [array objectAtIndex:i];
+            
+            UserModel *model = [[UserModel alloc]initwithBmobObject:object];
+            
+            
+            for (NSString*username in membersusername) {
+                
+                if ([username isEqualToString:model.username]) {
+                    
+                    MyConversation *myConModel = [[MyConversation alloc]init];
+                    
+                    myConModel.username = model.username;
+                    myConModel.nickName = model.nickName;
+                    myConModel.headImageURL = model.headImageURL;
+                   
+                    
+                    [muArray addObject:myConModel];
+                    
+                    
+                }
+                
+                
+            }
+            
+        }
+        
+        if (result) {
+            
+            
+            result(muArray);
+            
+        }
+        
+        
+    }];
+}
+#pragma mark - 通过聊天信息获取群基本信息
 + (void)getGroupChatInfo:(NSArray*)groupConver results:(void(^)(NSArray*array))result
 {
     BmobQuery *_query = [BmobQuery queryWithClassName:kChatGroupTableName];
@@ -676,6 +728,129 @@
 }
                                                         
 
+#pragma mark - 获取群组列表 信息
++ (void)getGroupListInfo:(NSArray*)EMGroupList results:(void(^)(NSArray*array))result
+{
+   
+    NSMutableArray *groupIds = [[NSMutableArray alloc]init];
+    
+    
+    for (EMGroup *group in EMGroupList) {
+        
+        [groupIds addObject:group.groupId];
+        
+    }
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:kChatGroupTableName];
+    
+    
+    [query whereKey:@"groupId" containedIn:groupIds];
+    
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (!error && array) {
+            
+            NSMutableArray *resutls = [[NSMutableArray alloc]init];
+            
+            for (BmobObject *ob in array) {
+                
+                GroupChatModel *model = [[GroupChatModel alloc]init];
+                
+                NSDictionary *dataDic = [ob valueForKey:kBmobDataDic];
+                
+                [model setValuesForKeysWithDictionary:dataDic];
+                
+                
+                [resutls addObject:model];
+            }
+            
+            if (result) {
+                
+                result(resutls);
+            }
+        }
+        else
+        {
+            if (result) {
+                
+                result(nil);
+                
+                
+            }
+        }
+    }];
+    
+    
+}
+
+#pragma mark - 获取邻近群组
++(void)getNearGroupList:(void(^)(NSArray*array))result
+{
+    
+    
+    CGFloat latitude = [[NSUserDefaults standardUserDefaults ]floatForKey:kCurrentLatitude];
+    
+    CGFloat longitude = [[NSUserDefaults standardUserDefaults ]floatForKey:kCurrentLongitude];
+    
+    
+    BmobGeoPoint *point = [[BmobGeoPoint alloc]init];
+    
+    point.latitude = latitude;
+    
+    point.longitude = longitude;
+    
+    
+    
+    BmobQuery *query = [[BmobQuery alloc]initWithClassName:kChatGroupTableName];
+    
+    [query whereKey:@"location" nearGeoPoint:point withinKilometers:3];
+    
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        
+        if (!error && array) {
+            
+            NSMutableArray *resutls = [[NSMutableArray alloc]init];
+            
+            for (BmobObject *ob in array) {
+                
+                GroupChatModel *model = [[GroupChatModel alloc]init];
+                
+                NSDictionary *dataDic = [ob valueForKey:kBmobDataDic];
+                
+                
+                [model setValuesForKeysWithDictionary:dataDic];
+                
+                BmobGeoPoint *location  = [ob objectForKey:@"location"];
+                
+                model.location = location;
+                
+                
+                [resutls addObject:model];
+            }
+            
+            if (result) {
+                
+                result(resutls);
+            }
+        }
+        else
+        {
+            
+            NSLog(@"error:%@",error);
+            
+            if (result) {
+                
+                result(nil);
+            }
+        }
+    }];
+    
+    
+    
+}
 #pragma mark - 通讯录匹配
 +(void)tongxunluMatch:(NSArray*)contacts results:(void(^)(NSArray*array))result
 {

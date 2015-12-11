@@ -26,6 +26,8 @@
 @interface ChatViewController : BaseViewController
 
 @property (nonatomic,strong ) EMGroup *group;
+@property (nonatomic,strong)  NSString *subTitle;
+
 
 @property (nonatomic,strong) UserModel*userModel;
 @property (strong, nonatomic, readonly) NSString *chatter;

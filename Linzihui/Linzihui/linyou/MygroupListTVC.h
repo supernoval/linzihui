@@ -9,5 +9,6 @@
 #import "BaseTableViewController.h"
 
 @interface MygroupListTVC : BaseTableViewController
+@property (nonatomic) BOOL isNearGroup;
 
 @end

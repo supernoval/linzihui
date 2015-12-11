@@ -9,6 +9,7 @@
 #import "NewMineTableViewController.h"
 #import "MineTableViewController.h"
 #import "MyPhotosViewController.h"
+#import "SettingTableViewController.h"
 
 @interface NewMineTableViewController ()
 
@@ -73,6 +74,17 @@
         
     }
   
+    if (indexPath.section  == 3) {
+        
+        SettingTableViewController *_settting = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingTableViewController"];
+        
+        
+        _settting.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:_settting animated:YES];
+        
+        
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

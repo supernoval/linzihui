@@ -13,7 +13,7 @@
 
 -(id)init;
 
-
+@property (nonatomic,strong) NSString *username;
 @property (nonatomic,strong) EMConversation *converstion;
 @property (nonatomic,strong) NSString *headImageURL;
 @property (nonatomic,strong) NSString *nickName;

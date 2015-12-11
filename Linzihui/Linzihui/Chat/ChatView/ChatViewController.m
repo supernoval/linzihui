@@ -161,6 +161,9 @@
     [super viewDidLoad];
     [self registerBecomeActive];
     // Do any additional setup after loading the view.
+    
+     self.title = self.subTitle;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout =  UIRectEdgeNone;
@@ -210,11 +213,19 @@
         self.navigationItem.rightBarButtonItem = rightButton;
     }
   
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSubTitle:) name:kChangeGroupSubTitleNoti object:nil];
     
 }
 
-
+#pragma mark - 收到修改群名通知
+-(void)changeSubTitle:(NSNotification*)noti
+{
+    NSString *subtitle = [noti.userInfo objectForKey:@"subTitle"];
+    
+    self.title = subtitle;
+    self.subTitle = subtitle;
+    
+}
 #pragma mark -  显示聊天设置
 -(void)showGroupSettingView
 {
@@ -227,6 +238,7 @@
     ChatSettingTVC *_settingTVC = [SB instantiateViewControllerWithIdentifier:@"ChatSettingTVC"];
     
     _settingTVC.group =_group;
+    _settingTVC.subTitle = self.title;
     
     [self.navigationController pushViewController:_settingTVC animated:YES];
     
@@ -246,6 +258,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+   
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
     if (_isScrollToBottom) {
@@ -299,6 +313,10 @@
     {
         [_imagePicker dismissViewControllerAnimated:NO completion:nil];
     }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kChangeGroupSubTitleNoti object:nil];
+    
+    
 }
 
 - (void)back
@@ -1810,6 +1828,8 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
+
 
 
 #pragma mark - 创建带附件的消息体和批量导入消息的示例

@@ -12,6 +12,8 @@
 
 
 @property (nonatomic,strong) EMGroup *group;
+@property (nonatomic,strong ) NSString *subTitle;
+
 
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 

@@ -17,6 +17,12 @@
 
 @implementation CreateChatRoomTVC
 
+-(void)setblock:(CreateChatRoomBlock)block
+{
+    _block = block;
+    
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -105,7 +111,26 @@
         }
     }
     
-    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入"];
+//    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" ];
+    
+    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" result:^(BOOL success, EMGroup *group) {
+        
+        if (success) {
+            
+            
+            if (_block) {
+                
+                _block(success,group);
+                
+            }
+            
+            [[NSNotificationCenter defaultCenter ] postNotificationName:kCreategroupSuccessNoti object:group userInfo:@{@"groupid":group.groupId}];
+            
+            
+        }
+    }];
+    
+    
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

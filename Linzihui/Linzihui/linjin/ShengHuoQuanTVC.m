@@ -70,6 +70,10 @@ static NSString *commentCellID = @"CommentCell";
             
             
         }
+        
+        
+        [_shurenUserNameArray addObject:[BmobUser getCurrentUser].username];
+        
     }
     else
     {
@@ -220,6 +224,8 @@ static NSString *commentCellID = @"CommentCell";
     if (_isShuRenQuan) {
         
         [query whereKey:@"username" containedIn:_shurenUserNameArray];
+        
+        
         
     }
     else

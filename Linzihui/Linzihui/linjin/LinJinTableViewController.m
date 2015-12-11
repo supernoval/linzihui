@@ -9,6 +9,8 @@
 #import "LinJinTableViewController.h"
 #import "ShengHuoQuanTVC.h"
 #import "HuodongTVCViewController.h"
+#import "MygroupListTVC.h"
+
 
 static NSString *CellID = @"CellID";
 
@@ -148,6 +150,22 @@ static NSString *CellID = @"CellID";
         
         [self.navigationController pushViewController:_huodongTVC animated:YES];
         
+        
+        
+    }
+    
+    if (indexPath.section == 2) //领近群组
+    {
+        
+        MygroupListTVC *_groupList = [self.storyboard instantiateViewControllerWithIdentifier:@"MygroupListTVC"];
+        
+        
+        _groupList.hidesBottomBarWhenPushed = YES;
+        
+        _groupList.isNearGroup = YES;
+        
+        
+        [self.navigationController pushViewController:_groupList animated:YES];
         
         
     }

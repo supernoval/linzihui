@@ -8,6 +8,10 @@
 
 #import "ChatSettingTVC.h"
 #import "ShowQRViewController.h"
+#import "GroupMemberTVC.h"
+#import "InviteNewGroupMember.h"
+#import "EditGroupNameVC.h"
+
 
 @interface ChatSettingTVC ()
 {
@@ -109,17 +113,37 @@
     switch (indexPath.section) {
         case 0:
         {
+            GroupMemberTVC *_groupMember = [[GroupMemberTVC alloc]initWithStyle:UITableViewStylePlain];
+            
+            _groupMember.group = _group;
+            
+            [self.navigationController pushViewController:_groupMember animated:YES];
+            
             
         }
             break;
         case 1:
         {
+            InviteNewGroupMember *_invite = [[InviteNewGroupMember alloc]initWithStyle:UITableViewStylePlain];
+            
+            
+            _invite.group = _group;
+            
+            [self.navigationController pushViewController:_invite animated:YES];
+            
             
         }
             break;
         case 2:
         {
+            EditGroupNameVC *_editGroupVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditGroupNameVC"];
             
+            _editGroupVC.groupSubTitle = _subTitle;
+            
+            _editGroupVC.groupId = _group.groupId;
+            
+            
+            [self.navigationController pushViewController:_editGroupVC animated:YES];
         }
             break;
         case 3:
@@ -155,20 +179,38 @@
     if ([_group.owner isEqualToString:CurrentUser.username]) {
         
         
-        [[EaseMob sharedInstance].chatManager  asyncDestroyGroup:_group.groupId completion:^(EMGroup *group, EMGroupLeaveReason reason, EMError *error) {
+        EMError *error = nil;
         
-            if (!error) {
-                
-                NSLog(@"解散成功");
-            }
-            else
-            {
-                NSLog(@"解散 error:%@",error);
-                
-                
-            }
+        [[EaseMob sharedInstance].chatManager destroyGroup:_group.groupId error:&error];
+        
+        if (!error) {
             
-        } onQueue:nil];
+            NSLog(@"解散成功");
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }
+        else
+        {
+            NSLog(@"解散 error:%@",error);
+            
+            
+        }
+        
+//        [[EaseMob sharedInstance].chatManager  asyncDestroyGroup:_group.groupId completion:^(EMGroup *group, EMGroupLeaveReason reason, EMError *error) {
+//        
+//            if (!error) {
+//                
+//                NSLog(@"解散成功");
+//            }
+//            else
+//            {
+//                NSLog(@"解散 error:%@",error);
+//                
+//                
+//            }
+//            
+//        } onQueue:nil];
         
         
     }
@@ -181,6 +223,8 @@
                
                 NSLog(@"退出群成功");
                 
+              
+                [self.navigationController popToRootViewControllerAnimated:YES];
                 
             }
             else

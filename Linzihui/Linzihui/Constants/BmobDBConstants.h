@@ -25,5 +25,8 @@
 //意见反馈
 #define kFeedBackTableName           @"FeedBack"
 
+//活动消息
+#define kHuoDongMessagesTableName       @"HuoDongMessages"
+
 //bmob value key
 #define kBmobDataDic                 @"bmobDataDic"

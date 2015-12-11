@@ -16,7 +16,7 @@
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic,strong ) NSString *realName ;
 @property (nonatomic,strong)  BmobGeoPoint *location;
-@property (nonatomic,strong) NSString *endRegistTime;
+@property (nonatomic,strong) NSDate *endRegistTime;
 @property (nonatomic,strong) NSString *needFamilyNum;
 @property (nonatomic,strong ) NSArray *photoURL;
 @property (nonatomic,strong)  BmobUser *starter;
@@ -30,8 +30,8 @@
 @property (nonatomic,strong) NSString *updatedAt;
 @property (nonatomic,strong) NSString *createdAt;
 @property (nonatomic,strong ) NSString *feeNum;
-@property (nonatomic,strong)  NSString *startTime;
-@property (nonatomic,strong ) NSString *endTime;
+@property (nonatomic,strong)  NSDate *startTime;
+@property (nonatomic,strong ) NSDate *endTime;
 
 
 

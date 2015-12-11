@@ -199,14 +199,14 @@ static NSString *textViewCell  =@"textViewCell";
 {
     NSDate *_date = _picker.date;
     
-    NSString *_strDate = [CommonMethods getYYYYMMddhhmmDateStr:_date];
+//    NSString *_strDate = [CommonMethods getYYYYMMddhhmmDateStr:_date];
     
     NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:_titlesArray];
     
     NSMutableDictionary *muDict = [[NSMutableDictionary alloc]initWithDictionary:[muArray objectAtIndex:pickIndex]];
     
     
-    [muDict setObject:_strDate forKey:@"content"];
+    [muDict setObject:_date forKey:@"content"];
     
     
     
@@ -239,16 +239,38 @@ static NSString *textViewCell  =@"textViewCell";
         NSDictionary *dict = [_titlesArray objectAtIndex:i];
         
         NSString *title = [dict objectForKey:@"title"];
+          NSString *key = [dict objectForKey:@"key"];
+//        NSString *content = [dict objectForKey:@"content"];
         
-        NSString *content = [dict objectForKey:@"content"];
+
         
- 
+        id   content =  [dict objectForKey:@"content"];
         
-        if (content.length== 0) {
+        
+        
+        if ([key isEqualToString:@"startTime"] || [key isEqualToString:@"endTime"] || [key isEqualToString:@"endRegistTime"])
+        {
             
-            [CommonMethods showDefaultErrorString:[NSString stringWithFormat:@"请填写%@",title]];
+            if (!content) {
+                
+                 [CommonMethods showDefaultErrorString:[NSString stringWithFormat:@"请填写%@",title]];
+                
+            }
             
-            return;
+        }
+        else
+        {
+            NSString * temcontent  = [dict objectForKey:@"content"];
+            
+            if (temcontent.length== 0) {
+                
+                [CommonMethods showDefaultErrorString:[NSString stringWithFormat:@"请填写%@",title]];
+                
+                return;
+            }
+            
+            
+            
         }
     
         
@@ -257,6 +279,9 @@ static NSString *textViewCell  =@"textViewCell";
     [MyProgressHUD showProgress];
     
     if (_image_list.count > 1) {
+        
+        
+        [_image_list removeObjectAtIndex:_image_list.count -1];
         
         
         [CommonMethods upLoadPhotos:_image_list resultBlock:^(BOOL success, NSArray *results) {
@@ -298,17 +323,36 @@ static NSString *textViewCell  =@"textViewCell";
         NSDictionary *dict = [_titlesArray objectAtIndex:i];
         
         NSString *title = [dict objectForKey:@"title"];
+         NSString *key = [dict objectForKey:@"key"];
         
-        NSString *content = [dict objectForKey:@"content"];
+        id   content =  [dict objectForKey:@"content"];
         
-        NSString *key = [dict objectForKey:@"key"];
         
-        if (content.length== 0) {
+        
+        if ([key isEqualToString:@"startTime"] || [key isEqualToString:@"endTime"] || [key isEqualToString:@"endRegistTime"])
+        {
             
-            [CommonMethods showDefaultErrorString:[NSString stringWithFormat:@"请填写%@",title]];
             
-            return;
+            
         }
+        else
+        {
+          NSString * temcontent  = [dict objectForKey:@"content"];
+            
+            if (temcontent.length== 0) {
+                
+                [CommonMethods showDefaultErrorString:[NSString stringWithFormat:@"请填写%@",title]];
+                
+                return;
+            }
+            
+        
+            
+        }
+        
+       
+        
+    
         
         if (![key isEqualToString:@"location"]) {
             
@@ -401,8 +445,17 @@ static NSString *textViewCell  =@"textViewCell";
     
     title = [dict objectForKey:@"title"];
     
-    content = [dict objectForKey:@"content"];
-    
+    if (indexPath.section == 3 || indexPath.section == 4 || indexPath.section == 8) {
+        
+        NSDate *date = [dict objectForKey:@"content"];
+        
+        content = [CommonMethods getYYYYMMddhhmmDateStr:date];
+        
+    }
+    else
+    {
+        content = [dict objectForKey:@"content"];
+    }
     switch (indexPath.section) {
         case 0: //真实姓名
         {

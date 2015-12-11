@@ -52,7 +52,7 @@ static NSString *cellID = @"GroupCellID";
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
+    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 5)];
     
     blankView.backgroundColor = [UIColor clearColor];
     
@@ -61,7 +61,7 @@ static NSString *cellID = @"GroupCellID";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 1;
+    return 5;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,14 +145,21 @@ static NSString *cellID = @"GroupCellID";
     
     MyConversation *model = [_conversations objectAtIndex:indexPath.section ];
     
-    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
-    if (model.nickName) {
+    
+    EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
+    
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:YES];
+    if (model.subTitle) {
         
-        chatVC.title =model.nickName;
+        chatVC.title =model.subTitle;
+         chatVC.subTitle = model.nickName;
     }else
     {
         chatVC.title = model.converstion.chatter;
+         chatVC.subTitle = model.nickName;
     }
+    
+    chatVC.group = group;
     
     chatVC.hidesBottomBarWhenPushed = YES;
     

@@ -16,6 +16,8 @@
 #import "MyConversation.h"
 #import "ShengHuoQuanTVC.h"
 #import "GroupChatListTVC.h"
+#import "HuoDongMessageTVC.h"
+
 
 
 
@@ -267,6 +269,12 @@ static NSString *headCellID = @"CellID";
                 break;
             case 2:
             {
+                HuoDongMessageTVC *_huodongMessage = [self.storyboard instantiateViewControllerWithIdentifier:@"HuoDongMessageTVC"];
+                
+                _huodongMessage.hidesBottomBarWhenPushed =YES;
+                
+                [self.navigationController pushViewController:_huodongMessage animated:YES];
+                
                 
             }
                 break;
@@ -290,10 +298,13 @@ static NSString *headCellID = @"CellID";
     ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
     if (model.nickName) {
         
-        chatVC.title =model.nickName;
+//        chatVC.title =model.nickName;
+        chatVC.subTitle = model.nickName;
+        
     }else
     {
-        chatVC.title = model.converstion.chatter;
+//        chatVC.title = model.converstion.chatter;
+         chatVC.subTitle = model.nickName;
     }
     
     chatVC.hidesBottomBarWhenPushed = YES;
@@ -400,6 +411,8 @@ static NSString *headCellID = @"CellID";
         }
         
     }
+    
+
     
     
     // get conversations nickname headImage

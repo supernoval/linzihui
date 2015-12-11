@@ -129,11 +129,18 @@ static NSString *headerCellID = @"headerCell";
                 
                 HuoDongModel *model = [[HuoDongModel alloc]init];
                 
+                NSDate *startDate = [ob objectForKey:@"startTime"];
+                NSDate *endDate = [ob objectForKey:@"endTime"];
+                NSDate *endRegistTime = [ob objectForKey:@"endRegistTime"];
+                
                 NSDictionary *dataDict = [ob valueForKey:@"bmobDataDic"];
                 
                 [model setValuesForKeysWithDictionary:dataDict];
                 
                 model.objectId = ob.objectId;
+                model.startTime = startDate;
+                model.endTime = endDate;
+                model.endRegistTime = endRegistTime;
                 
                 [_dataSource addObject:model];
                 
@@ -307,7 +314,7 @@ static NSString *headerCellID = @"headerCell";
         
         _huodongCell.addressLabel.text = model.address;
         
-        _huodongCell.timeLabel.text = model.startTime;
+        _huodongCell.timeLabel.text =  [CommonMethods getYYYYMMddhhmmDateStr:model.startTime];
         
         _huodongCell.feeLabel.text = model.feeNum;
         
@@ -359,10 +366,11 @@ static NSString *headerCellID = @"headerCell";
         _huodongCell.zhuyiHeight.constant = zhuyiHeight;
         
         
-        _huodongCell.jiezhiLabel.text = model.endRegistTime;
+        _huodongCell.jiezhiLabel.text = [CommonMethods getYYYYMMddhhmmDateStr: model.endRegistTime];
         
         
         _huodongCell.contentView.tag = indexPath.section;
+        
         
         
         NSInteger status = [CommonMethods activityStatusWithStartTime:model.startTime endTime:model.endTime];
@@ -370,7 +378,7 @@ static NSString *headerCellID = @"headerCell";
         if (status == 1) {
             
             
-            _huodongCell.statusLabel.text =[NSString stringWithFormat:@"离活动开始:%@",[CommonMethods timeStringFromNow:[CommonMethods getYYYYMMddhhmmssFromString:model.startTime]]];
+            _huodongCell.statusLabel.text =[NSString stringWithFormat:@"离活动开始:%@",[CommonMethods timeStringFromNow:model.startTime]];
             
             
             
@@ -409,7 +417,21 @@ static NSString *headerCellID = @"headerCell";
         }
         
        
+        NSInteger registStatus = [CommonMethods activityRegistStatus:model.endRegistTime];
         
+        if (registStatus == 2) {
+            
+            _huodongCell.attendButton.enabled = NO;
+            
+            [_huodongCell.attendButton setTitle:@"报名已截止" forState:UIControlStateNormal];
+            
+            
+        }
+        else
+        {
+            _huodongCell.attendButton.enabled = YES;
+            
+        }
         
         
         

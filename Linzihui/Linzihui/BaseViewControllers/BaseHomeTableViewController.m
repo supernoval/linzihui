@@ -13,6 +13,7 @@
 #import "LBXScanViewController.h"
 #import "FeedBackViewController.h"
 #import "YaoYiYaoViewController.h"
+#import "ChatViewController.h"
 
 
 
@@ -70,6 +71,8 @@
     self.navigationItem.rightBarButtonItem = rightButton;
     
     
+    
+
     
     
 }
@@ -209,9 +212,35 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
             
             
-            CreateChatRoomTVC *_createChatRoom = [storyboard  instantiateViewControllerWithIdentifier:@"CreateNav"];
-//            CreateChatRoomTVC *_createChatRoom = [[CreateChatRoomTVC alloc]init];
+            UINavigationController *_createChatRoom = [storyboard  instantiateViewControllerWithIdentifier:@"CreateNav"];
             
+            CreateChatRoomTVC *createTVC = (CreateChatRoomTVC*)[_createChatRoom topViewController];
+            
+            
+           [createTVC setblock:^(BOOL success, EMGroup *group) {
+              
+            [CommonMethods showDefaultErrorString:@"群创建成功"];
+               //
+               ////                if (success) {
+               ////
+               ////
+               ////
+               ////                    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:group. isGroup:YES];
+               ////                    if (model.subTitle) {
+               ////
+               ////                        chatVC.title =model.subTitle;
+               ////                    }else
+               ////                    {
+               ////                        chatVC.title = model.converstion.chatter;
+               ////                    }
+               ////
+               ////                    chatVC.group = group;
+               ////                    
+               ////                    chatVC.hidesBottomBarWhenPushed = YES;
+               ////                    
+               ////                }
+           }];
+
             
             [self presentViewController:_createChatRoom animated:YES completion:nil];
             

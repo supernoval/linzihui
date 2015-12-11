@@ -10,4 +10,6 @@
 
 @interface GroupChatListTVC : BaseTableViewController
 
+@property (nonatomic) BOOL isNearGroup;
+
 @end

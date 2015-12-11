@@ -288,6 +288,11 @@
 		154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F51BE5E7030042632E /* libxml2.tbd */; };
 		154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F71BE5E70B0042632E /* libiconv.tbd */; };
 		154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F91BE5E7110042632E /* libresolv.tbd */; };
+		15858D451C1B4B91000550FD /* GroupMemberTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D441C1B4B91000550FD /* GroupMemberTVC.m */; };
+		15858D491C1B5634000550FD /* InviteNewGroupMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D481C1B5634000550FD /* InviteNewGroupMember.m */; };
+		15858D4C1C1B5E2B000550FD /* EditGroupNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D4B1C1B5E2B000550FD /* EditGroupNameVC.m */; };
+		15858D511C1B71F7000550FD /* HuoDongMessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D501C1B71F7000550FD /* HuoDongMessageTVC.m */; };
+		15858D541C1B8AEC000550FD /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D531C1B8AEC000550FD /* SettingTableViewController.m */; };
 		15AB5AA81C140B5B0070F6DA /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */; };
 		15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */; };
 		15AB5AAF1C1715440070F6DA /* GroupChatListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */; };
@@ -1111,6 +1116,16 @@
 		154A39F51BE5E7030042632E /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		154A39F71BE5E70B0042632E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		154A39F91BE5E7110042632E /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		15858D431C1B4B91000550FD /* GroupMemberTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberTVC.h; sourceTree = "<group>"; };
+		15858D441C1B4B91000550FD /* GroupMemberTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMemberTVC.m; sourceTree = "<group>"; };
+		15858D471C1B5634000550FD /* InviteNewGroupMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteNewGroupMember.h; sourceTree = "<group>"; };
+		15858D481C1B5634000550FD /* InviteNewGroupMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteNewGroupMember.m; sourceTree = "<group>"; };
+		15858D4A1C1B5E2B000550FD /* EditGroupNameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGroupNameVC.h; sourceTree = "<group>"; };
+		15858D4B1C1B5E2B000550FD /* EditGroupNameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGroupNameVC.m; sourceTree = "<group>"; };
+		15858D4F1C1B71F7000550FD /* HuoDongMessageTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongMessageTVC.h; sourceTree = "<group>"; };
+		15858D501C1B71F7000550FD /* HuoDongMessageTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongMessageTVC.m; sourceTree = "<group>"; };
+		15858D521C1B8AEC000550FD /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		15858D531C1B8AEC000550FD /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
 		15AB5AA61C140B5B0070F6DA /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		15AB5AAA1C140F030070F6DA /* YaoYiYaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoYiYaoViewController.h; sourceTree = "<group>"; };
@@ -2806,6 +2821,33 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		15858D461C1B560C000550FD /* inviteNewGroupMember */ = {
+			isa = PBXGroup;
+			children = (
+				15858D471C1B5634000550FD /* InviteNewGroupMember.h */,
+				15858D481C1B5634000550FD /* InviteNewGroupMember.m */,
+			);
+			name = inviteNewGroupMember;
+			sourceTree = "<group>";
+		};
+		15858D4D1C1B71B8000550FD /* groupMessages */ = {
+			isa = PBXGroup;
+			children = (
+				15AB5AAD1C1715440070F6DA /* GroupChatListTVC.h */,
+				15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */,
+			);
+			name = groupMessages;
+			sourceTree = "<group>";
+		};
+		15858D4E1C1B71CA000550FD /* HuoDongMessages */ = {
+			isa = PBXGroup;
+			children = (
+				15858D4F1C1B71F7000550FD /* HuoDongMessageTVC.h */,
+				15858D501C1B71F7000550FD /* HuoDongMessageTVC.m */,
+			);
+			name = HuoDongMessages;
+			sourceTree = "<group>";
+		};
 		15AB5AA41C140B210070F6DA /* fuchuang */ = {
 			isa = PBXGroup;
 			children = (
@@ -2957,6 +2999,7 @@
 		15B7A4531BE72FD80052115F /* ChatViewController */ = {
 			isa = PBXGroup;
 			children = (
+				15858D461C1B560C000550FD /* inviteNewGroupMember */,
 				15B7A45F1BE72FEE0052115F /* ChatViewController.h */,
 				15B7A4601BE72FEE0052115F /* ChatViewController.m */,
 				15B7A4541BE72FE30052115F /* XHMessageTextView.h */,
@@ -2965,6 +3008,10 @@
 				15B7A4571BE72FE30052115F /* UIViewController+HUD.m */,
 				1506EC2B1BF839220010F349 /* ChatSettingTVC.h */,
 				1506EC2C1BF839220010F349 /* ChatSettingTVC.m */,
+				15858D431C1B4B91000550FD /* GroupMemberTVC.h */,
+				15858D441C1B4B91000550FD /* GroupMemberTVC.m */,
+				15858D4A1C1B5E2B000550FD /* EditGroupNameVC.h */,
+				15858D4B1C1B5E2B000550FD /* EditGroupNameVC.m */,
 			);
 			path = ChatViewController;
 			sourceTree = "<group>";
@@ -3428,6 +3475,8 @@
 				15FB7FEE1BEF51CA007D6EC8 /* changePersonInfo */,
 				1530E8521BFCA6E000A78DB5 /* NewMineTableViewController.h */,
 				1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */,
+				15858D521C1B8AEC000550FD /* SettingTableViewController.h */,
+				15858D531C1B8AEC000550FD /* SettingTableViewController.m */,
 			);
 			path = mine;
 			sourceTree = "<group>";
@@ -3446,13 +3495,13 @@
 		15BE66CD1BF3AC7C000A9D1F /* linxin */ = {
 			isa = PBXGroup;
 			children = (
+				15858D4E1C1B71CA000550FD /* HuoDongMessages */,
+				15858D4D1C1B71B8000550FD /* groupMessages */,
 				15B7A4471BE72FBC0052115F /* ChatListTableViewController.h */,
 				15B7A4481BE72FBC0052115F /* ChatListTableViewController.m */,
 				15B7A43F1BE72FA60052115F /* ChatList */,
 				15BE66CE1BF3AD91000A9D1F /* MyConversation.h */,
 				15BE66CF1BF3AD91000A9D1F /* MyConversation.m */,
-				15AB5AAD1C1715440070F6DA /* GroupChatListTVC.h */,
-				15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */,
 			);
 			name = linxin;
 			sourceTree = "<group>";
@@ -3721,6 +3770,7 @@
 				15B7A4501BE72FBC0052115F /* NSDate+Category.m in Sources */,
 				15B7A5581BE730460052115F /* PSTCollectionViewUpdateItem.m in Sources */,
 				150F31401C0FEA5D00E5CC8B /* ZXTextParsedResult.m in Sources */,
+				15858D451C1B4B91000550FD /* GroupMemberTVC.m in Sources */,
 				15EE46E61BE85C1700538EA5 /* JSONModel+networking.m in Sources */,
 				150F314B1C0FEA5D00E5CC8B /* ZXCGImageLuminanceSource.m in Sources */,
 				150F319C1C0FEA5D00E5CC8B /* ZXRSSExpandedGeneralAppIdDecoder.m in Sources */,
@@ -3731,6 +3781,7 @@
 				150F31C11C0FEA5D00E5CC8B /* ZXModulusGF.m in Sources */,
 				150F31E81C0FEA5D00E5CC8B /* ZXQRCodeFinderPatternFinder.m in Sources */,
 				150F311D1C0FEA5D00E5CC8B /* ZXAztecCode.m in Sources */,
+				15858D511C1B71F7000550FD /* HuoDongMessageTVC.m in Sources */,
 				150F31141C0FEA5D00E5CC8B /* LBXScanView.m in Sources */,
 				150F315C1C0FEA5D00E5CC8B /* ZXDetectorResult.m in Sources */,
 				15BE66D01BF3AD91000A9D1F /* MyConversation.m in Sources */,
@@ -3752,6 +3803,7 @@
 				150F314E1C0FEA5D00E5CC8B /* ZXMonochromeRectangleDetector.m in Sources */,
 				150F31D11C0FEA5D00E5CC8B /* ZXPDF417BarcodeMatrix.m in Sources */,
 				150F313F1C0FEA5D00E5CC8B /* ZXTelResultParser.m in Sources */,
+				15858D4C1C1B5E2B000550FD /* EditGroupNameVC.m in Sources */,
 				150F31E21C0FEA5D00E5CC8B /* ZXQRCodeMode.m in Sources */,
 				15B7A5441BE730460052115F /* EMSDWebImageDownloaderOperation.m in Sources */,
 				150F319A1C0FEA5D00E5CC8B /* ZXRSSExpandedDecodedObject.m in Sources */,
@@ -3873,6 +3925,7 @@
 				15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */,
 				15B7A53B1BE730460052115F /* MWPhotoBrowser.m in Sources */,
 				15B7A4391BE72F800052115F /* EMAudioRecorderUtil.m in Sources */,
+				15858D541C1B8AEC000550FD /* SettingTableViewController.m in Sources */,
 				150F31461C0FEA5D00E5CC8B /* ZXVINParsedResult.m in Sources */,
 				15B7A5B51BE7305D0052115F /* UIImage+MultiFormat.m in Sources */,
 				150F31361C0FEA5D00E5CC8B /* ZXParsedResult.m in Sources */,
@@ -4059,6 +4112,7 @@
 				15EE46C11BE84C2000538EA5 /* PrivacyViewController.m in Sources */,
 				1506EC2A1BF82CAA0010F349 /* MygroupListTVC.m in Sources */,
 				150F31A51C0FEA5D00E5CC8B /* ZXRSSPair.m in Sources */,
+				15858D491C1B5634000550FD /* InviteNewGroupMember.m in Sources */,
 				150F31E41C0FEA5D00E5CC8B /* ZXQRCodeAlignmentPattern.m in Sources */,
 				150F31DA1C0FEA5D00E5CC8B /* ZXQRCodeBitMatrixParser.m in Sources */,
 				15B7A5AD1BE7305D0052115F /* SDWebImageCompat.m in Sources */,
@@ -4233,6 +4287,7 @@
 		153CE0281BE50D910032517E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -4242,7 +4297,8 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SMS_SDK",
 				);
-				GCC_PREFIX_HEADER = /Users/zhuhaikun/Documents/myprojects/linzihui_git/Linzihui/Linzihui/PrefixHeader.pch;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/zhuhaikun/Documents/My Projects/linzihui_git/Linzihui/Linzihui/PrefixHeader.pch";
 				INFOPLIST_FILE = Linzihui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4266,6 +4322,7 @@
 		153CE0291BE50D910032517E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -4275,7 +4332,8 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SMS_SDK",
 				);
-				GCC_PREFIX_HEADER = /Users/zhuhaikun/Documents/myprojects/linzihui_git/Linzihui/Linzihui/PrefixHeader.pch;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/zhuhaikun/Documents/My Projects/linzihui_git/Linzihui/Linzihui/PrefixHeader.pch";
 				INFOPLIST_FILE = Linzihui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

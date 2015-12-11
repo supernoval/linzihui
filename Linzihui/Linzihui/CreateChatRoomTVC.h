@@ -8,6 +8,17 @@
 
 #import "BaseTableViewController.h"
 
+typedef void (^CreateChatRoomBlock)(BOOL success,EMGroup *group);
+
+
 @interface CreateChatRoomTVC : BaseTableViewController
+{
+    CreateChatRoomBlock _block;
+    
+}
+
+-(void)setblock:(CreateChatRoomBlock)block;
+
+
 
 @end

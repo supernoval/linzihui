@@ -48,6 +48,8 @@
 
 #define kBlueBackColor            RGB(68,180,205,1)
 
+#define kHightLightColor          RGB(120,120,120,1)
+
 
 /*字体*/
 #define FONT_20 [UIFont systemFontOfSize:20]
@@ -75,3 +77,6 @@
 
 //创建群成功 通知名称
 #define kCreategroupSuccessNoti       @"CreategroupSuccessNoti"
+
+//修改群名称 通知
+#define kChangeGroupSubTitleNoti        @"ChangeGroupSubTitleNoti"

@@ -146,7 +146,7 @@ static EMHelper *_helper;
 }
 
 #pragma mark - 创建群组
-+ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg
++ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg result:(void(^)(BOOL success,EMGroup*group))result
 {
     
     [MyProgressHUD showProgress];
@@ -170,6 +170,17 @@ static EMHelper *_helper;
             [_groupOb setObject:group.description forKey:@"description"];
             [_groupOb setObject:group.members forKey:@"members"];
             
+            CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
+            CGFloat longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+            
+            BmobGeoPoint *point = [[BmobGeoPoint alloc]init];
+            
+            point.latitude = latitude;
+            
+            point.longitude = longitude;
+            
+            [_groupOb setObject:point forKey:@"location"];
+            
             
          [_groupOb saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
             
@@ -177,11 +188,20 @@ static EMHelper *_helper;
              
              if (isSuccessful) {
                  
+                 if (result) {
+                     
+                     result(YES,group);
+                 }
                  
-                  [[NSNotificationCenter defaultCenter ] postNotificationName:kCreategroupSuccessNoti object:group userInfo:@{@"groupid":group.groupId}];
+                
              }
              else
              {
+                 
+                 if (result) {
+                     
+                     result(NO,nil);
+                 }
                  NSLog(@"saveGroupError:%@",error);
                  
                  

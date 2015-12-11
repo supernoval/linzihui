@@ -11,6 +11,9 @@
 #import "ForgetCodeTVC.h"
 #import "ChatAccountManager.h"
 
+#import "PrivacyViewController.h"
+
+
 @interface LoginViewController ()
 
 @end
@@ -128,6 +131,16 @@
     ForgetCodeTVC *_forgetcode = [self.storyboard instantiateViewControllerWithIdentifier:@"ForgetCodeTVC"];
     
     [self.navigationController pushViewController:_forgetcode animated:YES];
+    
+    
+}
+
+- (IBAction)showPrivacy:(id)sender {
+    
+    UINavigationController *nav = [self.storyboard instantiateViewControllerWithIdentifier:@"privacyNav"];
+    
+    [self presentViewController:nav animated:YES completion:nil];
+    
     
     
 }

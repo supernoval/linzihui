@@ -24,5 +24,10 @@
 
 - (IBAction)forgetCodeAction:(id)sender;
 
+- (IBAction)showPrivacy:(id)sender;
+
+
+
+
 
 @end

@@ -126,8 +126,10 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 
 
 #pragma mark - 活动状态
-+(NSInteger)activityStatusWithStartTime:(NSString*)startTime  endTime:(NSString*)endTime;
++(NSInteger)activityStatusWithStartTime:(NSDate*)startTime  endTime:(NSDate*)endTime;
 
+#pragma mark - 是否已过报名时间
++(NSInteger)activityRegistStatus:(NSDate*)endRegitstTime;
 
 #pragma mark- 震动、声音效果
 

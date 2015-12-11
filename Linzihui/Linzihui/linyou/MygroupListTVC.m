@@ -22,28 +22,93 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"群聊";
+    if (_isNearGroup) {
+        
+        self.title = @"邻近群组";
+        
+    }
+    else
+    {
+         self.title = @"群聊";
+    }
     _groupListArray = [[NSMutableArray alloc]init];
     
     [self getGroupList];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeGroupNameNoti:) name:kChangeGroupSubTitleNoti object:nil];
+    
+    
     
 }
 
+-(void)changeGroupNameNoti:(NSNotification*)note
+{
+    [self getGroupList];
+    
+}
 - (void)getGroupList
+{
+    
+    
+    if (_isNearGroup) {
+        
+        
+        [self getNearGroups];
+        
+    }
+    else
+    {
+        [self getMyGroups];
+        
+    }
+   
+    
+}
+
+-(void)getNearGroups
+{
+    [BmobHelper getNearGroupList:^(NSArray *array) {
+       
+        if (array) {
+            
+            [_groupListArray removeAllObjects];
+            
+            [_groupListArray addObjectsFromArray:array];
+            
+            
+            [self.tableView reloadData];
+        }
+        
+        
+    }];
+}
+
+-(void)getMyGroups
 {
     [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsListWithCompletion:^(NSArray *groups, EMError *error) {
         
         if (!error && groups) {
             
-            [_groupListArray addObjectsFromArray:groups];
+            [BmobHelper getGroupListInfo:groups results:^(NSArray *array) {
+                
+                if (array) {
+                    
+                    [_groupListArray removeAllObjects];
+                    
+                    [_groupListArray addObjectsFromArray:array];
+                    
+                    
+                    [self.tableView reloadData];
+                    
+                    
+                }
+            }];
             
-            [self.tableView reloadData];
+            
             
             
         }
     } onQueue:nil];
-    
 }
 
 
@@ -87,17 +152,37 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
+         GroupChatModel *onegroup  = [_groupListArray objectAtIndex:indexPath.section];
         
         UIImageView *headImageView = (UIImageView*)[cell viewWithTag:100];
         
         UILabel *nameLabel = (UILabel*)[cell viewWithTag:101];
+        UILabel *distanceLabel = (UILabel*)[cell viewWithTag:102];
         
-        EMGroup *onegroup  = [_groupListArray objectAtIndex:indexPath.section];
+        if (_isNearGroup) {
+            
+            distanceLabel.hidden = NO;
+            
+//            BmobGeoPoint *location = [onegroup.location ]
+//            CGFloat latitude = [[onegroup.location :@"latitude"]floatValue];
+            
+            
+            
+            distanceLabel.text = [CommonMethods distanceStringWithLatitude:onegroup.location.latitude longitude:onegroup.location.longitude];
+            
+            
+        }
+        else
+        {
+            distanceLabel.hidden = YES;
+            
+        }
+       
         
         
 //        [headImageView sd_setImageWithURL:[NSURL URLWithString:oneModel.headImageURL] placeholderImage:kDefaultHeadImage];
         
-        nameLabel.text = onegroup.groupSubject;
+        nameLabel.text = onegroup.subTitle;
         
 //        if (!oneModel.nickName) {
 //            
@@ -130,14 +215,25 @@
     
     
   
-    EMGroup *selectedGroup = [_groupListArray objectAtIndex:indexPath.section];
+    GroupChatModel *selectedGroup = [_groupListArray objectAtIndex:indexPath.section];
     
+    EMError *error = nil;
+    
+    EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:selectedGroup.groupId error:&error];
+    
+    if (error) {
+        
+        [CommonMethods showDefaultErrorString:error.description];
+        
+        return;
+        
+    }
     
     ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:selectedGroup.groupId isGroup:YES];
-    chatController.title = selectedGroup.groupSubject;
+    chatController.title = selectedGroup.subTitle;
     
     chatController.hidesBottomBarWhenPushed = YES;
-    chatController.group = selectedGroup;
+    chatController.group = group ;
     [self.navigationController pushViewController:chatController animated:YES];
     
    
@@ -151,6 +247,12 @@
 }
 
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter ]removeObserver:self name:kChangeGroupSubTitleNoti object:nil];
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
