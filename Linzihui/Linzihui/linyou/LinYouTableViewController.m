@@ -13,6 +13,7 @@
 #import "ChatViewController.h"
 #import "GZViewController.h"
 #import "MygroupListTVC.h"
+#import "TongXunLuTVC.h"
 
 
 
@@ -283,11 +284,15 @@ static NSString *CellId  = @"CellId";
     switch (indexPath.section) {
         case 0:
         {
-            AddNewFriendsTVC *_addNewFriendsTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddNewFriendsTVC"];
+            TongXunLuTVC *_tonxunLuTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TongXunLuTVC"];
             
-            _addNewFriendsTVC.hidesBottomBarWhenPushed = YES;
+            _tonxunLuTVC.hidesBottomBarWhenPushed = YES;
             
-            [self.navigationController pushViewController:_addNewFriendsTVC animated:YES];
+            [self.navigationController pushViewController:_tonxunLuTVC animated:YES];
+            
+            
+            
+      
             
             
             

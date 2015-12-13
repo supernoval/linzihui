@@ -46,7 +46,7 @@ static NSString *ContactsCell = @"ContactsCell";
 {
     _addressBook = ABAddressBookCreate();
 
-    
+     [MyProgressHUD showProgress];
     
 //    [CNContactStore authorizationStatusForEntityType:]
 //    if (ABAddressBookGetAuthorizationStatus() != kABAuthorizationStatusAuthorized)
@@ -143,7 +143,12 @@ static NSString *ContactsCell = @"ContactsCell";
         
     }
     
+  
+    
     [BmobHelper tongxunluMatch:mucontacts results:^(NSArray *array) {
+        
+        [MyProgressHUD dismiss];
+        
         
         if (array) {
             

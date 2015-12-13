@@ -480,14 +480,19 @@
     
     BmobQuery  *query = [BmobQuery queryForUser];
     
+    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    
     for (EMBuddy *buddy in buddyList) {
         
         //环信的 username 和  bmob 一样，注册的时候设置的
-        [query whereKey:@"username" equalTo:buddy.username ];
+        
+        [muArray addObject:buddy.username];
         
        
         
     }
+    
+    [query whereKey:@"username" containedIn:muArray];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
