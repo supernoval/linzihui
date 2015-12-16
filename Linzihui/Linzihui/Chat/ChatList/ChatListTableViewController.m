@@ -205,28 +205,51 @@ static NSString *headCellID = @"CellID";
     
     
     ChatListCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    
+    if (_conversations.count > indexPath.section -3) {
+        
+        
+   
     MyConversation *model = [_conversations objectAtIndex:indexPath.section - 3];
     
-    if (model.nickName) {
+        if (model.messageType == 0 || model.messageType == 1) {
+            
+            if (model.nickName) {
+                
+                cell.titleLabel.text = model.nickName;
+            }
+            else
+            {
+                cell.titleLabel.text = model.converstion.chatter;
+            }
+            
+            
+            
+            cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
+            
+            cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
+            cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+            
+              [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
+            
+        }
         
-        cell.titleLabel.text = model.nickName;
-    }
-    else
-    {
-       cell.titleLabel.text = model.converstion.chatter; 
-    }
+        else
+        {
+            
+            NSArray *photoURL = [model.huodong objectForKey:@"photoURL"];
+            
+            [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[photoURL firstObject]] placeholderImage:kDefaultHeadImage];
+            
+            cell.titleLabel.text = model.title;
+            
+            cell.timeLabel.text = model.message;
+            cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+          
+        }
+
     
-    
-    
-    cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
-    
-    
-    cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
-    cell.timeLabel.adjustsFontSizeToFitWidth = YES;
-    
-    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
-    
+  
+     }
     
     
     return cell;
@@ -399,58 +422,120 @@ static NSString *headCellID = @"CellID";
  
     NSArray *conversations = [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:YES];
     
-    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    NSMutableArray *personChats = [[NSMutableArray alloc]init];
+    NSMutableArray *groupChats = [[NSMutableArray alloc]init];
     
     for (EMConversation *convert in conversations) {
         
-        if (convert.conversationType != eConversationTypeGroupChat) {
+        if (convert.conversationType == eConversationTypeChat) {
             
             
-            [muArray addObject:convert];
+            [personChats addObject:convert];
+            
+        }
+        else
+        {
+            [groupChats addObject:convert];
             
         }
         
     }
     
-
-    
     
     // get conversations nickname headImage
-    [BmobHelper getConversionsNickNameHeadeImageURL:conversations results:^(NSArray *array) {
-       
+    [_conversations removeAllObjects];
+    
+    [BmobHelper getGroupChatInfo:groupChats results:^(NSArray *array) {
+        
         if (array) {
             
-            NSArray* sorte = [array sortedArrayUsingComparator:
-                              ^(MyConversation *obj1, MyConversation* obj2){
-                                  
-                                  EMMessage *message1 = [obj1.converstion latestMessage];
-                                  EMMessage *message2 = [obj2.converstion latestMessage];
-                                  if(message1.timestamp > message2.timestamp) {
-                                      return(NSComparisonResult)NSOrderedAscending;
-                                  }else {
-                                      return(NSComparisonResult)NSOrderedDescending;
-                                  }
-                              }];
+            
+            [_conversations addObjectsFromArray:array];
             
             
-            NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:sorte];
-            
-            _conversations = muArray;
-            
-            [self.tableView reloadData];
+            [self getPersonchatHeaderImages:personChats];
             
             
         }
-       
-        
-        
+        else
+        {
+            [self getPersonchatHeaderImages:personChats];
+            
+        }
     }];
+    
+    
+
     
  
 }
 
+-(void)getPersonchatHeaderImages:(NSArray*)personChats
+{
+    // get conversations nickname headImage
+    [BmobHelper getConversionsNickNameHeadeImageURL:personChats results:^(NSArray *array) {
+        
+        if (array) {
+            
+             [_conversations addObjectsFromArray:array];
+            
+        }
+        else
+        {
+            
+        }
+        
+        NSArray* sorte = [_conversations sortedArrayUsingComparator:
+                          ^(MyConversation *obj1, MyConversation* obj2){
+                              
+                              EMMessage *message1 = [obj1.converstion latestMessage];
+                              EMMessage *message2 = [obj2.converstion latestMessage];
+                              if(message1.timestamp > message2.timestamp) {
+                                  return(NSComparisonResult)NSOrderedAscending;
+                              }else {
+                                  return(NSComparisonResult)NSOrderedDescending;
+                              }
+                          }];
+        
+        
+        NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:sorte];
+        
+        _conversations = muArray;
+        
+        
+        [self getHuoDongMessages];
+        
+        
+        
+        
+        
+    }];
+}
 
-
+-(void)getHuoDongMessages{
+    
+    NSString *username = [BmobUser getCurrentUser].username;
+    
+    if (username) {
+        
+        [BmobHelper getHuoDongMessageswithusername:username index:0 results:^(NSArray *array) {
+           
+            if (array) {
+                
+                [_conversations addObjectsFromArray:array];
+                
+            }
+            
+            
+            [self.tableView reloadData];
+            
+            
+            
+        }];
+    }
+    
+    
+}
 
 
 

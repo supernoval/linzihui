@@ -69,6 +69,14 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 +(void)tongxunluMatch:(NSArray*)contacts results:(void(^)(NSArray*array))result;
 
 
+#pragma mark - 获取活动信息
++(void)getHuoDongMessageswithusername:(NSString*)username index:(NSInteger)index results:(void(^)(NSArray*array))result;
+
+
+#pragma mark - 创建活动消息
++(void)createHuodongMessage:(BmobObject*)huodong message:(NSString*)message status:(NSInteger)status username:(NSString*)username title:(NSString*)title result:(void(^)(BOOL success))result;
+
+
 
 
 @end

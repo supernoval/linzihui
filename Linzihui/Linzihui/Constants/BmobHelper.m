@@ -576,7 +576,7 @@
                         myConModel.nickName = model.nickName;
                         myConModel.headImageURL = model.headImageURL;
                         myConModel.converstion = _myConver;
-                        
+                        myConModel.messageType = 0;
                         [muArray addObject:myConModel];
                         
                         
@@ -700,7 +700,7 @@
                         [_myConver setValuesForKeysWithDictionary:dataDict];
                         
                         _myConver.converstion = _temCon;
-                        
+                        _myConver.messageType = 1;
                         
                         [muArray addObject:_myConver];
                         
@@ -1041,5 +1041,106 @@
     });
     
 
+}
+
+
+#pragma mark - 获取活动信息
++(void)getHuoDongMessageswithusername:(NSString*)username index:(NSInteger)index results:(void(^)(NSArray*array))result
+{
+    
+    NSInteger limit = 10;
+    
+    BmobQuery *_query = [BmobQuery queryWithClassName:kHuoDongMessagesTableName];
+    
+    
+    _query.skip = limit *index;
+    
+    _query.limit = limit;
+    
+    
+    [_query whereKey:@"username" equalTo:username];
+    
+    [_query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        
+        if (!error && array) {
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            
+            
+            for (BmobObject *ob in array) {
+                
+                
+                NSDictionary *dataDict = [ob valueForKey:kBmobDataDic];
+                
+                
+                MyConversation *_convert = [[MyConversation alloc]init];
+                [_convert setValuesForKeysWithDictionary:dataDict];
+                
+                _convert.messageType = 2;
+                
+                
+                [muArray addObject:_convert];
+                
+                
+                
+            }
+            
+            
+            if (result) {
+                
+                result(muArray);
+            }
+        }
+        else
+        {
+            NSLog(@"error:%@",error);
+            
+            result(nil);
+            
+        }
+        
+        
+    }];
+    
+    
+    
+}
+
+#pragma mark - 创建活动消息
++(void)createHuodongMessage:(BmobObject*)huodong message:(NSString*)message status:(NSInteger)status username:(NSString*)username title:(NSString*)title result:(void(^)(BOOL success))result
+{
+    BmobObject *ob = [BmobObject objectWithClassName:kHuoDongTableName];
+    
+    [ob setObject:huodong forKey:@"huodong"];
+    
+    [ob setObject:message forKey:@"message"];
+    
+    [ob setObject:@(status) forKey:@"status"];
+    
+    [ob setObject:username forKey:@"username"];
+    
+    [ob setObject:title forKey:@"title"];
+    
+    
+    [ob saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+       
+        if (isSuccessful) {
+            
+            if (result) {
+                
+                result(YES);
+            }
+        }
+        else
+        {
+            if (result) {
+                
+                result(NO);
+            }
+        }
+    }];
+    
 }
 @end

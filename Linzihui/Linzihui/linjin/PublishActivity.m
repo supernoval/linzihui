@@ -308,8 +308,6 @@ static NSString *textViewCell  =@"textViewCell";
     }
     
     
-
-    
     
     
     
@@ -381,6 +379,7 @@ static NSString *textViewCell  =@"textViewCell";
             
             [MyProgressHUD showError:@"发布成功"];
             
+            
             [self.navigationController popViewControllerAnimated:YES];
             
             
@@ -393,6 +392,21 @@ static NSString *textViewCell  =@"textViewCell";
         }
     }];
 }
+
+
+
+-(void)createMessageWithOB:(BmobObject*)ob
+{
+ 
+    [BmobHelper createHuodongMessage:ob message:@"" status:1 username:@"" title:@"" result:^(BOOL success) {
+       
+        
+        
+        
+        
+    }];
+}
+
 -(void)hideKeyboard
 {
     [self.view endEditing:YES];

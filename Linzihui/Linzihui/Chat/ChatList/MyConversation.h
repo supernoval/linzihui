@@ -29,6 +29,14 @@
 @property (nonatomic,strong ) NSDate *updatedAt;
 @property (nonatomic,strong)  NSString *objectId;
 
+@property (nonatomic,assign) NSInteger messageType; // 0 单聊  1群聊   2活动消息
+
+//群消息
+@property (nonatomic,strong) NSString *message;
+@property (nonatomic,strong) NSString *title;
+@property (nonatomic,strong) BmobObject *huodong;
+@property (nonatomic,assign) NSInteger status;
+
 
 
 @end
