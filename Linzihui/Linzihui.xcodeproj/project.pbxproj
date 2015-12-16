@@ -4298,7 +4298,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SMS_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/zhuhaikun/Documents/My Projects/linzihui_git/Linzihui/Linzihui/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Linzihui/PrefixHeader.pch";
 				INFOPLIST_FILE = Linzihui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4315,7 +4315,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25aa2349-5e76-49d2-a8c3-bba436af0d85";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -4333,7 +4333,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SMS_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/zhuhaikun/Documents/My Projects/linzihui_git/Linzihui/Linzihui/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Linzihui/PrefixHeader.pch";
 				INFOPLIST_FILE = Linzihui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
