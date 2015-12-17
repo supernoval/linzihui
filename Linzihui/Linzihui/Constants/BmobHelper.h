@@ -13,6 +13,19 @@
 #import "NSUserDefaultKeys.h"
 #import "EMHelper.h"
 
+
+
+typedef NS_ENUM(NSInteger,MessageStatus)
+{
+    MessageStatusPublish = 0,
+    MessageStatusAttend ,
+    MessageStatusStart,
+    MessageStatusArrived,
+    MessageStatusEnd,
+    
+};
+
+
 typedef void (^successBlock)(BOOL isSuccess);
 typedef void (^getObjectModelBlock)(BOOL success,id object);
 

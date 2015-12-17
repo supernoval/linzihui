@@ -380,7 +380,8 @@ static NSString *textViewCell  =@"textViewCell";
             [MyProgressHUD showError:@"发布成功"];
             
             
-            [self.navigationController popViewControllerAnimated:YES];
+            [self createMessageWithOB:_huodongOB];
+            
             
             
         }
@@ -397,10 +398,43 @@ static NSString *textViewCell  =@"textViewCell";
 
 -(void)createMessageWithOB:(BmobObject*)ob
 {
- 
-    [BmobHelper createHuodongMessage:ob message:@"" status:1 username:@"" title:@"" result:^(BOOL success) {
-       
+    
+    NSString *message = @"您参加了该活动";
+    NSString *username = [BmobUser getCurrentUser].username;
+    NSString *title = nil;
+    
+    
+    
+    for (int i = 0 ; i < _titlesArray.count; i++) {
         
+        NSDictionary *dict = [_titlesArray objectAtIndex:i];
+        
+   
+        NSString *key = [dict objectForKey:@"key"];
+        
+        id   content =  [dict objectForKey:@"content"];
+        
+        if ([key isEqualToString:@"title"]) {
+            
+            title = content;
+            
+        }
+        
+    }
+ 
+    [BmobHelper createHuodongMessage:ob message:message status:MessageStatusPublish username:username title:title result:^(BOOL success) {
+       
+        if (success) {
+            
+            NSLog(@"messageCreat success");
+            
+        }
+        else
+        {
+            NSLog(@"message create failed");
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
         
         
         
