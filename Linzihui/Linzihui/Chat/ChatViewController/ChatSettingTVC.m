@@ -11,6 +11,7 @@
 #import "GroupMemberTVC.h"
 #import "InviteNewGroupMember.h"
 #import "EditGroupNameVC.h"
+#import "PublishActivity.h"
 
 
 @interface ChatSettingTVC ()
@@ -32,7 +33,7 @@
     self.footerView.frame = CGRectMake(0, 0, ScreenWidth, 100);
     
     
-    _titles = @[@"群组成员",@"邀请好友",@"群聊名称",@"群二维码"];
+    _titles = @[@"群组成员",@"邀请好友",@"群聊名称",@"群二维码",@"发布群活动"];
     
     
     if ([_group.owner isEqualToString:[BmobHelper getCurrentUserModel].username]) {
@@ -158,7 +159,13 @@
             
         }
             break;
+        case 4:
+        {
             
+        }
+            break;
+        
+    
             
         default:
             break;

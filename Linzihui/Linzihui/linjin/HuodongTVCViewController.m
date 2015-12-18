@@ -11,6 +11,8 @@
 #import "HuoDongCell.h"
 #import "PhotoCell.h"
 #import "PersonCell.h"
+#import "HuoDongDetailTVC.h"
+
 
 
 static NSString *huodongCellID = @"HuoDongCell";
@@ -394,6 +396,8 @@ static NSString *headerCellID = @"headerCell";
             
             
         }
+        
+        
         if ([self hadAttend:model]) {
             
             _huodongCell.attendButton.enabled = NO;
@@ -529,7 +533,19 @@ static NSString *headerCellID = @"headerCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    if (indexPath.row == 0) {
+        
+         HuoDongModel *model = [_dataSource objectAtIndex:indexPath.section];
+        
+        HuoDongDetailTVC *_detail = [self.storyboard instantiateViewControllerWithIdentifier:@"HuoDongDetailTVC"];
+        
+        _detail.huodong = model;
+        
+        
+        [self.navigationController pushViewController:_detail animated:YES];
+        
+    }
+   
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

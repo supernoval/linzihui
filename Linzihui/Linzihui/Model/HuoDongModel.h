@@ -32,6 +32,9 @@
 @property (nonatomic,strong ) NSString *feeNum;
 @property (nonatomic,strong)  NSDate *startTime;
 @property (nonatomic,strong ) NSDate *endTime;
+@property (nonatomic)         NSInteger status;
+@property (nonatomic,strong)  NSString *groupId;
+
 
 
 

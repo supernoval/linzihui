@@ -364,6 +364,11 @@ static NSString *textViewCell  =@"textViewCell";
     
     [_huodongOB setObject:[BmobUser getCurrentUser] forKey:@"starter"];
     
+    //如果是群发起来的加 groupId
+    if (_groupId.length > 0) {
+        
+//        [_huodongOB set]
+    }
     if (imageURLs.count > 0) {
         
         [_huodongOB setObject:imageURLs forKey:@"photoURL"];

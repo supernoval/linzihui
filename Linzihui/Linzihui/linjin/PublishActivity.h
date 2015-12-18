@@ -10,6 +10,7 @@
 
 @interface PublishActivity : UITableViewController
 
+@property (nonatomic) NSString *groupId;
 
 @property (weak, nonatomic) IBOutlet UIView *photoFooterView;
 
