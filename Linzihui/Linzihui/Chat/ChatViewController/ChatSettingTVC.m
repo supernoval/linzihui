@@ -161,6 +161,13 @@
             break;
         case 4:
         {
+            PublishActivity *_publish = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishActivity"];
+            
+            _publish.groupId = _group.groupId;
+            
+            
+            [self.navigationController pushViewController:_publish animated:YES];
+            
             
         }
             break;

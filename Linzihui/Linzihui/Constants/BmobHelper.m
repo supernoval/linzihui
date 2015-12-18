@@ -1111,7 +1111,7 @@
 #pragma mark - 创建活动消息
 +(void)createHuodongMessage:(BmobObject*)huodong message:(NSString*)message status:(NSInteger)status username:(NSString*)username title:(NSString*)title result:(void(^)(BOOL success))result
 {
-    BmobObject *ob = [BmobObject objectWithClassName:kHuoDongTableName];
+    BmobObject *ob = [BmobObject objectWithClassName:kHuoDongMessagesTableName];
     
     [ob setObject:huodong forKey:@"huodong"];
     

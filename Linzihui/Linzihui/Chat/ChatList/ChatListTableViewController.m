@@ -242,7 +242,7 @@ static NSString *headCellID = @"CellID";
             
             cell.titleLabel.text = model.title;
             
-            cell.timeLabel.text = model.message;
+            cell.lastestChatlabel.text = model.message;
             cell.timeLabel.adjustsFontSizeToFitWidth = YES;
           
         }
@@ -316,23 +316,30 @@ static NSString *headCellID = @"CellID";
         
     }
     
+    
+    
     MyConversation *model = [_conversations objectAtIndex:indexPath.section - 3];
     
-    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
-    if (model.nickName) {
+    
+    if (model.messageType !=3) {
         
-//        chatVC.title =model.nickName;
-        chatVC.subTitle = model.nickName;
+        ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
+        if (model.nickName) {
+            
+            //        chatVC.title =model.nickName;
+            chatVC.subTitle = model.nickName;
+            
+        }else
+        {
+            //        chatVC.title = model.converstion.chatter;
+            chatVC.subTitle = model.nickName;
+        }
         
-    }else
-    {
-//        chatVC.title = model.converstion.chatter;
-         chatVC.subTitle = model.nickName;
+        chatVC.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:chatVC animated:YES];
     }
-    
-    chatVC.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:chatVC animated:YES];
+ 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 

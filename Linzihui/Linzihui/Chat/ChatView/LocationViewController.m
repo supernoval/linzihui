@@ -22,9 +22,14 @@ static LocationViewController *defaultLocation = nil;
 {
     MKMapView *_mapView;
     MKPointAnnotation *_annotation;
+    MKPinAnnotationView *_pinannotation;
+    
     CLLocationManager *_locationManager;
     CLLocationCoordinate2D _currentLocationCoordinate;
     BOOL _isSendLocation;
+    
+    BOOL hadLocated;
+    
 }
 
 @property (strong, nonatomic) NSString *addressString;
@@ -101,6 +106,9 @@ static LocationViewController *defaultLocation = nil;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    hadLocated = NO;
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -124,14 +132,27 @@ static LocationViewController *defaultLocation = nil;
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    
+    if (!hadLocated) {
+        
+        [self removeToLocation:userLocation.coordinate];
+        
+        _mapView.showsUserLocation = YES;//显示当前位置
+        
+        hadLocated = YES;
+    }
+   
+    
+    
     __weak typeof(self) weakSelf = self;
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:userLocation.location completionHandler:^(NSArray *array, NSError *error) {
-        if (!error && array.count > 0) {
+        if (!error && array.count > 0 ) {
             CLPlacemark *placemark = [array objectAtIndex:0];
             weakSelf.addressString = placemark.name;
             
-            [self removeToLocation:userLocation.coordinate];
+          
+          
         }
     }];
 }
@@ -231,10 +252,51 @@ static LocationViewController *defaultLocation = nil;
 - (void)sendLocation
 {
     if (_delegate && [_delegate respondsToSelector:@selector(sendLocationLatitude:longitude:andAddress:)]) {
+        
+        
+        
         [_delegate sendLocationLatitude:_currentLocationCoordinate.latitude longitude:_currentLocationCoordinate.longitude andAddress:_addressString];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if (!_pinannotation) {
+        
+        _pinannotation = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"anno"];
+        
+        _pinannotation.draggable = NO;
+        
+        
+    }
+    
+    
+    
+    return _pinannotation;
+    
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
+{
+ 
+}
+
+-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    CLLocationCoordinate2D centerCoord = mapView.centerCoordinate;
+    
+    _annotation.coordinate = centerCoord;
+    
+    _currentLocationCoordinate = centerCoord;
+    
+    [_mapView removeAnnotation:_annotation];
+    
+    [_mapView addAnnotation:_annotation];
+    
+    
+    
 }
 
 @end

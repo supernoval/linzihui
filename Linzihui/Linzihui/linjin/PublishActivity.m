@@ -44,6 +44,8 @@ static NSString *textViewCell  =@"textViewCell";
     
     BmobObject *_huodongOB;
     
+   
+    
     
     
 }
@@ -367,7 +369,8 @@ static NSString *textViewCell  =@"textViewCell";
     //如果是群发起来的加 groupId
     if (_groupId.length > 0) {
         
-//        [_huodongOB set]
+        [_huodongOB setObject:_groupId forKey:@"groupId"];
+        
     }
     if (imageURLs.count > 0) {
         
