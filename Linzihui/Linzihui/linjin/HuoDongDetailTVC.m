@@ -8,6 +8,9 @@
 
 #import "HuoDongDetailTVC.h"
 #import "PhotoCell.h"
+#import "EaseMob.h"
+#import "EMHelper.h"
+#import "ChatViewController.h"
 
 @interface HuoDongDetailTVC ()
 
@@ -110,7 +113,7 @@
         
         [_attendButton setTitle:@"报名参加" forState:UIControlStateNormal];
         
-        [_attendButton addTarget:self action:@selector(attendHuoDong) forControlEvents:UIControlEventTouchUpInside];
+      
         
         
     }
@@ -252,9 +255,46 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
--(void)attendHuoDong
+
+
+
+-(BOOL)hadAttend:(HuoDongModel*)model
 {
+    BOOL hadAttend = NO;
+    NSArray *dataArray = model.AttendUsers;
     
+    BmobUser *currentUser = [BmobUser getCurrentUser];
+    
+    
+    for (NSDictionary *dict in dataArray) {
+        
+        AttendUserModel *_attendmodel = [[AttendUserModel alloc]init];
+        
+        [_attendmodel setValuesForKeysWithDictionary:dict];
+        
+        
+        if ([currentUser.username isEqualToString:_attendmodel.userName]) {
+            
+            hadAttend = YES;
+            
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
+    return hadAttend;
+    
+}
+
+
+
+
+
+- (IBAction)attendAction:(id)sender {
     
     
     BmobObject *_ob  = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
@@ -327,48 +367,55 @@
     }];
     
     
-    
 }
 
 
--(BOOL)hadAttend:(HuoDongModel*)model
-{
-    BOOL hadAttend = NO;
-    NSArray *dataArray = model.AttendUsers;
-    
-    BmobUser *currentUser = [BmobUser getCurrentUser];
+#pragma mark -加群讨论
+
+- (IBAction)checkAction:(id)sender {
     
     
-    for (NSDictionary *dict in dataArray) {
-        
-        AttendUserModel *_attendmodel = [[AttendUserModel alloc]init];
-        
-        [_attendmodel setValuesForKeysWithDictionary:dict];
-        
-        
-        if ([currentUser.username isEqualToString:_attendmodel.userName]) {
+    [EMHelper joinGroup:_huodong.groupId username:nil result:^(BOOL success, EMGroup *group) {
+       
+        if (success) {
             
-            hadAttend = YES;
+            
+           [BmobHelper getGroupInfo:group.groupId result:^(BOOL sccess, GroupChatModel *model) {
+              
+               if (success) {
+                   
+                   
+             
+            ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:group.groupId isGroup:YES];
+            if (model.subTitle) {
+               
+                chatVC.title =model.subTitle;
+//                chatVC.subTitle = model.nickName;
+            }else
+            {
+                chatVC.title = model.groupId;
+                
+//                    chatVC.subTitle = model.nickName;
+                
+                }
+               
+                chatVC.group = group;
+                           
+                chatVC.hidesBottomBarWhenPushed = YES;
+                           
+                [self.navigationController pushViewController:chatVC animated:YES];
+               
+                 }
+           }];
+            
+
             
             
         }
-    }
+    }];
     
     
     
     
-    
-    
-    return hadAttend;
-    
-}
-
-
-
-
-
-- (IBAction)attendAction:(id)sender {
-}
-- (IBAction)checkAction:(id)sender {
 }
 @end

@@ -76,6 +76,10 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 获取邻近群组
 +(void)getNearGroupList:(void(^)(NSArray*array))result;
 
+#pragma mark - 获取群信息
++(void)getGroupInfo:(NSString*)groupId result:(void(^)(BOOL sccess,GroupChatModel*model))result;
+
+
                                                         
 
 #pragma mark - 通讯录匹配
@@ -88,6 +92,11 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 
 #pragma mark - 创建活动消息
 +(void)createHuodongMessage:(BmobObject*)huodong message:(NSString*)message status:(NSInteger)status username:(NSString*)username title:(NSString*)title result:(void(^)(BOOL success))result;
+
+#pragma mark - 生成群聊头像
++(void)getGroupHeadImageView:(EMGroup*)group imageView:(UIImageView*)imageview result:(void(^)(BOOL success,UIImageView *headImageView))result;
+
+
 
 
 

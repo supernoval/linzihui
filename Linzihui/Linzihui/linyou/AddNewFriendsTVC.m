@@ -46,7 +46,7 @@ static NSString * RequestCell = @"RequestCell";
     
     
     
-    [self getLocateInviteData];
+//    [self getLocateInviteData];
     
 }
 
@@ -329,7 +329,7 @@ static NSString * RequestCell = @"RequestCell";
                     
                     
                     
-                }
+                 }
                 
                 
                 
@@ -364,6 +364,7 @@ static NSString * RequestCell = @"RequestCell";
         if (indexPath.row == 0) {
             
             TongXunLuTVC *_tonxunLuTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TongXunLuTVC"];
+            _tonxunLuTVC.isFromNewFriend = YES;
             
             [self.navigationController pushViewController:_tonxunLuTVC animated:YES];
         }

@@ -235,4 +235,30 @@ static EMHelper *_helper;
     
 }
 
+#pragma mark - 添加群
++(void)joinGroup:(NSString*)groupId username:(NSString*)username result:(void(^)(BOOL success,EMGroup*group))result
+{
+    [[EaseMob sharedInstance].chatManager asyncJoinPublicGroup:groupId completion:^(EMGroup *group, EMError *error) {
+        
+        
+        
+        if (!error && group ) {
+            
+            if (result) {
+                
+                result(YES,group);
+                
+                
+            }
+        }
+        else
+        {
+            result(NO,nil);
+            
+        }
+        
+    } onQueue:nil];
+}
+
+
 @end

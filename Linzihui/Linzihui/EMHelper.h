@@ -38,7 +38,8 @@ typedef enum{
 #pragma  mark - 邀请加入群
 + (void)inviteBuddyJoinGroup;
 
-
+#pragma mark - 添加群
++(void)joinGroup:(NSString*)groupId username:(NSString*)username result:(void(^)(BOOL success,EMGroup*group))result;
 
 
 

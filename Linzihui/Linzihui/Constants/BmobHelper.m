@@ -8,6 +8,8 @@
 
 #import "BmobHelper.h"
 #import "MyConversation.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 @implementation BmobHelper
 
 #pragma mark - 获取当前用户 UserModel
@@ -1053,6 +1055,8 @@
     BmobQuery *_query = [BmobQuery queryWithClassName:kHuoDongMessagesTableName];
     
     
+    [_query includeKey:@"huodong"];
+    
     _query.skip = limit *index;
     
     _query.limit = limit;
@@ -1143,4 +1147,111 @@
     }];
     
 }
+
+
+#pragma mark - 获取群信息
++(void)getGroupInfo:(NSString*)groupId result:(void(^)(BOOL sccess,GroupChatModel*model))result
+{
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:kChatGroupTableName];
+    
+    [query whereKey:@"groupId" equalTo:groupId];
+    
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        
+        if (!error && array.count > 0) {
+            
+            BmobObject *ob = [array firstObject];
+            
+            GroupChatModel *_model = [[GroupChatModel alloc]init];
+            
+            NSDictionary *dataDic = [ob valueForKey:kBmobDataDic];
+            
+            [_model setValuesForKeysWithDictionary:dataDic];
+            
+            
+            if (result) {
+                
+                result(YES,_model);
+            }
+            
+        }
+        else
+        {
+            if (result) {
+                
+                result(NO,nil);
+                
+            }
+        }
+        
+    }];
+}
+
+
+#pragma mark - 生成群聊头像
++(void)getGroupHeadImageView:(EMGroup*)group imageView:(UIImageView *)imageview result:(void (^)(BOOL sccessu, UIImageView *headImageView))result
+{
+    
+    NSArray *goupMembers = [group occupants];
+    
+   
+    if (goupMembers.count > 9) {
+        
+        NSMutableArray *muarray = [[NSMutableArray alloc]init];
+        
+        for (int i = 0; i < goupMembers.count ; i++) {
+            
+            if (i < 9) {
+                
+                NSString *username = [goupMembers objectAtIndex:i];
+                
+                [muarray addObject:username];
+            }
+        }
+        
+        goupMembers = muarray;
+        
+    }
+    
+    [BmobHelper getGroupMembersInfo:goupMembers results:^(NSArray *arary) {
+       
+        if (arary) {
+            
+            
+            if (imageview) {
+                
+                CGSize imageSize = imageview.frame.size;
+                
+                CGFloat temWith = imageSize.width /3;
+                
+                CGFloat temHeight = imageSize.height / 3;
+                
+                for (int i = 0; i < arary.count ; i ++) {
+                    
+                    NSInteger line = i/3;
+                    
+                    MyConversation *con = [arary objectAtIndex:i];
+                    
+                    UIImageView *temImageView = [[UIImageView alloc]initWithFrame:CGRectMake(temWith*i, line*temHeight, temWith, temHeight)];
+                    
+                    [temImageView sd_setImageWithURL:[NSURL URLWithString:con.headImageURL] placeholderImage:kDefaultHeadImage];
+                    
+                    
+                    [imageview addSubview:temImageView];
+                    
+                }
+                
+            }
+            
+            
+            
+        }
+    }];
+   
+    
+}
+
 @end

@@ -519,6 +519,8 @@ static NSString *headCellID = @"CellID";
     }];
 }
 
+
+#pragma mark - 获取活动消息
 -(void)getHuoDongMessages{
     
     NSString *username = [BmobUser getCurrentUser].username;

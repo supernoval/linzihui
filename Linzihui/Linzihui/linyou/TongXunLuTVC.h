@@ -15,4 +15,6 @@
 
 @interface TongXunLuTVC : BaseTableViewController<MFMessageComposeViewControllerDelegate,UINavigationControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 
+@property (nonatomic) BOOL isFromNewFriend;
+
 @end

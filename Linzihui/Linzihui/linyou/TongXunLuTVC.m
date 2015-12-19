@@ -22,6 +22,8 @@ static NSString *ContactsCell = @"ContactsCell";
 
 @property(nonatomic,assign) ABAddressBookRef addressBook;
 @property(nonatomic,strong)  NSMutableArray *abDataSource;
+@property (nonatomic,strong) NSMutableArray *inviteDataSource;
+
 
 @end
 
@@ -33,11 +35,35 @@ static NSString *ContactsCell = @"ContactsCell";
     self.title = @"通讯录好友";
     
     _abDataSource = [[NSMutableArray alloc]init];
+    _inviteDataSource = [[NSMutableArray alloc]init];
+    
     
     yaoqingma = [BmobUser getCurrentUser].objectId;
     
+    if (!_isFromNewFriend) {
+        
+         [self getLocateInviteData]; 
+    }
+  
+    
     [self requestAuthor];
     
+}
+
+#pragma mark -  获取好友邀请
+-(void)getLocateInviteData
+{
+    [_inviteDataSource removeAllObjects];
+    NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
+    NSString *loginName = [loginInfo objectForKey:kSDKUsername];
+    if(loginName && [loginName length] > 0)
+    {
+        
+        NSArray * applyArray = [[InvitationManager sharedInstance] applyEmtitiesWithloginUser:loginName];
+        [_inviteDataSource addObjectsFromArray:applyArray];
+        
+        [self.tableView reloadData];
+    }
 }
 
 
@@ -168,11 +194,21 @@ static NSString *ContactsCell = @"ContactsCell";
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (section == 0) {
+        
+        return _inviteDataSource.count;
+        
+    }
+    
+     return _abDataSource.count;
+    
+    
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _abDataSource.count;
+   
+    return 2;
+    
     
 }
 
@@ -192,7 +228,66 @@ static NSString *ContactsCell = @"ContactsCell";
         addButto.clipsToBounds = YES;
         addButto.layer.cornerRadius = 5;
         
-        ContactModel *oneContact = [_abDataSource objectAtIndex:indexPath.section];
+    
+        if (indexPath.section == 0) {
+            
+           
+            addButto.enabled = YES;
+            
+            [addButto setTitle:@"接受" forState:UIControlStateNormal];
+            addButto.backgroundColor = [UIColor redColor];
+            
+            [addButto setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [addButto addTarget:self action:@selector(acceptApply:) forControlEvents:UIControlEventTouchUpInside];
+            
+            ApplyEntity *entity = [_inviteDataSource objectAtIndex:indexPath.row ];
+            if (entity) {
+                
+                ApplyStyle applyStyle = [entity.style intValue];
+                if (applyStyle == ApplyStyleGroupInvitation) {
+                    
+                    
+                    
+                }
+                else if (applyStyle == ApplyStyleJoinGroup)
+                {
+                    
+                }
+                else if(applyStyle == ApplyStyleFriend){
+                    
+                    [imageView sd_setImageWithURL:[NSURL URLWithString:entity.avatar] placeholderImage:kDefaultHeadImage];
+                    
+                    if (entity.applicantNick) {
+                        
+                        nameLable.text = entity.applicantNick;
+                    }
+                    else
+                    {
+                        nameLable.text = entity.applicantUsername;
+                        
+                    }
+                    
+                    if (entity.reason) {
+                        
+                        
+                    }
+                    else
+                    {
+                       
+                    }
+                    
+                    
+                    
+                 }
+            }
+            
+            
+        }
+        else
+        {
+            
+      
+        ContactModel *oneContact = [_abDataSource objectAtIndex:indexPath.row];
         
         [imageView sd_setImageWithURL:[NSURL URLWithString:oneContact.headImageURL] placeholderImage:kDefaultHeadImage];
         
@@ -239,6 +334,11 @@ static NSString *ContactsCell = @"ContactsCell";
       
         
         [addButto addTarget:self action:@selector(addAction:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            
+        }
+        
         
     });
     
@@ -332,6 +432,36 @@ static NSString *ContactsCell = @"ContactsCell";
         }
     }
 }
+
+#pragma mark - 接受好友请求
+-(void)acceptApply:(UIButton*)sender
+{
+    ApplyEntity *entity = [_inviteDataSource objectAtIndex:[sender superview].tag ];
+    
+    EMError *error ;
+    
+    if ([[EMHelper getHelper] accepBuddyRequestWithUserName:entity.applicantUsername error:&error])
+    {
+        if (error) {
+            
+            NSLog(@"acceppt error:%@",error);
+            
+            
+        }
+        
+        [self getLocateInviteData];
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    

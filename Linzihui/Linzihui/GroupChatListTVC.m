@@ -101,8 +101,14 @@ static NSString *cellID = @"GroupCellID";
         _titleLabel.text = model.subTitle;
         
         
-        [_imageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
+//        [_imageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
         
+          EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
+        
+        [BmobHelper getGroupHeadImageView:group imageView:_imageView result:^(BOOL success, UIImageView *headImageView) {
+           
+            
+        }];
         
         
         
