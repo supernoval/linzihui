@@ -26,12 +26,17 @@ typedef NS_ENUM(NSInteger,MessageStatus)
 };
 
 
+
+
 typedef void (^successBlock)(BOOL isSuccess);
 typedef void (^getObjectModelBlock)(BOOL success,id object);
 
 @interface BmobHelper : NSObject
 
 
+#pragma mark - 等级记录
++(void)saveLevelRecord;
++(void)getLevel:(void(^)(NSString*levelStr))result;
 
 #pragma mark - 获取当前用户 UserModel
 +(UserModel*)getCurrentUserModel;

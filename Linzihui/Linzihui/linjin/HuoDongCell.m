@@ -17,6 +17,11 @@
     self.attendButton.clipsToBounds = YES;
     self.attendButton.layer.cornerRadius = 5;
     
+    self.ImageView.clipsToBounds = YES;
+    
+    self.ImageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -119,6 +119,18 @@
             [ob setObject:@[] forKey:@"comment"];
             [ob setObject:currentUser.username forKey:@"username"];
             
+            //类型  0生活圈  1熟人圈
+            if (_isShuRenQuan) {
+                
+                [ob setObject:@1 forKey:@"type"];
+                
+            }
+            else
+            {
+                [ob setObject:@0 forKey:@"type"];
+            }
+       
+            
             CGFloat longitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];
             
             CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
@@ -180,6 +192,20 @@
         [ob setObject:text forKey:@"text"];
         [ob setObject:@[] forKey:@"comment"];
         [ob setObject:currentUser.username forKey:@"username"];
+        
+        
+        
+        //类型  0生活圈  1熟人圈
+        if (_isShuRenQuan) {
+            
+             [ob setObject:@1 forKey:@"type"];
+            
+        }
+        else
+        {
+            [ob setObject:@0 forKey:@"type"];
+        }
+       
         
         
         

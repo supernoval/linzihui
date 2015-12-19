@@ -66,7 +66,7 @@ static NSString *headerCellID = @"headerCell";
         
         [self addFooterRefresh];
         
-         [self getData];
+        
         
     }
 
@@ -80,6 +80,15 @@ static NSString *headerCellID = @"headerCell";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (_isFromYaoYiYao) {
+        
+        
+    }
+    else
+    {
+      [self.tableView.header beginRefreshing];
+    }
     
 }
 
@@ -178,76 +187,82 @@ static NSString *headerCellID = @"headerCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        HuoDongModel *model = [_dataSource objectAtIndex:indexPath.section];
+//        HuoDongModel *model = [_dataSource objectAtIndex:indexPath.section];
+//    if (indexPath.row == 0) {
+//        
+//        CGFloat totalHeight = 440 - 21*4;
+//        
+//        
+//        CGFloat xiangqingHeight = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+//        
+//        if (xiangqingHeight < 21) {
+//            
+//            xiangqingHeight = 21;
+//        }
+//      
+//        totalHeight += xiangqingHeight;
+//        
+//        
+//        CGFloat teDianHeight = [StringHeight heightWithText:model.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+//        if (teDianHeight < 21) {
+//            
+//            teDianHeight = 21;
+//            
+//        }
+//  
+//        totalHeight += teDianHeight;
+//        
+//        
+//        CGFloat liuchengHeight = [StringHeight heightWithText:model.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+//        
+//        if (liuchengHeight < 21) {
+//            
+//            liuchengHeight = 21;
+//        }
+//        totalHeight += liuchengHeight;
+//        
+//        
+//        CGFloat zhuyiHeight = [StringHeight heightWithText:model.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+//        
+//        if (zhuyiHeight < 21) {
+//            
+//            zhuyiHeight = 21;
+//            
+//        }
+//        
+//        totalHeight += zhuyiHeight;
+//        
+//        
+//        
+//        return totalHeight;
+//        
+//        
+//    }
+//    
+//    if (indexPath.row == 1) {
+//        
+//        CGFloat photoViewHeight = 0;
+//        
+//        NSArray *imgs = model.photoURL;
+//        
+//        long imageCount = imgs.count;
+//        int perRowImageCount = ((imageCount == 4) ? 2 : 3);
+//        CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
+//        int totalRowCount = ceil(imageCount / perRowImageCountF);
+//        
+//        photoViewHeight = 95 * totalRowCount;
+//        
+//        return photoViewHeight;
+//        
+//        
+//    }
+    
+    
     if (indexPath.row == 0) {
         
-        CGFloat totalHeight = 440 - 21*4;
-        
-        
-        CGFloat xiangqingHeight = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-        
-        if (xiangqingHeight < 21) {
-            
-            xiangqingHeight = 21;
-        }
-      
-        totalHeight += xiangqingHeight;
-        
-        
-        CGFloat teDianHeight = [StringHeight heightWithText:model.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-        if (teDianHeight < 21) {
-            
-            teDianHeight = 21;
-            
-        }
-  
-        totalHeight += teDianHeight;
-        
-        
-        CGFloat liuchengHeight = [StringHeight heightWithText:model.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-        
-        if (liuchengHeight < 21) {
-            
-            liuchengHeight = 21;
-        }
-        totalHeight += liuchengHeight;
-        
-        
-        CGFloat zhuyiHeight = [StringHeight heightWithText:model.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-        
-        if (zhuyiHeight < 21) {
-            
-            zhuyiHeight = 21;
-            
-        }
-        
-        totalHeight += zhuyiHeight;
-        
-        
-        
-        return totalHeight;
-        
+        return 245;
         
     }
-    
-    if (indexPath.row == 1) {
-        
-        CGFloat photoViewHeight = 0;
-        
-        NSArray *imgs = model.photoURL;
-        
-        long imageCount = imgs.count;
-        int perRowImageCount = ((imageCount == 4) ? 2 : 3);
-        CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
-        int totalRowCount = ceil(imageCount / perRowImageCountF);
-        
-        photoViewHeight = 95 * totalRowCount;
-        
-        return photoViewHeight;
-        
-        
-    }
-    
     if (indexPath.row == 2) {
         
         return 40;
@@ -280,16 +295,16 @@ static NSString *headerCellID = @"headerCell";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-   HuoDongModel *model = [_dataSource objectAtIndex:section];
+//   HuoDongModel *model = [_dataSource objectAtIndex:section];
+//    
+//    if (model.AttendUsers.count > 0) {
+//        
+//        return 3 + model.AttendUsers.count;
+//        
+//    }
+//    
     
-    if (model.AttendUsers.count > 0) {
-        
-        return 3 + model.AttendUsers.count;
-        
-    }
-    
-    
-    return 2 ;
+    return 1 ;
 }
 
 
@@ -318,125 +333,131 @@ static NSString *headerCellID = @"headerCell";
         
         _huodongCell.timeLabel.text =  [CommonMethods getYYYYMMddhhmmDateStr:model.startTime];
         
-        _huodongCell.feeLabel.text = model.feeNum;
+        _huodongCell.feeLabel.text =  [NSString stringWithFormat:@"%@元",model.feeNum];
         
-        _huodongCell.publisherLabel.text = model.realName;
+        NSString *photoURL = [model.photoURL firstObject];
+        
+        [_huodongCell.ImageView sd_setImageWithURL:[NSURL URLWithString:photoURL] placeholderImage:nil];
+        
+        
+        
+//        _huodongCell.publisherLabel.text = model.realName;
         
         _huodongCell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:[[model.location valueForKey:@"latitude"]floatValue] longitude:[[model.location valueForKey:@"longitude"]floatValue]];
         
         _huodongCell.attendNumLabel.text = [NSString stringWithFormat:@"%ld人已参加",(long)model.AttendUsers.count];
         
        
-        _huodongCell.xiangqingLabel.text = model.content;
+//        _huodongCell.xiangqingLabel.text = model.content;
         
-        CGFloat xiangqingHeight = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-        if (xiangqingHeight < 21) {
-            
-            xiangqingHeight = 21;
-        }
-        _huodongCell.xiangqingHeight.constant = xiangqingHeight;
+//        CGFloat xiangqingHeight = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+//        if (xiangqingHeight < 21) {
+//            
+//            xiangqingHeight = 21;
+//        }
+//        _huodongCell.xiangqingHeight.constant = xiangqingHeight;
+//        
+//        
+//        _huodongCell.teDianLabel.text = model.TeDian;
+//        
+//        CGFloat teDianHeight = [StringHeight heightWithText:model.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+//        if (teDianHeight < 21) {
+//            
+//            teDianHeight = 21;
+//            
+//        }
+//        _huodongCell.tedianHeight.constant = teDianHeight;
+//        
+//        
+//         _huodongCell.liuchengLabel.text = model.LiuCheng;
+//        
         
+//        CGFloat liuchengHeight = [StringHeight heightWithText:model.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 85];
         
-        _huodongCell.teDianLabel.text = model.TeDian;
-        
-        CGFloat teDianHeight = [StringHeight heightWithText:model.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-        if (teDianHeight < 21) {
-            
-            teDianHeight = 21;
-            
-        }
-        _huodongCell.tedianHeight.constant = teDianHeight;
-        
-        
-         _huodongCell.liuchengLabel.text = model.LiuCheng;
-        
-        
-        CGFloat liuchengHeight = [StringHeight heightWithText:model.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-        
-        if (liuchengHeight < 21) {
-            
-            liuchengHeight = 21;
-        }
-       
-        _huodongCell.liuchengHeight.constant = liuchengHeight;
-        
-        
-        _huodongCell.zhuyiLabel.text = model.ZhuYiShiXiang;
-        
-        CGFloat zhuyiHeight = [StringHeight heightWithText:model.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-        
-        _huodongCell.zhuyiHeight.constant = zhuyiHeight;
-        
-        
-        _huodongCell.jiezhiLabel.text = [CommonMethods getYYYYMMddhhmmDateStr: model.endRegistTime];
-        
-        
-        _huodongCell.contentView.tag = indexPath.section;
+//        if (liuchengHeight < 21) {
+//            
+//            liuchengHeight = 21;
+//        }
+//       
+//        _huodongCell.liuchengHeight.constant = liuchengHeight;
+//        
+//        
+//        _huodongCell.zhuyiLabel.text = model.ZhuYiShiXiang;
+//        
+//        CGFloat zhuyiHeight = [StringHeight heightWithText:model.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 85];
+//        
+//        _huodongCell.zhuyiHeight.constant = zhuyiHeight;
+//        
+//        
+//        _huodongCell.jiezhiLabel.text = [CommonMethods getYYYYMMddhhmmDateStr: model.endRegistTime];
         
         
-        
-        NSInteger status = [CommonMethods activityStatusWithStartTime:model.startTime endTime:model.endTime];
-        
-        if (status == 1) {
-            
-            
-            _huodongCell.statusLabel.text =[NSString stringWithFormat:@"离活动开始:%@",[CommonMethods timeStringFromNow:model.startTime]];
-            
-            
-            
-            
-        }
-        if (status == 2) {
-            
-            _huodongCell.statusLabel.text = @"活动进行中";
-        }
-        if (status == 3) {
-            
-            _huodongCell.statusLabel.text = @"活动已结束";
-            
-            
-        }
-        
-        
-        if ([self hadAttend:model]) {
-            
-            _huodongCell.attendButton.enabled = NO;
-            
-            [_huodongCell.attendButton setTitle:@"已报名" forState:UIControlStateNormal];
-            
-        }
-        
-        else
-        {
-          
-
-            
-            _huodongCell.attendButton.enabled = YES;
-            
-            [_huodongCell.attendButton setTitle:@"报名参加" forState:UIControlStateNormal];
-            
-            [_huodongCell.attendButton addTarget:self action:@selector(attendHuoDong:) forControlEvents:UIControlEventTouchUpInside];
-            
-            
-        }
-        
-       
-        NSInteger registStatus = [CommonMethods activityRegistStatus:model.endRegistTime];
-        
-        if (registStatus == 2) {
-            
-            _huodongCell.attendButton.enabled = NO;
-            
-            [_huodongCell.attendButton setTitle:@"报名已截止" forState:UIControlStateNormal];
-            
-            
-        }
-        else
-        {
-            _huodongCell.attendButton.enabled = YES;
-            
-        }
-        
+//        _huodongCell.contentView.tag = indexPath.section;
+//        
+//        
+//        
+//        NSInteger status = [CommonMethods activityStatusWithStartTime:model.startTime endTime:model.endTime];
+//        
+//        if (status == 1) {
+//            
+//            
+//            _huodongCell.statusLabel.text =[NSString stringWithFormat:@"离活动开始:%@",[CommonMethods timeStringFromNow:model.startTime]];
+//            
+//            
+//            
+//            
+//        }
+//        if (status == 2) {
+//            
+//            _huodongCell.statusLabel.text = @"活动进行中";
+//        }
+//        if (status == 3) {
+//            
+//            _huodongCell.statusLabel.text = @"活动已结束";
+//            
+//            
+//        }
+//        
+//        
+//        if ([self hadAttend:model]) {
+//            
+//            _huodongCell.attendButton.enabled = NO;
+//            
+//            [_huodongCell.attendButton setTitle:@"已报名" forState:UIControlStateNormal];
+//            
+//        }
+//        
+//        else
+//        {
+//          
+//
+//            
+//            _huodongCell.attendButton.enabled = YES;
+//            
+//            [_huodongCell.attendButton setTitle:@"报名参加" forState:UIControlStateNormal];
+//            
+//            [_huodongCell.attendButton addTarget:self action:@selector(attendHuoDong:) forControlEvents:UIControlEventTouchUpInside];
+//            
+//            
+//        }
+//        
+//       
+//        NSInteger registStatus = [CommonMethods activityRegistStatus:model.endRegistTime];
+//        
+//        if (registStatus == 2) {
+//            
+//            _huodongCell.attendButton.enabled = NO;
+//            
+//            [_huodongCell.attendButton setTitle:@"报名已截止" forState:UIControlStateNormal];
+//            
+//            
+//        }
+//        else
+//        {
+//            _huodongCell.attendButton.enabled = YES;
+//            
+//        }
+//        
         
         
         

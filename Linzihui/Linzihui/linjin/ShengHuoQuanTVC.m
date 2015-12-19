@@ -57,7 +57,7 @@ static NSString *commentCellID = @"CommentCell";
     _shurenUserNameArray = [[NSMutableArray alloc]init];
     
     
-    if (_isShuRenQuan) {
+    if (_isShuRenQuan == 1) {
         
         self.title = @"熟人圈";
         NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
@@ -75,9 +75,16 @@ static NSString *commentCellID = @"CommentCell";
         [_shurenUserNameArray addObject:[BmobUser getCurrentUser].username];
         
     }
-    else
+    else if (_isShuRenQuan == 0)
     {
           self.title = @"生活圈";
+    }
+    else if (_isShuRenQuan == 2)
+    {
+        self.title = @"相册";
+        
+        self.navigationItem.rightBarButtonItem = nil;
+        
     }
     
     self.tableView.backgroundColor = kBackgroundColor;
@@ -95,7 +102,7 @@ static NSString *commentCellID = @"CommentCell";
     [self addFooterRefresh];
     
     
-    [self.tableView.header beginRefreshing];
+  
     
     
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -108,6 +115,13 @@ static NSString *commentCellID = @"CommentCell";
     
     
  
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    [self.tableView.header beginRefreshing];
+    
 }
 
 -(void)initCommentView
@@ -220,20 +234,27 @@ static NSString *commentCellID = @"CommentCell";
     query.skip = page *limit;
     [query orderByDescending:@"createdAt"];
     
-
-    if (_isShuRenQuan) {
+    if (_isShuRenQuan ==1) {
         
-        [query whereKey:@"username" containedIn:_shurenUserNameArray];
+         [query whereKey:@"username" containedIn:_shurenUserNameArray];
         
-        
+        [query whereKey:@"type" equalTo:@1];
         
     }
-    else
+    else if(_isShuRenQuan == 0)
+    {
+        [query whereKey:@"type" equalTo:@0];
+        //    附近 3公里 条件限制
+        [query whereKey:@"location" nearGeoPoint:_currentPoint  withinKilometers:3.0];
+        
+    }
+    
+    else if (_isShuRenQuan == 2)
     {
         
-//    附近 3公里 条件限制
-    [query whereKey:@"location" nearGeoPoint:_currentPoint  withinKilometers:3.0];
-    
+        [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
+        
+        
     }
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
@@ -415,6 +436,10 @@ static NSString *commentCellID = @"CommentCell";
             
         ShenghuoQuanCell *cell = [tableView dequeueReusableCellWithIdentifier:contentCell];
         
+            
+            //时间
+        cell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:oneModel.createdAt];
+            
         [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[user objectForKey:@"headImageURL"]]
                               placeholderImage:kDefaultHeadImage];
         
@@ -656,6 +681,7 @@ static NSString *commentCellID = @"CommentCell";
     SendWXViewController *_sendVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SendWXViewController"];
     
     
+    _sendVC.isShuRenQuan = _isShuRenQuan;
     
     
     [self.navigationController pushViewController:_sendVC animated:YES];

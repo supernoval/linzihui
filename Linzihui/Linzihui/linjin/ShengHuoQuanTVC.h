@@ -13,7 +13,7 @@
 @interface ShengHuoQuanTVC : BaseTableViewController
 
 
-@property (nonatomic,assign) BOOL isShuRenQuan;
+@property (nonatomic,assign) NSInteger isShuRenQuan;  // 0生活圈   1 熟人圈 2相册自己
 
 
 - (IBAction)publishAction:(id)sender;

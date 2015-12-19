@@ -99,6 +99,10 @@
             [[NSUserDefaults standardUserDefaults ] setBool:YES forKey:kHadLogin];
             [[NSUserDefaults standardUserDefaults ] synchronize];
             
+            
+            //记录等级
+            [BmobHelper saveLevelRecord];
+            
             [self dismissViewControllerAnimated:YES completion:nil];
             
             

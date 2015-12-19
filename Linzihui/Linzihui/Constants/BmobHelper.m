@@ -12,6 +12,150 @@
 #import "UIButton+WebCache.h"
 @implementation BmobHelper
 
+#pragma mark - 等级记录
++(void)saveLevelRecord
+{
+    
+    
+    //增加打开次数
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin])
+    {
+        
+  
+    BmobQuery *query = [BmobQuery queryWithClassName:kDengJi];
+    
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (!error ) {
+            
+            if (array.count > 0) {
+                
+                BmobObject *ob = [array firstObject];
+                
+                [ob incrementKey:@"openTimes"];
+                
+                [ob updateInBackground];
+                
+            }
+            else
+            {
+                
+                BmobObject *ob = [BmobObject objectWithClassName:kDengJi];
+                
+                [ob setObject:[BmobUser getCurrentUser].username forKey:@"username"];
+                
+                [ob saveInBackground];
+                
+            }
+            
+            
+        }
+        
+    }];
+        
+          }
+    
+    
+}
++(void)getLevel:(void(^)(NSString*levelStr))result{
+    
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
+        
+        BmobQuery *query = [BmobQuery queryWithClassName:kDengJi];
+        
+        [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
+        
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            if (!error && array.count > 0) {
+                
+                
+                BmobObject *bo = [array firstObject];
+                
+                NSInteger times = [[bo objectForKey:@"openTimes"]integerValue];
+                
+                
+                NSInteger level = times/90;
+                
+                NSString *str = nil;
+                
+                switch (level) {
+                    case 0:
+                    {
+                        str =  @"幼儿园";
+                    }
+                        break;
+                    case 1:
+                    {
+                        str = @"小学生";
+                    }
+                        break;
+                    case 2:
+                    {
+                        str = @"中学生";
+                    }
+                        break;
+                    case 3:
+                    {
+                        str = @"高中生";
+                    }
+                        break;
+                    case 4:
+                    {
+                        str = @"大学生";
+                    }
+                        break;
+                    case 5:
+                    {
+                        str = @"硕士";
+                    }
+                        break;
+                    case 6:
+                    {
+                        str = @"博士";
+                    }
+                        break;
+                    case 7:
+                    {
+                        str = @"教授";
+                    }
+                        break;
+                        
+                        
+                        
+                    default:
+                    {
+                           str = @"教授";
+                    }
+                        break;
+                }
+                
+                
+                
+                if (result) {
+                    
+                    result(str);
+                    
+                }
+            }
+            else
+            {
+                if (result) {
+                    
+                    result(nil);
+                }
+            }
+        }];
+        
+        
+    }
+
+}
+
 #pragma mark - 获取当前用户 UserModel
 +(UserModel*)getCurrentUserModel
 {
@@ -1223,26 +1367,84 @@
             
             if (imageview) {
                 
+          
                 CGSize imageSize = imageview.frame.size;
                 
                 CGFloat temWith = imageSize.width /3;
                 
                 CGFloat temHeight = imageSize.height / 3;
                 
-                for (int i = 0; i < arary.count ; i ++) {
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                   
+                      UIGraphicsBeginImageContext(imageSize);
                     
-                    NSInteger line = i/3;
+                    for (int d = 0; d < arary.count; d++) {
+                        
+                          NSInteger line = d/3;
+                        
+                        MyConversation *con = [arary objectAtIndex:d];
+                        
+                        
+                        NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:con.headImageURL];
+                        
+                        
+                        
+                        if (!imageData) {
+                            
+                            imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:con.headImageURL]];
+                            
+                            [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:con.headImageURL];
+                            
+                            [[NSUserDefaults standardUserDefaults] synchronize];
+                            
+                        }
                     
-                    MyConversation *con = [arary objectAtIndex:i];
+                        
+                        
+                        UIImage *image = [UIImage imageWithData:imageData];
+                        
+                        
+                        [image drawInRect:CGRectMake(temWith*d + 2, line*temHeight, temWith, temHeight)];
+                        
+                        
+                        
+                    }
                     
-                    UIImageView *temImageView = [[UIImageView alloc]initWithFrame:CGRectMake(temWith*i, line*temHeight, temWith, temHeight)];
                     
-                    [temImageView sd_setImageWithURL:[NSURL URLWithString:con.headImageURL] placeholderImage:kDefaultHeadImage];
+                    UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
+                    
+                    UIGraphicsEndImageContext();
+                    
+                   dispatch_async(dispatch_get_main_queue(), ^{
+                      
+                       imageview.image = finalImage;
+                       
+                   });
                     
                     
-                    [imageview addSubview:temImageView];
-                    
-                }
+                });
+                
+                
+                
+                
+                
+//                for (int i = 0; i < arary.count ; i ++) {
+//                    
+//                    NSInteger line = i/3;
+//                    
+//                    MyConversation *con = [arary objectAtIndex:i];
+//                    
+//                    UIImageView *temImageView = [[UIImageView alloc]initWithFrame:CGRectMake(temWith*i, line*temHeight, temWith, temHeight)];
+//                    
+//                    [temImageView sd_setImageWithURL:[NSURL URLWithString:con.headImageURL] placeholderImage:kDefaultHeadImage];
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                           [imageview addSubview:temImageView];
+//                    });
+//                 
+//                    
+//                }
                 
             }
             

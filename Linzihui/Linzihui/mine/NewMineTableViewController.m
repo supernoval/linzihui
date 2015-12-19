@@ -10,6 +10,8 @@
 #import "MineTableViewController.h"
 #import "MyPhotosViewController.h"
 #import "SettingTableViewController.h"
+#import "ShengHuoQuanTVC.h"
+
 
 @interface NewMineTableViewController ()
 
@@ -42,6 +44,14 @@
     _linhaoLabel.text = model.username;
     
     _yaoqingmaLabel.text = [model.objectId substringToIndex:4];
+    
+    
+    [BmobHelper getLevel:^(NSString *levelStr) {
+       
+        _levelLabel.text = levelStr;
+        
+        
+    }];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,13 +73,23 @@
     
     if (indexPath.section == 2) //相册
     {
-        MyPhotosViewController *_myPhotoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPhotosViewController"];
+//        MyPhotosViewController *_myPhotoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPhotosViewController"];
+//        
+//        
+//        _myPhotoVC.hidesBottomBarWhenPushed = YES;
+//        
+//        
+//        [self.navigationController pushViewController:_myPhotoVC animated:YES];
+        
+        ShengHuoQuanTVC *_shenghuoQuan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+        
+        _shenghuoQuan.hidesBottomBarWhenPushed = YES;
+        
+        _shenghuoQuan.isShuRenQuan = 2;
         
         
-        _myPhotoVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:_shenghuoQuan animated:YES];
         
-        
-        [self.navigationController pushViewController:_myPhotoVC animated:YES];
         
         
     }

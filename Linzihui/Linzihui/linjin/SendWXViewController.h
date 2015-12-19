@@ -10,6 +10,9 @@
 #import "BaseViewController.h"
 
 @interface SendWXViewController : BaseViewController
+
+@property (nonatomic,assign ) BOOL isShuRenQuan;
+
 @property (weak, nonatomic) IBOutlet UITextView *inputTextView;
 
 @property (weak, nonatomic) IBOutlet UIView *photoView;

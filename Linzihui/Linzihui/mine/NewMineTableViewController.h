@@ -19,4 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *linhaoLabel;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
+
+
 @end

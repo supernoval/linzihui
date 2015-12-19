@@ -278,11 +278,11 @@ static NSString *textViewCell  =@"textViewCell";
         
         
     }
-    [MyProgressHUD showProgress];
+   
     
     if (_image_list.count > 1) {
         
-        
+         [MyProgressHUD showProgress];
         [_image_list removeObjectAtIndex:_image_list.count -1];
         
         
@@ -305,7 +305,10 @@ static NSString *textViewCell  =@"textViewCell";
     }
     else
     {
-        [self upLoadData:nil];
+        [CommonMethods showDefaultErrorString:@"请上传活动图片"];
+        
+        return;
+        
         
     }
     

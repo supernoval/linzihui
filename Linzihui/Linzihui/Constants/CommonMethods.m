@@ -73,7 +73,7 @@
     CGSize imageSize = image.size;
     
     
-    CGFloat imagewith = 300.0;
+    CGFloat imagewith = 500.0;
     
     CGFloat imageHeight = imageSize.height *imagewith/imageSize.width;
     

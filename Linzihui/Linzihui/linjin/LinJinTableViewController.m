@@ -131,6 +131,8 @@ static NSString *CellID = @"CellID";
         ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
         
         
+        _shengHuoquan.isShuRenQuan = 0;
+        
         _shengHuoquan.hidesBottomBarWhenPushed = YES;
         
         

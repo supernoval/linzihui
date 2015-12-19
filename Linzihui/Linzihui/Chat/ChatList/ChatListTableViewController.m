@@ -119,7 +119,7 @@ static NSString *headCellID = @"CellID";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < 3) {
+    if (indexPath.section ==0) {
         
         return 50;
         
@@ -138,13 +138,13 @@ static NSString *headCellID = @"CellID";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-       return _conversations.count + 3;
+       return _conversations.count + 1;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section < 3) {
+    if (indexPath.section == 0) {
         
         UITableViewCell *_headCell = [tableView dequeueReusableCellWithIdentifier:headCellID];
         
@@ -171,19 +171,7 @@ static NSString *headCellID = @"CellID";
                     
                 }
                     break;
-                case 1:
-                {
-                    
-                    imageName = @"dss";
-                    title = @"群消息";
-                }
-                    break;
-                case 2:
-                {
-                    imageName = @"lingjids";
-                    title = @"活动消息";
-                }
-                    break;
+           
                     
                 default:
                     break;
@@ -205,13 +193,13 @@ static NSString *headCellID = @"CellID";
     
     
     ChatListCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (_conversations.count > indexPath.section -3) {
+    if (_conversations.count > indexPath.section -1) {
         
         
    
-    MyConversation *model = [_conversations objectAtIndex:indexPath.section - 3];
+    MyConversation *model = [_conversations objectAtIndex:indexPath.section - 1];
     
-        if (model.messageType == 0 || model.messageType == 1) {
+        if (model.messageType == 0 ) {
             
             if (model.nickName) {
                 
@@ -230,6 +218,33 @@ static NSString *headCellID = @"CellID";
             cell.timeLabel.adjustsFontSizeToFitWidth = YES;
             
               [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
+            
+        }
+        else if ( model.messageType == 1)
+        {
+            if (model.subTitle) {
+                
+                cell.titleLabel.text = model.subTitle;
+            }
+            else
+            {
+                cell.titleLabel.text = model.converstion.chatter;
+            }
+            
+            
+            
+            cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
+            
+            cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
+            cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+            
+        
+            EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
+            
+            [BmobHelper getGroupHeadImageView:group imageView:cell.headImageView result:^(BOOL success, UIImageView *headImageView) {
+                
+                
+            }];
             
         }
         
@@ -262,7 +277,7 @@ static NSString *headCellID = @"CellID";
 {
     
     
-    if (indexPath.section < 3) {
+    if (indexPath.section < 1) {
         
         switch (indexPath.section) {
             case 0:
@@ -271,7 +286,7 @@ static NSString *headCellID = @"CellID";
                 
                 _shenghuoQuan.hidesBottomBarWhenPushed = YES;
                 
-                _shenghuoQuan.isShuRenQuan = YES;
+                _shenghuoQuan.isShuRenQuan = 1;
                 
                 
                 [self.navigationController pushViewController:_shenghuoQuan animated:YES];
@@ -318,10 +333,10 @@ static NSString *headCellID = @"CellID";
     
     
     
-    MyConversation *model = [_conversations objectAtIndex:indexPath.section - 3];
+    MyConversation *model = [_conversations objectAtIndex:indexPath.section - 1];
     
     
-    if (model.messageType !=3) {
+    if (model.messageType ==0 ) {
         
         ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
         if (model.nickName) {
@@ -334,6 +349,30 @@ static NSString *headCellID = @"CellID";
             //        chatVC.title = model.converstion.chatter;
             chatVC.subTitle = model.nickName;
         }
+        
+        chatVC.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:chatVC animated:YES];
+    }
+    else if (model.messageType == 1)
+    {
+        
+        
+        
+        EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
+        
+        ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:YES];
+        if (model.subTitle) {
+            
+            chatVC.title =model.subTitle;
+            chatVC.subTitle = model.nickName;
+        }else
+        {
+            chatVC.title = model.converstion.chatter;
+            chatVC.subTitle = model.nickName;
+        }
+        
+        chatVC.group = group;
         
         chatVC.hidesBottomBarWhenPushed = YES;
         

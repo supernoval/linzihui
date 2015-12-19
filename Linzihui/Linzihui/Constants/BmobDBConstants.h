@@ -30,3 +30,7 @@
 
 //bmob value key
 #define kBmobDataDic                 @"bmobDataDic"
+
+
+//等级
+#define kDengJi                       @"DengJi"

@@ -81,10 +81,11 @@
     }
     
     
+
     
+    //记录等级
+    [BmobHelper saveLevelRecord];
     
-    
-  
     
   
     
