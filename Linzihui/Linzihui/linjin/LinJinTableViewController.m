@@ -10,7 +10,7 @@
 #import "ShengHuoQuanTVC.h"
 #import "HuodongTVCViewController.h"
 #import "MygroupListTVC.h"
-
+#import "WodeHuodongTVC.h"
 
 static NSString *CellID = @"CellID";
 
@@ -31,7 +31,7 @@ static NSString *CellID = @"CellID";
     [super viewDidLoad];
     
     
-   _titlesArray = @[@{@"title":@"生活圈",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"}];
+   _titlesArray = @[@{@"title":@"生活圈",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"我的活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"}];
     
     
     
@@ -155,8 +155,21 @@ static NSString *CellID = @"CellID";
         
         
     }
-    
-    if (indexPath.section == 2) //领近群组
+    if (indexPath.section == 2) {
+        
+        
+        WodeHuodongTVC *_wodeHuodong = [self.storyboard instantiateViewControllerWithIdentifier:@"WodeHuodongTVC"];
+        
+        
+        _wodeHuodong.hidesBottomBarWhenPushed = YES;
+        
+        
+        [self.navigationController pushViewController:_wodeHuodong animated:YES];
+        
+        
+        
+    }
+    if (indexPath.section == 3) //领近群组
     {
         
         MygroupListTVC *_groupList = [self.storyboard instantiateViewControllerWithIdentifier:@"MygroupListTVC"];

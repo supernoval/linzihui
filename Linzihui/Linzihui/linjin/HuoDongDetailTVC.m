@@ -113,6 +113,7 @@
         
         [_attendButton setTitle:@"报名参加" forState:UIControlStateNormal];
         
+        
       
         
         
@@ -132,6 +133,15 @@
     else
     {
         _attendButton.enabled = YES;
+        
+      
+        
+    }
+    
+    
+    if ([[BmobUser getCurrentUser].username isEqualToString:[_huodong.starter objectForKey:@"username"]]) {
+        
+        _attendButton.enabled = NO;
         
     }
     
@@ -352,6 +362,15 @@
             
             [self.tableView reloadData];
             
+            
+            
+            //将objectId 添加到user表  attendAcivities
+            
+            BmobUser *currentUser = [BmobUser getCurrentUser];
+            
+            [currentUser addObjectsFromArray:@[_ob.objectId] forKey:@"attendActivities"];
+            
+            [currentUser updateInBackground];
             
             
             

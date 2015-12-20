@@ -288,6 +288,7 @@
 		154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F51BE5E7030042632E /* libxml2.tbd */; };
 		154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F71BE5E70B0042632E /* libiconv.tbd */; };
 		154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F91BE5E7110042632E /* libresolv.tbd */; };
+		157790461C26808F00A70E4B /* WodeHuodongTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 157790451C26808F00A70E4B /* WodeHuodongTVC.m */; };
 		15858D451C1B4B91000550FD /* GroupMemberTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D441C1B4B91000550FD /* GroupMemberTVC.m */; };
 		15858D491C1B5634000550FD /* InviteNewGroupMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D481C1B5634000550FD /* InviteNewGroupMember.m */; };
 		15858D4C1C1B5E2B000550FD /* EditGroupNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D4B1C1B5E2B000550FD /* EditGroupNameVC.m */; };
@@ -1117,6 +1118,8 @@
 		154A39F51BE5E7030042632E /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		154A39F71BE5E70B0042632E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		154A39F91BE5E7110042632E /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		157790441C26808F00A70E4B /* WodeHuodongTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeHuodongTVC.h; sourceTree = "<group>"; };
+		157790451C26808F00A70E4B /* WodeHuodongTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WodeHuodongTVC.m; sourceTree = "<group>"; };
 		15858D431C1B4B91000550FD /* GroupMemberTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberTVC.h; sourceTree = "<group>"; };
 		15858D441C1B4B91000550FD /* GroupMemberTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMemberTVC.m; sourceTree = "<group>"; };
 		15858D471C1B5634000550FD /* InviteNewGroupMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteNewGroupMember.h; sourceTree = "<group>"; };
@@ -2824,6 +2827,15 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		157790431C26805A00A70E4B /* wodehuodong */ = {
+			isa = PBXGroup;
+			children = (
+				157790441C26808F00A70E4B /* WodeHuodongTVC.h */,
+				157790451C26808F00A70E4B /* WodeHuodongTVC.m */,
+			);
+			name = wodehuodong;
+			sourceTree = "<group>";
+		};
 		15858D461C1B560C000550FD /* inviteNewGroupMember */ = {
 			isa = PBXGroup;
 			children = (
@@ -3489,6 +3501,7 @@
 		15B7A5DC1BE74E490052115F /* linjin */ = {
 			isa = PBXGroup;
 			children = (
+				157790431C26805A00A70E4B /* wodehuodong */,
 				15B686471C069B36007EE8CB /* huodong */,
 				1530E8411BFC6AF000A78DB5 /* shenghuoquan */,
 				15B7A5DD1BE74E790052115F /* LinJinTableViewController.h */,
@@ -3785,6 +3798,7 @@
 				15B7A5591BE730460052115F /* PSTGridLayoutInfo.m in Sources */,
 				150F31C11C0FEA5D00E5CC8B /* ZXModulusGF.m in Sources */,
 				150F31E81C0FEA5D00E5CC8B /* ZXQRCodeFinderPatternFinder.m in Sources */,
+				157790461C26808F00A70E4B /* WodeHuodongTVC.m in Sources */,
 				150F311D1C0FEA5D00E5CC8B /* ZXAztecCode.m in Sources */,
 				15858D511C1B71F7000550FD /* HuoDongMessageTVC.m in Sources */,
 				150F31141C0FEA5D00E5CC8B /* LBXScanView.m in Sources */,

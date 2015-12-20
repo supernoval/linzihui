@@ -27,8 +27,8 @@
 @property (nonatomic,strong) NSString *ageRequest;
 @property (nonatomic,strong) NSString *photoNum;
 @property (nonatomic,strong ) NSString *phoneNum;
-@property (nonatomic,strong) NSString *updatedAt;
-@property (nonatomic,strong) NSString *createdAt;
+@property (nonatomic,strong) NSDate *updatedAt;
+@property (nonatomic,strong) NSDate *createdAt;
 @property (nonatomic,strong ) NSString *feeNum;
 @property (nonatomic,strong)  NSDate *startTime;
 @property (nonatomic,strong ) NSDate *endTime;
