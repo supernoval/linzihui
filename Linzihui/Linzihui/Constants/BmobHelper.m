@@ -764,6 +764,10 @@
 {
     BmobQuery *query = [BmobQuery queryForUser];
     
+    if (membersusername.count == 0) {
+        
+        membersusername = @[];
+    }
     [query whereKey:@"username" containedIn:membersusername];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
