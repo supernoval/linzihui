@@ -73,6 +73,8 @@
     
     BmobQuery *query = [BmobQuery queryWithClassName:kHuoDongTableName];
     
+    [query orderByDescending:@"createdAt"];
+    
     if (isMyActity) {
         
         [query whereKey:@"starter" equalTo:currentUser];
