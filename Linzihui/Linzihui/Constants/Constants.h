@@ -69,7 +69,7 @@
 
 
 //默认头像
-#define kDefaultHeadImage   [UIImage imageNamed:@"wo_1"]
+#define kDefaultHeadImage   [UIImage imageNamed:@"defaultHead"]
 
 //默认加载图标
 #define kDefaultLoadingImage  [UIImage imageNamed:@"default_loading"]
