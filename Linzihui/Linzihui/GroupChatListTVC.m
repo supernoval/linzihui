@@ -158,12 +158,14 @@ static NSString *cellID = @"GroupCellID";
     if (model.subTitle) {
         
         chatVC.title =model.subTitle;
-         chatVC.subTitle = model.nickName;
+         chatVC.subTitle = model.subTitle;
     }else
     {
         chatVC.title = model.converstion.chatter;
-         chatVC.subTitle = model.nickName;
+         chatVC.subTitle = model.subTitle;
     }
+    
+    NSLog(@"begintitle:%@",chatVC.title);
     
     chatVC.group = group;
     

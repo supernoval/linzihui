@@ -52,6 +52,10 @@
         }
     }
     
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navbar_return_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
+    
+    
     self.view.backgroundColor = kBackgroundColor;
     
     //    self.tabBarController.tabBar.tintColor = TabbarTintColor;

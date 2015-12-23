@@ -231,7 +231,7 @@
     
     ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:selectedGroup.groupId isGroup:YES];
     chatController.title = selectedGroup.subTitle;
-    
+    chatController.subTitle = selectedGroup.subTitle;
     chatController.hidesBottomBarWhenPushed = YES;
     chatController.group = group ;
     [self.navigationController pushViewController:chatController animated:YES];

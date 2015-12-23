@@ -476,12 +476,12 @@
             if (followMes) {
                 
                 [muArray addObjectsFromArray:followMes];
-                [muArray addObject:currentUserModel.objectId];
+                [muArray addObject:currentUserModel.username];
                 
             }
             else
             {
-                [muArray addObject:currentUserModel.objectId];
+                [muArray addObject:currentUserModel.username];
                 
             }
             
@@ -558,13 +558,13 @@
             if (myFollows) {
                 
                 [MuArray addObjectsFromArray:myFollows];
-                [MuArray addObject:model.objectId];
+                [MuArray addObject:model.username];
                 
                 
             }
             else
             {
-                [MuArray addObject:model.objectId];
+                [MuArray addObject:model.username];
                 
             }
             

@@ -45,11 +45,18 @@ static NSString * RequestCell = @"RequestCell";
     self.tableView.tableHeaderView = _searchController.searchBar;
     
     
+     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navbar_return_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(popView)];
+    
     
 //    [self getLocateInviteData];
     
 }
 
+-(void)popView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 //添加本地的好友请求数据
 -(void)getLocateInviteData

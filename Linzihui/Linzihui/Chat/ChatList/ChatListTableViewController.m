@@ -365,7 +365,7 @@ static NSString *headCellID = @"CellID";
         if (model.subTitle) {
             
             chatVC.title =model.subTitle;
-            chatVC.subTitle = model.nickName;
+            chatVC.subTitle = model.subTitle;
         }else
         {
             chatVC.title = model.converstion.chatter;
@@ -373,6 +373,7 @@ static NSString *headCellID = @"CellID";
         }
         
         chatVC.group = group;
+        NSLog(@"beginTitle:%@",chatVC.subTitle);
         
         chatVC.hidesBottomBarWhenPushed = YES;
         

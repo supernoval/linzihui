@@ -16,6 +16,8 @@
 #import "ConstantsHeaders.h"
 
 #import "BaseViewController.h"
+#import "PublishActivity.h"
+
 @protocol ChatViewControllerDelegate <NSObject>
 
 - (NSString *)avatarWithChatter:(NSString *)chatter;
@@ -35,6 +37,12 @@
 @property (nonatomic) BOOL isInvisible;
 @property (nonatomic, assign) id <ChatViewControllerDelegate> delelgate;
 @property (strong, nonatomic) EMConversation *conversation;//会话管理者
+@property (nonatomic,strong)  UIView *myTitleView;
+@property (nonatomic,strong)  UILabel *titleLabel;
+
+
+
+
 - (instancetype)initWithChatter:(NSString *)chatter isGroup:(BOOL)isGroup;
 - (instancetype)initWithChatter:(NSString *)chatter conversationType:(EMConversationType)type;
 

@@ -27,8 +27,16 @@
     }
     
     self.view.backgroundColor = [UIColor blackColor];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navbar_return_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(popView)];
+    
 }
 
+-(void)popView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {

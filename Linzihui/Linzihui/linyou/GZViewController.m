@@ -46,6 +46,10 @@
 
 -(void)loadData
 {
+    
+    NSArray *friendUserNames = [[EaseMob sharedInstance].chatManager fetchBuddyListWithError:nil];
+    
+    
     BmobUser *currentUser = [BmobUser getCurrentUser];
     
     BmobQuery *query = [BmobQuery queryWithClassName:@"Follow"];
@@ -60,36 +64,16 @@
             
             NSArray *myFollows = [_follow objectForKey:@"myFollows"];
             
-            NSMutableArray *muArray  = [[NSMutableArray alloc]init];
-            
-            for (int i = 0; i < myFollows.count; i ++) {
+            if (!myFollows) {
                 
-                NSString *obID = [myFollows objectAtIndex:i];
-                
-                BOOL content = NO;
-                
-                for (NSString *temObjID in muArray) {
-                   
-                    if ([temObjID isEqualToString:obID]) {
-                        
-                        content = YES;
-                    }
-                }
-                
-                if (!content) {
-                    
-                    [muArray addObject:obID];
-                    
-                }
-                
+                myFollows = @[];
             }
-            
             
             
             //获取我的关注的人信息
             BmobQuery *querymyFollows = [BmobQuery queryForUser];
             
-            [querymyFollows whereKey:@"objectId" containedIn:muArray];
+            [querymyFollows whereKey:@"username" containedIn:myFollows];
             
             [querymyFollows findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
                
@@ -126,32 +110,18 @@
         
         NSArray *followMes = [_follow objectForKey:@"followMes"];
         
+        if (!followMes) {
+            
+            followMes = @[];
+            
+        }
         BmobQuery *queryFollowMes = [BmobQuery queryForUser];
         
 
-        NSMutableArray *muArray  = [[NSMutableArray alloc]init];
+        [queryFollowMes whereKey:@"username" containedIn:followMes];
         
-        for (int i = 0; i < followMes.count; i ++) {
-            
-            NSString *obID = [followMes objectAtIndex:i];
-            
-            BOOL content = NO;
-            
-            for (NSString *temObjID in muArray) {
-                
-                if ([temObjID isEqualToString:obID]) {
-                    
-                    content = YES;
-                }
-            }
-            
-            if (!content) {
-                
-                [muArray addObject:obID];
-                
-            }
-            
-        }
+        
+  
         
         [queryFollowMes findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
            

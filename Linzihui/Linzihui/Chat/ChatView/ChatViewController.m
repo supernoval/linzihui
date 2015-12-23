@@ -163,6 +163,7 @@
     // Do any additional setup after loading the view.
     
      self.title = self.subTitle;
+    NSLog(@"viewloadTitle:%@",self.title);
     
     self.view.backgroundColor = [UIColor whiteColor];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
@@ -215,8 +216,93 @@
   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSubTitle:) name:kChangeGroupSubTitleNoti object:nil];
     
+    if (_isChatGroup) {
+        
+        [self editeTitleView];
+    }
+    
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
+    if (_isScrollToBottom) {
+        [self scrollViewToBottom:NO];
+    }
+    else{
+        _isScrollToBottom = YES;
+    }
+    self.isInvisible = NO;
+    
+  
+    
+    
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+     NSLog(@"viewdidLoadTitle:%@",self.title);
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // 设置当前conversation的所有message为已读
+    [_conversation markAllMessagesAsRead:YES];
+    [[EMCDDeviceManager sharedInstance] disableProximitySensor];
+    self.isInvisible = YES;
+}
+
+
+#pragma mark - 修改TitleView
+-(void)editeTitleView
+{
+    _myTitleView = [[UIView alloc]initWithFrame:CGRectMake(50, 0, ScreenWidth - 120, 44)];
+    
+    _myTitleView.backgroundColor = [UIColor clearColor];
+    
+    
+    NSLog(@"title:%@",self.subTitle);
+    
+    _titleLabel = [CommonMethods LabelWithText:self.subTitle andTextAlgniment:NSTextAlignmentCenter andTextColor:[UIColor whiteColor] andTextFont:FONT_15 andFrame:CGRectMake(60, 0, _myTitleView.frame.size.width - 60, 44)];
+    
+    
+    [_myTitleView addSubview:_titleLabel];
+    
+    UIButton *_huodongButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 44)];
+    
+    [_huodongButton setTitle:@"活动" forState:UIControlStateNormal];
+    
+    [_huodongButton addTarget:self action:@selector(gotoActivity) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_myTitleView addSubview:_huodongButton];
+    
+    self.navigationItem.titleView = _myTitleView;
+    
+    
+    
+    
+    
+}
+
+#pragma mark - 跳到活动
+-(void)gotoActivity
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    
+    PublishActivity *_publish = [sb instantiateViewControllerWithIdentifier:@"PublishActivity"];
+    
+    _publish.groupId = _group.groupId;
+    
+    
+    [self.navigationController pushViewController:_publish animated:YES];
+}
 #pragma mark - 收到修改群名通知
 -(void)changeSubTitle:(NSNotification*)noti
 {
@@ -255,32 +341,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-   
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
-    if (_isScrollToBottom) {
-        [self scrollViewToBottom:NO];
-    }
-    else{
-        _isScrollToBottom = YES;
-    }
-    self.isInvisible = NO;
-}
 
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    // 设置当前conversation的所有message为已读
-    [_conversation markAllMessagesAsRead:YES];
-    [[EMCDDeviceManager sharedInstance] disableProximitySensor];
-    self.isInvisible = YES;
-}
 
 - (void)dealloc
 {
