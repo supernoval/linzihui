@@ -7,6 +7,7 @@
 //
 
 #import "GZViewController.h"
+#import "PersonInfoViewController.h"
 
 @interface GZViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -192,6 +193,24 @@
     });
     
     return cell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UserModel *user = [_dataSource objectAtIndex:indexPath.row];
+    
+    
+    PersonInfoViewController *_personInfo = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+    
+    _personInfo.username = user.username;
+    
+    
+    [self.navigationController pushViewController:_personInfo animated:YES];
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 

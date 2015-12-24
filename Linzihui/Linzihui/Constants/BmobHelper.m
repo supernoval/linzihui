@@ -366,13 +366,16 @@
     
     BmobUser *currentUser = [BmobUser getCurrentUser];
     
+    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    
     for (UserModel *oneModel in itemArray) {
         
+        [muArray addObject:oneModel.objectId];
         
-        [getAllFollowMes whereKey:@"userObjectId" equalTo:oneModel.objectId];
+     
     }
     
-    
+       [getAllFollowMes whereKey:@"userObjectId" containedIn:muArray];
     
     [getAllFollowMes findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         if (!error && array.count > 0) {
@@ -393,8 +396,8 @@
                     
                     UserModel *model = [itemArray objectAtIndex:d];
                     
-                    //判断关注我的人里面有没有这个人的 objectId
-                    if ([obId isEqualToString:model.objectId]) {
+                    //判断关注我的人里面有没有这个人的 username
+                    if ([obId isEqualToString:model.username]) {
                         
                         
                         //再遍历 判断 我有没有关注这个人
@@ -409,7 +412,7 @@
                                     
                                     
                                     
-                                    if ([temID isEqualToString:currentUser.objectId]) {
+                                    if ([temID isEqualToString:currentUser.username]) {
                                         
                                         model.followEach = YES;
                                         

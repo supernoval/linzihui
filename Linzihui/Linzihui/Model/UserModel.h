@@ -17,6 +17,7 @@
 @property (nonatomic,strong)  NSString *headImageURL;
 @property (nonatomic,strong)  NSString *nickName;
 @property (nonatomic,assign)  BOOL mobilePhoneNumberVerified;
+@property (nonatomic,strong)  NSString *inviteCode;
 
 
 @property (nonatomic,strong)   BmobGeoPoint *location;
