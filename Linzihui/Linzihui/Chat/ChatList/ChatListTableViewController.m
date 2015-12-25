@@ -229,7 +229,7 @@ static NSString *headCellID = @"CellID";
                 
                 [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
                 
-            }
+             }
             else if ( model.messageType == 1)
             {
                 if (model.subTitle) {
@@ -248,15 +248,11 @@ static NSString *headCellID = @"CellID";
                 cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
                 cell.timeLabel.adjustsFontSizeToFitWidth = YES;
                 
+                [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.groupHeadImage] placeholderImage:kDefaultHeadImage];
                 
-                EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
                 
-                [BmobHelper getGroupHeadImageView:group imageView:cell.headImageView result:^(BOOL success, UIImageView *headImageView) {
-                    
-                    
-                }];
                 
-            }
+             }
             
             else
             {
@@ -270,7 +266,7 @@ static NSString *headCellID = @"CellID";
                 cell.lastestChatlabel.text = model.message;
                 cell.timeLabel.adjustsFontSizeToFitWidth = YES;
                 
-            }
+             }
             
             
             return cell;
@@ -354,9 +350,9 @@ static NSString *headCellID = @"CellID";
             cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
             cell.timeLabel.adjustsFontSizeToFitWidth = YES;
             
-              [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
+            [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
             
-        }
+         }
         else if ( model.messageType == 1)
         {
             if (model.subTitle) {
@@ -373,17 +369,14 @@ static NSString *headCellID = @"CellID";
             cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
             
             cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
+            
             cell.timeLabel.adjustsFontSizeToFitWidth = YES;
             
-        
-            EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
+            [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.groupHeadImage] placeholderImage:kDefaultHeadImage];
             
-            [BmobHelper getGroupHeadImageView:group imageView:cell.headImageView result:^(BOOL success, UIImageView *headImageView) {
-                
-                
-            }];
+
             
-        }
+         }
         
         else
         {
@@ -395,6 +388,7 @@ static NSString *headCellID = @"CellID";
             cell.titleLabel.text = model.title;
             
             cell.lastestChatlabel.text = model.message;
+            
             cell.timeLabel.adjustsFontSizeToFitWidth = YES;
           
         }

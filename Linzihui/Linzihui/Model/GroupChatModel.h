@@ -25,6 +25,9 @@
 @property (nonatomic,strong) NSString *createdAt;
 @property (nonatomic,strong ) NSString *updatedAt;
 
+@property (nonatomic,strong) NSString *groupHeadImage;
+
+
 
 
 

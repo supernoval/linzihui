@@ -1391,9 +1391,14 @@
                           NSInteger line = d/3;
                         
                         MyConversation *con = [arary objectAtIndex:d];
+                        NSData *imageData = nil;
                         
                         
-                        NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:con.headImageURL];
+                        if (con.headImageURL) {
+                            
+                            imageData= [[NSUserDefaults standardUserDefaults] objectForKey:con.headImageURL];
+                            
+                        }
                         
                         
                         
@@ -1401,9 +1406,13 @@
                             
                             imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:con.headImageURL]];
                             
-                            [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:con.headImageURL];
-                            
-                            [[NSUserDefaults standardUserDefaults] synchronize];
+                            if (imageData) {
+                                
+                                [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:con.headImageURL];
+                                
+                                [[NSUserDefaults standardUserDefaults] synchronize];
+                            }
+                         
                             
                         }
                     

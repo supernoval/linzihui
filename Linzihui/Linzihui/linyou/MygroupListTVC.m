@@ -156,6 +156,8 @@
         
         UIImageView *headImageView = (UIImageView*)[cell viewWithTag:100];
         
+        [headImageView sd_setImageWithURL:[NSURL URLWithString:onegroup.groupHeadImage] placeholderImage:kDefaultHeadImage];
+        
         UILabel *nameLabel = (UILabel*)[cell viewWithTag:101];
         UILabel *distanceLabel = (UILabel*)[cell viewWithTag:102];
         

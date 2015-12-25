@@ -14,7 +14,7 @@
 #import "PublishActivity.h"
 
 
-@interface ChatSettingTVC ()
+@interface ChatSettingTVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     
     NSArray *_titles;
@@ -33,7 +33,7 @@
     self.footerView.frame = CGRectMake(0, 0, ScreenWidth, 100);
     
     
-    _titles = @[@"群组成员",@"邀请好友",@"群聊名称",@"群二维码",@"发布群活动"];
+    _titles = @[@"群组成员",@"邀请好友",@"群聊名称",@"群二维码",@"发布群活动",@"群聊头像"];
     
     
     if ([_group.owner isEqualToString:[BmobHelper getCurrentUserModel].username]) {
@@ -171,6 +171,12 @@
             
         }
             break;
+        case 5:
+        {
+            
+            
+        }
+            break;
         
     
             
@@ -253,6 +259,98 @@
     }
     
 }
+
+
+
+
+#pragma mark - UIImagePickerControllerDelegate
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    if (image) {
+        
+        
+        image = [CommonMethods autoSizeImageWithImage:image];
+        
+        
+        
+    }
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:kChatGroupTableName];
+    
+    [query whereKey:@"groupId" equalTo:_group.groupId];
+    
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (!error && array.count > 0) {
+            
+            
+            
+        }
+        
+    }];
+    
+    
+    
+    
+    
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    
+}
+
+#pragma mark - UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+
+        
+        NSUInteger sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            switch (buttonIndex) {
+                case 2:
+                {
+                    return;
+                }
+                    break;
+                    
+                    
+                case 1: //相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 0: //相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+            }
+        }
+        else {
+            if (buttonIndex == 1) {
+                return;
+            } else {
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            }
+        }
+        
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = NO;
+        imagePickerController.sourceType = sourceType;
+        imagePickerController.edgesForExtendedLayout = UIRectEdgeLeft;
+        
+        
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
