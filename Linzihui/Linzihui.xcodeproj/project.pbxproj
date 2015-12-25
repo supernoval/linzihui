@@ -1568,6 +1568,7 @@
 		1506EC271BF82C8B0010F349 /* mygrouplist */ = {
 			isa = PBXGroup;
 			children = (
+				1531670A1BF4639E00B88CF4 /* wechatShareController */,
 				1506EC281BF82CAA0010F349 /* MygroupListTVC.h */,
 				1506EC291BF82CAA0010F349 /* MygroupListTVC.m */,
 			);
@@ -3674,7 +3675,6 @@
 			children = (
 				1538EA121C2A6D90002A23C7 /* PerfonInfoTVC */,
 				1506EC271BF82C8B0010F349 /* mygrouplist */,
-				1531670A1BF4639E00B88CF4 /* wechatShareController */,
 				15BE66ED1BF3F6ED000A9D1F /* guanzhu */,
 				15BE66D11BF3BE6E000A9D1F /* tongxunlu */,
 				15EE46FD1BE891D500538EA5 /* addNewFriends */,

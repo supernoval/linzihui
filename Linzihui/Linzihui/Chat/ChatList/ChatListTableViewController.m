@@ -24,12 +24,18 @@
 static NSString *cellId = @"ChatListCell";
 static NSString *headCellID = @"CellID";
 
-@interface ChatListTableViewController ()<EMChatManagerDelegate,UITableViewDataSource,UITableViewDelegate,IChatManagerDelegate>
+@interface ChatListTableViewController ()<EMChatManagerDelegate,UITableViewDataSource,UITableViewDelegate,IChatManagerDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
 {
     NSMutableArray *_conversations;
     
+    NSMutableArray *_searchResults;
+    
+    
     
 }
+
+@property (nonatomic) UISearchDisplayController *mysearchConroller;
+
 
 @end
 
@@ -41,10 +47,13 @@ static NSString *headCellID = @"CellID";
   
     self.title = @"邻信";
     
-    self.chatHeadView.frame = CGRectMake(0, 0, ScreenWidth, 44);
+//    self.chatHeadView.frame = CGRectMake(0, 0, ScreenWidth, 44);
     
+    
+    self.tableView.tableHeaderView = self.mysearchConroller.searchBar;
     
     _conversations = [[NSMutableArray alloc]init];
+    _searchResults = [[NSMutableArray alloc]init];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivegroupNoti:) name:kCreategroupSuccessNoti object:nil];
@@ -56,6 +65,10 @@ static NSString *headCellID = @"CellID";
   
     
 //    [ MySearchBar setBackgroundColor :[ UIColor clearColor ]];
+    
+    
+//    [self mysearchConroller];
+    
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -101,6 +114,41 @@ static NSString *headCellID = @"CellID";
     
 }
 
+-(UISearchDisplayController*)mysearchConroller
+{
+    if (!_mysearchConroller) {
+        
+        _mysearchConroller = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+        
+        _mysearchConroller.searchResultsDataSource = self;
+        
+        _mysearchConroller.searchResultsDelegate = self;
+        
+        _mysearchConroller.displaysSearchBarInNavigationBar = NO;
+        
+        
+    }
+    
+    return _mysearchConroller;
+    
+}
+
+-(UISearchBar*)searchBar
+{
+    if (!_searchBar) {
+        
+        _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        
+        _searchBar.delegate = self;
+        
+        _searchBar.placeholder = nil;
+        
+        
+    }
+    
+    return _searchBar;
+    
+}
 #pragma mark - UITableViewDataSource
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -131,6 +179,7 @@ static NSString *headCellID = @"CellID";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
+  
     return 1;
     
     
@@ -138,11 +187,97 @@ static NSString *headCellID = @"CellID";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (tableView == _mysearchConroller.searchResultsTableView) {
+        
+        return _searchResults.count;
+        
+    }
+    
        return _conversations.count + 1;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    if (tableView == _mysearchConroller.searchResultsTableView) {
+        
+        if (_searchResults.count > indexPath.section) {
+            
+            
+            MyConversation *model = [_searchResults objectAtIndex:indexPath.section];
+            
+             ChatListCellTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
+            
+            if (model.messageType == 0 ) {
+                
+                if (model.nickName) {
+                    
+                    cell.titleLabel.text = model.nickName;
+                }
+                else
+                {
+                    cell.titleLabel.text = model.converstion.chatter;
+                }
+                
+                
+                
+                cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
+                
+                cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
+                cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+                
+                [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] placeholderImage:kDefaultHeadImage];
+                
+            }
+            else if ( model.messageType == 1)
+            {
+                if (model.subTitle) {
+                    
+                    cell.titleLabel.text = model.subTitle;
+                }
+                else
+                {
+                    cell.titleLabel.text = model.converstion.chatter;
+                }
+                
+                
+                
+                cell.lastestChatlabel.text =[self subTitleMessageByConversation:model.converstion];
+                
+                cell.timeLabel.text = [self lastMessageTimeByConversation:model.converstion];
+                cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+                
+                
+                EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
+                
+                [BmobHelper getGroupHeadImageView:group imageView:cell.headImageView result:^(BOOL success, UIImageView *headImageView) {
+                    
+                    
+                }];
+                
+            }
+            
+            else
+            {
+                
+                NSArray *photoURL = [model.huodong objectForKey:@"photoURL"];
+                
+                [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[photoURL firstObject]] placeholderImage:kDefaultHeadImage];
+                
+                cell.titleLabel.text = model.title;
+                
+                cell.lastestChatlabel.text = model.message;
+                cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+                
+            }
+            
+            
+            return cell;
+            
+        }
+    }
+    
     
     if (indexPath.section == 0) {
         
@@ -193,6 +328,8 @@ static NSString *headCellID = @"CellID";
     
     
     ChatListCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    
     if (_conversations.count > indexPath.section -1) {
         
         
@@ -276,54 +413,86 @@ static NSString *headCellID = @"CellID";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
-    if (indexPath.section < 1) {
+    if (tableView == _mysearchConroller.searchResultsTableView || indexPath.section > 0) {
         
-        switch (indexPath.section) {
-            case 0:
-            {
-                ShengHuoQuanTVC *_shenghuoQuan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
-                
-                _shenghuoQuan.hidesBottomBarWhenPushed = YES;
-                
-                _shenghuoQuan.isShuRenQuan = 1;
-                
-                
-                [self.navigationController pushViewController:_shenghuoQuan animated:YES];
-            }
-                break;
-            case 1:
-            {
-                GroupChatListTVC *_groupChatTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GroupChatListTVC"];
-                
-                _groupChatTVC.hidesBottomBarWhenPushed = YES;
-                
-                
-                [self.navigationController pushViewController:_groupChatTVC animated:YES];
-                
-                
-                
-            }
-                break;
-            case 2:
-            {
-                HuoDongMessageTVC *_huodongMessage = [self.storyboard instantiateViewControllerWithIdentifier:@"HuoDongMessageTVC"];
-                
-                _huodongMessage.hidesBottomBarWhenPushed =YES;
-                
-                [self.navigationController pushViewController:_huodongMessage animated:YES];
-                
-                
-            }
-                break;
-                
-                
-            default:
-                break;
+        
+        MyConversation *model;
+        
+        if (tableView == _mysearchConroller.searchResultsTableView) {
+            
+            model = [_searchResults objectAtIndex:indexPath.section ];
         }
+        
+        else
+        {
+            model = [_searchResults objectAtIndex:indexPath.section - 1];
+        }
+        
+        
+        if (model.messageType ==0 ) {
+            
+            ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
+            if (model.nickName) {
+                
+                //        chatVC.title =model.nickName;
+                chatVC.subTitle = model.nickName;
+                
+            }else
+            {
+                //        chatVC.title = model.converstion.chatter;
+                chatVC.subTitle = model.nickName;
+            }
+            
+            chatVC.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController pushViewController:chatVC animated:YES];
+        }
+        else if (model.messageType == 1)
+        {
+            
+            
+            
+            EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
+            
+            ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:YES];
+            if (model.subTitle) {
+                
+                chatVC.title =model.subTitle;
+                chatVC.subTitle = model.subTitle;
+            }else
+            {
+                chatVC.title = model.converstion.chatter;
+                chatVC.subTitle = model.nickName;
+            }
+            
+            chatVC.group = group;
+            NSLog(@"beginTitle:%@",chatVC.subTitle);
+            
+            chatVC.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController pushViewController:chatVC animated:YES];
+        }
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        return;
+        
+    }
+    
+    if (indexPath.section ==0) {
+        
+        
+        ShengHuoQuanTVC *_shenghuoQuan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+        
+        _shenghuoQuan.hidesBottomBarWhenPushed = YES;
+        
+        _shenghuoQuan.isShuRenQuan = 1;
+        
+        
+        [self.navigationController pushViewController:_shenghuoQuan animated:YES];
+        
+
        
-        
-        
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
@@ -332,55 +501,7 @@ static NSString *headCellID = @"CellID";
     }
     
     
-    
-    MyConversation *model = [_conversations objectAtIndex:indexPath.section - 1];
-    
-    
-    if (model.messageType ==0 ) {
-        
-        ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
-        if (model.nickName) {
-            
-            //        chatVC.title =model.nickName;
-            chatVC.subTitle = model.nickName;
-            
-        }else
-        {
-            //        chatVC.title = model.converstion.chatter;
-            chatVC.subTitle = model.nickName;
-        }
-        
-        chatVC.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:chatVC animated:YES];
-    }
-    else if (model.messageType == 1)
-    {
-        
-        
-        
-        EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
-        
-        ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:YES];
-        if (model.subTitle) {
-            
-            chatVC.title =model.subTitle;
-            chatVC.subTitle = model.subTitle;
-        }else
-        {
-            chatVC.title = model.converstion.chatter;
-            chatVC.subTitle = model.nickName;
-        }
-        
-        chatVC.group = group;
-        NSLog(@"beginTitle:%@",chatVC.subTitle);
-        
-        chatVC.hidesBottomBarWhenPushed = YES;
-        
-        [self.navigationController pushViewController:chatVC animated:YES];
-    }
- 
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     
 
     
@@ -634,6 +755,90 @@ static NSString *headCellID = @"CellID";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    
+    if (searchBar.text.length > 0) {
+        
+        [self matchSearch:searchBar.text];
+    }
+    
+    
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    
+}
+
+#pragma mark - UISearchDisplayDelegate
+-(void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+{
+    [controller setActive:NO animated:YES];
+    
+}
+
+
+
+
+-(void)matchSearch:(NSString*)search
+{
+    
+    [_searchResults removeAllObjects];
+    
+    for (MyConversation *temCon in _conversations) {
+        
+        NSString *str = nil;
+        if (temCon.messageType == 0) {
+            
+            str = temCon.nickName;
+            
+            if (!str) {
+                
+                str = temCon.username;
+            }
+            
+            
+        }
+        else if (temCon.messageType == 1)
+        {
+            
+            str = temCon.subTitle;
+            
+            if (!str) {
+                
+                str = temCon.converstion.chatter;
+            }
+        }
+        else
+        {
+            
+            str = temCon.title;
+            
+        }
+        
+        
+        
+        NSRange range = [str rangeOfString:search];
+        
+        if (range.length > 0) {
+            
+            
+            [_searchResults addObject:temCon];
+            
+        }
+    }
+    
+    if (_searchResults.count > 0) {
+        
+        
+        [_mysearchConroller.searchResultsTableView reloadData];
+        
+    }
+    
 }
 
 - (void)dealloc

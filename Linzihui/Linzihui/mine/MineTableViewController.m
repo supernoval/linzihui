@@ -237,7 +237,19 @@ static NSInteger sextActionSheetTag  = 100;
                         
                     }
                         break;
-                 
+                    case 4:
+                    {
+                        
+                    }
+                        break;
+                        
+                    case 5:  //地址
+                    {
+                        contentLabel.text = _model.address;
+                        
+                    }
+                        break;
+                        
                         
                         
                         
@@ -286,7 +298,11 @@ static NSInteger sextActionSheetTag  = 100;
                     break;
                 case 1: //地区
                 {
-                    
+                    if (_model.area) {
+                        
+                        contentLabel.text = _model.area;
+                        
+                    }
                 }
                     break;
                 case 2:  //个性签名
@@ -316,7 +332,7 @@ static NSInteger sextActionSheetTag  = 100;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+//       NSArray *titles = @[@"头像",@"昵称",@"邻号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"地区",@"个性签名"];
     if (indexPath.section == 0) {
         
         switch (indexPath.row) {
@@ -385,7 +401,19 @@ static NSInteger sextActionSheetTag  = 100;
                 
             case 5:  //我的地址
             {
+                ChangePersonInfoVC *_changeInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePersonInfoVC"];
                 
+                _changeInfoVC.changeTitle = @"修改地址";
+                
+                _changeInfoVC.key = @"address";
+                
+                
+                _changeInfoVC.hidesBottomBarWhenPushed = YES;
+                
+                
+                _changeInfoVC.value = _model.address;
+                
+                [self.navigationController pushViewController:_changeInfoVC animated:YES];
             }
                 break;
         
@@ -419,7 +447,19 @@ static NSInteger sextActionSheetTag  = 100;
                 break;
             case 1:  //地区
             {
+                ChangePersonInfoVC *_changeInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePersonInfoVC"];
                 
+                _changeInfoVC.changeTitle = @"修改地区";
+                
+                _changeInfoVC.key = @"area";
+                
+                
+                _changeInfoVC.hidesBottomBarWhenPushed = YES;
+                
+                
+                _changeInfoVC.value = _model.address;
+                
+                [self.navigationController pushViewController:_changeInfoVC animated:YES];
             }
                 break;
             case 2:  //个性签名

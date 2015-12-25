@@ -60,6 +60,8 @@ static NSString *ContactsCell = @"ContactsCell";
     {
         
         NSArray * applyArray = [[InvitationManager sharedInstance] applyEmtitiesWithloginUser:loginName];
+        
+        
         [_inviteDataSource addObjectsFromArray:applyArray];
         
         [self.tableView reloadData];

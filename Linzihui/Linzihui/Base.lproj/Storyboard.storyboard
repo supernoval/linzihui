@@ -5357,46 +5357,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="D74-Sv-IN5">
-                            <rect key="frame" x="0.0" y="64" width="375" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="49Z-Nb-QtI">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <color key="barTintColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="49Z-Nb-QtI" secondAttribute="bottom" id="ADp-vC-U69"/>
-                                <constraint firstItem="49Z-Nb-QtI" firstAttribute="top" secondItem="D74-Sv-IN5" secondAttribute="top" id="kce-2L-dQC"/>
-                                <constraint firstItem="49Z-Nb-QtI" firstAttribute="leading" secondItem="D74-Sv-IN5" secondAttribute="leading" id="sWF-Xj-coN"/>
-                                <constraint firstAttribute="trailing" secondItem="49Z-Nb-QtI" secondAttribute="trailing" id="tdO-r9-FhH"/>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="subviews">
-                                    <exclude reference="49Z-Nb-QtI"/>
-                                </mask>
-                                <mask key="constraints">
-                                    <exclude reference="ADp-vC-U69"/>
-                                    <exclude reference="kce-2L-dQC"/>
-                                    <exclude reference="sWF-Xj-coN"/>
-                                    <exclude reference="tdO-r9-FhH"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <mask key="subviews">
-                                    <include reference="49Z-Nb-QtI"/>
-                                </mask>
-                                <mask key="constraints">
-                                    <include reference="ADp-vC-U69"/>
-                                    <include reference="kce-2L-dQC"/>
-                                    <include reference="sWF-Xj-coN"/>
-                                    <include reference="tdO-r9-FhH"/>
-                                </mask>
-                            </variation>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatListCell" rowHeight="80" id="Hhv-Rd-fBP" customClass="ChatListCellTableViewCell">
                                 <rect key="frame" x="0.0" y="220" width="375" height="80"/>
@@ -5683,14 +5643,10 @@
                     <navigationItem key="navigationItem" id="jNd-6J-eDC">
                         <nil key="title"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="chatHeadView" destination="D74-Sv-IN5" id="h8e-qI-zld"/>
-                        <outlet property="searchBar" destination="49Z-Nb-QtI" id="SBr-uZ-1rG"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ON-PB-rMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1825.5" y="-678.5"/>
+            <point key="canvasLocation" x="1824.75" y="-679.125"/>
         </scene>
         <!--Group Chat ListTVC-->
         <scene sceneID="E5k-FC-YNn">

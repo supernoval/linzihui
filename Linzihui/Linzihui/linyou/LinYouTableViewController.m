@@ -21,12 +21,14 @@
 
 static NSString *CellId  = @"CellId";
 
-@interface LinYouTableViewController ()
+@interface LinYouTableViewController ()<UISearchDisplayDelegate,UISearchBarDelegate>
 {
     NSMutableArray *_muDataSource;
     
     
     NSMutableArray *_friendListArray;
+    
+    NSMutableArray *_searchResults;
     
     
 }
@@ -34,6 +36,11 @@ static NSString *CellId  = @"CellId";
 @property (nonatomic,strong) NSMutableArray *dataSource;
 @property (nonatomic,strong) NSMutableArray *contactsSource;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
+
+
+@property (nonatomic) UISearchBar *mySearchBar;
+@property (nonatomic) UISearchDisplayController *myDisplayerController;
+
 @end
 
 @implementation LinYouTableViewController
@@ -51,8 +58,12 @@ static NSString *CellId  = @"CellId";
     
      _friendListArray = [[NSMutableArray alloc]init];
     
+     _searchResults = [[NSMutableArray alloc]init];
+    
     //设置侧边索引背景颜色
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    
+    self.tableView.tableHeaderView = self.myDisplayerController.searchBar;
     
     
 }
@@ -68,6 +79,41 @@ static NSString *CellId  = @"CellId";
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+}
+
+-(UISearchBar*)mySearchBar
+{
+    
+    
+    if (!_mySearchBar) {
+        
+        _mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        
+        _mySearchBar.delegate = self;
+        
+        
+    }
+    
+    return _mySearchBar;
+    
+    
+}
+
+-(UISearchDisplayController*)myDisplayerController
+{
+    
+    if (!_myDisplayerController) {
+        
+        _myDisplayerController = [[UISearchDisplayController alloc]initWithSearchBar:self.mySearchBar contentsController:self];
+        
+        _myDisplayerController.searchResultsDataSource = self;
+        _myDisplayerController.searchResultsDelegate = self;
+        
+        
+    }
+    
+    return _myDisplayerController;
     
 }
 
@@ -118,6 +164,11 @@ static NSString *CellId  = @"CellId";
 //设置 sectionheaderView 及邮编字母栏
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
+    if (tableView == _myDisplayerController.searchResultsTableView) {
+        
+        return nil;
+        
+    }
     NSMutableArray * existTitles = [NSMutableArray array];
     //section数组为空的title过滤掉，不显示
     for (int i = 0; i < [self.sectionTitles count]; i++) {
@@ -135,6 +186,11 @@ static NSString *CellId  = @"CellId";
 //section header 的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (tableView == _myDisplayerController.searchResultsTableView) {
+        
+        return 0;
+        
+    }
     if (section < 3) {
         
         return 0;
@@ -166,6 +222,12 @@ static NSString *CellId  = @"CellId";
 //返回每个section 上面的 A,B,C....
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    
+    if (tableView == _myDisplayerController.searchResultsTableView) {
+        
+        return nil;
+        
+    }
     if (section < 3) {
         return nil;
     }
@@ -186,12 +248,23 @@ static NSString *CellId  = @"CellId";
 //有几个section
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (tableView == _myDisplayerController.searchResultsTableView) {
+        
+        return 1;
+        
+    }
     
     return _muDataSource.count + _dataSource.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    if (tableView == _myDisplayerController.searchResultsTableView) {
+        
+        return _searchResults.count;
+        
+    }
     
     if (section < 3) {
         
@@ -222,7 +295,7 @@ static NSString *CellId  = @"CellId";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellId];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellId];
     
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -232,21 +305,35 @@ static NSString *CellId  = @"CellId";
         
         UILabel*titleLabel = (UILabel*)[cell viewWithTag:101];
         
-        if (indexPath.section < 3) {
+        
+        if (tableView == _myDisplayerController.searchResultsTableView || indexPath.section > 2) {
             
-            NSDictionary *oneDict = [_muDataSource objectAtIndex:indexPath.section];
             
-            titleLabel.text = [oneDict objectForKey:@"title"];
+              NSArray *oneArray;
+            UserModel *oneModel;
             
-            imageView.image = [UIImage imageNamed:[oneDict objectForKey:@"image"]];
-        }
-        else
-        {
-            if (_dataSource.count > indexPath.section -3) {
+            
+            if (tableView == _myDisplayerController.searchResultsTableView) {
                 
-                NSArray *oneArray = [_dataSource objectAtIndex:indexPath.section - 3];
+                 oneModel = [_searchResults objectAtIndex:indexPath.row];
                 
-                UserModel *oneModel = [oneArray objectAtIndex:indexPath.row];
+            }
+            else
+            {
+                if (_dataSource.count > indexPath.section -3) {
+                    
+                    oneArray = [_dataSource objectAtIndex:indexPath.section - 3];
+                    
+                    oneModel  = [oneArray objectAtIndex:indexPath.row];
+                    
+                    
+                }
+            }
+     
+          
+            
+            
+            
                 
                 if (oneModel.nickName) {
                     
@@ -260,11 +347,17 @@ static NSString *CellId  = @"CellId";
                 
                 
                 [imageView sd_setImageWithURL:[NSURL URLWithString:oneModel.headImageURL] placeholderImage:kDefaultHeadImage];
-            }
-          
-            
             
         }
+        else {
+            
+            NSDictionary *oneDict = [_muDataSource objectAtIndex:indexPath.section];
+            
+            titleLabel.text = [oneDict objectForKey:@"title"];
+            
+            imageView.image = [UIImage imageNamed:[oneDict objectForKey:@"image"]];
+        }
+       
    
         
         
@@ -280,7 +373,37 @@ static NSString *CellId  = @"CellId";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    if (tableView == _myDisplayerController.searchResultsTableView) {
+        
+        
+        
+        UserModel *model = [_searchResults objectAtIndex:indexPath.row];
+        
+        ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:model.username isGroup:NO];
+        
+        if (model.nickName) {
+            
+            _chat.title = model.nickName;
+        }
+        else
+        {
+            _chat.title = model.username;
+        }
+        
+        _chat.hidesBottomBarWhenPushed = YES;
+        _chat.userModel = model;
+        
+        [self.navigationController pushViewController:_chat animated:YES];
+      
+        
+        [_myDisplayerController setActive:NO animated:NO];
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        
+        return;
+        
+    }
     switch (indexPath.section) {
         case 0:
         {
@@ -290,9 +413,7 @@ static NSString *CellId  = @"CellId";
             
             [self.navigationController pushViewController:_tonxunLuTVC animated:YES];
             
-            
-            
-      
+        
             
             
             
@@ -414,6 +535,75 @@ static NSString *CellId  = @"CellId";
     }
     
     return sortedArray;
+}
+
+#pragma mark - UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    
+    if (searchBar.text.length > 0) {
+        
+        [self matchSearch:searchBar.text];
+        
+    }
+    
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    
+}
+
+
+#pragma mark - UISearchDisplayContorllerDelegate
+-(void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+{
+    
+    [controller setActive:NO animated:YES];
+    
+}
+
+-(void)matchSearch:(NSString*)search
+{
+
+    
+    [_searchResults removeAllObjects];
+    
+    for (int i = 0 ; i < _dataSource.count; i ++) {
+        
+        NSArray *array = [_dataSource objectAtIndex:i];
+        
+        if (i > 1) {
+            
+            for (UserModel *oneModel in array) {
+                
+                NSString *nickName = oneModel.nickName;
+                
+                if (!nickName) {
+                    
+                    nickName =oneModel.username;
+                }
+                
+                NSRange range = [nickName rangeOfString:search];
+                
+                if (range.length > 0) {
+                    
+                    [_searchResults addObject:oneModel];
+                    
+                }
+                
+            }
+        }
+ 
+    }
+    
+    
+    if (_searchResults.count > 0) {
+        
+        [_myDisplayerController.searchResultsTableView reloadData];
+        
+    }
+    
 }
 
 
