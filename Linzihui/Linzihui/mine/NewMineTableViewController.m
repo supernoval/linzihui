@@ -11,6 +11,7 @@
 #import "MyPhotosViewController.h"
 #import "SettingTableViewController.h"
 #import "ShengHuoQuanTVC.h"
+#import "LevelDetailViewController.h"
 
 
 @interface NewMineTableViewController ()
@@ -48,7 +49,9 @@
     
     [BmobHelper getLevel:^(NSString *levelStr) {
        
-        _levelLabel.text = levelStr;
+        [_levelButton setTitle:levelStr forState:UIControlStateNormal];
+        
+        
         
         
     }];
@@ -115,4 +118,14 @@
 }
 
 
+- (IBAction)showLevel:(id)sender {
+    
+    LevelDetailViewController *_levelDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"LevelDetailViewController"];
+    
+    _levelDetail.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:_levelDetail animated:YES];
+    
+    
+}
 @end

@@ -22,5 +22,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 
+- (IBAction)showLevel:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *levelButton;
 
 @end

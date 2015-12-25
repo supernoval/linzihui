@@ -263,6 +263,7 @@
 		1530E8501BFC910E00A78DB5 /* ShengHuoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E84F1BFC910E00A78DB5 /* ShengHuoModel.m */; };
 		1530E8541BFCA6E000A78DB5 /* NewMineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */; };
 		1531670D1BF463E800B88CF4 /* WechatShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1531670C1BF463E800B88CF4 /* WechatShareController.m */; };
+		1536C6EC1C2CDFA4001DB61A /* LevelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1536C6EB1C2CDFA4001DB61A /* LevelDetailViewController.m */; };
 		153723511BF59F2B005A4340 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153723501BF59F2B005A4340 /* libstdc++.tbd */; };
 		1538EA151C2A6DDD002A23C7 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1538EA141C2A6DDD002A23C7 /* PersonInfoViewController.m */; };
 		153CE0151BE50D910032517E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0141BE50D910032517E /* main.m */; };
@@ -1005,6 +1006,8 @@
 		1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMineTableViewController.m; sourceTree = "<group>"; };
 		1531670B1BF463E800B88CF4 /* WechatShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatShareController.h; sourceTree = "<group>"; };
 		1531670C1BF463E800B88CF4 /* WechatShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatShareController.m; sourceTree = "<group>"; };
+		1536C6EA1C2CDFA4001DB61A /* LevelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelDetailViewController.h; sourceTree = "<group>"; };
+		1536C6EB1C2CDFA4001DB61A /* LevelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelDetailViewController.m; sourceTree = "<group>"; };
 		153723501BF59F2B005A4340 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		1538EA131C2A6DDD002A23C7 /* PersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
 		1538EA141C2A6DDD002A23C7 /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
@@ -2438,6 +2441,15 @@
 			name = wechatShareController;
 			sourceTree = "<group>";
 		};
+		1536C6E91C2CDF76001DB61A /* levelDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1536C6EA1C2CDFA4001DB61A /* LevelDetailViewController.h */,
+				1536C6EB1C2CDFA4001DB61A /* LevelDetailViewController.m */,
+			);
+			name = levelDetail;
+			sourceTree = "<group>";
+		};
 		1538EA121C2A6D90002A23C7 /* PerfonInfoTVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -3499,6 +3511,7 @@
 		15B7A5DB1BE744FA0052115F /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				1536C6E91C2CDF76001DB61A /* levelDetail */,
 				15D05C0D1C0432C300E0EA0D /* photos */,
 				1530E8511BFCA6B800A78DB5 /* personInfo */,
 				15FB7FEE1BEF51CA007D6EC8 /* changePersonInfo */,
@@ -4180,6 +4193,7 @@
 				15B7A43E1BE72F800052115F /* EMCDDeviceManagerBase.m in Sources */,
 				150F31501C0FEA5D00E5CC8B /* ZXGenericGF.m in Sources */,
 				150F31471C0FEA5D00E5CC8B /* ZXVINResultParser.m in Sources */,
+				1536C6EC1C2CDFA4001DB61A /* LevelDetailViewController.m in Sources */,
 				150F317E1C0FEA5D00E5CC8B /* ZXDataMatrixSymbolInfo.m in Sources */,
 				15EE46E51BE85C1700538EA5 /* JSONHTTPClient.m in Sources */,
 				150F31121C0FEA5D00E5CC8B /* LBXScanLineAnimation.m in Sources */,

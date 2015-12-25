@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface PrivacyViewController : BaseViewController
+@interface PrivacyViewController : UIViewController
 - (IBAction)back:(id)sender;
 
 @end
