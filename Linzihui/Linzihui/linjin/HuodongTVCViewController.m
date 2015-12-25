@@ -48,6 +48,7 @@ static NSString *headerCellID = @"headerCell";
     skip = 0;
 
     
+  
     UIBarButtonItem *_item = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(gotoPublishActivity)];
     
     self.navigationItem.rightBarButtonItem = _item;

@@ -676,7 +676,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="wTR-Yx-XyC">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="wTR-Yx-XyC">
                             <rect key="frame" x="0.0" y="224" width="375" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>

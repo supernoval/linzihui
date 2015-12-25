@@ -87,6 +87,9 @@ static NSString *textViewCell  =@"textViewCell";
     
     self.navigationItem.rightBarButtonItem = barButton;
     
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navbar_return_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
+    
 //    UITapGestureRecognizer *_tag = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
 //    
 //    [self.tableView addGestureRecognizer:_tag];
@@ -126,6 +129,11 @@ static NSString *textViewCell  =@"textViewCell";
     
 }
 
+-(void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 -(void)initPickDateView
 {
     _view_pickDate = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 250)];
@@ -475,7 +483,10 @@ static NSString *textViewCell  =@"textViewCell";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.section == 7 || indexPath.section == 12 || indexPath.section == 13 || indexPath.section == 14) {
+        
+        return 70;
+    }
     return 44;
     
 }
