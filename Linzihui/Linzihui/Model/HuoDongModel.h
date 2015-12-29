@@ -35,6 +35,11 @@
 @property (nonatomic)         NSInteger status;
 @property (nonatomic,strong)  NSString *groupId;
 
+@property (nonatomic,strong ) NSArray *comment;
+@property (nonatomic,strong) NSArray *qiandao;
+
+
+
 
 
 

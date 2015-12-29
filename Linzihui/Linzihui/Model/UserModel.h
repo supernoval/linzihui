@@ -38,6 +38,8 @@
 
 @property (nonatomic,assign) BOOL hadSelected;  //额外添加 是否选中  （群聊）
 
+@property (nonatomic,assign) BOOL isIngroup;  //是否在群聊里面 
+
 
 
 @end

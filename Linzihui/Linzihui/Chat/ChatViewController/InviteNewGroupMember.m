@@ -40,41 +40,33 @@
         if (array) {
             
             
-            
             NSArray *ocup = [_group occupants];
             
-            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    
             
-          
+            //去掉已在群里的好友
+            for (UserModel *_model in array) {
                 
-                //去掉已在群里的好友
-                for (UserModel *_model in array) {
+              
+                
+                for (NSString *username in ocup) {
                     
-                      BOOL contain = NO;
                     
-                    for (NSString *username in ocup) {
-                        
-                      
-                        
+                    
                     if ([username isEqualToString:_model.username]) {
                         
                         
-                        contain = YES;
+                        _model.isIngroup = YES;
                         
                     }
-                        
-                        if (!contain) {
-                            
-                            [muArray addObject:_model];
-                            
-                            
-                            
-                        }
+                    
+               
                     
                 }
-                }
+            }
+   
             
-            _friendList = muArray;
+            _friendList = array;
             
             [self.tableView reloadData];
             
@@ -159,6 +151,7 @@
         
         sendButton.tag = 101;
         
+       
         
         [cell.contentView addSubview:sendButton];
         
@@ -192,7 +185,15 @@
     }
     
     
-    
+    if (_userModel.isIngroup) {
+        
+        sender.hidden = YES;
+    }
+    else
+    {
+        sender.hidden = NO;
+        
+    }
     
     
     return cell;

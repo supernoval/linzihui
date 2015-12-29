@@ -99,10 +99,15 @@
             HuoDongModel *model = [[HuoDongModel alloc]init];
                 
             NSDictionary *dataDict = [ob valueForKey:@"bmobDataDic"];
-                
+            NSDate *startDate = [ob objectForKey:@"startTime"];
+            NSDate *endDate = [ob objectForKey:@"endTime"];
+            NSDate *endRegistTime = [ob objectForKey:@"endRegistTime"];
             [model setValuesForKeysWithDictionary:dataDict];
                 
             model.objectId = ob.objectId;
+            model.startTime = startDate;
+            model.endTime = endDate;
+            model.endRegistTime = endRegistTime;
             
                 
             NSMutableArray *MuArray = [[NSMutableArray alloc]initWithObjects:model, nil];

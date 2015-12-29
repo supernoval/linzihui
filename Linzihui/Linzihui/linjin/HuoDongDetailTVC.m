@@ -12,8 +12,16 @@
 #import "EMHelper.h"
 #import "ChatViewController.h"
 
-@interface HuoDongDetailTVC ()
-
+@interface HuoDongDetailTVC ()<UITextFieldDelegate>
+{
+    UIToolbar *_myToolBar;
+    
+    
+    UIView *_uiview_comment;
+    
+    UITextField *_textField_comment;
+    
+}
 @end
 
 @implementation HuoDongDetailTVC
@@ -23,13 +31,233 @@
  
     self.title = @"活动详情";
     
+    _myToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, ScreenHeight - 52, ScreenWidth, 52)];
+    UIBarButtonItem *common = [[UIBarButtonItem alloc]initWithTitle:@"评论" style:UIBarButtonItemStylePlain target:self action:@selector(showCommentView)];
+    
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *flex1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *flex2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *sign = [[UIBarButtonItem alloc]initWithTitle:@"签到" style:UIBarButtonItemStylePlain target:self action:@selector(sign)];
+    
+    _myToolBar.items = @[flex,common,flex1,sign,flex2];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+  
     [self initdata];
+    
+    [self initCommentView];
+    
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    [self.navigationController.view addSubview:_myToolBar];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    
+    [_myToolBar removeFromSuperview];
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+
+-(void)initCommentView
+{
+    _uiview_comment = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 50)];
+    
+    _uiview_comment.backgroundColor = kBackgroundColor;
+    
+    _uiview_comment.layer.borderColor = kLineColor.CGColor;
+    
+    _textField_comment = [[UITextField alloc]initWithFrame:CGRectMake(10, 10, ScreenWidth - 80, 30)];
+    _textField_comment.borderStyle = UITextBorderStyleRoundedRect;
+    _textField_comment.backgroundColor = [UIColor whiteColor];
+    
+    _textField_comment.delegate = self;
+    
+    [_uiview_comment addSubview:_textField_comment];
+    
+    
+    UIButton *sendButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 60, 10, 50, 30)];
+    
+    [sendButton addTarget:self action:@selector(coment) forControlEvents:UIControlEventTouchUpInside];
+    
+    [sendButton setTitle:@"发送" forState:UIControlStateNormal];
+    
+    sendButton.backgroundColor = kNavigationBarColor;
+    
+    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    [sendButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
+    
+    sendButton.clipsToBounds = YES;
+    
+    sendButton.layer.cornerRadius = 5;
+    
+    [_uiview_comment addSubview:sendButton];
+    
+    
     
     
     
     
 }
 
+-(void)showCommentView
+{
+    
+    [self.navigationController.view addSubview:_uiview_comment];
+    
+    [_textField_comment becomeFirstResponder];
+    
+}
+
+-(void)coment
+{
+    
+    if (_textField_comment.text.length == 0) {
+        
+        return;
+        
+    }
+    
+    UserModel *_usermodel = [BmobHelper getCurrentUserModel];
+    
+    
+    CommentModel *model = [[CommentModel alloc]init];
+    
+    model.nick = _usermodel.nickName;
+    
+    model.username = _usermodel.username;
+    
+    model.headImageURL = _usermodel.headImageURL;
+    
+    model.content = _textField_comment.text;
+    
+    if (!model.headImageURL) {
+        
+        model.headImageURL = @"";
+        
+    }
+    if (!model.nick) {
+        
+        model.nick = @"";
+        
+    }
+    NSDictionary *dic = [model toDictionary];
+    BmobObject *_huodongOB = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+    
+    [_huodongOB addObjectsFromArray:@[dic] forKey:@"comment"];
+    
+    [MyProgressHUD showProgress];
+    
+    
+    [_textField_comment resignFirstResponder];
+    
+    
+    
+    [_huodongOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        [MyProgressHUD dismiss];
+        
+        
+       
+        if (isSuccessful) {
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            [muArray addObjectsFromArray:_huodong.comment];
+            
+            [muArray addObject:dic];
+            
+            _huodong.comment = muArray;
+            
+            
+            [self.tableView reloadData];
+            
+            
+            
+        }
+    }];
+    
+    
+}
+-(void)sign
+{
+    UserModel *_currentUserModel = [BmobHelper getCurrentUserModel];
+    
+    BOOL inside = NO;
+    
+    for (NSDictionary *dic in _huodong.qiandao) {
+        
+        NSString *username = [dic objectForKey:@"userName"];
+        
+        if ([username isEqualToString:_currentUserModel.username]) {
+            
+            inside = YES;
+        }
+    }
+    
+    if (!inside) {
+        
+        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+        
+        AttendUserModel *model = [[AttendUserModel alloc]init];
+        
+        model.headImageURL = _currentUserModel.headImageURL;
+        
+        model.nickName = _currentUserModel.nickName;
+        
+        model.userName = _currentUserModel.username;
+        
+        
+        NSDictionary *dic = [model toDictionary];
+        
+        [ob addObjectsFromArray:@[dic] forKey:@"qiandao"];
+        
+        [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+           
+            if (isSuccessful) {
+                
+                NSMutableArray *muArray = [[NSMutableArray alloc]init];
+                
+                [muArray addObjectsFromArray: _huodong.qiandao];
+                
+                [muArray addObject:dic];
+                
+                _huodong.qiandao = muArray;
+                
+                [self.tableView reloadData];
+                
+                
+                
+            }
+        }];
+        
+        
+    }
+}
 -(void)initdata
 {
     
@@ -150,6 +378,91 @@
     
 }
 
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *blanckView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 52)];
+    
+    blanckView.backgroundColor = [UIColor clearColor];
+    
+    
+    return blanckView;
+    
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        
+        return nil;
+    }
+    
+    UILabel *label = [CommonMethods LabelWithText:@"评论" andTextAlgniment:NSTextAlignmentLeft andTextColor:[UIColor blackColor] andTextFont:FONT_16 andFrame:CGRectMake(0, 0, ScreenWidth, 20)];
+    
+    if (section == 1) {
+        
+        if (_huodong.AttendUsers.count > 0) {
+            
+             label.text = @"  参与人员";
+        }
+        else
+        {
+            label.text = @"";
+            
+        }
+       
+    }
+    
+    if (section == 2) {
+        
+        if (_huodong.comment.count > 0) {
+            
+            label.text = @"  评论";
+        }
+        else
+        {
+            label.text = @"";
+        }
+        
+    }
+    if (section == 3) {
+        
+        if (_huodong.qiandao.count > 0) {
+            
+           label.text = @"  签到";
+        }
+        else
+        {
+            label.text = @"";
+            
+        }
+        
+    }
+    
+    return label;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    
+    if (section == 3) {
+        
+        return 52;
+    }
+    
+    return 0;
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 1 || section == 2 || section == 3) {
+        
+        return 20;
+    }
+    
+    return 0;
+    
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -181,7 +494,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 2;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -190,8 +503,19 @@
         
         return 1;
     }
+    if (section == 1) {
+        
+      return _huodong.AttendUsers.count;
+    }
     
-    return _huodong.AttendUsers.count;
+    if (section == 2) {
+        
+      return _huodong.comment.count;
+    }
+    
+    return _huodong.qiandao.count;
+    
+    
 }
 
 
@@ -207,21 +531,112 @@
         
         
         
-        
-        
         return _photoCell;
         
     }
     
     
+    if (indexPath.section == 1) {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            NSArray *personsArray = _huodong.AttendUsers;
+            
+            NSDictionary *onePerson = [personsArray objectAtIndex:indexPath.row];
+            
+            AttendUserModel * _usermodel = [[AttendUserModel alloc]init];
+            
+            [_usermodel setValuesForKeysWithDictionary:onePerson];
+            
+            UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
+            
+            
+            UILabel *label = (UILabel*)[cell viewWithTag:101];
+            
+            [imageView sd_setImageWithURL:[NSURL URLWithString:_usermodel.headImageURL] placeholderImage:kDefaultHeadImage];
+            
+            
+            label.text = _usermodel.nickName;
+            
+            if (!_usermodel.nickName) {
+                
+                label.text = _usermodel.userName;
+                
+            }
+            
+            
+            
+            
+            
+            
+        });
+        
+        
+        return cell;
+    }
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
+  
+    if (indexPath.section == 2) {
+        
+        
     
-
+    UITableViewCell *commentCel = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
        
+        if (_huodong.comment.count > indexPath.row) {
+            
+            NSDictionary *dic = [_huodong.comment objectAtIndex:indexPath.row];
+            
+            CommentModel *_commentModel = [[CommentModel alloc]init];
+            
+            [_commentModel setValuesForKeysWithDictionary:dic];
+            
+            
+            UIImageView *headImageView = (UIImageView*)[commentCel viewWithTag:100];
+            
+            UILabel *nameLabel = (UILabel*)[commentCel viewWithTag:101];
+            
+            UILabel *commentlabel = (UILabel*)[commentCel viewWithTag:102];
+            
+            
+            [headImageView sd_setImageWithURL:[NSURL URLWithString:_commentModel.headImageURL] placeholderImage:kDefaultHeadImage];
+            
+            nameLabel.text = _commentModel.nick;
+            
+            if (!nameLabel.text) {
+                
+                nameLabel.text = _commentModel.username;
+                
+            }
+            
+            commentlabel.text = _commentModel.content;
+            
+        }
+      
         
-        NSArray *personsArray = _huodong.AttendUsers;
+        
+        
+    });
+    
+    return commentCel;
+        
+        }
+    
+    
+    
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        
+        NSArray *personsArray = _huodong.qiandao;
         
         NSDictionary *onePerson = [personsArray objectAtIndex:indexPath.row];
         
@@ -254,6 +669,8 @@
     
     
     return cell;
+    
+    
 }
 
 
@@ -437,6 +854,59 @@
     
     
 }
+
+
+
+#pragma mark - UITextFieldDelegate
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+-(void)keyboardShow:(NSNotification*)note
+{
+    NSDictionary *info = note.userInfo;
+    
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        _uiview_comment.frame = CGRectMake(0, ScreenHeight - kbSize.height - 50, ScreenWidth, 50);
+        
+        
+    }];
+}
+-(void)keyboardHide:(NSNotification*)note
+{
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        _uiview_comment.frame = CGRectMake(0, ScreenHeight - 50, ScreenWidth, 50);
+        
+        
+    } completion:^(BOOL finished) {
+        
+        if (finished) {
+            
+            [_uiview_comment removeFromSuperview];
+            
+        }
+    }];
+    
+    
+}
+
+
+
 - (IBAction)zixunAction:(id)sender {
 }
 

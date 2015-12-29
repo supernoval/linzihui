@@ -119,8 +119,21 @@ static NSString *commentCellID = @"CommentCell";
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     
     [self.tableView.header beginRefreshing];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+    
     
 }
 
@@ -171,8 +184,6 @@ static NSString *commentCellID = @"CommentCell";
     NSDictionary *info = note.userInfo;
     
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    
-    
     
     
     [UIView animateWithDuration:0.3 animations:^{
