@@ -13,6 +13,9 @@
 
 @property (nonatomic,strong) EMGroup *group;
 @property (nonatomic,strong ) NSString *subTitle;
+@property (nonatomic,strong) GroupChatModel *model;
+@property (nonatomic,strong) NSString *groupHeadImage;
+
 
 
 @property (weak, nonatomic) IBOutlet UIView *footerView;

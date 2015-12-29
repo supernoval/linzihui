@@ -419,7 +419,7 @@ static NSString *headCellID = @"CellID";
         
         else
         {
-            model = [_searchResults objectAtIndex:indexPath.section - 1];
+            model = [_conversations objectAtIndex:indexPath.section - 1];
         }
         
         
@@ -458,6 +458,8 @@ static NSString *headCellID = @"CellID";
                 chatVC.title = model.converstion.chatter;
                 chatVC.subTitle = model.nickName;
             }
+            
+            chatVC.groupHeadImageURL = model.groupHeadImage;
             
             chatVC.group = group;
             NSLog(@"beginTitle:%@",chatVC.subTitle);

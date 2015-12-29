@@ -106,6 +106,11 @@ static NSInteger sextActionSheetTag  = 100;
 
 
 #pragma mark -  UITableViewDataSource
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+    
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 5;

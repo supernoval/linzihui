@@ -29,6 +29,8 @@
 
 @property (nonatomic,strong ) EMGroup *group;
 @property (nonatomic,strong)  NSString *subTitle;
+@property (nonatomic,strong)  NSString *groupHeadImageURL;
+
 
 
 @property (nonatomic,strong) UserModel*userModel;

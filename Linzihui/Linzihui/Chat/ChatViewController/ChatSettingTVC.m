@@ -85,15 +85,21 @@
         titleLabel.text = title;
         
         
-        imageView.image = [UIImage imageNamed:@"erweima"];
         
-        if (indexPath.section == 3) {
+        
+        if (indexPath.section == 3)
+        {
             
             imageView.hidden = NO;
             
-         
+            imageView.image = [UIImage imageNamed:@"erweima"];
             
             
+            
+        }
+        else if (indexPath.section == 5)
+        {
+            [imageView sd_setImageWithURL:[NSURL URLWithString:_groupHeadImage] placeholderImage:kDefaultHeadImage];
             
         }
         else
@@ -173,7 +179,20 @@
             break;
         case 5:
         {
+            UIActionSheet *_pickActionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+            _pickActionSheet.delegate = self;
             
+            
+            [_pickActionSheet addButtonWithTitle:@"相册"];
+            [_pickActionSheet addButtonWithTitle:@"照相"];
+            
+            [_pickActionSheet addButtonWithTitle:@"取消"];
+            
+            _pickActionSheet.cancelButtonIndex = 2;
+            
+//            _pickActionSheet.tag = photoActionSheetTag;
+            
+            [_pickActionSheet showInView:self.view];
             
         }
             break;
@@ -277,20 +296,49 @@
         
     }
     
-    BmobQuery *query = [BmobQuery queryWithClassName:kChatGroupTableName];
-    
-    [query whereKey:@"groupId" equalTo:_group.groupId];
-    
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-       
-        if (!error && array.count > 0) {
+    [CommonMethods upLoadPhotos:@[image] resultBlock:^(BOOL success, NSArray *results) {
+        
+        NSString *url = [results firstObject];
+        
+        if (url) {
             
+            _groupHeadImage = url;
+            
+            [self.tableView reloadData];
+            
+            BmobQuery *query = [BmobQuery queryWithClassName:kChatGroupTableName];
+            
+            [query whereKey:@"groupId" equalTo:_group.groupId];
+            
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+                
+                if (!error && array.count > 0) {
+                    
+                    BmobObject *ob = [array firstObject];
+                    
+                    
+                    [ob setObject:url forKey:@"groupHeadImage"];
+                    
+                    [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        
+                        
+                    }];
+                    
+                }
+                
+            }];
             
             
         }
+       
         
-    }];
+    } ];
+    
+    
+    
+  
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
     
     

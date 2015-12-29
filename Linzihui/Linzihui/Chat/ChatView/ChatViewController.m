@@ -325,7 +325,7 @@
     
     _settingTVC.group =_group;
     _settingTVC.subTitle = self.title;
-    
+    _settingTVC.groupHeadImage = _groupHeadImageURL;
     [self.navigationController pushViewController:_settingTVC animated:YES];
     
 

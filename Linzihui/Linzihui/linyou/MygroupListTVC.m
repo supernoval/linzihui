@@ -236,6 +236,8 @@
     chatController.subTitle = selectedGroup.subTitle;
     chatController.hidesBottomBarWhenPushed = YES;
     chatController.group = group ;
+    chatController.groupHeadImageURL = selectedGroup.groupHeadImage;
+    
     [self.navigationController pushViewController:chatController animated:YES];
     
    
