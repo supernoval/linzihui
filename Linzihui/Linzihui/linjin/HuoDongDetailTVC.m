@@ -437,4 +437,15 @@
     
     
 }
+- (IBAction)zixunAction:(id)sender {
+}
+
+- (IBAction)pinglunAction:(id)sender {
+}
+
+- (IBAction)qiandao:(id)sender {
+}
+
+- (IBAction)yaoqing:(id)sender {
+}
 @end

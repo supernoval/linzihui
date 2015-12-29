@@ -2148,7 +2148,39 @@
                             <outlet property="delegate" destination="cpp-Qe-Ggp" id="Gzc-xi-DRR"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="D9N-du-bnV"/>
+                        <barButtonItem title="咨询" id="Yp2-WM-36J">
+                            <color key="tintColor" red="0.2666666667" green="0.70588235290000001" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="zixunAction:" destination="cpp-Qe-Ggp" id="vkj-TU-rDl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="eLT-rv-aNh"/>
+                        <barButtonItem title="评论" id="JvM-qX-e31">
+                            <color key="tintColor" red="0.2666666667" green="0.70588235290000001" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="pinglunAction:" destination="cpp-Qe-Ggp" id="8Dr-RK-hxA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="4W5-rS-L9E"/>
+                        <barButtonItem title="签到" id="epu-00-Ked">
+                            <color key="tintColor" red="0.2666666667" green="0.70588235290000001" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="qiandao:" destination="cpp-Qe-Ggp" id="0Df-DG-G4A"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="v0C-4l-7rY"/>
+                        <barButtonItem title="邀请" id="Aio-r3-Wlp">
+                            <color key="tintColor" red="0.2666666667" green="0.70588235290000001" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="yaoqing:" destination="cpp-Qe-Ggp" id="fpB-vv-yRH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="oBo-Qd-q1W"/>
+                    </toolbarItems>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="addressLabel" destination="d7n-Vv-ASO" id="nHY-tc-hAl"/>

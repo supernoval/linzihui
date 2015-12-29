@@ -55,6 +55,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *numLabel;
 
+- (IBAction)zixunAction:(id)sender;
+
+- (IBAction)pinglunAction:(id)sender;
+
+- (IBAction)qiandao:(id)sender;
+
+- (IBAction)yaoqing:(id)sender;
 
 
 
