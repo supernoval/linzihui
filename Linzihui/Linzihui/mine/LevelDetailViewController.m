@@ -20,8 +20,16 @@
     
     self.title = @"等级规则";
     
-    
-    _detailLabel.text = @"等级:(分为从幼儿园到大学教授级别) \n 1、使用天数(在线超过8小时算一天)：每90天升一级 \n 2、邀请好友：每邀请10个好友升一级";
+    [BmobHelper getLevel:^(NSString *levelStr) {
+        
+        _currentLevel.text = levelStr;
+        
+        
+        
+        
+        
+    }];
+    _detailLabel.text = @"等级规则:(分为从幼儿园到大学教授级别) \n 1、使用天数(在线超过8小时算一天)：每90天升一级 \n 2、邀请好友：每邀请10个好友升一级";
     
 }
 

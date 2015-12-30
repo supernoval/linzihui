@@ -26,12 +26,16 @@ static NSString *headerCellID = @"headerCell";
     
     NSInteger skip;
     
-   
+    NSInteger huodongType;
     
-    
+    UIButton *allButton;
+    UIButton *myButton;
     
     
 }
+
+@property (nonatomic) UIView *headView;
+
 @end
 
 @implementation HuodongTVCViewController
@@ -60,6 +64,10 @@ static NSString *headerCellID = @"headerCell";
     }
     else
     {
+        
+        self.tableView.tableHeaderView =self.headView;
+        
+        huodongType = 0;
         
          _dataSource = [[NSMutableArray alloc]init];
         
@@ -93,6 +101,48 @@ static NSString *headerCellID = @"headerCell";
     
 }
 
+
+-(UIView*)headView
+{
+    if (!_headView) {
+        
+        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        
+        _headView.backgroundColor = [UIColor clearColor];
+        
+        allButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 44)];
+        
+        [allButton setTitle:@"全部活动" forState:UIControlStateNormal];
+        
+        [allButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+        
+        allButton.tag = 0;
+        
+        [allButton addTarget:self action:@selector(huodongTypeSwitch:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_headView addSubview:allButton];
+        
+        
+        myButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 44)];
+        
+        [myButton setTitle:@"我的活动" forState:UIControlStateNormal];
+        
+        [myButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+        
+        myButton.tag = 1;
+        
+        [myButton addTarget:self action:@selector(huodongTypeSwitch:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_headView addSubview:myButton];
+        
+       
+      
+    }
+    
+    return _headView;
+    
+    
+}
 -(void)headerRefresh
 {
     skip = 0;
@@ -109,6 +159,29 @@ static NSString *headerCellID = @"headerCell";
     
 }
 
+-(void)huodongTypeSwitch:(UIButton*)sender
+{
+    if (sender.tag == 0) {
+        
+        [allButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+        
+        [myButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+        
+        huodongType = 0;
+    }
+    else
+    {
+        [allButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+        
+        [myButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+        huodongType = 1;
+        
+    }
+    
+    [self headerRefresh];
+    
+}
+
 -(void)getData
 {
     BmobQuery *query = [BmobQuery queryWithClassName:kHuoDongTableName];
@@ -120,6 +193,14 @@ static NSString *headerCellID = @"headerCell";
     [query  orderByDescending:@"updatedAt"];
     
     [query includeKey:@"starter"];
+    
+    
+    if (huodongType == 1) {
+        
+        [query whereKey:@"starter" equalTo:[BmobUser getCurrentUser]];
+        
+    }
+    
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        

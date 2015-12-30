@@ -12,6 +12,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentLevel;
 
 
 @end

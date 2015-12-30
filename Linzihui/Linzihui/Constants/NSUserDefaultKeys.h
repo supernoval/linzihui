@@ -15,6 +15,9 @@
 // 是否登录
 #define kHadLogin     @"HadLogin"
 
+//登录日期
+#define kLastLaunchDate    @"LastLaunchDate"
+
 //用户名
 #define kusername     @"username"
 

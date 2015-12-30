@@ -63,6 +63,10 @@
 
 - (IBAction)yaoqing:(id)sender;
 
+@property (weak, nonatomic) IBOutlet SDPhotoGroup *photoView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoHeight;
+
 
 
 @end

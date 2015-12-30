@@ -38,6 +38,8 @@
 
 #define kNavigationBarColor       [UIColor colorWithRed:68/255.0 green:180/255.0 blue:205/255.0 alpha:1]
 
+#define kDarkGrayColor             [UIColor darkGrayColor]
+
 #define kTabbarBarTintColor        RGB(0,0,0,0.9)
 
 #define kBackgroundColor           RGB(240,240,240,1)

@@ -11,6 +11,8 @@
 #import "EaseMob.h"
 #import "EMHelper.h"
 #import "ChatViewController.h"
+#import "PersonInfoViewController.h"
+
 
 @interface HuoDongDetailTVC ()<UITextFieldDelegate>
 {
@@ -31,7 +33,12 @@
  
     self.title = @"活动详情";
     
-    _myToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, ScreenHeight - 52, ScreenWidth, 52)];
+    _myToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, ScreenHeight - 44, ScreenWidth, 44)];
+    
+     UIBarButtonItem *yaoqing = [[UIBarButtonItem alloc]initWithTitle:@"邀请" style:UIBarButtonItemStylePlain target:self action:@selector(invite)];
+    
+     UIBarButtonItem *zixun = [[UIBarButtonItem alloc]initWithTitle:@"咨询" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
+    
     UIBarButtonItem *common = [[UIBarButtonItem alloc]initWithTitle:@"评论" style:UIBarButtonItemStylePlain target:self action:@selector(showCommentView)];
     
     UIBarButtonItem *flex = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -40,9 +47,14 @@
     
     UIBarButtonItem *flex2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
+    UIBarButtonItem *flex3 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *flex4 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *sign = [[UIBarButtonItem alloc]initWithTitle:@"签到" style:UIBarButtonItemStylePlain target:self action:@selector(sign)];
     
-    _myToolBar.items = @[flex,common,flex1,sign,flex2];
+    _myToolBar.items = @[flex,zixun,flex3,common,flex1,sign,flex2,yaoqing,flex4];
+    
+    _myToolBar.tintColor = kBlueBackColor;
     
     
     
@@ -133,6 +145,7 @@
     
 }
 
+#pragma mark - 评论
 -(void)coment
 {
     
@@ -203,6 +216,8 @@
     
     
 }
+
+#pragma mark - 签到
 -(void)sign
 {
     UserModel *_currentUserModel = [BmobHelper getCurrentUserModel];
@@ -258,10 +273,60 @@
         
     }
 }
+
+#pragma mark - 邀请
+-(void)invite
+{
+    
+}
+
+#pragma mark - 咨询
+-(void)ask
+{
+    
+    UserModel *model = [[UserModel alloc]init];
+    
+ 
+    NSString *nickName = [_huodong.starter objectForKey:@"nickName"];
+    NSString *username = [_huodong.starter objectForKey:@"username"];
+    
+
+    model.username = username;
+    model.nickName = nickName;
+    
+    
+    ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:model.username isGroup:NO];
+    
+    if (model.nickName) {
+        
+        _chat.title = model.nickName;
+    }
+    else
+    {
+        _chat.title = model.username;
+    }
+    
+    _chat.hidesBottomBarWhenPushed = YES;
+    _chat.userModel = model;
+    
+    [self.navigationController pushViewController:_chat animated:YES];
+}
 -(void)initdata
 {
     
-     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 450);
+    
+    CGFloat photoViewHeight = 0;
+    
+    NSArray *imgs = _huodong.photoURL;
+    
+    long imageCount = imgs.count;
+    int perRowImageCount = ((imageCount == 4) ? 2 : 3);
+    CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
+    int totalRowCount = ceil(imageCount / perRowImageCountF);
+    
+    photoViewHeight = 95 * totalRowCount;
+    
+     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 450 + photoViewHeight);
     
     _titleLabel.text = _huodong.title;
     
@@ -286,6 +351,9 @@
     
      _numLabel.text = [NSString stringWithFormat:@"%ld人已参加",(long)_huodong.AttendUsers.count];
     
+    _photoHeight.constant = photoViewHeight;
+    
+    _photoView.photoItemArray = _huodong.photoURL;
     
    
     
@@ -380,7 +448,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *blanckView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 52)];
+    UIView *blanckView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
     
     blanckView.backgroundColor = [UIColor clearColor];
     
@@ -391,14 +459,10 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        
-        return nil;
-    }
-    
+ 
     UILabel *label = [CommonMethods LabelWithText:@"评论" andTextAlgniment:NSTextAlignmentLeft andTextColor:[UIColor blackColor] andTextFont:FONT_16 andFrame:CGRectMake(0, 0, ScreenWidth, 20)];
     
-    if (section == 1) {
+    if (section == 0) {
         
         if (_huodong.AttendUsers.count > 0) {
             
@@ -412,7 +476,7 @@
        
     }
     
-    if (section == 2) {
+    if (section == 1) {
         
         if (_huodong.comment.count > 0) {
             
@@ -424,7 +488,7 @@
         }
         
     }
-    if (section == 3) {
+    if (section == 2) {
         
         if (_huodong.qiandao.count > 0) {
             
@@ -445,9 +509,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    if (section == 3) {
+    if (section == 2) {
         
-        return 52;
+        return 44;
     }
     
     return 0;
@@ -455,34 +519,18 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 1 || section == 2 || section == 3) {
+
         
         return 20;
-    }
+ 
     
-    return 0;
+  
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 0) {
-        
-        CGFloat photoViewHeight = 0;
-        
-        NSArray *imgs = _huodong.photoURL;
-        
-        long imageCount = imgs.count;
-        int perRowImageCount = ((imageCount == 4) ? 2 : 3);
-        CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
-        int totalRowCount = ceil(imageCount / perRowImageCountF);
-        
-        photoViewHeight = 95 * totalRowCount;
-        
-        return photoViewHeight;
-        
-        
-    }
+ 
     
  
     
@@ -494,21 +542,18 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 4;
+    return 3;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+ 
     if (section == 0) {
-        
-        return 1;
-    }
-    if (section == 1) {
         
       return _huodong.AttendUsers.count;
     }
     
-    if (section == 2) {
+    if (section == 1) {
         
       return _huodong.comment.count;
     }
@@ -523,20 +568,10 @@
 {
     
     
+
+    
+    
     if (indexPath.section == 0) {
-        
-        PhotoCell *_photoCell = [tableView dequeueReusableCellWithIdentifier:@"photoCell"];
-        
-        _photoCell.imagesView.photoItemArray = _huodong.photoURL;
-        
-        
-        
-        return _photoCell;
-        
-    }
-    
-    
-    if (indexPath.section == 1) {
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
         
@@ -580,7 +615,7 @@
     }
 
   
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         
         
     
@@ -676,6 +711,62 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSString *username = nil;
+    
+    switch (indexPath.section) {
+        case 0:
+        {
+            NSDictionary *onePerson = [_huodong.AttendUsers objectAtIndex:indexPath.row];
+            
+            AttendUserModel * _usermodel = [[AttendUserModel alloc]init];
+            
+            [_usermodel setValuesForKeysWithDictionary:onePerson];
+            
+            username = _usermodel.userName;
+            
+        }
+            break;
+        case 1:
+        {
+            NSDictionary *dic = [_huodong.comment objectAtIndex:indexPath.row];
+            
+            CommentModel *_commentModel = [[CommentModel alloc]init];
+            
+            [_commentModel setValuesForKeysWithDictionary:dic];
+            
+            username = _commentModel.username;
+            
+            
+        }
+            break;
+        case 2:
+        {
+            NSArray *personsArray = _huodong.qiandao;
+            
+            NSDictionary *onePerson = [personsArray objectAtIndex:indexPath.row];
+            
+            AttendUserModel * _usermodel = [[AttendUserModel alloc]init];
+            
+            [_usermodel setValuesForKeysWithDictionary:onePerson];
+            
+            username = _usermodel.userName;
+            
+            
+        }
+            break;
+            
+            
+        default:
+            break;
+    }
+    
+    
+    PersonInfoViewController *_personInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+    
+    _personInfoVC.username = username;
+    
+    [self.navigationController pushViewController:_personInfoVC animated:YES];
     
     
     

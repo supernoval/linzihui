@@ -10,6 +10,8 @@
 #import "MyConversation.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+#import "CommonMethods.h"
+
 @implementation BmobHelper
 
 #pragma mark - 等级记录
@@ -22,38 +24,55 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin])
     {
         
-  
-    BmobQuery *query = [BmobQuery queryWithClassName:kDengJi];
-    
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        NSDate *lastLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastLaunchDate];
+        NSDate *now = [NSDate date];
+        now = [CommonMethods getYYYMMddFromString:[CommonMethods getYYYYMMddFromDefaultDateStr:now]];
         
-        if (!error ) {
+        
+        if (![lastLaunchDate isEqualToDate:now]) {
             
-            if (array.count > 0) {
-                
-                BmobObject *ob = [array firstObject];
-                
-                [ob incrementKey:@"openTimes"];
-                
-                [ob updateInBackground];
-                
-            }
-            else
-            {
-                
-                BmobObject *ob = [BmobObject objectWithClassName:kDengJi];
-                
-                [ob setObject:[BmobUser getCurrentUser].username forKey:@"username"];
-                
-                [ob saveInBackground];
-                
-            }
+            BmobQuery *query = [BmobQuery queryWithClassName:kDengJi];
             
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+                
+                if (!error ) {
+                    
+                    if (array.count > 0) {
+                        
+                        BmobObject *ob = [array firstObject];
+                        
+                        [ob incrementKey:@"openTimes"];
+                        
+                        [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                            if (isSuccessful) {
+                                
+                                [[NSUserDefaults standardUserDefaults] setObject:now forKey:kLastLaunchDate];
+                                
+                                [[NSUserDefaults standardUserDefaults] synchronize];
+                                
+                            }
+                        }];
+                        
+                    }
+                    else
+                    {
+                        
+                        BmobObject *ob = [BmobObject objectWithClassName:kDengJi];
+                        
+                        [ob setObject:[BmobUser getCurrentUser].username forKey:@"username"];
+                        
+                        [ob saveInBackground];
+                        
+                    }
+                    
+                    
+                }
+                
+            }];
             
         }
-        
-    }];
+  
         
           }
     

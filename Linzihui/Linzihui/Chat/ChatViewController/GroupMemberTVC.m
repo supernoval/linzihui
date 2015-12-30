@@ -8,6 +8,8 @@
 
 #import "GroupMemberTVC.h"
 #import "MyConversation.h"
+#import "PersonInfoViewController.h"
+
 
 @interface GroupMemberTVC ()
 {
@@ -132,7 +134,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+      MyConversation *conver = [_friendList objectAtIndex:indexPath.section];
     
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    
+    PersonInfoViewController * _personInfoVC = [sb  instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+    
+    _personInfoVC.hidesBottomBarWhenPushed = YES;
+    
+    _personInfoVC.username =conver.username;
+    
+    [self.navigationController pushViewController:_personInfoVC animated:YES];
     
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
