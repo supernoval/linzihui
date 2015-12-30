@@ -414,6 +414,7 @@ static NSString *textViewCell  =@"textViewCell";
 }
 
 
+#pragma mark - 创建活动消息
 
 -(void)createMessageWithOB:(BmobObject*)ob
 {

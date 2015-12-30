@@ -12,6 +12,7 @@
 #import "EMHelper.h"
 #import "ChatViewController.h"
 #import "PersonInfoViewController.h"
+#import "InviteNewGroupMember.h"
 
 
 @interface HuoDongDetailTVC ()<UITextFieldDelegate>
@@ -277,6 +278,27 @@
 #pragma mark - 邀请
 -(void)invite
 {
+    
+
+    NSString *name = [_huodong.starter objectForKey:@"nickName"];
+    
+    if (!name) {
+        name = [_huodong.starter objectForKey:@"username"];
+        
+        
+    }
+    NSString *message = [NSString stringWithFormat:@"%@邀请您参加%@活动",name,_huodong.title];
+    
+    InviteNewGroupMember *_inviteMember = [[InviteNewGroupMember alloc]initWithStyle:UITableViewStylePlain];
+    
+    _inviteMember.type = 1;
+    
+    _inviteMember.huodong = _huodong.OB;
+    _inviteMember.message = message;
+    _inviteMember.messageTitle = _huodong.title;
+    
+    
+    [self.navigationController pushViewController:_inviteMember animated:YES];
     
 }
 

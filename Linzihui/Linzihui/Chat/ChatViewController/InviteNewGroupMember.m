@@ -43,7 +43,8 @@
             NSArray *ocup = [_group occupants];
             
     
-            
+            if (_type == 1) {
+                
             //去掉已在群里的好友
             for (UserModel *_model in array) {
                 
@@ -64,7 +65,8 @@
                     
                 }
             }
-   
+                
+          }
             
             _friendList = array;
             
@@ -204,7 +206,10 @@
 -(void)sendInvite:(UIButton*)sender
 {
     
-    
+    if (_type == 0) {
+        
+        
+ 
     
     UserModel *_userModel = [_friendList objectAtIndex:[sender superview].tag];
     
@@ -218,7 +223,40 @@
         
         
     } onQueue:nil];
+       }
     
+    if (_type == 1)  //邀请好友参加活动
+    {
+        
+         UserModel *_userModel = [_friendList objectAtIndex:[sender superview].tag];
+        
+        [BmobHelper createHuodongMessage:_huodong message:_message status:MessageStatusInvite username:_userModel.username title:_messageTitle result:^(BOOL success) {
+            
+            if (success) {
+                
+                NSLog(@"messageCreat success");
+                
+                
+                [CommonMethods showDefaultErrorString:@"邀请已发送"];
+                
+                
+            }
+            else
+            {
+                NSLog(@"message create failed");
+                
+                [CommonMethods showDefaultErrorString:@"邀请发送失败"];
+                
+            }
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            
+            
+        }];
+        
+   
+    }
     
     
     

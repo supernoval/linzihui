@@ -17,6 +17,8 @@
 #import "ShengHuoQuanTVC.h"
 #import "GroupChatListTVC.h"
 #import "HuoDongMessageTVC.h"
+#import "HuoDongDetailTVC.h"
+
 
 
 
@@ -467,6 +469,60 @@ static NSString *headCellID = @"CellID";
             chatVC.hidesBottomBarWhenPushed = YES;
             
             [self.navigationController pushViewController:chatVC animated:YES];
+        }
+        
+        else if (model.messageType == 2)
+        {
+           
+            BmobQuery *query = [BmobQuery queryWithClassName:kHuoDongTableName];
+            
+            NSString *huodongID = [model.huodong objectForKey:@"objectId"];
+            
+            [query whereKey:@"objectId" equalTo:huodongID];
+            
+            [MyProgressHUD showProgress];
+            
+            [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+               
+                [MyProgressHUD dismiss];
+                
+                if (!error && array.count > 0) {
+                    
+                    
+                    BmobObject *temOb = [array firstObject];
+                    NSDate *startDate = [temOb objectForKey:@"startTime"];
+                    NSDate *endDate = [temOb objectForKey:@"endTime"];
+                    NSDate *endRegistTime = [temOb objectForKey:@"endRegistTime"];
+                    
+                    HuoDongModel *_huodongModel = [[HuoDongModel alloc]init];
+                    
+                    NSDictionary *dic = [temOb valueForKey:kBmobDataDic];
+                    
+                    [_huodongModel setValuesForKeysWithDictionary:dic];
+                    
+                    
+                    _huodongModel.startTime = startDate;
+                    _huodongModel.endRegistTime = endRegistTime;
+                    _huodongModel.endTime = endDate ;
+                    
+                    HuoDongDetailTVC *_detail = [self.storyboard instantiateViewControllerWithIdentifier:@"HuoDongDetailTVC"];
+                    
+                    _detail.huodong = _huodongModel;
+                    _detail.hidesBottomBarWhenPushed = YES;
+                    
+                     [self.navigationController pushViewController:_detail animated:YES];
+                    
+                    
+                }
+            }];
+         
+            
+            
+            
+           
+            
+            
+            
         }
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];

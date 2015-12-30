@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger,MessageStatus)
     MessageStatusStart,
     MessageStatusArrived,
     MessageStatusEnd,
+    MessageStatusInvite,
     
 };
 

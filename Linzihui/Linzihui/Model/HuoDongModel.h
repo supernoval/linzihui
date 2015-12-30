@@ -10,6 +10,8 @@
 #import <BmobSDK/Bmob.h>
 @interface HuoDongModel : JSONModel
 
+@property (nonatomic,strong) BmobObject *OB;
+
 @property (nonatomic,strong) NSString *objectId;
 @property (nonatomic,strong ) NSString *title;
 @property (nonatomic,strong) NSString *address;
