@@ -684,6 +684,7 @@ static NSInteger sextActionSheetTag  = 100;
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kHadLogin];
             
             [[NSUserDefaults standardUserDefaults ] setBool:NO forKey:kEasyMobHadLogin];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate dateWithTimeIntervalSince1970:0] forKey:kLastLaunchDate];
             
             [[NSUserDefaults standardUserDefaults ] synchronize];
             UINavigationController *logNav = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];

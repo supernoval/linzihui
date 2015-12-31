@@ -33,6 +33,10 @@
             
             BmobQuery *query = [BmobQuery queryWithClassName:kDengJi];
             
+            NSString *userid = [BmobUser getCurrentUser].username;
+            
+            [query whereKey:@"username" equalTo:userid];
+            
             
             [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
                 
@@ -62,7 +66,12 @@
                         
                         [ob setObject:[BmobUser getCurrentUser].username forKey:@"username"];
                         
-                        [ob saveInBackground];
+                        [ob saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                            if (error) {
+                                NSLog(@"error:%@",error);
+                                
+                            }
+                        }];
                         
                     }
                     
