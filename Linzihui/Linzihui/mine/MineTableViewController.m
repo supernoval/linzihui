@@ -579,7 +579,7 @@ static NSInteger sextActionSheetTag  = 100;
             case 1:
             {
                 
-             ;
+             
                 
                 UIImagePickerController *_picker = [[UIImagePickerController alloc]init];
                 _picker.editing = NO;

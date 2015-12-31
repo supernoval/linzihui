@@ -416,11 +416,25 @@ static NSString *headCellID = @"CellID";
         
         if (tableView == _mysearchConroller.searchResultsTableView) {
             
+            if (_conversations.count < indexPath.section ) {
+                
+                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                
+                return;
+                
+            }
             model = [_searchResults objectAtIndex:indexPath.section ];
         }
         
         else
         {
+            if (_conversations.count < indexPath.section -1) {
+                
+                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                
+                return;
+                
+            }
             model = [_conversations objectAtIndex:indexPath.section - 1];
         }
         
