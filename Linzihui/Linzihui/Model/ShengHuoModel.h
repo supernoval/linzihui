@@ -21,6 +21,9 @@
 @property (nonatomic,strong)  NSDate *updatedAt;
 @property (nonatomic,strong) BmobGeoPoint *location;
 
+@property (nonatomic)   NSString *beizhu;
+
+
 
 
 

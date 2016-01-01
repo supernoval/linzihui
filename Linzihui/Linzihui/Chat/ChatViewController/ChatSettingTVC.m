@@ -19,6 +19,9 @@
     
     NSArray *_titles;
     
+    UIImage *headImage;
+    
+    
 }
 @end
 
@@ -99,8 +102,15 @@
         }
         else if (indexPath.section == 5)
         {
+            if (headImage) {
+                
+                imageView.image = headImage;
+                
+            }
+            else
+            {
             [imageView sd_setImageWithURL:[NSURL URLWithString:_groupHeadImage] placeholderImage:kDefaultHeadImage];
-            
+            }
         }
         else
         {
@@ -296,6 +306,8 @@
         
     }
     
+    [MyProgressHUD showProgress];
+    
     [CommonMethods upLoadPhotos:@[image] resultBlock:^(BOOL success, NSArray *results) {
         
         NSString *url = [results firstObject];
@@ -304,11 +316,12 @@
             
             _groupHeadImage = url;
             
-            [self.tableView reloadData];
             
             BmobQuery *query = [BmobQuery queryWithClassName:kChatGroupTableName];
             
             [query whereKey:@"groupId" equalTo:_group.groupId];
+            
+            
             
             
             [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
@@ -322,14 +335,31 @@
                     
                     [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                         
+                        [MyProgressHUD dismiss];
                         
+                        if (isSuccessful) {
+                            
+                            headImage = image;
+                            
+                            [self.tableView reloadData];
+                            
+                        }
                     }];
+                    
+                 }
+                else
+                {
+                    [MyProgressHUD dismiss];
                     
                 }
                 
             }];
             
             
+         }
+        else
+        {
+           [MyProgressHUD dismiss];
         }
        
         

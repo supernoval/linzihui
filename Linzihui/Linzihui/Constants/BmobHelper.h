@@ -102,6 +102,8 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 生成群聊头像
 +(void)getGroupHeadImageView:(EMGroup*)group imageView:(UIImageView*)imageview result:(void(^)(BOOL success,UIImageView *headImageView))result;
 
+#pragma mark - 获取备注
++(NSString*)getBeizhu:(NSString*)username;
 
 
 

@@ -336,12 +336,18 @@ static NSString *CellId  = @"CellId";
             
             
             
+            if (oneModel.beizhu) {
                 
-                if (oneModel.nickName) {
+                titleLabel.text = oneModel.beizhu;
+                
+            }
+             else  if (oneModel.nickName) {
                     
                     titleLabel.text = oneModel.nickName;
-                }
-                else
+               
+             }
+            
+             else
                 {
                     titleLabel.text = oneModel.username;
                     

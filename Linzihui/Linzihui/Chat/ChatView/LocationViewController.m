@@ -18,7 +18,7 @@
 
 static LocationViewController *defaultLocation = nil;
 
-@interface LocationViewController () <MKMapViewDelegate,CLLocationManagerDelegate>
+@interface LocationViewController () <MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate>
 {
     MKMapView *_mapView;
     MKPointAnnotation *_annotation;
@@ -30,7 +30,12 @@ static LocationViewController *defaultLocation = nil;
     
     BOOL hadLocated;
     
+    
+    
 }
+
+@property (nonatomic) UISearchBar*mySearchBar;
+@property (nonatomic) CLGeocoder *myGeocoder;
 
 @property (strong, nonatomic) NSString *addressString;
 
@@ -72,12 +77,27 @@ static LocationViewController *defaultLocation = nil;
 //    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
 //    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 //    [self.navigationItem setLeftBarButtonItem:backItem];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     _mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate = self;
     _mapView.mapType = MKMapTypeStandard;
     _mapView.zoomEnabled = YES;
     [self.view addSubview:_mapView];
+    
+    
+    _mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, 40)];
+    _mySearchBar.showsCancelButton = YES;
+    
+    _mySearchBar.delegate = self;
+    
+    _myGeocoder = [[CLGeocoder alloc]init];
+    
+    if (_showSearchBar) {
+        
+        [self.view addSubview:_mySearchBar];
+        
+    }
     
     if (_isSendLocation) {
         _mapView.showsUserLocation = YES;//显示当前位置
@@ -91,6 +111,14 @@ static LocationViewController *defaultLocation = nil;
         self.navigationItem.rightBarButtonItem.enabled = NO;
         
         [self startLocation];
+        
+        
+        UILabel *tips = [CommonMethods LabelWithText:@"*温馨提示:可以移动地图来选定地址" andTextAlgniment:NSTextAlignmentLeft andTextColor:[UIColor darkGrayColor] andTextFont:FONT_15 andFrame:CGRectMake(0,ScreenHeight-30,ScreenWidth,30)];
+        tips.backgroundColor = kBackgroundColor;
+        
+        [self.view addSubview:tips];
+        
+        
     }
     else{
         [self removeToLocation:_currentLocationCoordinate];
@@ -299,4 +327,61 @@ static LocationViewController *defaultLocation = nil;
     
 }
 
+#pragma mark - UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    
+    if (searchBar.text.length == 0) {
+        
+        return;
+        
+    }
+    
+    [searchBar resignFirstResponder];
+    
+    [self getLocationWithAddress:searchBar.text];
+    
+    
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    
+    searchBar.text = nil;
+    
+}
+
+
+-(void)getLocationWithAddress:(NSString*)address
+{
+    
+    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:_mapView.userLocation.coordinate radius:5000 identifier:@"circle"];
+    
+    
+    [_myGeocoder geocodeAddressString:address inRegion:region completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        if ([placemarks count] > 0 && error == nil){
+            NSLog(@"Found %lu placemark(s).", (unsigned long)[placemarks count]);
+            CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
+            NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
+            NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
+            
+            
+            [_mapView setRegion:MKCoordinateRegionMakeWithDistance(firstPlacemark.location.coordinate, 1000, 1000) animated:YES];
+            
+//            [_mapView setCenterCoordinate:firstPlacemark.location.coordinate animated:YES];
+            
+            
+            
+        }
+        else if ([placemarks count] == 0 &&
+                 error == nil){
+            NSLog(@"Found no placemarks.");
+        }
+        else if (error != nil){
+            NSLog(@"An error occurred = %@", error);
+        }
+    }];
+    
+}
 @end

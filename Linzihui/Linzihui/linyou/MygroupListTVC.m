@@ -33,11 +33,18 @@
     }
     _groupListArray = [[NSMutableArray alloc]init];
     
-    [self getGroupList];
+   
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeGroupNameNoti:) name:kChangeGroupSubTitleNoti object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeGroupNameNoti:) name:kChangeGroupSubTitleNoti object:nil];
     
     
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     [self getGroupList];
     
 }
 

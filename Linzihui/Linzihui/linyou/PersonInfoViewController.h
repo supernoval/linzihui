@@ -24,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *linhao;
 @property (weak, nonatomic) IBOutlet UILabel *yaoqingma;
 
+@property (weak, nonatomic) IBOutlet UILabel *beizhuLabel;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *qianming;
 
 @property (weak, nonatomic) IBOutlet UILabel *address;

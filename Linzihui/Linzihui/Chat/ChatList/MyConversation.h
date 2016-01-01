@@ -17,6 +17,7 @@
 @property (nonatomic,strong) EMConversation *converstion;
 @property (nonatomic,strong) NSString *headImageURL;
 @property (nonatomic,strong) NSString *nickName;
+@property (nonatomic)  NSString *beizhu;
 
 //群消息
 @property (nonatomic,strong )NSString *groupId;

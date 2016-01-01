@@ -94,7 +94,7 @@ static NSString *headCellID = @"CellID";
        
         UINavigationController *logNav = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNav"];
         
-        [self presentViewController:logNav animated:YES completion:nil];
+        [self presentViewController:logNav animated:NO completion:nil];
         
         
     }
@@ -215,7 +215,12 @@ static NSString *headCellID = @"CellID";
             
             if (model.messageType == 0 ) {
                 
-                if (model.nickName) {
+                if (model.beizhu) {
+                    
+                    cell.titleLabel.text = model.beizhu;
+                    
+                }
+                else if (model.nickName) {
                     
                     cell.titleLabel.text = model.nickName;
                 }
@@ -338,7 +343,12 @@ static NSString *headCellID = @"CellID";
     
         if (model.messageType == 0 ) {
             
-            if (model.nickName) {
+            if (model.beizhu) {
+                
+                cell.titleLabel.text = model.beizhu;
+                
+            }
+            else if (model.nickName) {
                 
                 cell.titleLabel.text = model.nickName;
             }
@@ -447,7 +457,13 @@ static NSString *headCellID = @"CellID";
          
             
             ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
-            if (model.nickName) {
+            
+            
+            if (model.beizhu) {
+                
+                 chatVC.subTitle = model.beizhu;
+            }
+            else if (model.nickName) {
                 
                 //        chatVC.title =model.nickName;
                 chatVC.subTitle = model.nickName;

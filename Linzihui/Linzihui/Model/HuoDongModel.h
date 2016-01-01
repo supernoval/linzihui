@@ -41,6 +41,10 @@
 @property (nonatomic,strong) NSArray *qiandao;
 
 
+@property (nonatomic) NSString *beizhu;
+
+
+
 
 
 

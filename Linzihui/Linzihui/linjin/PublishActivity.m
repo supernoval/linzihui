@@ -707,6 +707,7 @@ static NSString *textViewCell  =@"textViewCell";
         LocationViewController *_locateVC = [LocationViewController defaultLocation];
         
         _locateVC.delegate = self;
+        _locateVC.showSearchBar = YES;
         
         
         [self.navigationController pushViewController:_locateVC animated:YES];

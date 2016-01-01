@@ -12,6 +12,7 @@
 #import "ChatAccountManager.h"
 
 #import "PrivacyViewController.h"
+#import "WelcomViewVC.h"
 
 
 @interface LoginViewController ()
@@ -29,6 +30,36 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:kIsFirstLaunch]) {
+        
+        self.view.alpha = 0;
+        
+        
+    }
+    else
+    {
+        self.view.alpha = 1;
+        
+    }
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:kIsFirstLaunch]) {
+        
+        WelcomViewVC *_welcome = [[WelcomViewVC alloc]init];
+        
+        [self presentViewController:_welcome animated:NO completion:nil];
+        
+    }
+}
 
 - (IBAction)loginButton:(id)sender {
     

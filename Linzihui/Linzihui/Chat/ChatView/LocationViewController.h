@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
+#import "BaseViewController.h"
 @protocol LocationViewDelegate <NSObject>
 
 -(void)sendLocationLatitude:(double)latitude
@@ -20,7 +20,10 @@
                  andAddress:(NSString *)address;
 @end
 
-@interface LocationViewController : UIViewController
+@interface LocationViewController : BaseViewController
+
+@property (nonatomic) BOOL showSearchBar;
+
 
 @property (nonatomic, assign) id<LocationViewDelegate> delegate;
 

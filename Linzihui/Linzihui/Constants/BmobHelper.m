@@ -683,6 +683,8 @@
                 
                 UserModel *model = [[UserModel alloc]initwithBmobObject:object];
                 
+                model.beizhu = [BmobHelper getBeizhu:model.username];
+                
                 [muArray addObject:model];
                 
                 
@@ -754,6 +756,8 @@
                         myConModel.headImageURL = model.headImageURL;
                         myConModel.converstion = _myConver;
                         myConModel.messageType = 0;
+                        myConModel.beizhu = [BmobHelper getBeizhu:model.username];
+                        
                         [muArray addObject:myConModel];
                         
                         
@@ -1497,6 +1501,32 @@
         }
     }];
    
+    
+}
+
+#pragma mark - 获取备注
++(NSString*)getBeizhu:(NSString*)username
+{
+    UserModel *model = [BmobHelper getCurrentUserModel];
+    
+    NSArray *array = model.beiZhu;
+    
+    for (NSDictionary *dic in array) {
+        
+        NSString *temusername = [dic objectForKey:@"username"];
+        
+        if ([temusername isEqualToString:username]) {
+            
+            NSString *beizhu = [dic objectForKey:@"beizhu"];
+            
+            
+            return beizhu;
+            
+        }
+    }
+    
+    
+    return nil;
     
 }
 

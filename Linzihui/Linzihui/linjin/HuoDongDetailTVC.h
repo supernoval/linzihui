@@ -81,4 +81,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyititleHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyiheight;
 
+- (IBAction)showMapView:(id)sender;
+
+
 @end

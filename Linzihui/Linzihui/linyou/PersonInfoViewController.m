@@ -8,6 +8,10 @@
 
 #import "PersonInfoViewController.h"
 #import "ChatViewController.h"
+#import "ShengHuoQuanTVC.h"
+#import "AddBeiZhuVC.h"
+
+
 
 typedef NS_ENUM(NSInteger,CheckType)
 {
@@ -39,13 +43,19 @@ typedef NS_ENUM(NSInteger,CheckType)
         _sendButton.hidden = YES;
         
     }
-    [self getData];
+
     
     
     
     
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self getData];
+    
+}
 
 -(void)getData
 {
@@ -67,6 +77,23 @@ typedef NS_ENUM(NSInteger,CheckType)
             
             _qianming.text = _model.selfComment;
             
+            _address.text = _model.area;
+            
+            NSArray *beizhus = [BmobHelper getCurrentUserModel].beiZhu;
+            
+            if (beizhus.count > 0) {
+                
+                for (NSDictionary *dic in beizhus) {
+                    
+                    NSString *username = [dic objectForKey:@"username"];
+                    
+                    if ([username isEqualToString:_username]) {
+                        
+                        _beizhuLabel.text = [dic objectForKey:@"beizhu"];
+                        
+                    }
+                }
+            }
             
             [self checkGuanZhu:array];
             
@@ -76,7 +103,39 @@ typedef NS_ENUM(NSInteger,CheckType)
     }];
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.section == 1) //备注
+    {
+        
+        AddBeiZhuVC *_addBeiZhu = [self.storyboard instantiateViewControllerWithIdentifier:@"AddBeiZhuVC"];
+        
+        _addBeiZhu.username = _username;
+        _addBeiZhu.beizhuStr = _beizhuLabel.text;
+        
+        [self.navigationController pushViewController:_addBeiZhu animated:YES];
+        
+        
+    }
+    
+    if (indexPath.section == 2) //相册
+    {
+        ShengHuoQuanTVC *_shenghuoQuan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+        
+        _shenghuoQuan.hidesBottomBarWhenPushed = YES;
+        
+        _shenghuoQuan.isShuRenQuan = 3;
+        
+        _shenghuoQuan.username = _username;
+        
+        [self.navigationController pushViewController:_shenghuoQuan animated:YES];
+        
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
 
 -(void)checkGuanZhu:(NSArray*)userArray
 {

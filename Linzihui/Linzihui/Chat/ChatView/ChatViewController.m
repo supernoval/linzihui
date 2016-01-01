@@ -241,6 +241,8 @@
     }
     self.isInvisible = NO;
     
+    self.title = self.subTitle;
+    
   
     
     
@@ -312,6 +314,9 @@
     
     self.title = subtitle;
     self.subTitle = subtitle;
+    
+    _titleLabel.text = subtitle;
+    
     
 }
 #pragma mark -  显示聊天设置

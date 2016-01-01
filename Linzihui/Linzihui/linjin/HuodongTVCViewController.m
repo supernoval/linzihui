@@ -353,6 +353,8 @@ static NSString *headerCellID = @"headerCell";
                 model.endTime = endDate;
                 model.endRegistTime = endRegistTime;
                 model.OB = ob;
+              
+                
                 
                 [_dataSource addObject:model];
                 

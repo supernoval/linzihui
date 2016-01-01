@@ -15,6 +15,9 @@
 // 是否登录
 #define kHadLogin     @"HadLogin"
 
+//是否第一次打开
+#define kIsFirstLaunch   @"IsFirstLaunch"
+
 //登录日期
 #define kLastLaunchDate    @"LastLaunchDate"
 

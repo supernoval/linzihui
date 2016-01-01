@@ -13,6 +13,8 @@
 #import "ChatViewController.h"
 #import "PersonInfoViewController.h"
 #import "InviteNewGroupMember.h"
+#import "HuoDongMapView.h"
+
 
 
 @interface HuoDongDetailTVC ()<UITextFieldDelegate>
@@ -36,6 +38,10 @@
     
     _myToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, ScreenHeight - 44, ScreenWidth, 44)];
     
+    
+    UIBarButtonItem *attend = [[UIBarButtonItem alloc]initWithTitle:@"报名" style:UIBarButtonItemStylePlain target:self action:@selector(attendAction:)];
+    
+    
      UIBarButtonItem *yaoqing = [[UIBarButtonItem alloc]initWithTitle:@"邀请" style:UIBarButtonItemStylePlain target:self action:@selector(invite)];
     
      UIBarButtonItem *zixun = [[UIBarButtonItem alloc]initWithTitle:@"咨询" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
@@ -53,7 +59,8 @@
     UIBarButtonItem *flex4 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *sign = [[UIBarButtonItem alloc]initWithTitle:@"签到" style:UIBarButtonItemStylePlain target:self action:@selector(sign)];
     
-    _myToolBar.items = @[flex,zixun,flex3,common,flex1,sign,flex2,yaoqing,flex4];
+    
+    _myToolBar.items = @[flex,attend,flex,zixun,flex3,common,flex1,sign,flex2,yaoqing,flex4];
     
     _myToolBar.tintColor = kBlueBackColor;
     
@@ -396,7 +403,7 @@
     
     
     
-     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 460 + photoViewHeight + plusHeight);
+     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 440 + photoViewHeight + plusHeight);
     
     _titleLabel.text = _huodong.title;
     
@@ -423,7 +430,7 @@
     
     _endRegistTimeLabel.text = [CommonMethods getYYYYMMddhhmmDateStr: _huodong.endRegistTime];
     
-     _numLabel.text = [NSString stringWithFormat:@"%ld人已参加",(long)_huodong.AttendUsers.count];
+//     _numLabel.text = [NSString stringWithFormat:@"%ld人已参加",(long)_huodong.AttendUsers.count];
     
     _photoHeight.constant = photoViewHeight;
     
@@ -453,67 +460,17 @@
         
     }
     
-    if (_huodong.groupId.length == 0) {
-        
-        _checkButton.hidden = YES;
-        
-    }
-    else
-    {
-        _checkButton.hidden = NO;
-        
-        
-    }
+
     
     
-    if ([self hadAttend:_huodong]) {
-        
-        _attendButton.enabled = NO;
-        
-        [_attendButton setTitle:@"已报名" forState:UIControlStateNormal];
-        
-    }
+    _attendButton.hidden = YES;
     
-    else
-    {
-        
-        
-        
-        _attendButton.enabled = YES;
-        
-        [_attendButton setTitle:@"报名参加" forState:UIControlStateNormal];
-        
-        
-      
-        
-        
-    }
+    _checkButton.hidden = YES;
+    
+    _numLabel.hidden = YES;
     
     
-    NSInteger registStatus = [CommonMethods activityRegistStatus:_huodong.endRegistTime];
-    
-    if (registStatus == 2) {
-        
-        _attendButton.enabled = NO;
-        
-        [_attendButton setTitle:@"报名已截止" forState:UIControlStateNormal];
-        
-        
-    }
-    else
-    {
-        _attendButton.enabled = YES;
-        
-      
-        
-    }
-    
-    
-    if ([[BmobUser getCurrentUser].username isEqualToString:[_huodong.starter objectForKey:@"username"]]) {
-        
-        _attendButton.enabled = NO;
-        
-    }
+
     
     
     
@@ -540,7 +497,9 @@
         
         if (_huodong.AttendUsers.count > 0) {
             
-             label.text = @"  参与人员";
+             label.text =[NSString stringWithFormat:@"  参与人员(%ld人已参加)",(long)_huodong.AttendUsers.count];
+            
+            
         }
         else
         {
@@ -888,6 +847,46 @@
 
 - (IBAction)attendAction:(id)sender {
     
+
+    
+    
+    if ([self hadAttend:_huodong]) {
+        
+        [CommonMethods showDefaultErrorString:@"已报名"];
+        
+        return;
+        
+    }
+    
+
+    
+    
+    NSInteger registStatus = [CommonMethods activityRegistStatus:_huodong.endRegistTime];
+    
+    if (registStatus == 2) {
+        
+       
+        
+        [CommonMethods showDefaultErrorString:@"报名已截止"];
+        
+        return;
+        
+        
+    }
+
+    
+    
+    if ([[BmobUser getCurrentUser].username isEqualToString:[_huodong.starter objectForKey:@"username"]]) {
+        
+        [CommonMethods showDefaultErrorString:@"已报名"];
+        
+        return;
+        
+        
+    }
+    
+    
+    
     
     BmobObject *_ob  = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
     
@@ -1072,15 +1071,15 @@
 
 
 
-- (IBAction)zixunAction:(id)sender {
-}
 
-- (IBAction)pinglunAction:(id)sender {
-}
-
-- (IBAction)qiandao:(id)sender {
-}
-
-- (IBAction)yaoqing:(id)sender {
+- (IBAction)showMapView:(id)sender {
+    
+    HuoDongMapView *_mapView = [self.storyboard instantiateViewControllerWithIdentifier:@"HuoDongMapView"];
+    
+    _mapView.coord = CLLocationCoordinate2DMake([[_huodong.location valueForKey:@"latitude"]floatValue], [[_huodong.location valueForKey:@"longitude"]floatValue]);
+    
+    [self.navigationController pushViewController:_mapView animated:YES];
+    
+    
 }
 @end

@@ -18,6 +18,11 @@
 @property (nonatomic,strong)  NSString *nickName;
 @property (nonatomic,assign)  BOOL mobilePhoneNumberVerified;
 @property (nonatomic,strong)  NSString *inviteCode;
+@property (nonatomic,strong) NSArray *beiZhu;
+
+@property (nonatomic,strong) NSString *beizhu;
+
+
 
 
 @property (nonatomic,strong)   BmobGeoPoint *location;

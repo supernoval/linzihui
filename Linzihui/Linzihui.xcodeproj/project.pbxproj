@@ -452,6 +452,9 @@
 		15E4524E1C366BEE00A6A549 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E4524D1C366BEE00A6A549 /* CallViewController.m */; };
 		15E452BD1C366F6900A6A549 /* libEaseMobClientSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E452B91C366F6900A6A549 /* libEaseMobClientSDK.a */; };
 		15E452BF1C366F6900A6A549 /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15E452BC1C366F6900A6A549 /* EaseMob.bundle */; };
+		15E452C31C36914600A6A549 /* WelcomViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E452C21C36914600A6A549 /* WelcomViewVC.m */; };
+		15E452C61C36A87100A6A549 /* AddBeiZhuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E452C51C36A87100A6A549 /* AddBeiZhuVC.m */; };
+		15E452C91C36ADF700A6A549 /* HuoDongMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E452C81C36ADF700A6A549 /* HuoDongMapView.m */; };
 		15E91C851C239CF10060CA79 /* HuoDongDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E91C841C239CF10060CA79 /* HuoDongDetailTVC.m */; };
 		15EE46BE1BE84BE200538EA5 /* RegistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46BD1BE84BE200538EA5 /* RegistTableViewController.m */; };
 		15EE46C11BE84C2000538EA5 /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46C01BE84C2000538EA5 /* PrivacyViewController.m */; };
@@ -1454,6 +1457,12 @@
 		15E452B71C366F6900A6A549 /* EMErrorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMErrorDefs.h; sourceTree = "<group>"; };
 		15E452B91C366F6900A6A549 /* libEaseMobClientSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDK.a; sourceTree = "<group>"; };
 		15E452BC1C366F6900A6A549 /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
+		15E452C11C36914600A6A549 /* WelcomViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomViewVC.h; sourceTree = "<group>"; };
+		15E452C21C36914600A6A549 /* WelcomViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomViewVC.m; sourceTree = "<group>"; };
+		15E452C41C36A87100A6A549 /* AddBeiZhuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBeiZhuVC.h; sourceTree = "<group>"; };
+		15E452C51C36A87100A6A549 /* AddBeiZhuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBeiZhuVC.m; sourceTree = "<group>"; };
+		15E452C71C36ADF700A6A549 /* HuoDongMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongMapView.h; sourceTree = "<group>"; };
+		15E452C81C36ADF700A6A549 /* HuoDongMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongMapView.m; sourceTree = "<group>"; };
 		15E91C831C239CF10060CA79 /* HuoDongDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongDetailTVC.h; sourceTree = "<group>"; };
 		15E91C841C239CF10060CA79 /* HuoDongDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongDetailTVC.m; sourceTree = "<group>"; };
 		15EE46BC1BE84BDE00538EA5 /* RegistTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegistTableViewController.h; sourceTree = "<group>"; };
@@ -2459,6 +2468,8 @@
 			children = (
 				1538EA131C2A6DDD002A23C7 /* PersonInfoViewController.h */,
 				1538EA141C2A6DDD002A23C7 /* PersonInfoViewController.m */,
+				15E452C41C36A87100A6A549 /* AddBeiZhuVC.h */,
+				15E452C51C36A87100A6A549 /* AddBeiZhuVC.m */,
 			);
 			name = PerfonInfoTVC;
 			sourceTree = "<group>";
@@ -2483,6 +2494,7 @@
 		153CE0121BE50D910032517E /* Linzihui */ = {
 			isa = PBXGroup;
 			children = (
+				15E452C01C36912E00A6A549 /* welcomeView */,
 				15AB5AA41C140B210070F6DA /* fuchuang */,
 				1528770E1BF23B4100321E50 /* Helper */,
 				1506EC1C1BF702A70010F349 /* MyViews */,
@@ -2664,6 +2676,8 @@
 				152F408D1C0BF583003C1C62 /* PhotoCell.m */,
 				152F408F1C0C1EEB003C1C62 /* PersonCell.h */,
 				152F40901C0C1EEB003C1C62 /* PersonCell.m */,
+				15E452C71C36ADF700A6A549 /* HuoDongMapView.h */,
+				15E452C81C36ADF700A6A549 /* HuoDongMapView.m */,
 			);
 			name = huodong;
 			sourceTree = "<group>";
@@ -3591,6 +3605,15 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		15E452C01C36912E00A6A549 /* welcomeView */ = {
+			isa = PBXGroup;
+			children = (
+				15E452C11C36914600A6A549 /* WelcomViewVC.h */,
+				15E452C21C36914600A6A549 /* WelcomViewVC.m */,
+			);
+			name = welcomeView;
+			sourceTree = "<group>";
+		};
 		15EE46C51BE85C1700538EA5 /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3988,6 +4011,7 @@
 				15B7A5AF1BE7305D0052115F /* SDWebImageDownloader.m in Sources */,
 				150F31E01C0FEA5D00E5CC8B /* ZXQRCodeErrorCorrectionLevel.m in Sources */,
 				150F31851C0FEA5D00E5CC8B /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
+				15E452C61C36A87100A6A549 /* AddBeiZhuVC.m in Sources */,
 				1542EF921C10111100AD7C9E /* WebViewController.m in Sources */,
 				15B7A5B11BE7305D0052115F /* SDWebImageManager.m in Sources */,
 				152877111BF23B7100321E50 /* EMHelper.m in Sources */,
@@ -4125,6 +4149,7 @@
 				150F314F1C0FEA5D00E5CC8B /* ZXWhiteRectangleDetector.m in Sources */,
 				150F31741C0FEA5D00E5CC8B /* ZXDataMatrixVersion.m in Sources */,
 				15B7A4221BE72F760052115F /* SRSlimeView.m in Sources */,
+				15E452C91C36ADF700A6A549 /* HuoDongMapView.m in Sources */,
 				15B7A5421BE730460052115F /* EMSDWebImageDecoder.m in Sources */,
 				150F31F21C0FEA5D00E5CC8B /* ZXQRCodeReader.m in Sources */,
 				151943BF1C00543300E4E711 /* CommentCell.m in Sources */,
@@ -4200,6 +4225,7 @@
 				150F31501C0FEA5D00E5CC8B /* ZXGenericGF.m in Sources */,
 				150F31471C0FEA5D00E5CC8B /* ZXVINResultParser.m in Sources */,
 				1536C6EC1C2CDFA4001DB61A /* LevelDetailViewController.m in Sources */,
+				15E452C31C36914600A6A549 /* WelcomViewVC.m in Sources */,
 				150F317E1C0FEA5D00E5CC8B /* ZXDataMatrixSymbolInfo.m in Sources */,
 				15EE46E51BE85C1700538EA5 /* JSONHTTPClient.m in Sources */,
 				150F31121C0FEA5D00E5CC8B /* LBXScanLineAnimation.m in Sources */,

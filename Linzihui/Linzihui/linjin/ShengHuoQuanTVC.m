@@ -267,6 +267,15 @@ static NSString *commentCellID = @"CommentCell";
         
         
     }
+    else if (_isShuRenQuan == 3)
+    {
+        
+        [query whereKey:@"username" equalTo:_username];
+        
+        
+    }
+    
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
         [self endHeaderRefresh];
@@ -295,6 +304,9 @@ static NSString *commentCellID = @"CommentCell";
                     model.createdAt = ob.createdAt;
                     model.updatedAt = ob.updatedAt;
                     
+                    NSString *username = [[ob objectForKey:@"publisher"]valueForKey:@"username"];
+                    
+                    model.beizhu = [BmobHelper getBeizhu:username];
                     
                     [_dataSource addObject:model];
                     
@@ -494,8 +506,13 @@ static NSString *commentCellID = @"CommentCell";
             
             
             
-        cell.nickNameLabel.text = [user objectForKey:@"nick"];
-        
+       
+        cell.nickNameLabel.text = oneModel.beizhu;
+            
+        if (!cell.nickNameLabel.text) {
+                 cell.nickNameLabel.text = [user objectForKey:@"nickName"];
+                
+        }
         if (!cell.nickNameLabel.text) {
             
             cell.nickNameLabel.text = [user objectForKey:@"username"];
