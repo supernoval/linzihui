@@ -87,6 +87,8 @@
     
     [_myToolBar removeFromSuperview];
     
+    [_uiview_comment removeFromSuperview];
+    
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     
