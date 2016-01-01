@@ -15,6 +15,7 @@
 
 @property (nonatomic,strong) NSString *username;
 
+@property (nonatomic) BOOL isShowed; //是否从聊天界面过来
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 

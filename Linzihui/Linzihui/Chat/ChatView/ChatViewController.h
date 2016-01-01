@@ -17,6 +17,7 @@
 
 #import "BaseViewController.h"
 #import "PublishActivity.h"
+#import "CallViewController.h"
 
 @protocol ChatViewControllerDelegate <NSObject>
 

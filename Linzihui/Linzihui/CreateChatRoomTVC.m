@@ -120,7 +120,7 @@
             
             if (_block) {
                 
-                _block(success,group);
+                _block(success,group,muString);
                 
             }
             

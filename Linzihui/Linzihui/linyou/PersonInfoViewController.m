@@ -33,6 +33,12 @@ typedef NS_ENUM(NSInteger,CheckType)
     // Do any additional setup after loading the view.
     
     self.title = @"详细资料";
+    
+    if (_isShowed) {
+        
+        _sendButton.hidden = YES;
+        
+    }
     [self getData];
     
     

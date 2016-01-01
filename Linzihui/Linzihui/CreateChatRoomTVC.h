@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-typedef void (^CreateChatRoomBlock)(BOOL success,EMGroup *group);
+typedef void (^CreateChatRoomBlock)(BOOL success,EMGroup *group ,NSString*subTitle);
 
 
 @interface CreateChatRoomTVC : BaseTableViewController

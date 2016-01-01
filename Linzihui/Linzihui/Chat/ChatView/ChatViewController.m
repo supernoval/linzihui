@@ -35,6 +35,8 @@
 #import "EMCDDeviceManager.h"
 #import "EMCDDeviceManagerDelegate.h"
 #import "ChatSettingTVC.h"
+#import "PersonInfoViewController.h"
+
 
 
 #define KPageCount 20
@@ -207,12 +209,12 @@
     }
     
     
-    if (_isChatGroup) {
+ 
         
-        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"linyou_1"] style:UIBarButtonItemStylePlain target:self action:@selector(showGroupSettingView)];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"linyou_1"] style:UIBarButtonItemStylePlain target:self action:@selector(showGroupSettingView)];
         
-        self.navigationItem.rightBarButtonItem = rightButton;
-    }
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSubTitle:) name:kChangeGroupSubTitleNoti object:nil];
     
@@ -316,9 +318,10 @@
 -(void)showGroupSettingView
 {
     
-
-    
-    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+  UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+       if (_isChatGroup) {
+           
+  
     
     
     ChatSettingTVC *_settingTVC = [SB instantiateViewControllerWithIdentifier:@"ChatSettingTVC"];
@@ -327,7 +330,18 @@
     _settingTVC.subTitle = self.title;
     _settingTVC.groupHeadImage = _groupHeadImageURL;
     [self.navigationController pushViewController:_settingTVC animated:YES];
-    
+       }
+    else
+    {
+        
+        PersonInfoViewController*_personInfoVC = [SB instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+        
+        _personInfoVC.username = _chatter;
+        _personInfoVC.isShowed = YES;
+        
+        
+        [self.navigationController pushViewController:_personInfoVC animated:YES];
+    }
 
     
     
@@ -1204,15 +1218,21 @@
 {
     // 隐藏键盘
     [self keyBoardHidden];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":self.chatter, @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+    
+    [self callOutWithChatter:_chatter type: eCallSessionTypeAudio];
+    
+    
+
 }
 
 - (void)moreViewVideoCallAction:(DXChatBarMoreView *)moreView
 {
     // 隐藏键盘
     [self keyBoardHidden];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":self.chatter, @"type":[NSNumber numberWithInt:eCallSessionTypeVideo]}];
+    
+     [self callOutWithChatter:_chatter type: eCallSessionTypeVideo];
 }
+
 
 #pragma mark - LocationViewDelegate
 
@@ -1890,6 +1910,40 @@
     }
 }
 
+
+#pragma mark - 发起语音、视频通话
+- (void)callOutWithChatter:(NSString*)chatter  type:(EMCallSessionType)type
+{
+    
+        
+        EMError *error = nil;
+    
+
+        EMCallSession *callSession = nil;
+        if (type == eCallSessionTypeAudio) {
+            callSession = [[EaseMob sharedInstance].callManager asyncMakeVoiceCall:chatter timeout:50 error:&error];
+        }
+        else if (type == eCallSessionTypeVideo){
+            if (![CallViewController canVideo]) {
+                return;
+            }
+            callSession = [[EaseMob sharedInstance].callManager asyncMakeVideoCall:chatter timeout:50 error:&error];
+        }
+        
+        if (callSession && !error) {
+            [[EaseMob sharedInstance].callManager removeDelegate:self];
+            
+            CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:NO];
+            callController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            [self presentViewController:callController animated:NO completion:nil];
+        }
+        
+        if (error) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error", @"error") message:error.description delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    
+}
 
 
 

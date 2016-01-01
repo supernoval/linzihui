@@ -18,6 +18,8 @@
 #import "GroupChatListTVC.h"
 #import "HuoDongMessageTVC.h"
 #import "HuoDongDetailTVC.h"
+#import "PersonInfoViewController.h"
+
 
 
 
@@ -441,6 +443,9 @@ static NSString *headCellID = @"CellID";
         
         if (model.messageType ==0 ) {
             
+            
+         
+            
             ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.converstion.chatter isGroup:NO];
             if (model.nickName) {
                 
@@ -456,6 +461,9 @@ static NSString *headCellID = @"CellID";
             chatVC.hidesBottomBarWhenPushed = YES;
             
             [self.navigationController pushViewController:chatVC animated:YES];
+            
+            
+            
         }
         else if (model.messageType == 1)
         {

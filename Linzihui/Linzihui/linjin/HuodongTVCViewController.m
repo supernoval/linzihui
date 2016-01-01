@@ -65,7 +65,8 @@ static NSString *headerCellID = @"headerCell";
     else
     {
         
-        self.tableView.tableHeaderView =self.headView;
+        [self.navigationController.view addSubview:self.headView];
+        
         
         huodongType = 0;
         
@@ -106,9 +107,10 @@ static NSString *headerCellID = @"headerCell";
 {
     if (!_headView) {
         
-        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight - 44, ScreenWidth, 44)];
         
-        _headView.backgroundColor = [UIColor clearColor];
+        _headView.backgroundColor = [UIColor whiteColor];
+        
         
         allButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 44)];
         
@@ -359,6 +361,11 @@ static NSString *headerCellID = @"headerCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
+    if (section == _dataSource.count -1) {
+        
+        return 54;
+        
+    }
     return 10;
     
 }

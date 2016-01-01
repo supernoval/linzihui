@@ -14,6 +14,8 @@
 #import "GZViewController.h"
 #import "MygroupListTVC.h"
 #import "TongXunLuTVC.h"
+#import "PersonInfoViewController.h"
+
 
 
 
@@ -448,21 +450,31 @@ static NSString *CellId  = @"CellId";
             
             UserModel *model = [Array objectAtIndex:indexPath.row];
             
-            ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:model.username isGroup:NO];
             
-            if (model.nickName) {
-                
-                _chat.title = model.nickName;
-            }
-            else
-            {
-                _chat.title = model.username;
-            }
+            PersonInfoViewController *_personInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
             
-            _chat.hidesBottomBarWhenPushed = YES;
-            _chat.userModel = model;
+            _personInfoVC.username = model.username;
             
-            [self.navigationController pushViewController:_chat animated:YES];
+            _personInfoVC.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController pushViewController:_personInfoVC animated:YES];
+            
+            
+//            ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:model.username isGroup:NO];
+//            
+//            if (model.nickName) {
+//                
+//                _chat.title = model.nickName;
+//            }
+//            else
+//            {
+//                _chat.title = model.username;
+//            }
+//            
+//            _chat.hidesBottomBarWhenPushed = YES;
+//            _chat.userModel = model;
+//            
+//            [self.navigationController pushViewController:_chat animated:YES];
             
         }
             break;

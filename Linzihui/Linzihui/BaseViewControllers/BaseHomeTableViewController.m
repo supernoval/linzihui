@@ -221,28 +221,32 @@
             CreateChatRoomTVC *createTVC = (CreateChatRoomTVC*)[_createChatRoom topViewController];
             
             
-           [createTVC setblock:^(BOOL success, EMGroup *group) {
+           [createTVC setblock:^(BOOL success, EMGroup *group,NSString*subTitle) {
               
-            [CommonMethods showDefaultErrorString:@"群创建成功"];
+//            [CommonMethods showDefaultErrorString:@"群创建成功"];
                //
-               ////                if (success) {
-               ////
-               ////
-               ////
-               ////                    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:group. isGroup:YES];
-               ////                    if (model.subTitle) {
-               ////
-               ////                        chatVC.title =model.subTitle;
-               ////                    }else
-               ////                    {
-               ////                        chatVC.title = model.converstion.chatter;
-               ////                    }
-               ////
-               ////                    chatVC.group = group;
-               ////                    
-               ////                    chatVC.hidesBottomBarWhenPushed = YES;
-               ////                    
-               ////                }
+                               if (success) {
+               
+               
+               
+            ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:group.groupId isGroup:YES];
+                                   
+                chatVC.subTitle = subTitle;
+                                   
+               
+               chatVC.group = group;
+                                   
+                chatVC.hidesBottomBarWhenPushed = YES;
+                                   
+                      
+               [self.navigationController pushViewController:chatVC animated:YES];
+                               
+                            
+                    }
+               
+              
+               
+               
            }];
 
             
