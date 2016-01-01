@@ -348,7 +348,53 @@
     
     photoViewHeight = 95 * totalRowCount;
     
-     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 450 + photoViewHeight);
+    CGFloat detailHeight = [StringHeight heightWithText:_huodong.content font:FONT_15 constrainedToWidth:ScreenWidth - 95 ];
+    
+    CGFloat tedianHeight = [StringHeight heightWithText:_huodong.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 95];
+    
+    CGFloat liuchenHeight = [StringHeight heightWithText:_huodong.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 95];
+    
+    CGFloat zhuyiHeight = [StringHeight heightWithText:_huodong.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 95];
+    
+    CGFloat plusHeight = 0;
+    
+    if (detailHeight < 21) {
+        detailHeight = 21;
+    }
+    
+    if (tedianHeight < 21) {
+        
+        tedianHeight = 21;
+    }
+    if (liuchenHeight < 21) {
+        
+        liuchenHeight = 21;
+    }
+    
+    if (zhuyiHeight < 21) {
+        zhuyiHeight = 21;
+        
+    }
+    
+    plusHeight = detailHeight -21 + tedianHeight -21 + liuchenHeight -21 + zhuyiHeight-21;
+    
+    
+    _detailtitleheight.constant = detailHeight;
+    
+    _detailheight.constant = detailHeight;
+    
+    _tedianheight.constant = tedianHeight;
+    _tediantitleheight.constant = tedianHeight;
+    
+    _liuchenheight.constant = liuchenHeight;
+    _liuchentitleheight.constant = liuchenHeight;
+    
+    _zhuyiheight.constant = zhuyiHeight;
+    _zhuyititleHeight.constant = zhuyiHeight;
+    
+    
+    
+     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 460 + photoViewHeight + plusHeight);
     
     _titleLabel.text = _huodong.title;
     
@@ -361,6 +407,10 @@
     _distanceLabel.text = [CommonMethods distanceStringWithLatitude:[[_huodong.location valueForKey:@"latitude"]floatValue] longitude:[[_huodong.location valueForKey:@"longitude"]floatValue]];
     _publisher.text = _huodong.realName ;
     
+    
+    
+    
+  
     _detailLabel.text = _huodong.content;
     
     _tedianLabel.text = _huodong.TeDian;

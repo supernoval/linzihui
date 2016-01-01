@@ -1631,7 +1631,7 @@
                                         </mask>
                                     </variation>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4M-od-uCG">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4M-od-uCG">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="Xm3-pt-83a"/>
@@ -1650,7 +1650,7 @@
                                         </mask>
                                     </variation>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Zt-Ow-j2G">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Zt-Ow-j2G">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="oee-rT-etF"/>
@@ -1669,7 +1669,7 @@
                                         </mask>
                                     </variation>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-iv-rQp">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-iv-rQp">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="8Rh-ew-5bH"/>
@@ -1688,7 +1688,7 @@
                                         </mask>
                                     </variation>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqc-hW-Arl">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqc-hW-Arl">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="EhX-vE-Wqc"/>
@@ -2325,11 +2325,15 @@
                         <outlet property="attendButton" destination="efz-Uy-vWA" id="EMK-Ej-UAA"/>
                         <outlet property="checkButton" destination="qaD-67-uGN" id="Fbe-g5-qHu"/>
                         <outlet property="detailLabel" destination="Q4M-od-uCG" id="kDK-L4-xuA"/>
+                        <outlet property="detailheight" destination="Xm3-pt-83a" id="F2m-CP-Zln"/>
+                        <outlet property="detailtitleheight" destination="hrV-rh-rZL" id="xE7-Uu-fUS"/>
                         <outlet property="distanceLabel" destination="UOv-0F-4dc" id="zXm-r4-qTh"/>
                         <outlet property="endRegistTimeLabel" destination="VOF-Hd-OQf" id="UDh-KV-DyA"/>
                         <outlet property="feelabel" destination="ugw-Ju-P50" id="ibw-11-h8Q"/>
                         <outlet property="headerView" destination="OHk-W7-NHP" id="ijA-kG-lJC"/>
                         <outlet property="liuchengLabel" destination="yKh-iv-rQp" id="jV3-kh-MEI"/>
+                        <outlet property="liuchenheight" destination="8Rh-ew-5bH" id="zom-an-Is6"/>
+                        <outlet property="liuchentitleheight" destination="qn2-F4-spo" id="WZ2-8A-JaU"/>
                         <outlet property="numLabel" destination="INp-Ah-oPr" id="17w-2y-Ncd"/>
                         <outlet property="photoHeight" destination="1Wq-r1-nxJ" id="Mb1-rv-mqz"/>
                         <outlet property="photoView" destination="dhi-CW-14U" id="h1j-0j-4GW"/>
@@ -2337,13 +2341,17 @@
                         <outlet property="shixianglabel" destination="sqc-hW-Arl" id="0MR-LF-cWK"/>
                         <outlet property="statusLabel" destination="ZxH-bA-a5w" id="Bam-ZB-jwh"/>
                         <outlet property="tedianLabel" destination="3Zt-Ow-j2G" id="CHM-aD-tgV"/>
+                        <outlet property="tedianheight" destination="oee-rT-etF" id="QbY-JI-Lpj"/>
+                        <outlet property="tediantitleheight" destination="Ccw-ol-l8f" id="2BT-cF-nfQ"/>
                         <outlet property="timeLabel" destination="Pl1-um-8D3" id="Rqr-tN-0fZ"/>
                         <outlet property="titleLabel" destination="a0F-Rf-yGU" id="loo-ar-4Rz"/>
+                        <outlet property="zhuyiheight" destination="EhX-vE-Wqc" id="dad-l0-Lb9"/>
+                        <outlet property="zhuyititleHeight" destination="yDV-0N-Ogs" id="B7K-bv-phO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Csc-6i-brY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530.5" y="1430.5"/>
+            <point key="canvasLocation" x="2529.75" y="1429.875"/>
         </scene>
         <!--New Mine Table View Controller-->
         <scene sceneID="SI8-zn-x3X">

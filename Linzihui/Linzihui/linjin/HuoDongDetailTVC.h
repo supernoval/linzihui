@@ -68,5 +68,17 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoHeight;
 
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailtitleheight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailheight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tediantitleheight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tedianheight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *liuchentitleheight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *liuchenheight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyititleHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyiheight;
 
 @end

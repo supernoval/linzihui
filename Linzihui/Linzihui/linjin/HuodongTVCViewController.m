@@ -31,10 +31,17 @@ static NSString *headerCellID = @"headerCell";
     UIButton *allButton;
     UIButton *myButton;
     
+    UIButton *startButton;  //我的发起
+    UIButton *attendButton; //我参与的
+    
+    BOOL isMyActity;//是否查询我发起的活动
+    
     
 }
 
-@property (nonatomic) UIView *headView;
+@property (nonatomic) UIView *footerView;
+@property (nonatomic)UIView *headerView;
+
 
 @end
 
@@ -65,7 +72,7 @@ static NSString *headerCellID = @"headerCell";
     else
     {
         
-        [self.navigationController.view addSubview:self.headView];
+        
         
         
         huodongType = 0;
@@ -97,19 +104,98 @@ static NSString *headerCellID = @"headerCell";
     }
     else
     {
+      
       [self.tableView.header beginRefreshing];
+        
+      [self.navigationController.view addSubview:self.footerView];
+        
     }
     
 }
 
-
--(UIView*)headView
+-(void)viewWillDisappear:(BOOL)animated
 {
-    if (!_headView) {
+    [super viewWillDisappear:animated];
+    
+    
+    [self.footerView removeFromSuperview];
+    
+    
+    
+}
+
+-(UIView*)headerView
+{
+    if (!_headerView) {
         
-        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight - 44, ScreenWidth, 44)];
+        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        _headerView.backgroundColor = [UIColor whiteColor];
         
-        _headView.backgroundColor = [UIColor whiteColor];
+        startButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 44)];
+        
+        [startButton setTitle:@"我的发起" forState:UIControlStateNormal];
+        
+        [startButton setTitleColor:kBlueBackColor
+                          forState:UIControlStateNormal];
+        
+        [startButton addTarget:self action:@selector(showMyStart) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_headerView addSubview:startButton];
+        
+        
+        attendButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 44)];
+        
+        [attendButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+        
+        [attendButton setTitle:@"我的参与" forState:UIControlStateNormal];
+        
+        [attendButton addTarget:self action:@selector(showMyAttend) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [_headerView addSubview:attendButton];
+        
+        isMyActity = YES;
+        
+        
+        
+    }
+    
+    return _headerView;
+    
+}
+
+-(void)showMyStart
+{
+    [startButton setTitleColor:kBlueBackColor
+                      forState:UIControlStateNormal];
+    [attendButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+    
+    isMyActity = YES;
+    
+    [self headerRefresh];
+    
+    
+    
+}
+-(void)showMyAttend
+{
+    [startButton setTitleColor:kDarkGrayColor
+                      forState:UIControlStateNormal];
+    [attendButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+    
+    isMyActity = NO;
+    
+     [self headerRefresh];
+    
+    
+}
+-(UIView*)footerView
+{
+    if (!_footerView) {
+        
+        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight - 44, ScreenWidth, 44)];
+        
+        _footerView.backgroundColor = [UIColor whiteColor];
         
         
         allButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 44)];
@@ -122,7 +208,7 @@ static NSString *headerCellID = @"headerCell";
         
         [allButton addTarget:self action:@selector(huodongTypeSwitch:) forControlEvents:UIControlEventTouchUpInside];
         
-        [_headView addSubview:allButton];
+        [_footerView addSubview:allButton];
         
         
         myButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 44)];
@@ -135,13 +221,13 @@ static NSString *headerCellID = @"headerCell";
         
         [myButton addTarget:self action:@selector(huodongTypeSwitch:) forControlEvents:UIControlEventTouchUpInside];
         
-        [_headView addSubview:myButton];
+        [_footerView addSubview:myButton];
         
        
       
     }
     
-    return _headView;
+    return _footerView;
     
     
 }
@@ -170,6 +256,9 @@ static NSString *headerCellID = @"headerCell";
         [myButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
         
         huodongType = 0;
+        
+        self.tableView.tableHeaderView = nil;
+        
     }
     else
     {
@@ -177,6 +266,10 @@ static NSString *headerCellID = @"headerCell";
         
         [myButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
         huodongType = 1;
+        
+        
+        self.tableView.tableHeaderView = self.headerView;
+        
         
     }
     
@@ -199,7 +292,30 @@ static NSString *headerCellID = @"headerCell";
     
     if (huodongType == 1) {
         
-        [query whereKey:@"starter" equalTo:[BmobUser getCurrentUser]];
+       
+        
+        if (isMyActity) {
+            
+           
+             [query whereKey:@"starter" equalTo:[BmobUser getCurrentUser]];
+            
+        }
+        else
+        {
+              BmobUser *currentUser = [BmobUser getCurrentUser];
+            NSArray *attends = [currentUser objectForKey:@"attendActivities"];
+            
+            if (!attends) {
+                
+                attends = @[];
+                
+            }
+            [query whereKey:@"objectId" containedIn:attends];
+            
+            
+            
+        }
+        
         
     }
     
