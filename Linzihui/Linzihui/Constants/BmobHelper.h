@@ -17,12 +17,12 @@
 
 typedef NS_ENUM(NSInteger,MessageStatus)
 {
-    MessageStatusPublish = 0,
-    MessageStatusAttend ,
-    MessageStatusStart,
-    MessageStatusArrived,
-    MessageStatusEnd,
-    MessageStatusInvite,
+    MessageStatusPublish = 0,  //发布
+    MessageStatusAttend ,      // 参加
+    MessageStatusStart,        //活动开始
+    MessageStatusArrived,      //活动签到
+    MessageStatusEnd,         //活动结束
+    MessageStatusInvite,      //邀请
     
 };
 
