@@ -263,6 +263,7 @@
 		1530E8501BFC910E00A78DB5 /* ShengHuoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E84F1BFC910E00A78DB5 /* ShengHuoModel.m */; };
 		1530E8541BFCA6E000A78DB5 /* NewMineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */; };
 		1531670D1BF463E800B88CF4 /* WechatShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1531670C1BF463E800B88CF4 /* WechatShareController.m */; };
+		15368E961C3E460900F168A6 /* libEaseMobClientSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15368E951C3E460900F168A6 /* libEaseMobClientSDK.a */; };
 		1536C6EC1C2CDFA4001DB61A /* LevelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1536C6EB1C2CDFA4001DB61A /* LevelDetailViewController.m */; };
 		153723511BF59F2B005A4340 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153723501BF59F2B005A4340 /* libstdc++.tbd */; };
 		1538EA151C2A6DDD002A23C7 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1538EA141C2A6DDD002A23C7 /* PersonInfoViewController.m */; };
@@ -450,7 +451,6 @@
 		15D05C101C0433F600E0EA0D /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */; };
 		15E4524B1C366BE800A6A549 /* callRing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 15E4524A1C366BE800A6A549 /* callRing.mp3 */; };
 		15E4524E1C366BEE00A6A549 /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E4524D1C366BEE00A6A549 /* CallViewController.m */; };
-		15E452BD1C366F6900A6A549 /* libEaseMobClientSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E452B91C366F6900A6A549 /* libEaseMobClientSDK.a */; };
 		15E452BF1C366F6900A6A549 /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15E452BC1C366F6900A6A549 /* EaseMob.bundle */; };
 		15E452C31C36914600A6A549 /* WelcomViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E452C21C36914600A6A549 /* WelcomViewVC.m */; };
 		15E452C61C36A87100A6A549 /* AddBeiZhuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E452C51C36A87100A6A549 /* AddBeiZhuVC.m */; };
@@ -1011,6 +1011,7 @@
 		1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMineTableViewController.m; sourceTree = "<group>"; };
 		1531670B1BF463E800B88CF4 /* WechatShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatShareController.h; sourceTree = "<group>"; };
 		1531670C1BF463E800B88CF4 /* WechatShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatShareController.m; sourceTree = "<group>"; };
+		15368E951C3E460900F168A6 /* libEaseMobClientSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEaseMobClientSDK.a; path = "../../../../../../../../Downloads/iOSSDK-20151226/EaseMobSDK/lib/libEaseMobClientSDK.a"; sourceTree = "<group>"; };
 		1536C6EA1C2CDFA4001DB61A /* LevelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelDetailViewController.h; sourceTree = "<group>"; };
 		1536C6EB1C2CDFA4001DB61A /* LevelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelDetailViewController.m; sourceTree = "<group>"; };
 		153723501BF59F2B005A4340 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -1455,7 +1456,6 @@
 		15E452B41C366F6900A6A549 /* EMNetworkMonitorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMNetworkMonitorDefs.h; sourceTree = "<group>"; };
 		15E452B61C366F6900A6A549 /* EMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMError.h; sourceTree = "<group>"; };
 		15E452B71C366F6900A6A549 /* EMErrorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMErrorDefs.h; sourceTree = "<group>"; };
-		15E452B91C366F6900A6A549 /* libEaseMobClientSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDK.a; sourceTree = "<group>"; };
 		15E452BC1C366F6900A6A549 /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
 		15E452C11C36914600A6A549 /* WelcomViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomViewVC.h; sourceTree = "<group>"; };
 		15E452C21C36914600A6A549 /* WelcomViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomViewVC.m; sourceTree = "<group>"; };
@@ -1544,7 +1544,7 @@
 				15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */,
 				15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */,
 				15B7A5C11BE730770052115F /* MOBFoundation.framework in Frameworks */,
-				15E452BD1C366F6900A6A549 /* libEaseMobClientSDK.a in Frameworks */,
+				15368E961C3E460900F168A6 /* libEaseMobClientSDK.a in Frameworks */,
 				154A397F1BE5E5100042632E /* MediaPlayer.framework in Frameworks */,
 				154A397D1BE5E5070042632E /* AVFoundation.framework in Frameworks */,
 				154A39791BE5E47A0042632E /* libicucore.tbd in Frameworks */,
@@ -3592,7 +3592,7 @@
 		15E452B81C366F6900A6A549 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				15E452B91C366F6900A6A549 /* libEaseMobClientSDK.a */,
+				15368E951C3E460900F168A6 /* libEaseMobClientSDK.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
