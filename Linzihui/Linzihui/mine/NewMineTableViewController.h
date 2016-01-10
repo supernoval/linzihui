@@ -27,4 +27,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *levelButton;
 
+
+- (IBAction)showHongBao:(id)sender;
+
+
+
 @end

@@ -10,6 +10,7 @@
 #import "ChatViewController.h"
 #import "ShengHuoQuanTVC.h"
 #import "AddBeiZhuVC.h"
+#import "FriendEditedTVC.h"
 
 
 
@@ -227,6 +228,21 @@ typedef NS_ENUM(NSInteger,CheckType)
         [EMHelper sendFriendRequestWithBuddyName:_username Mesage:@"请求加你好友"];
         
     }
+    
+}
+- (IBAction)showInfo:(id)sender {
+    
+    
+    FriendEditedTVC *_friendTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendEditedTVC"];
+    
+    _friendTVC.model = _model;
+    
+    
+    [self.navigationController pushViewController:_friendTVC animated:YES];
+    
+    
+    
+    
     
 }
 @end

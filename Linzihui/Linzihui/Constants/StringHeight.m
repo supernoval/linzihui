@@ -30,7 +30,7 @@
     // Calc the size
     CTFramesetterRef framesetter =CTFramesetterCreateWithAttributedString(attrString);
     CFRange fitRange;
-    CGSize frameSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, stringLength), NULL, CGSizeMake(width, CGFLOAT_MAX), &fitRange);
+    CGSize frameSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, stringLength), NULL, CGSizeMake(width, 1000), &fitRange);
     CFRelease(ctFont);
     CFRelease(framesetter);
     CFRelease(attrString);

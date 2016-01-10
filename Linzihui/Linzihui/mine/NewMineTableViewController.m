@@ -12,6 +12,8 @@
 #import "SettingTableViewController.h"
 #import "ShengHuoQuanTVC.h"
 #import "LevelDetailViewController.h"
+#import "HongBaoViewController.h"
+
 
 
 @interface NewMineTableViewController ()
@@ -23,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"邻红包";
     
     
     
@@ -125,6 +128,15 @@
     _levelDetail.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:_levelDetail animated:YES];
+    
+    
+}
+- (IBAction)showHongBao:(id)sender {
+    
+    HongBaoViewController *_hongBaoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"HongBaoViewController"];
+    _hongBaoVC.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:_hongBaoVC animated:YES];
     
     
 }

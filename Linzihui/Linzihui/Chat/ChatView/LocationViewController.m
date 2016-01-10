@@ -86,7 +86,7 @@ static LocationViewController *defaultLocation = nil;
     [self.view addSubview:_mapView];
     
     
-    _mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, 40)];
+    _mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, 50)];
     _mySearchBar.showsCancelButton = YES;
     
     _mySearchBar.delegate = self;
@@ -113,7 +113,7 @@ static LocationViewController *defaultLocation = nil;
         [self startLocation];
         
         
-        UILabel *tips = [CommonMethods LabelWithText:@"*温馨提示:可以移动地图来选定地址" andTextAlgniment:NSTextAlignmentLeft andTextColor:[UIColor darkGrayColor] andTextFont:FONT_15 andFrame:CGRectMake(0,ScreenHeight-30,ScreenWidth,30)];
+        UILabel *tips = [CommonMethods LabelWithText:@"*温馨提示:可以移动地图来选定地址" andTextAlgniment:NSTextAlignmentLeft andTextColor:[UIColor darkGrayColor] andTextFont:FONT_18 andFrame:CGRectMake(0,ScreenHeight-30,ScreenWidth,30)];
         tips.backgroundColor = kBackgroundColor;
         
         [self.view addSubview:tips];
@@ -355,7 +355,7 @@ static LocationViewController *defaultLocation = nil;
 -(void)getLocationWithAddress:(NSString*)address
 {
     
-    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:_mapView.userLocation.coordinate radius:5000 identifier:@"circle"];
+    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:_mapView.userLocation.coordinate radius:500 identifier:@"circle"];
     
     
     [_myGeocoder geocodeAddressString:address inRegion:region completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -363,8 +363,25 @@ static LocationViewController *defaultLocation = nil;
         if ([placemarks count] > 0 && error == nil){
             NSLog(@"Found %lu placemark(s).", (unsigned long)[placemarks count]);
             CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
-            NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
-            NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
+            
+//            NSLog(@"Longitude = %f", firstPlacemark.location.coordinate.longitude);
+//            NSLog(@"Latitude = %f", firstPlacemark.location.coordinate.latitude);
+            
+            
+            for (CLPlacemark *mark in placemarks) {
+              
+                CGFloat dis = [CommonMethods distanceFromLocation:mark.location.coordinate.latitude longitude:mark.location.coordinate.longitude];
+                
+                CGFloat firstdis = [CommonMethods distanceFromLocation:firstPlacemark.location.coordinate.latitude longitude:firstPlacemark.location.coordinate.longitude];
+                
+                NSLog(@"dis:%.2f,firstdis:%.2f",dis,firstdis);
+                
+                if (firstdis > dis) {
+                    
+                    firstPlacemark = mark;
+                }
+                
+            }
             
             
             [_mapView setRegion:MKCoordinateRegionMakeWithDistance(firstPlacemark.location.coordinate, 1000, 1000) animated:YES];

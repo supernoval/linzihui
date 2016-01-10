@@ -11,7 +11,9 @@
 
 @interface PersonInfoViewController : BaseTableViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightButton;
 
+- (IBAction)showInfo:(id)sender;
 
 @property (nonatomic,strong) NSString *username;
 
