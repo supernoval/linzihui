@@ -14,6 +14,8 @@
 #import "PersonInfoViewController.h"
 #import "InviteNewGroupMember.h"
 #import "HuoDongMapView.h"
+#import "SendWXViewController.h"
+#import "HuodongCommentCell.h"
 
 
 
@@ -46,7 +48,7 @@
     
      UIBarButtonItem *zixun = [[UIBarButtonItem alloc]initWithTitle:@"咨询" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
     
-    UIBarButtonItem *common = [[UIBarButtonItem alloc]initWithTitle:@"记录" style:UIBarButtonItemStylePlain target:self action:@selector(showCommentView)];
+    UIBarButtonItem *common = [[UIBarButtonItem alloc]initWithTitle:@"记录" style:UIBarButtonItemStylePlain target:self action:@selector(coment)];
     
     UIBarButtonItem *flex = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
@@ -146,83 +148,45 @@
     
 }
 
--(void)showCommentView
-{
-    
-    [self.navigationController.view addSubview:_uiview_comment];
-    
-    [_textField_comment becomeFirstResponder];
-    
-}
+//-(void)showCommentView
+//{
+//    
+//    [self.navigationController.view addSubview:_uiview_comment];
+//    
+//    [_textField_comment becomeFirstResponder];
+//    
+//}
 
-#pragma mark - 评论
+#pragma mark - 记录
 -(void)coment
 {
     
-    if (_textField_comment.text.length == 0) {
-        
-        return;
-        
-    }
-    
-    UserModel *_usermodel = [BmobHelper getCurrentUserModel];
     
     
-    CommentModel *model = [[CommentModel alloc]init];
-    
-    model.nick = _usermodel.nickName;
-    
-    model.username = _usermodel.username;
-    
-    model.headImageURL = _usermodel.headImageURL;
-    
-    model.content = _textField_comment.text;
-    
-    if (!model.headImageURL) {
-        
-        model.headImageURL = @"";
-        
-    }
-    if (!model.nick) {
-        
-        model.nick = @"";
-        
-    }
-    NSDictionary *dic = [model toDictionary];
-    BmobObject *_huodongOB = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
-    
-    [_huodongOB addObjectsFromArray:@[dic] forKey:@"comment"];
-    
-    [MyProgressHUD showProgress];
+    SendWXViewController *_sendVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SendWXViewController"];
     
     
-    [_textField_comment resignFirstResponder];
+    _sendVC.type = 1;
     
+    _sendVC.huodong = _huodong;
     
-    
-    [_huodongOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        
-        [MyProgressHUD dismiss];
-        
-        
+    [_sendVC setblock:^(BOOL isSuccess, id ob) {
        
-        if (isSuccessful) {
-            
-            NSMutableArray *muArray = [[NSMutableArray alloc]init];
-            
-            [muArray addObjectsFromArray:_huodong.comment];
-            
-            [muArray addObject:dic];
-            
-            _huodong.comment = muArray;
-            
-            
-            [self.tableView reloadData];
-            
-            
-            
-        }
+        
+        _huodong = ob;
+        
+        
+        [self.tableView reloadData];
+        
+        
     }];
+    
+    
+    [self.navigationController pushViewController:_sendVC animated:YES];
+    
+    
+    
+   
     
     
 }
@@ -513,7 +477,7 @@
         
         if (_huodong.comment.count > 0) {
             
-            label.text = @"  评论";
+            label.text = @"  记录";
         }
         else
         {
@@ -564,7 +528,45 @@
 {
     
  
-    
+    if (indexPath.section == 1) {
+        
+        
+        if (_huodong.comment.count > indexPath.row) {
+            
+            NSDictionary *dic = [_huodong.comment objectAtIndex:indexPath.row];
+            
+            CommentModel *_commentModel = [[CommentModel alloc]init];
+            
+            [_commentModel setValuesForKeysWithDictionary:dic];
+           
+            
+            CGFloat photoViewHeight = 0;
+            
+            NSArray *imgs = _commentModel.imageURLs;
+            
+            long imageCount = imgs.count;
+            int perRowImageCount = ((imageCount == 4) ? 2 : 3);
+            CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
+            int totalRowCount = ceil(imageCount / perRowImageCountF);
+            
+            photoViewHeight = 95 * totalRowCount;
+        
+            
+            CGFloat commentHeight = [StringHeight heightWithText:_commentModel.content font:FONT_15 constrainedToWidth:ScreenWidth - 120];
+            
+            if (commentHeight < 60) {
+                commentHeight = 60;
+                
+            }
+            
+            return commentHeight + photoViewHeight;
+            
+            
+        }
+        
+        
+        
+    }
  
     
     
@@ -600,8 +602,6 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
-
     
     
     if (indexPath.section == 0) {
@@ -652,7 +652,7 @@
         
         
     
-    UITableViewCell *commentCel = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    HuodongCommentCell *commentCel = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
     
     dispatch_async(dispatch_get_main_queue(), ^{
        
@@ -665,24 +665,24 @@
             [_commentModel setValuesForKeysWithDictionary:dic];
             
             
-            UIImageView *headImageView = (UIImageView*)[commentCel viewWithTag:100];
-            
-            UILabel *nameLabel = (UILabel*)[commentCel viewWithTag:101];
-            
-            UILabel *commentlabel = (UILabel*)[commentCel viewWithTag:102];
+           
             
             
-            [headImageView sd_setImageWithURL:[NSURL URLWithString:_commentModel.headImageURL] placeholderImage:kDefaultHeadImage];
+            [commentCel.headImageView sd_setImageWithURL:[NSURL URLWithString:_commentModel.headImageURL] placeholderImage:kDefaultHeadImage];
             
-            nameLabel.text = _commentModel.nick;
+            commentCel.nameLabel.text = _commentModel.nick;
             
-            if (!nameLabel.text) {
+            if (!commentCel.nameLabel.text) {
                 
-                nameLabel.text = _commentModel.username;
+                commentCel.nameLabel.text = _commentModel.username;
                 
             }
             
-            commentlabel.text = _commentModel.content;
+            
+            commentCel.commentLabel.text = _commentModel.content;
+            
+            commentCel.photoView.photoItemArray = _commentModel.imageURLs;
+            
             
         }
       

@@ -55,6 +55,152 @@
     
 }
 
+
+#pragma mark - 提交活动评论
+-(void)comment
+{
+    if (_inputTextView.text.length == 0 && _image_list.count == 0) {
+        
+        
+        UIImage *image = [_image_list firstObject];
+        
+        if (image == addImage) {
+            
+            [CommonMethods showDefaultErrorString:@"请输入内容"];
+            
+            
+            return;
+            
+        }
+        
+        
+        
+    }
+    
+    
+    NSString *text = _inputTextView.text;
+    
+    if (!text) {
+        
+        text = @"";
+        
+        
+    }
+    
+    
+    
+    
+    UserModel *_usermodel = [BmobHelper getCurrentUserModel];
+    
+    
+    CommentModel *model = [[CommentModel alloc]init];
+    
+    model.nick = _usermodel.nickName;
+    
+    model.username = _usermodel.username;
+    
+    model.headImageURL = _usermodel.headImageURL;
+    
+    model.content = _inputTextView.text;
+    
+    if (!model.headImageURL) {
+        
+        model.headImageURL = @"";
+        
+    }
+    if (!model.nick) {
+        
+        model.nick = @"";
+        
+    }
+  
+    
+    [MyProgressHUD showProgress];
+    
+    
+    [_inputTextView resignFirstResponder];
+    
+    
+    [CommonMethods upLoadPhotos:_image_list resultBlock:^(BOOL success, NSArray *results) {
+        
+        if (success) {
+            
+            
+          
+            model.imageURLs = results;
+            
+            NSDictionary *dic = [model toDictionary];
+            BmobObject *_huodongOB = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+            
+            [_huodongOB addObjectsFromArray:@[dic] forKey:@"comment"];
+            
+            
+            [_huodongOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                
+                [MyProgressHUD dismiss];
+                
+                
+                
+                if (isSuccessful) {
+                    
+                    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+                    
+                    [muArray addObjectsFromArray:_huodong.comment];
+                    
+                    [muArray addObject:dic];
+                    
+                    _huodong.comment = muArray;
+                    
+                    if (_block) {
+                        
+                        _block(YES,_huodong);
+                        
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+                else
+                {
+                    if (_block) {
+                        
+                        _block(YES,_huodong);
+                        
+                    }
+                   
+                    [CommonMethods showDefaultErrorString:@"发送失败"];
+                    
+                }
+            }];
+            
+            
+            
+            
+        }
+        else
+        {
+            [MyProgressHUD dismiss];
+            
+            [CommonMethods showDefaultErrorString:@"发送失败"];
+            
+        }
+    }];
+    
+    
+    
+
+    
+    
+    
+}
+
+#pragma mark 提交生活圈
+
 -(void)submit_clicked{
   
     if (_inputTextView.text.length == 0 && _image_list.count == 1) {
@@ -96,6 +242,15 @@
     
      [MyProgressHUD showProgress];
     
+    
+    if (_type == 1)  //评论
+    {
+        
+        [self comment];
+        
+    }
+    else   //发布生活圈 熟人圈
+    {
    
     if (_image_list.count > 0) {
         
@@ -179,7 +334,7 @@
     }];
   
     
-      }
+       }
     else  //纯文字
     {
         BmobUser *currentUser = [BmobUser getCurrentUser];
@@ -244,6 +399,8 @@
             }
             
         }];
+    }
+        
     }
 }
 
@@ -510,7 +667,11 @@
     
 }
 
-
+-(void)setblock:(SendWXBlock)block
+{
+    _block = block;
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

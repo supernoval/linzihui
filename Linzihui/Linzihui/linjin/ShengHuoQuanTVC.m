@@ -709,6 +709,8 @@ static NSString *commentCellID = @"CommentCell";
     SendWXViewController *_sendVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SendWXViewController"];
     
     
+    _sendVC.type = 0;
+    
     _sendVC.isShuRenQuan = _isShuRenQuan;
     
     

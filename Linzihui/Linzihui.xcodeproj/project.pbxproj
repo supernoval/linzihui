@@ -263,7 +263,6 @@
 		1530E8501BFC910E00A78DB5 /* ShengHuoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E84F1BFC910E00A78DB5 /* ShengHuoModel.m */; };
 		1530E8541BFCA6E000A78DB5 /* NewMineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */; };
 		1531670D1BF463E800B88CF4 /* WechatShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1531670C1BF463E800B88CF4 /* WechatShareController.m */; };
-		15368E961C3E460900F168A6 /* libEaseMobClientSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15368E951C3E460900F168A6 /* libEaseMobClientSDK.a */; };
 		1536C6EC1C2CDFA4001DB61A /* LevelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1536C6EB1C2CDFA4001DB61A /* LevelDetailViewController.m */; };
 		153723511BF59F2B005A4340 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153723501BF59F2B005A4340 /* libstdc++.tbd */; };
 		1538EA151C2A6DDD002A23C7 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1538EA141C2A6DDD002A23C7 /* PersonInfoViewController.m */; };
@@ -448,6 +447,8 @@
 		15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66E91BF3F5C1000A9D1F /* libsqlite3.0.tbd */; };
 		15BE66EC1BF3F5CA000A9D1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */; };
 		15BE66F31BF3F932000A9D1F /* GZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66F21BF3F932000A9D1F /* GZViewController.m */; };
+		15CFFE791C433A46008A0D97 /* libEaseMobClientSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CFFE781C433A46008A0D97 /* libEaseMobClientSDK.a */; };
+		15CFFE7F1C4390BD008A0D97 /* HuodongCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */; };
 		15D05C101C0433F600E0EA0D /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */; };
 		15D75F011C41F90800ACC0E0 /* HongBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */; };
 		15D75F041C41FC9200ACC0E0 /* FriendEditedTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F031C41FC9200ACC0E0 /* FriendEditedTVC.m */; };
@@ -1013,7 +1014,6 @@
 		1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMineTableViewController.m; sourceTree = "<group>"; };
 		1531670B1BF463E800B88CF4 /* WechatShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatShareController.h; sourceTree = "<group>"; };
 		1531670C1BF463E800B88CF4 /* WechatShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatShareController.m; sourceTree = "<group>"; };
-		15368E951C3E460900F168A6 /* libEaseMobClientSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEaseMobClientSDK.a; path = "../../../../../../../../Downloads/iOSSDK-20151226/EaseMobSDK/lib/libEaseMobClientSDK.a"; sourceTree = "<group>"; };
 		1536C6EA1C2CDFA4001DB61A /* LevelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelDetailViewController.h; sourceTree = "<group>"; };
 		1536C6EB1C2CDFA4001DB61A /* LevelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelDetailViewController.m; sourceTree = "<group>"; };
 		153723501BF59F2B005A4340 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -1371,6 +1371,9 @@
 		15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		15BE66F11BF3F932000A9D1F /* GZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZViewController.h; sourceTree = "<group>"; };
 		15BE66F21BF3F932000A9D1F /* GZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZViewController.m; sourceTree = "<group>"; };
+		15CFFE781C433A46008A0D97 /* libEaseMobClientSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDK.a; sourceTree = "<group>"; };
+		15CFFE7D1C4390BD008A0D97 /* HuodongCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuodongCommentCell.h; sourceTree = "<group>"; };
+		15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuodongCommentCell.m; sourceTree = "<group>"; };
 		15D05C0E1C0433F600E0EA0D /* MyPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPhotosViewController.h; sourceTree = "<group>"; };
 		15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPhotosViewController.m; sourceTree = "<group>"; };
 		15D75EFF1C41F90800ACC0E0 /* HongBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoViewController.h; sourceTree = "<group>"; };
@@ -1550,7 +1553,7 @@
 				15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */,
 				15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */,
 				15B7A5C11BE730770052115F /* MOBFoundation.framework in Frameworks */,
-				15368E961C3E460900F168A6 /* libEaseMobClientSDK.a in Frameworks */,
+				15CFFE791C433A46008A0D97 /* libEaseMobClientSDK.a in Frameworks */,
 				154A397F1BE5E5100042632E /* MediaPlayer.framework in Frameworks */,
 				154A397D1BE5E5070042632E /* AVFoundation.framework in Frameworks */,
 				154A39791BE5E47A0042632E /* libicucore.tbd in Frameworks */,
@@ -2684,6 +2687,8 @@
 				152F408D1C0BF583003C1C62 /* PhotoCell.m */,
 				152F408F1C0C1EEB003C1C62 /* PersonCell.h */,
 				152F40901C0C1EEB003C1C62 /* PersonCell.m */,
+				15CFFE7D1C4390BD008A0D97 /* HuodongCommentCell.h */,
+				15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */,
 				15E452C71C36ADF700A6A549 /* HuoDongMapView.h */,
 				15E452C81C36ADF700A6A549 /* HuoDongMapView.m */,
 			);
@@ -3336,6 +3341,14 @@
 			name = guanzhu;
 			sourceTree = "<group>";
 		};
+		15CFFE771C433A46008A0D97 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				15CFFE781C433A46008A0D97 /* libEaseMobClientSDK.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		15D05C0D1C0432C300E0EA0D /* photos */ = {
 			isa = PBXGroup;
 			children = (
@@ -3367,8 +3380,8 @@
 		15E4524F1C366F6900A6A549 /* EaseMobSDK */ = {
 			isa = PBXGroup;
 			children = (
+				15CFFE771C433A46008A0D97 /* lib */,
 				15E452501C366F6900A6A549 /* include */,
-				15E452B81C366F6900A6A549 /* lib */,
 				15E452BB1C366F6900A6A549 /* resources */,
 			);
 			path = EaseMobSDK;
@@ -3605,14 +3618,6 @@
 				15E452B71C366F6900A6A549 /* EMErrorDefs.h */,
 			);
 			path = ErrorManager;
-			sourceTree = "<group>";
-		};
-		15E452B81C366F6900A6A549 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				15368E951C3E460900F168A6 /* libEaseMobClientSDK.a */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		15E452BB1C366F6900A6A549 /* resources */ = {
@@ -4212,6 +4217,7 @@
 				150F31A51C0FEA5D00E5CC8B /* ZXRSSPair.m in Sources */,
 				15858D491C1B5634000550FD /* InviteNewGroupMember.m in Sources */,
 				150F31E41C0FEA5D00E5CC8B /* ZXQRCodeAlignmentPattern.m in Sources */,
+				15CFFE7F1C4390BD008A0D97 /* HuodongCommentCell.m in Sources */,
 				150F31DA1C0FEA5D00E5CC8B /* ZXQRCodeBitMatrixParser.m in Sources */,
 				15B7A5AD1BE7305D0052115F /* SDWebImageCompat.m in Sources */,
 				150F31AB1C0FEA5D00E5CC8B /* ZXCode39Reader.m in Sources */,
