@@ -515,7 +515,13 @@ static NSString *CellId  = @"CellId";
     //名字分section
     for (UserModel *oneModel in dataArray) {
         //getUserName是实现中文拼音检索的核心，见NameIndex类
-        NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:oneModel.nickName];
+        NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:oneModel.beizhu];
+        if (!firstLetter) {
+            
+            firstLetter = [ChineseToPinyin pinyinFromChineseString:oneModel.nickName];
+            
+        }
+        
         if (!firstLetter) {
             
             firstLetter = [ChineseToPinyin pinyinFromChineseString:oneModel.username];
@@ -530,14 +536,23 @@ static NSString *CellId  = @"CellId";
     //每个section内的数组排序
     for (int i = 0; i < [sortedArray count]; i++) {
         NSArray *array = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(UserModel *obj1, UserModel *obj2) {
-            NSString *firstLetter1 = [ChineseToPinyin pinyinFromChineseString:obj1.nickName];
+            NSString *firstLetter1 = [ChineseToPinyin pinyinFromChineseString:obj1.beizhu];
+            if (!firstLetter1) {
+                
+                firstLetter1 = [ChineseToPinyin pinyinFromChineseString:obj1.nickName];
+            }
+            
             if (!firstLetter1) {
                 
                 firstLetter1 = [ChineseToPinyin pinyinFromChineseString:obj1.username];
             }
             firstLetter1 = [[firstLetter1 substringToIndex:1] uppercaseString];
             
-            NSString *firstLetter2 = [ChineseToPinyin pinyinFromChineseString:obj2.nickName];
+            NSString *firstLetter2 = [ChineseToPinyin pinyinFromChineseString:obj2.beizhu];
+            
+            if (!firstLetter2) {
+                firstLetter2 = [ChineseToPinyin pinyinFromChineseString:obj2.nickName];
+            }
             
             if (!firstLetter2) {
                 firstLetter2 = [ChineseToPinyin pinyinFromChineseString:obj2.username];
@@ -595,7 +610,12 @@ static NSString *CellId  = @"CellId";
             
             for (UserModel *oneModel in array) {
                 
-                NSString *nickName = oneModel.nickName;
+                NSString *nickName = oneModel.beizhu;
+                
+                if (!nickName) {
+                    
+                    nickName =oneModel.nickName;
+                }
                 
                 if (!nickName) {
                     

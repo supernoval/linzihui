@@ -682,7 +682,7 @@ static NSString *headCellID = @"CellID";
     
     NSMutableArray *personChats = [[NSMutableArray alloc]init];
     NSMutableArray *groupChats = [[NSMutableArray alloc]init];
-    
+   
     for (EMConversation *convert in conversations) {
         
         if (convert.conversationType == eConversationTypeChat) {

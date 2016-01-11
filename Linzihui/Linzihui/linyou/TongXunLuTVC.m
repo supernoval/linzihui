@@ -74,7 +74,7 @@ static NSString *ContactsCell = @"ContactsCell";
 {
     _addressBook = ABAddressBookCreate();
 
-     [MyProgressHUD showProgress];
+//     [MyProgressHUD showProgress];
     
 //    [CNContactStore authorizationStatusForEntityType:]
 //    if (ABAddressBookGetAuthorizationStatus() != kABAuthorizationStatusAuthorized)
@@ -104,6 +104,12 @@ static NSString *ContactsCell = @"ContactsCell";
 -(void)getContactsInfo:(NSArray*)contacts
 {
     
+    if (contacts.count == 0) {
+        
+        [MyProgressHUD dismiss];
+        
+        
+    }
     NSMutableArray *mucontacts = [[NSMutableArray alloc]init];
     
     for (int i = 0 ; i < contacts.count; i ++) {
@@ -448,8 +454,12 @@ static NSString *ContactsCell = @"ContactsCell";
             
             NSLog(@"acceppt error:%@",error);
             
+           
             
         }
+        
+         [[InvitationManager sharedInstance] removeInvitation:entity loginUser:[BmobUser getCurrentUser].username];
+        
         
         [self getLocateInviteData];
         

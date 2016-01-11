@@ -54,8 +54,7 @@ static InvitationManager *sharedInstance = nil;
     NSMutableArray *appleys = [[NSMutableArray alloc] initWithArray:ary];
     ApplyEntity *needDelete;
     for (ApplyEntity *entity in appleys) {
-        if ([entity.groupId isEqualToString:applyEntity.groupId] &&
-            [entity.receiverUsername isEqualToString:applyEntity.receiverUsername]) {
+        if ([entity.applicantUsername isEqualToString:applyEntity.applicantUsername] ) {
             needDelete = entity;
             break;
         }

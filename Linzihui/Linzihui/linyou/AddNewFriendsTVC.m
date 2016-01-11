@@ -186,7 +186,7 @@ static NSString * RequestCell = @"RequestCell";
                     
                     if (model.followEach) {
                         
-                        [button setTitle:@"添加好友" forState:UIControlStateNormal];
+                        [button setTitle:@"加好友" forState:UIControlStateNormal];
                         
                     }else
                     {

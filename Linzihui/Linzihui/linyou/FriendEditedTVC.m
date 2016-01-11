@@ -87,6 +87,10 @@
                 
                 if (success && !error) {
                     
+                    
+                    [[EaseMob sharedInstance].chatManager removeConversationByChatter:_model.username deleteMessages:YES append2Chat:YES];
+                    
+                    
                     [CommonMethods showDefaultErrorString:@"删除成功"];
                     
                     [self.navigationController popToRootViewControllerAnimated:YES];

@@ -653,7 +653,7 @@
 + (void)getBmobBuddyUsers:(void(^)(NSArray*array))block{
     
     
-     NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
+    NSArray *buddyList = [[EaseMob sharedInstance].chatManager fetchBuddyListWithError:nil];
     
     BmobQuery  *query = [BmobQuery queryForUser];
     

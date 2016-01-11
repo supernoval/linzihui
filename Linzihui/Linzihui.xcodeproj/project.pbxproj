@@ -4348,7 +4348,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4415,6 +4415,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SDKExport",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-fobjc-arc",

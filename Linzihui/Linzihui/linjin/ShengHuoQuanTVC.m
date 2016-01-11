@@ -79,13 +79,14 @@ static NSString *commentCellID = @"CommentCell";
     {
           self.title = @"生活圈";
     }
-    else if (_isShuRenQuan == 2)
+    else 
     {
         self.title = @"相册";
         
         self.navigationItem.rightBarButtonItem = nil;
         
     }
+
     
     self.tableView.backgroundColor = kBackgroundColor;
     
@@ -269,6 +270,26 @@ static NSString *commentCellID = @"CommentCell";
     }
     else if (_isShuRenQuan == 3)
     {
+        
+        NSArray *friendList = [[EaseMob sharedInstance].chatManager fetchBuddyListWithError:nil];
+        
+        NSLog(@"friendUserNames:%@",friendList);
+        
+        BOOL isFriend = NO;
+        
+        for (EMBuddy *buddy in friendList) {
+            
+            if ([buddy.username isEqualToString:_username]) {
+                
+                isFriend = YES;
+                
+            }
+        }
+        
+        if (!isFriend) {
+            
+             [query whereKey:@"type" equalTo:@0];
+        }
         
         [query whereKey:@"username" equalTo:_username];
         
