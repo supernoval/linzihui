@@ -11,6 +11,7 @@
 #import "ShengHuoQuanTVC.h"
 #import "AddBeiZhuVC.h"
 #import "FriendEditedTVC.h"
+#import "PersonPullView.h"
 
 
 
@@ -25,6 +26,12 @@ typedef NS_ENUM(NSInteger,CheckType)
 @interface PersonInfoViewController ()
 {
     CheckType friendType;
+    
+    PersonPullView *_pullView;
+    
+    BOOL hadShowed;
+    
+    
     
 }
 @property (nonatomic) UserModel *model;
@@ -46,7 +53,7 @@ typedef NS_ENUM(NSInteger,CheckType)
     }
 
     
-    
+     _pullView = [[PersonPullView alloc]init];
     
     
 }
@@ -233,16 +240,40 @@ typedef NS_ENUM(NSInteger,CheckType)
 - (IBAction)showInfo:(id)sender {
     
     
-    FriendEditedTVC *_friendTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendEditedTVC"];
     
-    _friendTVC.model = _model;
+    if (hadShowed) {
+       
+        
+        [_pullView removeFromSuperview];
+        
+        hadShowed = NO;
+    }
+    
+    else
+    {
+        [self.view addSubview:_pullView];
+        
+        hadShowed = YES;
+        
+    }
     
     
-    [self.navigationController pushViewController:_friendTVC animated:YES];
+    
+//    FriendEditedTVC *_friendTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FriendEditedTVC"];
+//    
+//    _friendTVC.model = _model;
+//    
+//    
+//    [self.navigationController pushViewController:_friendTVC animated:YES];
     
     
     
     
     
 }
+
+
+
+
+
 @end

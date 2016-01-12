@@ -293,6 +293,7 @@
 		157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716641C44A0A00030DC0B /* LinYouNavigationController.m */; };
 		157716681C44A1470030DC0B /* LinJinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716671C44A1470030DC0B /* LinJinNavigationController.m */; };
 		1577166B1C44A1580030DC0B /* MineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577166A1C44A1580030DC0B /* MineNavigationController.m */; };
+		1577166E1C44F1B70030DC0B /* PersonPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577166D1C44F1B70030DC0B /* PersonPullView.m */; };
 		157790461C26808F00A70E4B /* WodeHuodongTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 157790451C26808F00A70E4B /* WodeHuodongTVC.m */; };
 		15858D451C1B4B91000550FD /* GroupMemberTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D441C1B4B91000550FD /* GroupMemberTVC.m */; };
 		15858D491C1B5634000550FD /* InviteNewGroupMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D481C1B5634000550FD /* InviteNewGroupMember.m */; };
@@ -1061,6 +1062,8 @@
 		157716671C44A1470030DC0B /* LinJinNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinJinNavigationController.m; sourceTree = "<group>"; };
 		157716691C44A1580030DC0B /* MineNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineNavigationController.h; sourceTree = "<group>"; };
 		1577166A1C44A1580030DC0B /* MineNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineNavigationController.m; sourceTree = "<group>"; };
+		1577166C1C44F1B70030DC0B /* PersonPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonPullView.h; sourceTree = "<group>"; };
+		1577166D1C44F1B70030DC0B /* PersonPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonPullView.m; sourceTree = "<group>"; };
 		157790441C26808F00A70E4B /* WodeHuodongTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeHuodongTVC.h; sourceTree = "<group>"; };
 		157790451C26808F00A70E4B /* WodeHuodongTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WodeHuodongTVC.m; sourceTree = "<group>"; };
 		15858D431C1B4B91000550FD /* GroupMemberTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberTVC.h; sourceTree = "<group>"; };
@@ -2496,6 +2499,8 @@
 				15E452C51C36A87100A6A549 /* AddBeiZhuVC.m */,
 				15D75F021C41FC9200ACC0E0 /* FriendEditedTVC.h */,
 				15D75F031C41FC9200ACC0E0 /* FriendEditedTVC.m */,
+				1577166C1C44F1B70030DC0B /* PersonPullView.h */,
+				1577166D1C44F1B70030DC0B /* PersonPullView.m */,
 			);
 			name = PerfonInfoTVC;
 			sourceTree = "<group>";
@@ -4051,6 +4056,7 @@
 				150F31DC1C0FEA5D00E5CC8B /* ZXQRCodeDataMask.m in Sources */,
 				15BE66F31BF3F932000A9D1F /* GZViewController.m in Sources */,
 				15EE46F91BE879D600538EA5 /* LinYouTableViewController.m in Sources */,
+				1577166E1C44F1B70030DC0B /* PersonPullView.m in Sources */,
 				150F31811C0FEA5D00E5CC8B /* ZXDataMatrixX12Encoder.m in Sources */,
 				15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */,
 				15B7A53B1BE730460052115F /* MWPhotoBrowser.m in Sources */,
