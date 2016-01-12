@@ -288,6 +288,11 @@
 		154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F51BE5E7030042632E /* libxml2.tbd */; };
 		154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F71BE5E70B0042632E /* libiconv.tbd */; };
 		154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39F91BE5E7110042632E /* libresolv.tbd */; };
+		1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577165E1C44A0530030DC0B /* BaseNavigationController.m */; };
+		157716621C44A08D0030DC0B /* LinXinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716611C44A08D0030DC0B /* LinXinNavigationController.m */; };
+		157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716641C44A0A00030DC0B /* LinYouNavigationController.m */; };
+		157716681C44A1470030DC0B /* LinJinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716671C44A1470030DC0B /* LinJinNavigationController.m */; };
+		1577166B1C44A1580030DC0B /* MineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577166A1C44A1580030DC0B /* MineNavigationController.m */; };
 		157790461C26808F00A70E4B /* WodeHuodongTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 157790451C26808F00A70E4B /* WodeHuodongTVC.m */; };
 		15858D451C1B4B91000550FD /* GroupMemberTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D441C1B4B91000550FD /* GroupMemberTVC.m */; };
 		15858D491C1B5634000550FD /* InviteNewGroupMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D481C1B5634000550FD /* InviteNewGroupMember.m */; };
@@ -1046,6 +1051,16 @@
 		154A39F51BE5E7030042632E /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		154A39F71BE5E70B0042632E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		154A39F91BE5E7110042632E /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		1577165D1C44A0530030DC0B /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		1577165E1C44A0530030DC0B /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		157716601C44A08D0030DC0B /* LinXinNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinXinNavigationController.h; sourceTree = "<group>"; };
+		157716611C44A08D0030DC0B /* LinXinNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinXinNavigationController.m; sourceTree = "<group>"; };
+		157716631C44A0A00030DC0B /* LinYouNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinYouNavigationController.h; sourceTree = "<group>"; };
+		157716641C44A0A00030DC0B /* LinYouNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinYouNavigationController.m; sourceTree = "<group>"; };
+		157716661C44A1470030DC0B /* LinJinNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinJinNavigationController.h; sourceTree = "<group>"; };
+		157716671C44A1470030DC0B /* LinJinNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinJinNavigationController.m; sourceTree = "<group>"; };
+		157716691C44A1580030DC0B /* MineNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineNavigationController.h; sourceTree = "<group>"; };
+		1577166A1C44A1580030DC0B /* MineNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineNavigationController.m; sourceTree = "<group>"; };
 		157790441C26808F00A70E4B /* WodeHuodongTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeHuodongTVC.h; sourceTree = "<group>"; };
 		157790451C26808F00A70E4B /* WodeHuodongTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WodeHuodongTVC.m; sourceTree = "<group>"; };
 		15858D431C1B4B91000550FD /* GroupMemberTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberTVC.h; sourceTree = "<group>"; };
@@ -2505,6 +2520,7 @@
 		153CE0121BE50D910032517E /* Linzihui */ = {
 			isa = PBXGroup;
 			children = (
+				1577165C1C44A0080030DC0B /* navigationControllers */,
 				15E452C01C36912E00A6A549 /* welcomeView */,
 				15AB5AA41C140B210070F6DA /* fuchuang */,
 				1528770E1BF23B4100321E50 /* Helper */,
@@ -2607,6 +2623,21 @@
 				154A39811BE5E5420042632E /* Constants.h */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		1577165C1C44A0080030DC0B /* navigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				157716601C44A08D0030DC0B /* LinXinNavigationController.h */,
+				157716611C44A08D0030DC0B /* LinXinNavigationController.m */,
+				157716631C44A0A00030DC0B /* LinYouNavigationController.h */,
+				157716641C44A0A00030DC0B /* LinYouNavigationController.m */,
+				157716661C44A1470030DC0B /* LinJinNavigationController.h */,
+				157716671C44A1470030DC0B /* LinJinNavigationController.m */,
+				157716691C44A1580030DC0B /* MineNavigationController.h */,
+				1577166A1C44A1580030DC0B /* MineNavigationController.m */,
+			);
+			name = navigationControllers;
 			sourceTree = "<group>";
 		};
 		157790431C26805A00A70E4B /* wodehuodong */ = {
@@ -2944,6 +2975,8 @@
 				15B7A4AF1BE730150052115F /* BaseViewController.m */,
 				1506EC201BF7093A0010F349 /* BaseHomeTableViewController.h */,
 				1506EC211BF7093A0010F349 /* BaseHomeTableViewController.m */,
+				1577165D1C44A0530030DC0B /* BaseNavigationController.h */,
+				1577165E1C44A0530030DC0B /* BaseNavigationController.m */,
 			);
 			path = BaseViewControllers;
 			sourceTree = "<group>";
@@ -4026,6 +4059,7 @@
 				15858D541C1B8AEC000550FD /* SettingTableViewController.m in Sources */,
 				150F31461C0FEA5D00E5CC8B /* ZXVINParsedResult.m in Sources */,
 				15B7A5B51BE7305D0052115F /* UIImage+MultiFormat.m in Sources */,
+				1577166B1C44A1580030DC0B /* MineNavigationController.m in Sources */,
 				150F31361C0FEA5D00E5CC8B /* ZXParsedResult.m in Sources */,
 				150F31601C0FEA5D00E5CC8B /* ZXIntArray.m in Sources */,
 				150F31BB1C0FEA5D00E5CC8B /* ZXUPCEANExtension2Support.m in Sources */,
@@ -4035,6 +4069,7 @@
 				152877141BF251CE00321E50 /* InvitationManager.m in Sources */,
 				15B7A5AF1BE7305D0052115F /* SDWebImageDownloader.m in Sources */,
 				150F31E01C0FEA5D00E5CC8B /* ZXQRCodeErrorCorrectionLevel.m in Sources */,
+				157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */,
 				150F31851C0FEA5D00E5CC8B /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
 				15E452C61C36A87100A6A549 /* AddBeiZhuVC.m in Sources */,
 				1542EF921C10111100AD7C9E /* WebViewController.m in Sources */,
@@ -4048,6 +4083,7 @@
 				150F31551C0FEA5D00E5CC8B /* ZXBitMatrix.m in Sources */,
 				150F31351C0FEA5D00E5CC8B /* ZXISBNResultParser.m in Sources */,
 				150F31881C0FEA5D00E5CC8B /* ZXByQuadrantReader.m in Sources */,
+				1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */,
 				152579C71BF1872900F91C06 /* STScratchView.m in Sources */,
 				150F31191C0FEA5D00E5CC8B /* LBXScanWrapper.m in Sources */,
 				15B7A55B1BE730460052115F /* PSTGridLayoutRow.m in Sources */,
@@ -4169,6 +4205,7 @@
 				15B7A43D1BE72F800052115F /* EMCDDeviceManager+Remind.m in Sources */,
 				15B7A5531BE730460052115F /* PSTCollectionViewController.m in Sources */,
 				150F31DB1C0FEA5D00E5CC8B /* ZXQRCodeDataBlock.m in Sources */,
+				157716621C44A08D0030DC0B /* LinXinNavigationController.m in Sources */,
 				150F315A1C0FEA5D00E5CC8B /* ZXDecoderResult.m in Sources */,
 				150F31CD1C0FEA5D00E5CC8B /* ZXPDF417ScanningDecoder.m in Sources */,
 				150F314F1C0FEA5D00E5CC8B /* ZXWhiteRectangleDetector.m in Sources */,
@@ -4250,6 +4287,7 @@
 				15B7A43E1BE72F800052115F /* EMCDDeviceManagerBase.m in Sources */,
 				150F31501C0FEA5D00E5CC8B /* ZXGenericGF.m in Sources */,
 				150F31471C0FEA5D00E5CC8B /* ZXVINResultParser.m in Sources */,
+				157716681C44A1470030DC0B /* LinJinNavigationController.m in Sources */,
 				1536C6EC1C2CDFA4001DB61A /* LevelDetailViewController.m in Sources */,
 				15E452C31C36914600A6A549 /* WelcomViewVC.m in Sources */,
 				150F317E1C0FEA5D00E5CC8B /* ZXDataMatrixSymbolInfo.m in Sources */,

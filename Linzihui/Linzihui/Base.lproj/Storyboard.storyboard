@@ -134,7 +134,7 @@
         <!--邻近-->
         <scene sceneID="yHv-Tt-rRg">
             <objects>
-                <navigationController id="csi-WM-Xgw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LinJinNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="csi-WM-Xgw" customClass="LinJinNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="邻近" image="linjin" selectedImage="linjin_1" id="Rp4-4N-AfS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Qc-LO-wxZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2245,10 +2245,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="147" id="rka-I7-uw2" customClass="HuodongCommentCell">
-                                <rect key="frame" x="0.0" y="280" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="280" width="375" height="147"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rka-I7-uw2" id="HSy-4G-dhm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="147"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4BB-Pd-dCz">
@@ -2336,17 +2336,17 @@
                                             <exclude reference="ETP-2v-lPt"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="trY-uB-xfB"/>
-                                            <exclude reference="zjC-js-n3D"/>
-                                            <exclude reference="3Of-My-GTS"/>
-                                            <exclude reference="PGO-3C-MLf"/>
-                                            <exclude reference="dpc-Bn-3rY"/>
-                                            <exclude reference="lRq-OG-5UF"/>
                                             <exclude reference="68k-9i-Rp9"/>
                                             <exclude reference="B1J-ss-qsW"/>
                                             <exclude reference="IQU-JL-iGQ"/>
                                             <exclude reference="U2c-cv-uX5"/>
                                             <exclude reference="jhi-S6-Aod"/>
+                                            <exclude reference="3Of-My-GTS"/>
+                                            <exclude reference="PGO-3C-MLf"/>
+                                            <exclude reference="dpc-Bn-3rY"/>
+                                            <exclude reference="lRq-OG-5UF"/>
+                                            <exclude reference="trY-uB-xfB"/>
+                                            <exclude reference="zjC-js-n3D"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -2357,17 +2357,17 @@
                                             <include reference="ETP-2v-lPt"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="trY-uB-xfB"/>
-                                            <include reference="zjC-js-n3D"/>
-                                            <include reference="3Of-My-GTS"/>
-                                            <include reference="PGO-3C-MLf"/>
-                                            <include reference="dpc-Bn-3rY"/>
-                                            <include reference="lRq-OG-5UF"/>
                                             <include reference="68k-9i-Rp9"/>
                                             <include reference="B1J-ss-qsW"/>
                                             <include reference="IQU-JL-iGQ"/>
                                             <include reference="U2c-cv-uX5"/>
                                             <include reference="jhi-S6-Aod"/>
+                                            <include reference="3Of-My-GTS"/>
+                                            <include reference="PGO-3C-MLf"/>
+                                            <include reference="dpc-Bn-3rY"/>
+                                            <include reference="lRq-OG-5UF"/>
+                                            <include reference="trY-uB-xfB"/>
+                                            <include reference="zjC-js-n3D"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -2418,7 +2418,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Csc-6i-brY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286.5" y="1411.5"/>
+            <point key="canvasLocation" x="2567.25" y="1412.625"/>
         </scene>
         <!--New Mine Table View Controller-->
         <scene sceneID="SI8-zn-x3X">
@@ -4405,7 +4405,7 @@
         <!--我-->
         <scene sceneID="IyG-M1-1zd">
             <objects>
-                <navigationController id="vfN-c8-SId" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MineNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vfN-c8-SId" customClass="MineNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我" image="wo" selectedImage="wo_1" id="vRg-m1-irM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nuh-bN-Cqd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -7591,7 +7591,7 @@
         <!--邻信-->
         <scene sceneID="e7q-t4-J0i">
             <objects>
-                <navigationController title="邻信" id="G5p-lz-l2F" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LinXinNavigationController" title="邻信" useStoryboardIdentifierAsRestorationIdentifier="YES" id="G5p-lz-l2F" customClass="LinXinNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="邻信" image="linxin" selectedImage="linxin_1" id="KtQ-6y-vph"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jwU-iZ-06i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -7608,7 +7608,7 @@
         <!--邻友-->
         <scene sceneID="B5O-mZ-Usc">
             <objects>
-                <navigationController id="0Ud-Ih-Va1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LinYouNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0Ud-Ih-Va1" customClass="LinYouNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="邻友" image="linyou" selectedImage="linyou_1" id="D4e-al-xmW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kio-Qw-0j8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
