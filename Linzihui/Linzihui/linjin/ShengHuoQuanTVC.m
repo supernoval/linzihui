@@ -414,7 +414,7 @@ static NSString *commentCellID = @"CommentCell";
         CGFloat textHeight = 0;
         
         
-        NSString *text =oneModel.text;
+        NSString *text = oneModel.text;
         
         
         textHeight = [StringHeight heightWithText:text font:FONT_17 constrainedToWidth:ScreenWidth - 25];
