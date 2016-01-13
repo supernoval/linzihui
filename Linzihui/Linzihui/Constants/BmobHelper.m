@@ -31,59 +31,31 @@
         
         if (![lastLaunchDate isEqualToDate:now]) {
             
-            BmobQuery *query = [BmobQuery queryWithClassName:kDengJi];
             
-            NSString *userid = [BmobUser getCurrentUser].username;
+            BmobUser *currentUser = [BmobUser getCurrentUser];
             
-            [query whereKey:@"username" equalTo:userid];
+            [currentUser incrementKey:@"level"];
             
-            
-            [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-                
-                if (!error ) {
+            [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
                     
-                    if (array.count > 0) {
-                        
-                        BmobObject *ob = [array firstObject];
-                        
-                        [ob incrementKey:@"openTimes"];
-                        
-                        [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                            if (isSuccessful) {
-                                
-                                [[NSUserDefaults standardUserDefaults] setObject:now forKey:kLastLaunchDate];
-                                
-                                [[NSUserDefaults standardUserDefaults] synchronize];
-                                
-                            }
-                        }];
-                        
-                    }
-                    else
-                    {
-                        
-                        BmobObject *ob = [BmobObject objectWithClassName:kDengJi];
-                        
-                        [ob setObject:[BmobUser getCurrentUser].username forKey:@"username"];
-                        
-                        [ob saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                            if (error) {
-                                NSLog(@"error:%@",error);
-                                
-                            }
-                        }];
-                        
-                    }
                     
+                }
+                else
+                {
+                    NSLog(@"error:%@",error);
                     
                 }
                 
             }];
+      
             
         }
   
         
-          }
+        
+     }
     
     
 }
@@ -92,7 +64,7 @@
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
         
-        BmobQuery *query = [BmobQuery queryWithClassName:kDengJi];
+        BmobQuery *query = [BmobQuery queryForUser];
         
         [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
         
@@ -104,63 +76,68 @@
                 
                 BmobObject *bo = [array firstObject];
                 
-                NSInteger times = [[bo objectForKey:@"openTimes"]integerValue];
+                NSInteger times = [[bo objectForKey:@"level"]integerValue];
                 
                 
-                NSInteger level = times/90;
+                NSInteger level = times/90 ;
                 
                 NSString *str = nil;
                 
                 switch (level) {
                     case 0:
                     {
-                        str =  @"幼儿园";
+                        str =  @"幼小";
                     }
                         break;
                     case 1:
                     {
-                        str = @"小学生";
+                        str = @"幼中";
                     }
                         break;
                     case 2:
                     {
-                        str = @"中学生";
+                        str = @"幼大";
                     }
                         break;
                     case 3:
                     {
-                        str = @"高中生";
+                        str = @"小一";
                     }
                         break;
                     case 4:
                     {
-                        str = @"大学生";
+                        str = @"小二";
                     }
                         break;
                     case 5:
                     {
-                        str = @"硕士";
+                        str = @"小三";
                     }
                         break;
                     case 6:
                     {
-                        str = @"博士";
+                        str = @"小四";
                     }
                         break;
                     case 7:
                     {
-                        str = @"教授";
+                        str = @"小五";
                     }
                         break;
                         
+                    case 8:
+                    {
+                        str = @"小五";
+                    }
+                        break;
                         
                         
                     default:
                     {
-                           str = @"教授";
+                        str = @"教授";
                     }
                         break;
-                }
+                 }
                 
                 
                 

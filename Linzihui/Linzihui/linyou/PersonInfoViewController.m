@@ -53,8 +53,7 @@ typedef NS_ENUM(NSInteger,CheckType)
     }
 
     
-     _pullView = [[PersonPullView alloc]init];
-    
+
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -73,6 +72,10 @@ typedef NS_ENUM(NSInteger,CheckType)
         if (array) {
             
             _model = [array firstObject];
+            
+            _pullView = [[PersonPullView alloc]initwithUserModel:self.model];
+            
+           
             
             
             [_headImageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];

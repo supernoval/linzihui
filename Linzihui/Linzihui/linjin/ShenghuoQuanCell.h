@@ -32,4 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
+
+
 @end

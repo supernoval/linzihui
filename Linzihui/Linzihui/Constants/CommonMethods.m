@@ -581,7 +581,7 @@
     
     NSInteger day = (NSInteger)time/60/60/24;
     
-    NSInteger hour = (NSInteger)time/60/60;
+    NSInteger hour = (NSInteger)time/60/60%24;
     
     NSInteger minues = (NSInteger)time/60%60;
     

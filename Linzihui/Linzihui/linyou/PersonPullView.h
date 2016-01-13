@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserModel.h"
 
 @interface PersonPullView : UIView<UIAlertViewDelegate>
 
--(id)init;
+-(id)initwithUserModel:(UserModel*)model;
+@property (nonatomic) UserModel *model;
 
 @end

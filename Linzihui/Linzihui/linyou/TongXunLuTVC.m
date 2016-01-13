@@ -297,7 +297,16 @@ static NSString *ContactsCell = @"ContactsCell";
       
         ContactModel *oneContact = [_abDataSource objectAtIndex:indexPath.row];
         
-        [imageView sd_setImageWithURL:[NSURL URLWithString:oneContact.headImageURL] placeholderImage:kDefaultHeadImage];
+            if (oneContact.headImageURL) {
+                
+                [imageView sd_setImageWithURL:[NSURL URLWithString:oneContact.headImageURL] placeholderImage:kDefaultHeadImage];
+            }
+            else
+            {
+                imageView.image = kDefaultHeadImage;
+                
+            }
+        
         
         if (oneContact.nickName) {
             

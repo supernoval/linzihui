@@ -481,13 +481,21 @@ static NSString *commentCellID = @"CommentCell";
         ShenghuoQuanCell *cell = [tableView dequeueReusableCellWithIdentifier:contentCell];
         
             
-            //时间
-        cell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:oneModel.createdAt];
+        //时间
+        NSString *timeStr = [CommonMethods timeStringFromNow:oneModel.createdAt];
+            
+        cell.timeLabel.text = [NSString stringWithFormat:@"%@前",timeStr];
             
         [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[user objectForKey:@"headImageURL"]]
                               placeholderImage:kDefaultHeadImage];
         
         
+       //等级
+         [BmobHelper getLevel:^(NSString *levelStr) {
+             
+             cell.levelLabel.text =  [NSString stringWithFormat:@"等级:%@",levelStr];
+             
+        }];
             
             CGFloat photoViewHeight = 0;
             
