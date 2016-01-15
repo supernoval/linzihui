@@ -7,7 +7,7 @@
 //
 
 #import "BaseTableViewController.h"
-
+#import "ShowDetailViewController.h"
 @interface HuoDongDetailTVC : BaseTableViewController
 
 
@@ -80,6 +80,25 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyititleHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyiheight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailButtonHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tedianButtonHeght;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *liuchengButtonHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyiButtonHeight;
+
+
+
+- (IBAction)showDetail:(id)sender;
+
+- (IBAction)showTeDian:(id)sender;
+
+- (IBAction)showLiuChen:(id)sender;
+
+- (IBAction)showShiXiang:(id)sender;
+
+
 
 - (IBAction)showMapView:(id)sender;
 

@@ -13,6 +13,7 @@
 		1506EC2A1BF82CAA0010F349 /* MygroupListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC291BF82CAA0010F349 /* MygroupListTVC.m */; };
 		1506EC2D1BF839220010F349 /* ChatSettingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2C1BF839220010F349 /* ChatSettingTVC.m */; };
 		1506EC301BF860A80010F349 /* SignUpTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC2F1BF860A80010F349 /* SignUpTableView.m */; };
+		15093D611C48B5D600BA5C77 /* ShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15093D601C48B5D600BA5C77 /* ShowDetailViewController.m */; };
 		150F31111C0FEA5D00E5CC8B /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 150F2F111C0FEA5D00E5CC8B /* CodeScan.bundle */; };
 		150F31121C0FEA5D00E5CC8B /* LBXScanLineAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 150F2F131C0FEA5D00E5CC8B /* LBXScanLineAnimation.m */; };
 		150F31131C0FEA5D00E5CC8B /* LBXScanNetAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 150F2F151C0FEA5D00E5CC8B /* LBXScanNetAnimation.m */; };
@@ -504,6 +505,8 @@
 		1506EC2C1BF839220010F349 /* ChatSettingTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSettingTVC.m; sourceTree = "<group>"; };
 		1506EC2E1BF860A80010F349 /* SignUpTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTableView.h; sourceTree = "<group>"; };
 		1506EC2F1BF860A80010F349 /* SignUpTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableView.m; sourceTree = "<group>"; };
+		15093D5F1C48B5D600BA5C77 /* ShowDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDetailViewController.h; sourceTree = "<group>"; };
+		15093D601C48B5D600BA5C77 /* ShowDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDetailViewController.m; sourceTree = "<group>"; };
 		150F2F111C0FEA5D00E5CC8B /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
 		150F2F121C0FEA5D00E5CC8B /* LBXScanLineAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanLineAnimation.h; sourceTree = "<group>"; };
 		150F2F131C0FEA5D00E5CC8B /* LBXScanLineAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanLineAnimation.m; sourceTree = "<group>"; };
@@ -2727,6 +2730,8 @@
 				15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */,
 				15E452C71C36ADF700A6A549 /* HuoDongMapView.h */,
 				15E452C81C36ADF700A6A549 /* HuoDongMapView.m */,
+				15093D5F1C48B5D600BA5C77 /* ShowDetailViewController.h */,
+				15093D601C48B5D600BA5C77 /* ShowDetailViewController.m */,
 			);
 			name = huodong;
 			sourceTree = "<group>";
@@ -4070,6 +4075,7 @@
 				150F31601C0FEA5D00E5CC8B /* ZXIntArray.m in Sources */,
 				150F31BB1C0FEA5D00E5CC8B /* ZXUPCEANExtension2Support.m in Sources */,
 				150F31311C0FEA5D00E5CC8B /* ZXExpandedProductResultParser.m in Sources */,
+				15093D611C48B5D600BA5C77 /* ShowDetailViewController.m in Sources */,
 				150F311E1C0FEA5D00E5CC8B /* ZXAztecEncoder.m in Sources */,
 				150F319F1C0FEA5D00E5CC8B /* ZXRSSExpandedReader.m in Sources */,
 				152877141BF251CE00321E50 /* InvitationManager.m in Sources */,

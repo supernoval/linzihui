@@ -321,49 +321,54 @@
     
     photoViewHeight = 95 * totalRowCount;
     
-    CGFloat detailHeight = [StringHeight heightWithText:_huodong.content font:FONT_15 constrainedToWidth:ScreenWidth - 95 ];
+    CGFloat detailHeight = [StringHeight heightWithText:_huodong.content font:FONT_15 constrainedToWidth:ScreenWidth - 120 ];
     
-    CGFloat tedianHeight = [StringHeight heightWithText:_huodong.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 95];
+    CGFloat tedianHeight = [StringHeight heightWithText:_huodong.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 120];
     
-    CGFloat liuchenHeight = [StringHeight heightWithText:_huodong.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 95];
+    CGFloat liuchenHeight = [StringHeight heightWithText:_huodong.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 120];
     
-    CGFloat zhuyiHeight = [StringHeight heightWithText:_huodong.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 95];
+    CGFloat zhuyiHeight = [StringHeight heightWithText:_huodong.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 120];
     
     CGFloat plusHeight = 0;
     
-    if (detailHeight < 21) {
-        detailHeight = 21;
+    if (detailHeight < 30) {
+        detailHeight = 30;
     }
     
-    if (tedianHeight < 21) {
+    if (tedianHeight < 30) {
         
-        tedianHeight = 21;
+        tedianHeight = 30;
     }
-    if (liuchenHeight < 21) {
+    if (liuchenHeight < 30) {
         
-        liuchenHeight = 21;
-    }
-    
-    if (zhuyiHeight < 21) {
-        zhuyiHeight = 21;
-        
+        liuchenHeight = 30;
     }
     
-    plusHeight = detailHeight -21 + tedianHeight -21 + liuchenHeight -21 + zhuyiHeight-21;
+    if (zhuyiHeight < 30) {
+        zhuyiHeight = 30;
+        
+    }
+    
+    plusHeight = detailHeight - 30 + tedianHeight - 30 + liuchenHeight - 30 + zhuyiHeight- 30;
     
     
     _detailtitleheight.constant = detailHeight;
+    _detailButtonHeight.constant = detailHeight;
     
     _detailheight.constant = detailHeight;
     
     _tedianheight.constant = tedianHeight;
     _tediantitleheight.constant = tedianHeight;
+    _tedianButtonHeght.constant = tedianHeight;
+    
     
     _liuchenheight.constant = liuchenHeight;
     _liuchentitleheight.constant = liuchenHeight;
+    _liuchengButtonHeight.constant = liuchenHeight;
     
     _zhuyiheight.constant = zhuyiHeight;
     _zhuyititleHeight.constant = zhuyiHeight;
+    _zhuyiButtonHeight.constant = zhuyiHeight;
     
     
     
@@ -381,8 +386,7 @@
     _publisher.text = _huodong.realName ;
     
     
-    
-    
+
   
     _detailLabel.text = _huodong.content;
     
@@ -1071,6 +1075,53 @@
 
 
 
+
+- (IBAction)showDetail:(id)sender {
+    
+    ShowDetailViewController *_showDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailViewController"];
+    
+    _showDetail.detail = _huodong.content;
+    
+    _showDetail.title = @"活动详情";
+    [self.navigationController pushViewController:_showDetail animated:YES];
+    
+}
+
+- (IBAction)showTeDian:(id)sender {
+    
+    ShowDetailViewController *_showDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailViewController"];
+    
+    _showDetail.detail = _huodong.TeDian;
+    
+    _showDetail.title = @"活动特点";
+    [self.navigationController pushViewController:_showDetail animated:YES];
+    
+}
+
+- (IBAction)showLiuChen:(id)sender {
+    
+    
+    ShowDetailViewController *_showDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailViewController"];
+    
+    _showDetail.detail = _huodong.LiuCheng;
+    
+    _showDetail.title = @"活动流程";
+    [self.navigationController pushViewController:_showDetail animated:YES];
+    
+}
+
+- (IBAction)showShiXiang:(id)sender {
+    
+    
+    ShowDetailViewController *_showDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailViewController"];
+    
+    _showDetail.detail = _huodong.ZhuYiShiXiang;
+    
+    _showDetail.title = @"注意事项";
+    
+    [self.navigationController pushViewController:_showDetail animated:YES];
+    
+}
 
 - (IBAction)showMapView:(id)sender {
     
