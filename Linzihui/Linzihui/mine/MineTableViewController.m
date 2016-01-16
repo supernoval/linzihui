@@ -679,7 +679,7 @@ static NSInteger sextActionSheetTag  = 100;
             
             [BmobUser logout];
             
-            [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:NO];
+            [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
             
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kHadLogin];
             

@@ -290,7 +290,7 @@ static NSString *headerCellID = @"headerCell";
     [query includeKey:@"starter"];
     
     
-    if (huodongType == 1) {
+    if (huodongType == 1) { 
         
        
         

@@ -440,14 +440,17 @@ static NSString *headCellID = @"CellID";
         
         else
         {
-            if (_conversations.count < indexPath.section -1) {
+          
+            
                 
-                [tableView deselectRowAtIndexPath:indexPath animated:YES];
-                
-                return;
-                
+          
+            if (_conversations.count > indexPath.section -1) {
+                  model = [_conversations objectAtIndex:indexPath.section - 1];
             }
-            model = [_conversations objectAtIndex:indexPath.section - 1];
+            
+             [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            
+         
         }
         
         

@@ -19,8 +19,12 @@
 @property (nonatomic,assign)  BOOL mobilePhoneNumberVerified;
 @property (nonatomic,strong)  NSString *inviteCode;
 @property (nonatomic,strong) NSArray *beiZhu;
+@property (nonatomic,assign) NSInteger level;
+@property (nonatomic,strong) NSArray *attendActivities;
+
 
 @property (nonatomic,strong) NSString *beizhu;
+@property (nonatomic)        NSInteger age;
 
 
 

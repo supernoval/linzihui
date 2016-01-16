@@ -137,6 +137,10 @@ static NSString *CellId  = @"CellId";
             [self.tableView reloadData];
             
         }
+        else
+        {
+             [self.tableView reloadData];
+        }
     }];
     
     

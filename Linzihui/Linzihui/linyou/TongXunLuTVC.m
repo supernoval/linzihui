@@ -228,11 +228,11 @@ static NSString *ContactsCell = @"ContactsCell";
     
         cell.contentView.tag = indexPath.row;
         
-        UIImageView *imageView = (UIImageView*)[cell viewWithTag:100 ];
+        UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:1000 ];
         
-        UILabel *nameLable = (UILabel*)[cell viewWithTag:101];
+        UILabel *nameLable = (UILabel*)[cell.contentView viewWithTag:1001];
         
-        UIButton *addButto = (UIButton*)[cell viewWithTag:102];
+        UIButton *addButto = (UIButton*)[cell.contentView viewWithTag:1002];
         addButto.clipsToBounds = YES;
         addButto.layer.cornerRadius = 5;
         
