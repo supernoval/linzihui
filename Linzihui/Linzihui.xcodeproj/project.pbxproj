@@ -299,6 +299,7 @@
 		15521B7D1C4A0C040010E718 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15521B751C4A0C040010E718 /* BaiduMapAPI_Search.framework */; };
 		15521B7E1C4A0C040010E718 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15521B761C4A0C040010E718 /* BaiduMapAPI_Utils.framework */; };
 		15521B7F1C4A0C040010E718 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15521B771C4A0C040010E718 /* mapapi.bundle */; };
+		15521B831C4A0E620010E718 /* SearchNearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15521B821C4A0E620010E718 /* SearchNearByViewController.m */; };
 		1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577165E1C44A0530030DC0B /* BaseNavigationController.m */; };
 		157716621C44A08D0030DC0B /* LinXinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716611C44A08D0030DC0B /* LinXinNavigationController.m */; };
 		157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716641C44A0A00030DC0B /* LinYouNavigationController.m */; };
@@ -1075,6 +1076,8 @@
 		15521B751C4A0C040010E718 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
 		15521B761C4A0C040010E718 /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
 		15521B771C4A0C040010E718 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		15521B811C4A0E620010E718 /* SearchNearByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNearByViewController.h; sourceTree = "<group>"; };
+		15521B821C4A0E620010E718 /* SearchNearByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNearByViewController.m; sourceTree = "<group>"; };
 		1577165D1C44A0530030DC0B /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1577165E1C44A0530030DC0B /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		157716601C44A08D0030DC0B /* LinXinNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinXinNavigationController.h; sourceTree = "<group>"; };
@@ -2680,6 +2683,15 @@
 			path = BaiduMapApi;
 			sourceTree = "<group>";
 		};
+		15521B801C4A0E2C0010E718 /* nearAddress */ = {
+			isa = PBXGroup;
+			children = (
+				15521B811C4A0E620010E718 /* SearchNearByViewController.h */,
+				15521B821C4A0E620010E718 /* SearchNearByViewController.m */,
+			);
+			name = nearAddress;
+			sourceTree = "<group>";
+		};
 		1577165C1C44A0080030DC0B /* navigationControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -3364,6 +3376,7 @@
 		15B7A5DB1BE744FA0052115F /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				15521B801C4A0E2C0010E718 /* nearAddress */,
 				15D75EFE1C41F8EF00ACC0E0 /* hongbao */,
 				1536C6E91C2CDF76001DB61A /* levelDetail */,
 				15D05C0D1C0432C300E0EA0D /* photos */,
@@ -3931,6 +3944,7 @@
 				15B7A4D41BE730320052115F /* UIScrollView+MJExtension.m in Sources */,
 				15B7A55C1BE730460052115F /* PSTGridLayoutSection.m in Sources */,
 				15B7A5B81BE7305D0052115F /* UIImageView+WebCache.m in Sources */,
+				15521B831C4A0E620010E718 /* SearchNearByViewController.m in Sources */,
 				150F31721C0FEA5D00E5CC8B /* ZXDataMatrixDecodedBitStreamParser.m in Sources */,
 				150F31931C0FEA5D00E5CC8B /* ZXAI01weightDecoder.m in Sources */,
 				150F31431C0FEA5D00E5CC8B /* ZXURLTOResultParser.m in Sources */,

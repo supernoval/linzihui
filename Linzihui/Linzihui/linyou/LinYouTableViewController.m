@@ -456,19 +456,23 @@ static NSString *CellId  = @"CellId";
         
         default:  //点击好友 跳到聊天
         {
-            NSArray *Array = [_dataSource objectAtIndex:indexPath.section -3];
-            
-            UserModel *model = [Array objectAtIndex:indexPath.row];
-            
-            
-            PersonInfoViewController *_personInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
-            
-            _personInfoVC.username = model.username;
-            
-            _personInfoVC.hidesBottomBarWhenPushed = YES;
-            
-            [self.navigationController pushViewController:_personInfoVC animated:YES];
-            
+            if (_dataSource.count > indexPath.section -3) {
+                
+                NSArray *Array = [_dataSource objectAtIndex:indexPath.section -3];
+                
+                UserModel *model = [Array objectAtIndex:indexPath.row];
+                
+                
+                PersonInfoViewController *_personInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+                
+                _personInfoVC.username = model.username;
+                
+                _personInfoVC.hidesBottomBarWhenPushed = YES;
+                
+                [self.navigationController pushViewController:_personInfoVC animated:YES];
+                
+            }
+          
             
 //            ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:model.username isGroup:NO];
 //            

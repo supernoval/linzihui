@@ -73,7 +73,7 @@ static NSInteger sextActionSheetTag  = 100;
 
 -(NSArray *)titlesArray
 {
-    NSArray *titles = @[@"头像",@"昵称",@"邻号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"地区",@"个性签名"];
+    NSArray *titles = @[@"头像",@"昵称",@"邻号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"小区",@"个性签名"];
     
     return titles;
     
@@ -450,21 +450,54 @@ static NSInteger sextActionSheetTag  = 100;
                 [_pickActionSheet showInView:self.view];
             }
                 break;
-            case 1:  //地区
+            case 1:  //小区
             {
-                ChangePersonInfoVC *_changeInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePersonInfoVC"];
                 
-                _changeInfoVC.changeTitle = @"修改地区";
+                SearchNearByViewController *_searchNear = [[SearchNearByViewController alloc]init];
+               
+                _searchNear.hidesBottomBarWhenPushed = YES;
                 
-                _changeInfoVC.key = @"area";
+                [_searchNear setBlock:^(NSString *xiaoqu) {
+                   
+                    
+                   
                 
                 
-                _changeInfoVC.hidesBottomBarWhenPushed = YES;
+                    [BmobHelper updateBmobWithKey:@"area" value:xiaoqu object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
+                        
+                        if (isSuccess) {
+                            
+                         _model.area = xiaoqu;
+                            
+                            [self.tableView reloadData];
+                            
+                            
+                            
+                        }else
+                        {
+                           
+                            
+                        }
+                    }];
+                    
+                }];
+                
+                [self.navigationController pushViewController:_searchNear animated:YES ];
                 
                 
-                _changeInfoVC.value = _model.address;
-                
-                [self.navigationController pushViewController:_changeInfoVC animated:YES];
+//                ChangePersonInfoVC *_changeInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePersonInfoVC"];
+//                
+//                _changeInfoVC.changeTitle = @"修改地区";
+//                
+//                _changeInfoVC.key = @"area";
+//                
+//                
+//                _changeInfoVC.hidesBottomBarWhenPushed = YES;
+//                
+//                
+//                _changeInfoVC.value = _model.address;
+//                
+//                [self.navigationController pushViewController:_changeInfoVC animated:YES];
             }
                 break;
             case 2:  //个性签名
