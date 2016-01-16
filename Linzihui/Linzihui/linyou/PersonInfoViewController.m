@@ -1,5 +1,5 @@
 //
-//  PersonInfoViewController.m
+//  ua.m
 //  Linzihui
 //
 //  Created by ZhuHaikun on 15/12/23.
@@ -168,7 +168,7 @@ typedef NS_ENUM(NSInteger,CheckType)
     
     if (isFriend) {
         
-        
+        [_sendButton setTitle:@"发送消息" forState:UIControlStateNormal];
     }
     else
     {
@@ -193,9 +193,13 @@ typedef NS_ENUM(NSInteger,CheckType)
                 else
                 {
                    
-                    _sendButton.hidden = YES;
+                   
                     
                     friendType = CheckTypeOnlyFollowMe;
+                    
+                    [_sendButton setTitle:@"关注" forState:UIControlStateNormal];
+                    
+                    
                     
                     
                     
@@ -233,10 +237,21 @@ typedef NS_ENUM(NSInteger,CheckType)
         
         [self.navigationController pushViewController:chatVC animated:YES];
     }
-    else
+    else if(friendType == CheckTypeFollowEachOther)
     {
         [EMHelper sendFriendRequestWithBuddyName:_username Mesage:@"请求加你好友"];
         
+    }
+    else
+    {
+        [BmobHelper addFollowWithFollowedUserModel:_model result:^(BOOL success) {
+           
+            
+            if (success) {
+                
+                [CommonMethods showDefaultErrorString:@"关注成功"];
+            }
+        }];
     }
     
 }

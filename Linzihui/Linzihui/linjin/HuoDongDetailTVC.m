@@ -460,6 +460,7 @@
 {
  
     UILabel *label = [CommonMethods LabelWithText:@"评论" andTextAlgniment:NSTextAlignmentLeft andTextColor:[UIColor blackColor] andTextFont:FONT_16 andFrame:CGRectMake(0, 0, ScreenWidth, 20)];
+    label.backgroundColor = kBackgroundColor;
     
     if (section == 0) {
         
@@ -510,7 +511,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    if (section == 2) {
+    if (section == 1) {
         
         return 44;
     }
@@ -581,7 +582,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 3;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -607,7 +608,7 @@
 {
     
     
-    
+    //参与人员
     if (indexPath.section == 0) {
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
@@ -615,14 +616,17 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            
+     
             NSArray *personsArray = _huodong.AttendUsers;
             
             NSDictionary *onePerson = [personsArray objectAtIndex:indexPath.row];
             
+            
             AttendUserModel * _usermodel = [[AttendUserModel alloc]init];
             
             [_usermodel setValuesForKeysWithDictionary:onePerson];
+            
+            
             
             UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
             
@@ -632,6 +636,12 @@
             [imageView sd_setImageWithURL:[NSURL URLWithString:_usermodel.headImageURL] placeholderImage:kDefaultHeadImage];
             
             
+            
+            
+            
+            
+            
+            
             label.text = _usermodel.nickName;
             
             if (!_usermodel.nickName) {
@@ -639,6 +649,33 @@
                 label.text = _usermodel.userName;
                 
             }
+            
+            
+            //判断是否已签到
+            
+            NSArray *qiandao = _huodong.qiandao;
+            
+            BOOL hadQianDao = NO;
+            
+            for (NSDictionary *dic in qiandao) {
+                
+                AttendUserModel *model = [[AttendUserModel alloc]init];
+                
+                [model setValuesForKeysWithDictionary:dic];
+                
+                if ([model.userName isEqualToString:_usermodel.userName]) {
+                    
+                    hadQianDao = YES;
+                    
+                }
+            }
+            
+            if (hadQianDao) {
+                
+                   label.text = [NSString stringWithFormat:@"%@(已签到)",label.text];
+                
+            }
+         
             
             
             
@@ -652,7 +689,8 @@
     }
 
   
-    if (indexPath.section == 1) {
+    //记录
+    else  {
         
         
     
@@ -668,8 +706,6 @@
             
             [_commentModel setValuesForKeysWithDictionary:dic];
             
-            
-           
             
             
             [commentCel.headImageView sd_setImageWithURL:[NSURL URLWithString:_commentModel.headImageURL] placeholderImage:kDefaultHeadImage];
@@ -702,45 +738,7 @@
     
     
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
-    
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        
-        NSArray *personsArray = _huodong.qiandao;
-        
-        NSDictionary *onePerson = [personsArray objectAtIndex:indexPath.row];
-        
-        AttendUserModel * _usermodel = [[AttendUserModel alloc]init];
-        
-        [_usermodel setValuesForKeysWithDictionary:onePerson];
-        
-        UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
-        
-        
-        UILabel *label = (UILabel*)[cell viewWithTag:101];
-        
-        [imageView sd_setImageWithURL:[NSURL URLWithString:_usermodel.headImageURL] placeholderImage:kDefaultHeadImage];
-        
-        
-        label.text = _usermodel.nickName;
-        
-        if (!_usermodel.nickName) {
-            
-            label.text = _usermodel.userName;
-            
-        }
-        
-        
-        
-        
-        
-        
-    });
-    
-    
-    return cell;
+ 
     
     
 }
