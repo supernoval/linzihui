@@ -25,6 +25,13 @@
 #pragma mark - QQ
 #define kQQAppID                   @"1104890893"
 #define kQQAppKey                  @"bILqfDKzAuZe1Jjb"
+
+#pragma mark - 百度地图key
+#define kBaiduMapKey                @"Zp1EsdgXIa2RG8PKXBi1z1GU"
+
+
+
+
 //app 下载地址
 #define kAppDownloadURL            @"https://itunes.apple.com/us/app/you-kang-fu-wu/id646300912?l=zh&ls=1&mt=8"
 
