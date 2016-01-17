@@ -37,7 +37,7 @@ static NSString *headCellID = @"CellID";
     
     
 }
-
+@property ( nonatomic)  UISearchBar *searchBar;
 @property (nonatomic) UISearchDisplayController *mysearchConroller;
 
 

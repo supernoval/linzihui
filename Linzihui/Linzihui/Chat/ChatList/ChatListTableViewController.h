@@ -13,7 +13,7 @@
 
 @property ( nonatomic) IBOutlet UIView *chatHeadView;
 
-@property ( nonatomic)  UISearchBar *searchBar;
+
 
 
 @end
