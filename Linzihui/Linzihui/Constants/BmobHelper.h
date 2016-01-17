@@ -63,6 +63,11 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 判断是否互相关注
 + (void)checkFollowEachOtherWithItemArray:(NSArray*)itemArray searchResult:(void(^)(NSArray*array))resultBlock;
 
+#pragma mark - 判断关注类型
++ (void)checkFollowTypeWithUserModel:(UserModel*)model result:(void(^)(UserModel*finalModel))resultBlock;
+
+
+
 
 #pragma mark -  获取好友列表  通过环信好友username 获取bmob 对应用户信息
 + (void)getBmobBuddyUsers:(void(^)(NSArray*array))block;

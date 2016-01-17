@@ -305,7 +305,7 @@ static NSInteger sextActionSheetTag  = 100;
                 {
                     if (_model.area) {
                         
-                        contentLabel.text = _model.area;
+                        contentLabel.text = _model.xiaoqu;
                         
                     }
                 }
@@ -450,7 +450,7 @@ static NSInteger sextActionSheetTag  = 100;
                 [_pickActionSheet showInView:self.view];
             }
                 break;
-            case 1:  //小区
+            case 1:  //区域
             {
                 
                 SearchNearByViewController *_searchNear = [[SearchNearByViewController alloc]init];
@@ -460,10 +460,9 @@ static NSInteger sextActionSheetTag  = 100;
                 [_searchNear setBlock:^(NSString *xiaoqu) {
                    
                     
-                   
                 
                 
-                    [BmobHelper updateBmobWithKey:@"area" value:xiaoqu object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
+                    [BmobHelper updateBmobWithKey:@"xiaoqu" value:xiaoqu object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
                         
                         if (isSuccess) {
                             

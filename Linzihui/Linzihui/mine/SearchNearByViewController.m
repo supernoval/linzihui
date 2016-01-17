@@ -8,7 +8,7 @@
 
 #import "SearchNearByViewController.h"
 
-@interface SearchNearByViewController ()<BMKPoiSearchDelegate,UITableViewDataSource,UITableViewDelegate,BMKCloudSearchDelegate,BMKGeoCodeSearchDelegate>
+@interface SearchNearByViewController ()<BMKPoiSearchDelegate,UITableViewDataSource,UITableViewDelegate,BMKCloudSearchDelegate,BMKGeoCodeSearchDelegate,UISearchBarDelegate,UITextFieldDelegate>
 {
     BMKPoiSearch *_searcher;
     
@@ -16,6 +16,9 @@
     
     BMKGeoCodeSearch *_geoSearch;
     
+    UISearchBar *_mySearchBar;
+    
+    UITextField *_xiaoquTF;
     
     UITableView *_xiaoquTableView;
     
@@ -36,8 +39,38 @@
     
     _dataSource = [[NSMutableArray alloc]init];
     
+
     
-    _xiaoquTableView = [[UITableView alloc]initWithFrame:self.view.frame];
+    UIBarButtonItem *baocun = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAddress)];
+    
+    self.navigationItem.rightBarButtonItem = baocun;
+    
+    
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, 44)];
+    headView.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:headView];
+    
+    _xiaoquTF = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, ScreenWidth - 20, 44)];
+    
+    _xiaoquTF.delegate = self;
+    
+    _xiaoquTF.backgroundColor = [UIColor whiteColor];
+    
+
+    _xiaoquTF.placeholder = @"输入小区或者从下方选择小区";
+    
+    _xiaoquTF.returnKeyType = UIReturnKeyDone;
+    
+    [headView addSubview:_xiaoquTF];
+    
+    
+    _xiaoquTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 110, ScreenWidth, ScreenHeight - 110)];
+    
+    
     
     _xiaoquTableView.delegate = self;
     _xiaoquTableView.dataSource = self;
@@ -48,6 +81,7 @@
     
     
     [self.view addSubview:_xiaoquTableView];
+
     
     
     _searcher = [[BMKPoiSearch alloc]init];
@@ -68,7 +102,7 @@
     option.sortType = BMK_POI_SORT_BY_DISTANCE;
     option.radius = 5000;
     
-    option.keyword = @"公寓,小区";
+    option.keyword = @"小区,公寓";
     
     BOOL flag = [_searcher poiSearchNearBy:option];
     
@@ -123,6 +157,19 @@
     
     
     //反编码
+    _geoSearch = [[BMKGeoCodeSearch alloc]init];
+    _geoSearch.delegate = self;
+    
+    BMKReverseGeoCodeOption *reveOption = [[BMKReverseGeoCodeOption alloc]init];
+    
+    reveOption.reverseGeoPoint = CLLocationCoordinate2DMake(lat, lon);
+    
+    if ([_geoSearch reverseGeoCode:reveOption]) {
+        
+        NSLog(@"成功");
+    }
+    
+    
     
     
     
@@ -258,9 +305,122 @@
     }
 }
 
+
+-(void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    
+    BMKAddressComponent *addressDetail = result.addressDetail;
+    
+    NSString *city = addressDetail.city;
+    
+    NSString *distrit = addressDetail.district;
+    
+    if (!city) {
+        
+        city = @"";
+        
+    }
+    
+    if (!distrit) {
+        
+        distrit = addressDetail.streetName;
+    }
+    
+    if (!distrit) {
+        
+        distrit = @"";
+    }
+    
+    NSString *area = [NSString stringWithFormat:@"%@ %@",city,distrit];
+    
+    
+    [BmobHelper updateBmobWithKey:@"area" value:area object:[BmobUser getCurrentUser] result:^(BOOL isSuccess) {
+        
+        if (isSuccess) {
+            
+      
+            
+            
+        }else
+        {
+            
+            
+        }
+    }];
+    
+}
 -(void)setBlock:(SearchBlock)block
 {
     _block = block;
+    
+    
+}
+
+#pragma mark - UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    
+    [searchBar resignFirstResponder];
+    
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    
+    searchBar.text = nil;
+    
+    [searchBar resignFirstResponder];
+    
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    
+    
+}
+
+#pragma mark - UITextFieldDelegate 
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    
+    
+    return YES;
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    
+}
+
+#pragma mark - 保存
+-(void)saveAddress
+{
+    if (_xiaoquTF.text.length == 0) {
+        
+        [CommonMethods showDefaultErrorString:@"请输入小区或者选择小区名称"];
+        
+        return;
+    }
+    
+    
+    if (_block) {
+        
+        if (_xiaoquTF.text) {
+            
+            _block(_xiaoquTF.text);
+        }
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
     
     
 }

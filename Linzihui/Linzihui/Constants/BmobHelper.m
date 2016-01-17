@@ -364,6 +364,142 @@
     
 }
 
+#pragma mark - 判断关注类型
++ (void)checkFollowTypeWithUserModel:(UserModel*)model result:(void(^)(UserModel*finalModel))resultBlock{
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
+        
+        return;
+        
+    }
+    
+    BmobQuery *queryGuanZhu = [BmobQuery queryWithClassName:kFollowTableName];
+    
+    NSArray *userNames = @[model.objectId,[BmobUser getCurrentUser].objectId];
+    
+    [queryGuanZhu whereKey:@"userObjectId" containedIn:userNames];
+    
+    
+    [queryGuanZhu findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (array) {
+            
+            //获取记录
+            BmobObject *otherOB = nil;
+            BmobObject *myOB = nil;
+            
+            for (BmobObject *ob in array) {
+                
+                NSString *userObjectId = [ob objectForKey:@"userObjectId"];
+                
+                if ([userObjectId isEqualToString:model.objectId]) {
+                    
+                    otherOB = ob;
+                }
+                
+                if ([userObjectId isEqualToString:[BmobUser getCurrentUser].objectId]) {
+                    
+                    myOB = ob;
+                    
+                    
+                }
+                
+                
+            }
+        
+            
+            
+            //检查对方是否关注自己
+            BOOL isFollowMe = NO;
+            
+            if (otherOB) {
+                
+                NSArray *myFollows = [otherOB objectForKey:@"myFollows"];
+                
+                
+                
+                if (myFollows.count > 0) {
+                    
+                    for (NSString*uName in myFollows) {
+                        
+                        if ([uName isEqualToString:[BmobUser getCurrentUser].username]) {
+                            
+                            isFollowMe = YES;
+                            
+                            model.followType = CheckTypeOnlyFollowMe;
+                            
+                        }
+                    }
+                }
+                
+            }
+            
+            //检查自己是否关注对方
+             BOOL isFollowHer = NO;
+            
+            if (myOB) {
+                
+                NSArray *myFollows = [myOB objectForKey:@"myFollows"];
+                
+               
+                
+                if (myFollows.count > 0) {
+                    
+                    for (NSString *uName in myFollows) {
+                        
+                        if ([uName isEqualToString:model.username]) {
+                            
+                            isFollowHer = YES;
+                            
+                            if (isFollowMe) {
+                                
+                                model.followType = CheckTypeFollowEachOther;
+                            }
+                            else
+                            {
+                                model.followType = CheckTypeOnlyMyFollow;
+                                
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            if (!isFollowMe && !isFollowHer) {
+                
+                model.followType = CheckTypeNone;
+                
+            }
+            
+            if (resultBlock) {
+                resultBlock(model);
+                
+            }
+            
+        }
+        else
+        {
+            NSLog(@"error:%@",error);
+            
+            if (resultBlock) {
+                
+                resultBlock(model);
+                
+            }
+            
+        }
+        
+        
+    }];
+    
+    
+    
+}
+
+
+
+
 + (void)queryfollowMesWithItems:(NSArray*)itemArray myFollows:(NSArray*)followsArray searchResult:(void(^)(NSArray*))resultBlock
 {
     
