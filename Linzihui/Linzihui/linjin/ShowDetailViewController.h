@@ -7,13 +7,14 @@
 //
 
 #import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface ShowDetailViewController : BaseViewController
+@interface ShowDetailViewController : BaseTableViewController
 
-
+@property (nonatomic) HuoDongModel *huodong;
 @property (nonatomic) NSString *detail;
 
-@property (weak, nonatomic) IBOutlet UITextView *detailTF;
+
 
 
 @end

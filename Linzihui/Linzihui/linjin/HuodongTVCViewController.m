@@ -128,10 +128,10 @@ static NSString *headerCellID = @"headerCell";
 {
     if (!_headerView) {
         
-        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
         _headerView.backgroundColor = [UIColor whiteColor];
         
-        startButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 44)];
+        startButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
         
         [startButton setTitle:@"我的发起" forState:UIControlStateNormal];
         
@@ -143,7 +143,7 @@ static NSString *headerCellID = @"headerCell";
         [_headerView addSubview:startButton];
         
         
-        attendButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 44)];
+        attendButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 50)];
         
         [attendButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
         
@@ -303,7 +303,7 @@ static NSString *headerCellID = @"headerCell";
         else
         {
               BmobUser *currentUser = [BmobUser getCurrentUser];
-            NSArray *attends = [currentUser objectForKey:@"attendActivities"];
+             NSArray *attends = [currentUser objectForKey:@"attendActivities"];
             
             if (!attends) {
                 
@@ -325,15 +325,15 @@ static NSString *headerCellID = @"headerCell";
         [self endHeaderRefresh];
         [self endFooterRefresh];
         
+        if (skip == 0) {
+            
+            [_dataSource removeAllObjects];
+            
+            
+        }
+        
         if (!error && array.count > 0) {
             
-            
-            if (skip == 0) {
-                
-                [_dataSource removeAllObjects];
-                
-                
-            }
             
             
             for (BmobObject *ob in array) {
@@ -359,14 +359,17 @@ static NSString *headerCellID = @"headerCell";
                 [_dataSource addObject:model];
                 
                 
-            }
+             }
             
            
             
             
-            [self.tableView reloadData];
+    
             
         }
+        
+        
+         [self.tableView reloadData];
         
         
         

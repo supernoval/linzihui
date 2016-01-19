@@ -71,6 +71,9 @@ static NSString *textViewCell  =@"textViewCell";
 {
     [super viewWillDisappear:animated];
     
+    
+    [self cancelPickDate];
+    
   
     
     
@@ -182,7 +185,42 @@ static NSString *textViewCell  =@"textViewCell";
 {
     
     [self.navigationController.view addSubview:_view_pickDate];
+    
     hadShowedPicker = YES;
+    
+    
+    //活动结束时间 要在活动给开始之后
+    if ( pickIndex == 4 ) {
+        
+        NSMutableDictionary *muDict = [[NSMutableDictionary alloc]initWithDictionary:[_titlesArray objectAtIndex:3]];
+        
+        NSDate *  date = [muDict objectForKey:@"content"];
+        
+        _picker.minimumDate = date;
+        
+        
+    }
+    
+    
+    //报名截止时间要在开始之后 结束之前
+    if (pickIndex == 8) {
+        
+        NSMutableDictionary *muDict = [[NSMutableDictionary alloc]initWithDictionary:[_titlesArray objectAtIndex:3]];
+        
+        NSDate *  date = [muDict objectForKey:@"content"];
+        
+        _picker.minimumDate = date;
+        
+        
+        NSMutableDictionary *endDict = [[NSMutableDictionary alloc]initWithDictionary:[_titlesArray objectAtIndex:4]];
+        
+        NSDate *  endDate = [endDict objectForKey:@"content"];
+        
+        
+        _picker.maximumDate = endDate;
+        
+        
+    }
     
     [UIView animateWithDuration:0.5 animations:^{
        
@@ -763,6 +801,28 @@ static NSString *textViewCell  =@"textViewCell";
     [self.view endEditing:YES];
     
     if (indexPath.section == 3 ||  indexPath.section == 4 ||  indexPath.section == 8) {
+        
+        
+        
+        //如果选择截止时间和结束时间 先判断是否有开始时间
+        if (indexPath.section == 4 || indexPath.section == 8) {
+            
+            NSMutableDictionary *muDict = [[NSMutableDictionary alloc]initWithDictionary:[_titlesArray objectAtIndex:3]];
+            
+            id  date = [muDict objectForKey:@"content"];
+            
+            if (![date isKindOfClass:[NSDate class]]) {
+                
+                
+                [CommonMethods showDefaultErrorString:@"请先选择活动开始时间"];
+                
+                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                
+                return;
+            }
+            
+        }
+        
         
         
         pickIndex = indexPath.section;

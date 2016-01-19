@@ -161,6 +161,18 @@
 -(void)coment
 {
     
+    NSDate *startTime = _huodong.startTime;
+    
+    NSTimeInterval time = [startTime timeIntervalSinceNow];
+    
+    if (time < 0)
+    {
+        
+        [CommonMethods showDefaultErrorString:@"*温馨提示:活动开始后才能记录!"];
+        
+        return;
+        
+    }
     
     
     SendWXViewController *_sendVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SendWXViewController"];
@@ -191,10 +203,61 @@
     
 }
 
+-(BOOL)isInsideHour:(NSInteger)hour
+{
+    NSDate *startTime = _huodong.startTime;
+    
+    NSTimeInterval time = fabs([startTime timeIntervalSinceNow]);
+    
+    if (time > 60*60*hour) {
+        
+    
+        return NO;
+        
+    }
+    
+    return YES;
+    
+}
+
 #pragma mark - 签到
 -(void)sign
 {
-    UserModel *_currentUserModel = [BmobHelper getCurrentUserModel];
+    
+        UserModel *_currentUserModel = [BmobHelper getCurrentUserModel];
+    
+    BOOL hadAttend = NO;
+    
+    for (NSDictionary *dic in _huodong.AttendUsers) {
+        
+        NSString *temUserName =  [dic objectForKey:@"username"];
+        
+        if ([temUserName isEqualToString:_currentUserModel.username]) {
+            
+            hadAttend = YES;
+        }
+        
+        
+    }
+    
+    if (!hadAttend) {
+        
+         [CommonMethods showDefaultErrorString:@"*温馨提示:活动开始前后3小时才能签到!"];
+        
+        return;
+        
+    }
+    
+
+    if (![self isInsideHour:3]) {
+        
+        return;
+        
+    }
+    
+    
+    
+
     
     BOOL inside = NO;
     
@@ -208,8 +271,12 @@
         }
     }
     
-    if (!inside) {
+    if (inside) {
         
+        return;
+        
+    }
+ 
         BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
         
         AttendUserModel *model = [[AttendUserModel alloc]init];
@@ -245,7 +312,7 @@
         }];
         
         
-    }
+    
 }
 
 #pragma mark - 邀请
@@ -279,12 +346,22 @@
 -(void)ask
 {
     
+    
+   
     UserModel *model = [[UserModel alloc]init];
     
  
     NSString *nickName = [_huodong.starter objectForKey:@"nickName"];
     NSString *username = [_huodong.starter objectForKey:@"username"];
     
+    
+    if ([username isEqualToString:[BmobUser getCurrentUser].username]) {
+        
+        [CommonMethods showDefaultErrorString:@"您自己发布的活动，无法与自己聊天"];
+        
+        return;
+        
+    }
 
     model.username = username;
     model.nickName = nickName;
@@ -383,6 +460,8 @@
     
     _timeLabel.text = [CommonMethods getYYYYMMddhhmmDateStr:_huodong.startTime];
     
+    _timeLabel.adjustsFontSizeToFitWidth = YES;
+    
     _feelabel.text = _huodong.feeNum;
     
     _distanceLabel.text = [CommonMethods distanceStringWithLatitude:[[_huodong.location valueForKey:@"latitude"]floatValue] longitude:[[_huodong.location valueForKey:@"longitude"]floatValue]];
@@ -431,7 +510,8 @@
         
     }
     
-
+    _statusLabel.adjustsFontSizeToFitWidth = YES;
+    
     
     
     _attendButton.hidden = YES;
@@ -1081,10 +1161,15 @@
     
     ShowDetailViewController *_showDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailViewController"];
     
-    _showDetail.detail = _huodong.content;
+    _showDetail.huodong = _huodong;
     
     _showDetail.title = @"活动详情";
+    
     [self.navigationController pushViewController:_showDetail animated:YES];
+    
+    
+    
+    
     
 }
 
