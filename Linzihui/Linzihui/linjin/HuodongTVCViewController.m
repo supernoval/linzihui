@@ -543,7 +543,8 @@ static NSString *headerCellID = @"headerCell";
         
         _huodongCell.feeLabel.text =  [NSString stringWithFormat:@"%@元",model.feeNum];
         
-        NSString *photoURL = [model.photoURL firstObject];
+        NSString *photoURL = model.backImage;
+        
         
         [_huodongCell.ImageView sd_setImageWithURL:[NSURL URLWithString:photoURL] placeholderImage:nil];
         

@@ -353,26 +353,29 @@
     
     
     _detailtitleheight.constant = detailHeight;
-    _detailButtonHeight.constant = detailHeight;
-    
     _detailheight.constant = detailHeight;
     
     _tedianheight.constant = tedianHeight;
     _tediantitleheight.constant = tedianHeight;
-    _tedianButtonHeght.constant = tedianHeight;
-    
+  
     
     _liuchenheight.constant = liuchenHeight;
     _liuchentitleheight.constant = liuchenHeight;
-    _liuchengButtonHeight.constant = liuchenHeight;
+
     
     _zhuyiheight.constant = zhuyiHeight;
     _zhuyititleHeight.constant = zhuyiHeight;
-    _zhuyiButtonHeight.constant = zhuyiHeight;
+    
+    _detailButtonHeight.constant = detailHeight + tedianHeight + liuchenHeight;
     
     
+     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 680 + photoViewHeight + plusHeight);
     
-     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 440 + photoViewHeight + plusHeight);
+    
+    _backGroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _backGroundImageView.clipsToBounds = YES;
+    
+    [_backGroundImageView sd_setImageWithURL:[NSURL URLWithString:_huodong.backImage] placeholderImage:kDefaultLoadingImage];
     
     _titleLabel.text = _huodong.title;
     

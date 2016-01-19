@@ -30,6 +30,12 @@ static NSString *textViewCell  =@"textViewCell";
     
     NSArray *_titlesArray;
     
+    
+    UIImage *backGroundImage;
+    
+    BOOL isPickBackImage;
+    
+    
    
     
     
@@ -80,7 +86,7 @@ static NSString *textViewCell  =@"textViewCell";
     
     _image_list = [[NSMutableArray alloc]init];
     
-    self.photoFooterView.frame = CGRectMake(0, 0, ScreenWidth, 138);
+    self.headerView.frame = CGRectMake(0, 0, ScreenWidth, 233);
     
     
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publishHuoDong)];
@@ -243,6 +249,13 @@ static NSString *textViewCell  =@"textViewCell";
 -(void)publishHuoDong
 {
     
+    if (!backGroundImage) {
+        
+        [CommonMethods showDefaultErrorString:@"请上传活动背景图片"];
+        
+        return;
+        
+    }
 
     for (int i = 0 ; i < _titlesArray.count; i++) {
         
@@ -291,25 +304,14 @@ static NSString *textViewCell  =@"textViewCell";
     if (_image_list.count > 1) {
         
          [MyProgressHUD showProgress];
-        [_image_list removeObjectAtIndex:_image_list.count -1];
         
         
-        [CommonMethods upLoadPhotos:_image_list resultBlock:^(BOOL success, NSArray *results) {
-           
-            if (success) {
-                
-                
-                [self upLoadData:results];
-            }
-            else
-            {
-                [MyProgressHUD dismiss];
-                
-                [CommonMethods showDefaultErrorString:@"图片上传失败，请重试"];
-                
-            }
-            
-        }];
+        
+        //先上传背景图片
+        [self upLoadBackGroundImage];
+        
+        
+     
     }
     else
     {
@@ -327,7 +329,71 @@ static NSString *textViewCell  =@"textViewCell";
    
 }
 
--(void)upLoadData:(NSArray*)imageURLs
+#pragma mark - 上传活动详情图片
+-(void)upLoadDetailImage:(NSString*)backGroundImageURL
+{
+    [_image_list removeObjectAtIndex:_image_list.count -1];
+    
+    
+    [CommonMethods upLoadPhotos:_image_list resultBlock:^(BOOL success, NSArray *results) {
+        
+        if (success) {
+            
+            
+            [self upLoadData:results backImageURL:backGroundImageURL];
+            
+
+            
+        }
+        else
+        {
+            [MyProgressHUD dismiss];
+            
+            [CommonMethods showDefaultErrorString:@"图片上传失败，请重试"];
+            
+        }
+        
+    }];
+}
+#pragma mark -  上传背景图片
+-(void)upLoadBackGroundImage
+{
+    
+    NSArray *backArray = @[backGroundImage];
+    
+    
+    [CommonMethods upLoadPhotos:backArray resultBlock:^(BOOL success, NSArray *results) {
+        
+        if (success) {
+            
+            
+            if (results.count > 0) {
+                
+                NSString *backImageStr = [results firstObject];
+                
+                //然后上传活动详情图片
+                [self upLoadDetailImage:backImageStr];
+                
+            }
+            else
+            {
+                [MyProgressHUD dismiss];
+                
+                [CommonMethods showDefaultErrorString:@"图片上传失败，请重试"];
+            }
+        }
+        else
+        {
+            [MyProgressHUD dismiss];
+            
+            [CommonMethods showDefaultErrorString:@"图片上传失败，请重试"];
+            
+        }
+        
+    }];
+}
+
+-(void)upLoadData:(NSArray*)imageURLs    backImageURL:(NSString*)backImageURL
 {
     for (int i = 0 ; i < _titlesArray.count; i++) {
         
@@ -383,11 +449,18 @@ static NSString *textViewCell  =@"textViewCell";
         [_huodongOB setObject:_groupId forKey:@"groupId"];
         
     }
+    
+    
     if (imageURLs.count > 0) {
         
         [_huodongOB setObject:imageURLs forKey:@"photoURL"];
         
     }
+    
+    //背景图片地址
+    [_huodongOB setObject:backImageURL forKey:@"backImage"];
+    
+    
     [_huodongOB saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         
          [MyProgressHUD dismiss];
@@ -469,12 +542,12 @@ static NSString *textViewCell  =@"textViewCell";
 #pragma mark - UITableViewDataSource 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 5;
+    return 1;
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     
-    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 5)];
+    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
     
     blankView.backgroundColor = [UIColor clearColor];
     
@@ -724,6 +797,9 @@ static NSString *textViewCell  =@"textViewCell";
 
     [self.view endEditing:YES];
     
+    isPickBackImage = NO;
+    
+    
     UIButton *sendbutton = (UIButton*)sender;
     
     _pickPhotoActionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
@@ -785,6 +861,7 @@ static NSString *textViewCell  =@"textViewCell";
             [button setImage:image forState:UIControlStateNormal];
             
         }
+       
     }
 }
 
@@ -810,26 +887,38 @@ static NSString *textViewCell  =@"textViewCell";
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     
-    
-    
-    [_image_list removeObjectAtIndex:_image_list.count -1];
-    
     [picker dismissViewControllerAnimated:YES completion:nil];
     
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+     image = [CommonMethods autoSizeImageWithImage:image];
     
-    if (image) {
+    if (isPickBackImage) {
         
+        backGroundImage = image;
         
-        image = [CommonMethods autoSizeImageWithImage:image];
-        
-        [_image_list addObject:image];
-        
-        
-        
+        [_backGroundImageButton setImage:backGroundImage forState:UIControlStateNormal];
         
         
     }
+    else
+    {
+        
+   
+    
+        [_image_list removeObjectAtIndex:_image_list.count -1];
+    
+ 
+    
+    if (image)
+       {
+        
+        
+        [_image_list addObject:image];
+        
+    
+        
+        
+        }
     
     //再把加号 放进去
     if (_image_list.count < 8) {
@@ -838,6 +927,9 @@ static NSString *textViewCell  =@"textViewCell";
         
     }
     [self reloadPhotoViews];
+        
+         }
+    
     
     
 }
@@ -861,17 +953,45 @@ static NSString *textViewCell  =@"textViewCell";
             return;
             
         }
-        if (buttonIndex == 2) {
-            
-            
-            [_image_list removeObjectAtIndex:actionSheet.tag -1];
-            
-            
-            [self reloadPhotoViews];
-            
-            return;
-            
-        }
+        
+        
+   
+            if (buttonIndex == 2)
+            {
+                
+                
+                if (isPickBackImage)
+                {
+                    
+                    backGroundImage = nil;
+                    
+                    [_backGroundImageButton setImage:addImage forState:UIControlStateNormal];
+                    
+                    
+                }
+                else
+                {
+                
+                    if (_image_list.count > 1 && actionSheet.tag < _image_list.count ) {
+                        
+                        [_image_list removeObjectAtIndex:actionSheet.tag -1];
+                        
+                        
+                        [self reloadPhotoViews];
+                        
+                    }
+              
+                
+              
+                }
+                
+                  return;
+                
+                
+            }
+        
+    
+   
         
         
         NSUInteger sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -1046,11 +1166,28 @@ static NSString *textViewCell  =@"textViewCell";
 
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (IBAction)changeBackImageAction:(id)sender {
+    
+    
+     [self.view endEditing:YES];
+    
+    isPickBackImage = YES;
+    
+    _pickPhotoActionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    [_pickPhotoActionSheet addButtonWithTitle:@"相册图片描述"];
+    [_pickPhotoActionSheet addButtonWithTitle:@"手机拍照描述"];
+    [_pickPhotoActionSheet addButtonWithTitle:@"删除"];
+    
+    [_pickPhotoActionSheet addButtonWithTitle:@"取消"];
+    
+    _pickPhotoActionSheet.cancelButtonIndex = 3;
+    
+    [_pickPhotoActionSheet showInView:self.view];
+    
+    
+    
+    
 }
-
-
-
 @end

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
