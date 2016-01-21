@@ -50,6 +50,8 @@ static NSString *textViewCell  =@"textViewCell";
     
     BmobObject *_huodongOB;
     
+    BOOL hadShowedImage;
+    
    
     
     
@@ -63,9 +65,15 @@ static NSString *textViewCell  =@"textViewCell";
 {
     [super viewWillAppear:animated];
     
-
+  
     
     
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+     [self setEditeTypeButtonImage];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -107,12 +115,41 @@ static NSString *textViewCell  =@"textViewCell";
     
      _huodongOB = [BmobObject objectWithClassName:kHuoDongTableName];
     addImage  = [UIImage imageNamed:@"tianjiazhaopian"];
-    
-    [_image_list addObject:addImage];
-    
-    [self reloadPhotoViews];
-    
 
+    
+    
+    if (_isEdited) {
+       
+        NSString *locationStr = [NSString stringWithFormat:@"纬度:%.2f 经度:%.2f",[[_huodongModel.location valueForKey:@"latitude"]floatValue],[[_huodongModel.location valueForKey:@"longitude"]floatValue]];
+        
+        
+        _titlesArray = @[ @{@"title":@"真实姓名",@"content":_huodongModel.realName,@"placeHolder":@"请输入真实姓名",@"key":@"realName"},
+                          @{@"title":@"手机号",@"content":_huodongModel.phoneNum,@"placeHolder":@"请输入手机号码",@"key":@"phoneNum"},@{@"title":@"活动标题",@"content":_huodongModel.title,@"key":@"title"},
+                          @{@"title":@"开始时间",@"content":_huodongModel.startTime,@"key":@"startTime"},
+                          @{@"title":@"结束时间",@"content":_huodongModel.endTime,@"key":@"endTime"},
+                          @{@"title":@"活动地址",@"content":_huodongModel.address,@"placeHolder":@"请输入地址",@"key":@"address"},
+                          @{@"title":@"地图位置",@"content":locationStr,@"placeHolder":@"请输入地址",@"key":@"location"},
+                          @{@"title":@"活动详情",@"content":_huodongModel.content,@"key":@"content"},
+                          
+                          @{@"title":@"截止报名时间",@"content":_huodongModel.endRegistTime,@"key":@"endRegistTime"},
+                          @{@"title":@"需要家庭数",@"content":_huodongModel.needFamilyNum,@"placeHolder":@"家庭数",@"key":@"needFamilyNum"},
+                          @{@"title":@"年龄要求",@"content":_huodongModel.ageRequest,@"placeHolder":@"年龄要求",@"key":@"ageRequest"},
+                          @{@"title":@"费用情况",@"content":_huodongModel.feeNum,@"placeHolder":@"请输入费用",@"key":@"feeNum"},
+                          @{@"title":@"活动特点",@"content":_huodongModel.TeDian,@"key":@"TeDian"},
+                          @{@"title":@"活动流程",@"content":_huodongModel.LiuCheng,@"key":@"LiuCheng"},
+                          @{@"title":@"注意事项",@"content":_huodongModel.ZhuYiShiXiang,@"key":@"ZhuYiShiXiang"}];
+        
+         [_backGroundImageButton sd_setImageWithURL:[NSURL URLWithString:_huodongModel.backImage] forState:UIControlStateNormal placeholderImage:kDefaultLoadingImage];
+        
+      
+        
+        
+        
+    }
+    else
+    {
+
+        
     _titlesArray = @[ @{@"title":@"真实姓名",@"content":@"",@"placeHolder":@"请输入真实姓名",@"key":@"realName"},
                     @{@"title":@"手机号",@"content":@"",@"placeHolder":@"请输入手机号码",@"key":@"phoneNum"},@{@"title":@"活动标题",@"content":@"",@"key":@"title"},
                      @{@"title":@"开始时间",@"content":@"",@"key":@"startTime"},
@@ -130,7 +167,13 @@ static NSString *textViewCell  =@"textViewCell";
                      @{@"title":@"注意事项",@"content":@"",@"key":@"ZhuYiShiXiang"}];
     
     
-
+        
+        
+        [_image_list addObject:addImage];
+        
+        [self reloadPhotoViews];
+        
+    }
     
    
     [self initPickDateView];
@@ -914,9 +957,12 @@ static NSString *textViewCell  =@"textViewCell";
 
 -(void)setButtonImageWithTag:(NSInteger)tag image:(UIImage*)image
 {
+    
+  
+    
     for (UIButton *button in _photoFooterView.subviews) {
         
-        if (button.tag == tag +1 ) {
+        if (button.tag == tag + 1 ) {
             
             [button setImage:image forState:UIControlStateNormal];
             
@@ -925,6 +971,37 @@ static NSString *textViewCell  =@"textViewCell";
     }
 }
 
+
+#pragma mark - 编辑的时候先加载图片
+-(void)setEditeTypeButtonImage
+{
+    NSArray *photos = _huodongModel.photoURL;
+    
+    for (int i = 0; i < photos.count; i++) {
+        
+        NSString *url = [photos objectAtIndex:i];
+        
+        NSArray *subView = _photoFooterView.subviews;
+        
+        for (UIButton *button in _photoFooterView.subviews) {
+            
+            if (button.tag == i + 1 ) {
+                
+               [button sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal placeholderImage:kDefaultLoadingImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                  
+                   [_image_list addObject:image];
+                   
+               }];
+                
+            }
+        }
+        
+       
+    }
+    
+
+    
+}
 -(void)setButtonEnAble
 {
     for (UIButton *button in _photoFooterView.subviews) {
@@ -964,10 +1041,13 @@ static NSString *textViewCell  =@"textViewCell";
     {
         
    
-    
-        [_image_list removeObjectAtIndex:_image_list.count -1];
-    
- 
+     
+        if (_image_list.count > 0) {
+            
+             [_image_list removeObjectAtIndex:_image_list.count -1];
+        }
+       
+
     
     if (image)
        {

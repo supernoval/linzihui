@@ -12,6 +12,8 @@
 
 @property (nonatomic) NSString *groupId;
 
+@property (nonatomic) BOOL isEdited;  //是否编辑
+@property (nonatomic) HuoDongModel *huodongModel;
 
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;

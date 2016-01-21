@@ -16,6 +16,8 @@
 @property (nonatomic,strong)  NSString *headImageURL;
 @property (nonatomic,assign)  float latitude;
 @property (nonatomic,assign)  float longitude;
+@property (nonatomic)  BOOL hadQianDao;
+
 
 
 

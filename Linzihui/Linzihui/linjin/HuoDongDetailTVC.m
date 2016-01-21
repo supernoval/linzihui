@@ -19,7 +19,7 @@
 
 
 
-@interface HuoDongDetailTVC ()<UITextFieldDelegate>
+@interface HuoDongDetailTVC ()<UITextFieldDelegate,UIAlertViewDelegate>
 {
     UIToolbar *_myToolBar;
     
@@ -27,6 +27,9 @@
     UIView *_uiview_comment;
     
     UITextField *_textField_comment;
+    
+    NSInteger quiteRow;
+    
     
 }
 @end
@@ -39,6 +42,17 @@
     self.title = @"活动详情";
     
     _myToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, ScreenHeight - 44, ScreenWidth, 44)];
+    
+    
+    //添加编辑按钮
+    UIBarButtonItem *editeButton = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editeHuoDong)];
+    
+    if ([[_huodong.starter objectForKey:@"username"] isEqualToString:[BmobUser getCurrentUser].username]) {
+        
+        self.navigationItem.rightBarButtonItem = editeButton;
+        
+    }
+    
     
     
     UIBarButtonItem *attend = [[UIBarButtonItem alloc]initWithTitle:@"报名" style:UIBarButtonItemStylePlain target:self action:@selector(attendAction:)];
@@ -224,9 +238,11 @@
 -(void)sign
 {
     
-        UserModel *_currentUserModel = [BmobHelper getCurrentUserModel];
+     UserModel *_currentUserModel = [BmobHelper getCurrentUserModel];
     
     BOOL hadAttend = NO;
+    
+    AttendUserModel *_attendUser = [[AttendUserModel alloc]init];
     
     for (NSDictionary *dic in _huodong.AttendUsers) {
         
@@ -235,6 +251,9 @@
         if ([temUserName isEqualToString:_currentUserModel.username]) {
             
             hadAttend = YES;
+            
+            [_attendUser setValuesForKeysWithDictionary:dic];
+            
         }
         
         
@@ -242,7 +261,7 @@
     
     if (!hadAttend) {
         
-         [CommonMethods showDefaultErrorString:@"*温馨提示:活动开始前后3小时才能签到!"];
+        
         
         return;
         
@@ -250,6 +269,8 @@
     
 
     if (![self isInsideHour:3]) {
+        
+        [CommonMethods showDefaultErrorString:@"*温馨提示:活动开始前后3小时才能签到!"];
         
         return;
         
@@ -278,7 +299,11 @@
     }
  
         BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
-        
+    
+        _attendUser.hadQianDao = YES;
+    
+#warning un done
+    
         AttendUserModel *model = [[AttendUserModel alloc]init];
         
         model.headImageURL = _currentUserModel.headImageURL;
@@ -718,7 +743,12 @@
             
             [imageView sd_setImageWithURL:[NSURL URLWithString:_usermodel.headImageURL] placeholderImage:kDefaultHeadImage];
             
+            cell.contentView.tag = indexPath.row;
             
+            
+            UIButton *button = (UIButton *)[cell viewWithTag:102];
+            
+            [button addTarget:self action:@selector(quiteAttend:) forControlEvents:UIControlEventTouchUpInside];
             
             
             
@@ -736,24 +766,7 @@
             
             //判断是否已签到
             
-            NSArray *qiandao = _huodong.qiandao;
-            
-            BOOL hadQianDao = NO;
-            
-            for (NSDictionary *dic in qiandao) {
-                
-                AttendUserModel *model = [[AttendUserModel alloc]init];
-                
-                [model setValuesForKeysWithDictionary:dic];
-                
-                if ([model.userName isEqualToString:_usermodel.userName]) {
-                    
-                    hadQianDao = YES;
-                    
-                }
-            }
-            
-            if (hadQianDao) {
+            if (_usermodel.hadQianDao) {
                 
                    label.text = [NSString stringWithFormat:@"%@(已签到)",label.text];
                 
@@ -1217,6 +1230,99 @@
     
     [self.navigationController pushViewController:_mapView animated:YES];
     
+    
+}
+
+#pragma mark - 退报名
+-(void)quiteAttend:(UIButton*)button
+{
+    quiteRow = [button superview].tag;
+    
+    UIAlertView *_alertView = [[UIAlertView alloc]initWithTitle:nil message:@"确定要退报名吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    
+    _alertView.tag = quiteRow;
+    
+    [_alertView show];
+    
+}
+
+#pragma mark - UIAlertViewDelegate  退报名
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex == 1) {
+        
+        
+        NSArray *attends = _huodong.AttendUsers;
+        
+        NSDictionary *selectedDict = [attends objectAtIndex:quiteRow];
+        
+        NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:attends];
+        
+        NSDictionary *removeDic = nil;
+        
+        for (int i = 0 ;i < attends.count; i++) {
+            
+            NSDictionary *dic = [attends objectAtIndex:i];
+            
+            NSString *username = [dic objectForKey:@"userName"];
+            
+            if ([username isEqualToString:[selectedDict objectForKey:@"userName"]]) {
+                
+                removeDic = dic;
+                
+                [muArray removeObjectAtIndex:i];
+                
+            }
+            
+         }
+        
+        
+        
+        if (removeDic) {
+            
+            _huodong.AttendUsers = muArray;
+            
+            [self.tableView reloadData];
+            
+            
+                BmobObject *_ob  = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+            
+//            [_ob removeObjectsInArray:@[removeDic] forKey:@"AttendUsers"];
+            
+            [_ob setObject:muArray forKey:@"AttendUsers"];
+            
+            [_ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    NSLog(@"removed");
+                }
+                else
+                {
+                    NSLog(@"error:%@",error);
+                    
+                }
+            }];
+            
+        }
+    }
+    
+}
+
+#pragma mark -  编辑
+-(void)editeHuoDong
+{
+    
+    
+    PublishActivity *_publish = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishActivity"];
+    
+    _publish.isEdited = YES;
+    
+    _publish.huodongModel = _huodong;
+    
+    
+    [self.navigationController pushViewController:_publish animated:YES];
     
 }
 @end
