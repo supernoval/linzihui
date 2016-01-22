@@ -16,6 +16,8 @@
 #import "HuoDongMapView.h"
 #import "SendWXViewController.h"
 #import "HuodongCommentCell.h"
+#import "PersonInfoViewController.h"
+
 
 
 
@@ -491,7 +493,11 @@
     _feelabel.text = _huodong.feeNum;
     
     _distanceLabel.text = [CommonMethods distanceStringWithLatitude:[[_huodong.location valueForKey:@"latitude"]floatValue] longitude:[[_huodong.location valueForKey:@"longitude"]floatValue]];
-    _publisher.text = _huodong.realName ;
+    
+    
+   
+    
+    [_publishButton setTitle:_huodong.realName forState:UIControlStateNormal];
     
     
 
@@ -1178,6 +1184,25 @@
 
 
 
+
+- (IBAction)showPublisherAction:(id)sender {
+    
+    
+    NSString *username = [_huodong.starter objectForKey:@"username"];
+    
+    
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    
+    
+    PersonInfoViewController*_personInfoVC = [SB instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+    
+    _personInfoVC.username = username;
+    _personInfoVC.isShowed = YES;
+    
+    
+    [self.navigationController pushViewController:_personInfoVC animated:YES];
+    
+}
 
 - (IBAction)showDetail:(id)sender {
     

@@ -89,7 +89,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *liuchengButtonHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhuyiButtonHeight;
 
+@property (weak, nonatomic) IBOutlet UIButton *publishButton;
 
+- (IBAction)showPublisherAction:(id)sender;
 
 - (IBAction)showDetail:(id)sender;
 
