@@ -76,6 +76,9 @@ static NSString *CellId  = @"CellId";
     
     [self reloadDataSource];
     
+//    [self getBlocklist];
+    
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -84,6 +87,20 @@ static NSString *CellId  = @"CellId";
     
 }
 
+
+-(void)getBlocklist
+{
+    NSArray *blockList = [[EaseMob sharedInstance].chatManager blockedList];
+    
+    NSLog(@"blockList:%@",blockList);
+    
+    for (NSString *username in blockList) {
+        
+        [[EaseMob sharedInstance].chatManager unblockBuddy:username];
+        
+    }
+    
+}
 -(UISearchBar*)mySearchBar
 {
     
