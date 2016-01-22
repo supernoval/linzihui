@@ -18,5 +18,7 @@
 @property (nonatomic,strong)  NSString *weichatName;
 @property (nonatomic,strong)  NSString *qqName;
 @property (nonatomic,assign) BOOL isBuddy; //是否好友
+@property (nonatomic,assign)  BOOL hadSendFriendRequest;
+
 
 @end

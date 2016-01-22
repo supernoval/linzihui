@@ -43,7 +43,7 @@
             NSArray *ocup = [_group occupants];
             
     
-            if (_type == 1) {
+            if (_type == 0) {
                 
             //去掉已在群里的好友
             for (UserModel *_model in array) {

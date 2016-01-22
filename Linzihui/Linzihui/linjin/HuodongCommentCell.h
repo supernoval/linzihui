@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *conmentHeight;
 
 
 @property (weak, nonatomic) IBOutlet SDPhotoGroup *photoView;

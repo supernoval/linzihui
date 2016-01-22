@@ -12,6 +12,8 @@
 #import "InviteNewGroupMember.h"
 #import "EditGroupNameVC.h"
 #import "PublishActivity.h"
+#import "ChatViewController.h"
+
 
 
 @interface ChatSettingTVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -39,9 +41,18 @@
     _titles = @[@"群组成员",@"邀请好友",@"群聊名称",@"群二维码",@"发布群活动",@"群聊头像"];
     
     
+    
     if ([_group.owner isEqualToString:[BmobHelper getCurrentUserModel].username]) {
         
         [_quiteButton setTitle:@"解散该群" forState:UIControlStateNormal];
+        
+    }
+    
+    if (_isFirstSetting) {
+        
+        [_quiteButton setTitle:@"开始聊天" forState:UIControlStateNormal];
+        
+        _quiteButton.backgroundColor = kNavigationBarColor;
         
     }
 
@@ -82,12 +93,27 @@
         
         UILabel *titleLabel = (UILabel*)[cell viewWithTag:101];
         
+        UILabel *contentLabel = (UILabel*)[cell viewWithTag:102];
+        
         
         NSString *title = [_titles objectAtIndex:indexPath.section];
         
         titleLabel.text = title;
         
+        if (indexPath.section == 2) {
+            
+            contentLabel.hidden = NO;
+            
+            contentLabel.text = self.subTitle;
+            
+            
+        }
         
+        else
+        {
+            contentLabel.hidden = YES;
+            
+        }
         
         
         if (indexPath.section == 3)
@@ -159,7 +185,16 @@
             
             _editGroupVC.groupId = _group.groupId;
             
-            
+            [_editGroupVC setBlock:^(NSString *groupName) {
+               
+                if (groupName) {
+                    
+                    self.subTitle = groupName;
+                    
+                    [self.tableView reloadData];
+                    
+                }
+            }];
             [self.navigationController pushViewController:_editGroupVC animated:YES];
         }
             break;
@@ -221,6 +256,24 @@
 - (IBAction)quiteAction:(id)sender {
     
     
+    if (_isFirstSetting) {
+        
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:self.group.groupId isGroup:YES];
+        
+    chatVC.subTitle = self.subTitle;
+        
+        
+   chatVC.group = self.group;
+        
+    chatVC.hidesBottomBarWhenPushed = YES;
+        
+        
+    [self.navigationController pushViewController:chatVC animated:YES];
+        
+        
+        return;
+        
+    }
   
     
     BmobUser *CurrentUser = [BmobUser getCurrentUser];

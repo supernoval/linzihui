@@ -35,6 +35,9 @@
 
 -(void)getData
 {
+    
+    _group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:_group.groupId error:nil];
+    
     NSArray *ocup = _group.occupants;
     
   

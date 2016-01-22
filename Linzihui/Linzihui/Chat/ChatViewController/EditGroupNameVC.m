@@ -62,6 +62,11 @@
                     
                     [[NSNotificationCenter defaultCenter]postNotificationName:kChangeGroupSubTitleNoti object:nil userInfo:@{@"subTitle":subTitle}];
                     
+                    if (_block) {
+                        
+                        _block(subTitle);
+                        
+                    }
                     
                     [CommonMethods showDefaultErrorString:@"修改成功"];
                     
@@ -72,6 +77,11 @@
         }
         
     }];
+    
+}
+-(void)setBlock:(SetName)block
+{
+    _block = block;
     
 }
 @end

@@ -668,12 +668,12 @@
             
             CGFloat commentHeight = [StringHeight heightWithText:_commentModel.content font:FONT_15 constrainedToWidth:ScreenWidth - 120];
             
-            if (commentHeight < 60) {
-                commentHeight = 60;
+            if (commentHeight < 30) {
+                commentHeight = 30;
                 
             }
             
-            return commentHeight + photoViewHeight;
+            return commentHeight + photoViewHeight + 70;
             
             
         }
@@ -814,6 +814,14 @@
                 commentCel.nameLabel.text = _commentModel.username;
                 
             }
+            CGFloat commentHeight = [StringHeight heightWithText:_commentModel.content font:FONT_15 constrainedToWidth:ScreenWidth - 120];
+            
+            if (commentHeight < 30) {
+                commentHeight = 30;
+                
+            }
+            
+            commentCel.conmentHeight.constant = commentHeight;
             
             
             commentCel.commentLabel.text = _commentModel.content;

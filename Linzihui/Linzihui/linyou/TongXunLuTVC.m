@@ -330,12 +330,27 @@ static NSString *ContactsCell = @"ContactsCell";
         }
         else if (oneContact.hadRegist)
         {
-            addButto.enabled = YES;
             
-            [addButto setTitle:@"添加" forState:UIControlStateNormal];
-            addButto.backgroundColor = [UIColor redColor];
-            
-             [addButto setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            if (oneContact.hadSendFriendRequest) {
+                
+                addButto.enabled = NO;
+                
+                [addButto setTitle:@"待批" forState:UIControlStateNormal];
+                addButto.backgroundColor = [UIColor redColor];
+                
+                [addButto setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                
+            }
+            else
+            {
+                addButto.enabled = YES;
+                
+                [addButto setTitle:@"添加" forState:UIControlStateNormal];
+                addButto.backgroundColor = [UIColor redColor];
+                
+                [addButto setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            }
+     
         }
         else
         {
@@ -367,6 +382,9 @@ static NSString *ContactsCell = @"ContactsCell";
 -(void)addAction:(UIButton*)addButton
 {
     
+     NSInteger tag = [addButton superview].tag;
+    
+    
     ContactModel *model = [_abDataSource objectAtIndex:[addButton superview].tag];
     
     
@@ -396,6 +414,15 @@ static NSString *ContactsCell = @"ContactsCell";
     {
        
         [EMHelper sendFriendRequestWithBuddyName:model.username Mesage:@"请求加你为好友"];
+        
+          ContactModel *oneContact = [_abDataSource objectAtIndex:tag];
+        
+        oneContact.hadSendFriendRequest = YES;
+        
+        [_abDataSource replaceObjectAtIndex:tag withObject:oneContact];
+        
+        [self.tableView reloadData];
+        
         
     }
 }
@@ -453,6 +480,8 @@ static NSString *ContactsCell = @"ContactsCell";
 #pragma mark - 接受好友请求
 -(void)acceptApply:(UIButton*)sender
 {
+   
+    
     ApplyEntity *entity = [_inviteDataSource objectAtIndex:[sender superview].tag ];
     
     EMError *error ;
@@ -463,7 +492,9 @@ static NSString *ContactsCell = @"ContactsCell";
             
             NSLog(@"acceppt error:%@",error);
             
-           
+          
+            
+            
             
         }
         

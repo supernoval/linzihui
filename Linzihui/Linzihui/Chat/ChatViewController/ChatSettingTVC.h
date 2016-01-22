@@ -16,6 +16,7 @@
 @property (nonatomic,strong) GroupChatModel *model;
 @property (nonatomic,strong) NSString *groupHeadImage;
 
+@property (nonatomic)  BOOL isFirstSetting;
 
 
 @property (weak, nonatomic) IBOutlet UIView *footerView;

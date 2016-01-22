@@ -327,7 +327,8 @@
 {
     
   UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
-       if (_isChatGroup) {
+    
+    if (_isChatGroup) {
            
   
     
@@ -338,6 +339,8 @@
     _settingTVC.subTitle = self.title;
     _settingTVC.groupHeadImage = _groupHeadImageURL;
     [self.navigationController pushViewController:_settingTVC animated:YES];
+        
+        
        }
     else
     {

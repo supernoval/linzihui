@@ -14,6 +14,8 @@
 #import "FeedBackViewController.h"
 #import "YaoYiYaoViewController.h"
 #import "ChatViewController.h"
+#import "ChatSettingTVC.h"
+
 
 
 
@@ -227,21 +229,20 @@
                //
                                if (success) {
                
+                    ChatSettingTVC *_settingTVC = [storyboard instantiateViewControllerWithIdentifier:@"ChatSettingTVC"];
+                                   
+                    _settingTVC.group =group;
+                    _settingTVC.subTitle = subTitle;
+                    _settingTVC.isFirstSetting = YES;
+                    _settingTVC.hidesBottomBarWhenPushed = YES;
+                                   
+                    [self.navigationController pushViewController:_settingTVC animated:YES];
                
-               
-            ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:group.groupId isGroup:YES];
-                                   
-                chatVC.subTitle = subTitle;
-                                   
-               
-               chatVC.group = group;
-                                   
-                chatVC.hidesBottomBarWhenPushed = YES;
-                                   
-                      
-               [self.navigationController pushViewController:chatVC animated:YES];
+
                                
-                            
+                     
+                                   
+                                   
                     }
                
               
