@@ -246,7 +246,7 @@
     
     for (NSDictionary *dic in _huodong.AttendUsers) {
         
-        NSString *temUserName =  [dic objectForKey:@"username"];
+        NSString *temUserName =  [dic objectForKey:@"userName"];
         
         if ([temUserName isEqualToString:_currentUserModel.username]) {
             
@@ -302,41 +302,42 @@
     
         _attendUser.hadQianDao = YES;
     
-#warning un done
     
-        AttendUserModel *model = [[AttendUserModel alloc]init];
+    
+    NSMutableArray *muUsersArray = [[NSMutableArray alloc]init];
+    
+    NSDictionary *temDic = [_attendUser toDictionary];
+    
+    [muUsersArray addObject:temDic];
+    
+    for (NSDictionary *dic in _huodong.AttendUsers) {
         
-        model.headImageURL = _currentUserModel.headImageURL;
+        NSString *temUserName =  [dic objectForKey:@"userName"];
         
-        model.nickName = _currentUserModel.nickName;
-        
-        model.userName = _currentUserModel.username;
-        
-        
-        NSDictionary *dic = [model toDictionary];
-        
-        [ob addObjectsFromArray:@[dic] forKey:@"qiandao"];
-        
-        [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-           
-            if (isSuccessful) {
-                
-                NSMutableArray *muArray = [[NSMutableArray alloc]init];
-                
-                [muArray addObjectsFromArray: _huodong.qiandao];
-                
-                [muArray addObject:dic];
-                
-                _huodong.qiandao = muArray;
-                
-                [self.tableView reloadData];
-                
-                
-                
-            }
-        }];
+        if (![temUserName isEqualToString:_attendUser.userName]) {
+            
+            
+            [muUsersArray addObject:dic];
+            
+        }
         
         
+    }
+    
+    
+    _huodong.AttendUsers = muUsersArray;
+    
+    
+    [ob setObject:muUsersArray forKey:@"AttendUsers"];
+    
+    [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+       
+        if (isSuccessful) {
+            
+            [self.tableView reloadData];
+            
+        }
+    }];
     
 }
 
@@ -1297,6 +1298,40 @@
                 if (isSuccessful) {
                     
                     NSLog(@"removed");
+                    
+                    UserModel *currentUser = [BmobHelper getCurrentUserModel];
+                    
+                    NSArray *attendActivities = currentUser.attendActivities;
+                    
+                    NSMutableArray *muAttends = [[NSMutableArray alloc]init];
+                    
+                    for (NSString *objectID in attendActivities) {
+                        
+                        if (![objectID isEqualToString:_huodong.objectId]) {
+                            
+                            [muAttends addObject:objectID];
+                            
+                        }
+                    }
+                    
+                    BmobUser *_user = [BmobUser getCurrentUser];
+                    
+                    [_user setObject:muAttends forKey:@"attendActivities"];
+                    
+                    [_user updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                       
+                        if (isSuccessful) {
+                            
+                            NSLog(@"removedsuccess");
+                            
+                        }
+                        else
+                        {
+                            
+                        }
+                        
+                    }];
+                    
                 }
                 else
                 {

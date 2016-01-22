@@ -8,6 +8,8 @@
 
 #import "PublishActivity.h"
 #import "LocationViewController.h"
+#import "HuodongTVCViewController.h"
+
 
 static NSString *textFieldCell = @"textFieldCell";
 static NSString *labelCell    = @"labelCell";
@@ -73,7 +75,14 @@ static NSString *textViewCell  =@"textViewCell";
 {
     [super viewDidAppear:animated];
     
-     [self setEditeTypeButtonImage];
+    if (!hadShowedImage) {
+        
+       [self setEditeTypeButtonImage];
+        
+        hadShowedImage = YES;
+        
+    }
+    
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -100,9 +109,7 @@ static NSString *textViewCell  =@"textViewCell";
     self.headerView.frame = CGRectMake(0, 0, ScreenWidth, 233);
     
     
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publishHuoDong)];
-    
-    self.navigationItem.rightBarButtonItem = barButton;
+   
     
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navbar_return_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
@@ -113,13 +120,22 @@ static NSString *textViewCell  =@"textViewCell";
     
     
     
-     _huodongOB = [BmobObject objectWithClassName:kHuoDongTableName];
+    
     addImage  = [UIImage imageNamed:@"tianjiazhaopian"];
 
     
     
     if (_isEdited) {
        
+        _huodongOB = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodongModel.objectId];
+        
+        
+        UIBarButtonItem *barButton = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(publishHuoDong)];
+        
+        self.navigationItem.rightBarButtonItem = barButton;
+        
+        
+        
         NSString *locationStr = [NSString stringWithFormat:@"纬度:%.2f 经度:%.2f",[[_huodongModel.location valueForKey:@"latitude"]floatValue],[[_huodongModel.location valueForKey:@"longitude"]floatValue]];
         
         
@@ -139,16 +155,36 @@ static NSString *textViewCell  =@"textViewCell";
                           @{@"title":@"活动流程",@"content":_huodongModel.LiuCheng,@"key":@"LiuCheng"},
                           @{@"title":@"注意事项",@"content":_huodongModel.ZhuYiShiXiang,@"key":@"ZhuYiShiXiang"}];
         
-         [_backGroundImageButton sd_setImageWithURL:[NSURL URLWithString:_huodongModel.backImage] forState:UIControlStateNormal placeholderImage:kDefaultLoadingImage];
+         [_backGroundImageButton sd_setImageWithURL:[NSURL URLWithString:_huodongModel.backImage] forState:UIControlStateNormal placeholderImage:kDefaultLoadingImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+             
+             backGroundImage = image;
+             
+         }];
         
       
+        BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:[[_huodongModel.location valueForKey:@"longitude"]floatValue] WithLatitude:[[_huodongModel.location valueForKey:@"latitude"]floatValue]];
         
+        point.latitude = [[_huodongModel.location valueForKey:@"latitude"]floatValue];
+        point.longitude = [[_huodongModel.location valueForKey:@"longitude"]floatValue];
+        
+        
+        if ([[_huodongModel.location valueForKey:@"latitude"]floatValue] > 0) {
+            
+            [_huodongOB setObject:point forKey:@"location"];
+            
+        }
         
         
     }
     else
     {
 
+         _huodongOB = [BmobObject objectWithClassName:kHuoDongTableName];
+        
+        UIBarButtonItem *barButton = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publishHuoDong)];
+        
+        self.navigationItem.rightBarButtonItem = barButton;
+        
         
     _titlesArray = @[ @{@"title":@"真实姓名",@"content":@"",@"placeHolder":@"请输入真实姓名",@"key":@"realName"},
                     @{@"title":@"手机号",@"content":@"",@"placeHolder":@"请输入手机号码",@"key":@"phoneNum"},@{@"title":@"活动标题",@"content":@"",@"key":@"title"},
@@ -382,6 +418,34 @@ static NSString *textViewCell  =@"textViewCell";
     }
    
     
+    if (_isEdited) {
+        
+        if (_image_list.count > 0) {
+            
+            [MyProgressHUD showProgress];
+            
+            
+            
+            //先上传背景图片
+            [self upLoadBackGroundImage];
+            
+            
+            
+        }
+        else
+        {
+            [CommonMethods showDefaultErrorString:@"请上传活动图片"];
+            
+            return;
+            
+            
+        }
+    }
+    
+    else
+    {
+        
+   
     if (_image_list.count > 1) {
         
          [MyProgressHUD showProgress];
@@ -402,6 +466,9 @@ static NSString *textViewCell  =@"textViewCell";
         
         
     }
+        
+    }
+    
     
     
     
@@ -413,7 +480,13 @@ static NSString *textViewCell  =@"textViewCell";
 #pragma mark - 上传活动详情图片
 -(void)upLoadDetailImage:(NSString*)backGroundImageURL
 {
+    
+   
+        
     [_image_list removeObjectAtIndex:_image_list.count -1];
+    
+ 
+   
     
     
     [CommonMethods upLoadPhotos:_image_list resultBlock:^(BOOL success, NSArray *results) {
@@ -542,29 +615,59 @@ static NSString *textViewCell  =@"textViewCell";
     [_huodongOB setObject:backImageURL forKey:@"backImage"];
     
     
-    [_huodongOB saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+    
+    //如果是编辑
+    if (_isEdited) {
         
-         [MyProgressHUD dismiss];
         
-        if (isSuccessful) {
+        [_huodongOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+           
+            if (isSuccessful) {
+                
+                [MyProgressHUD showError:@"保存成功"];
+                
+                for (UIViewController *vc in self.navigationController.viewControllers) {
+                    
+                    if ([vc isKindOfClass:[HuodongTVCViewController class]]) {
+                        
+                         [self.navigationController popToViewController:vc animated:YES];
+                        
+                    }
+                }
+               
+                
+            }
             
-            NSLog(@"发布成功");
+        }];
+    }
+    else
+    {
+        [_huodongOB saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
             
-            [MyProgressHUD showError:@"发布成功"];
+            [MyProgressHUD dismiss];
             
-            
-            [self createMessageWithOB:_huodongOB];
-            
-            
-            
-        }
-        else
-        {
-            NSLog(@"发布失败:%@",error);
-            
-            [CommonMethods showDefaultErrorString:@"发布失败，请重试"];
-        }
-    }];
+            if (isSuccessful) {
+                
+                NSLog(@"发布成功");
+                
+                [MyProgressHUD showError:@"发布成功"];
+                
+                
+                [self createMessageWithOB:_huodongOB];
+                
+                
+                
+            }
+            else
+            {
+                NSLog(@"发布失败:%@",error);
+                
+                [CommonMethods showDefaultErrorString:@"发布失败，请重试"];
+            }
+        }];
+    }
+    
+
 }
 
 
@@ -981,7 +1084,7 @@ static NSString *textViewCell  =@"textViewCell";
         
         NSString *url = [photos objectAtIndex:i];
         
-        NSArray *subView = _photoFooterView.subviews;
+//        NSArray *subView = _photoFooterView.subviews;
         
         for (UIButton *button in _photoFooterView.subviews) {
             
@@ -990,6 +1093,13 @@ static NSString *textViewCell  =@"textViewCell";
                [button sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal placeholderImage:kDefaultLoadingImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                   
                    [_image_list addObject:image];
+                   
+                   if (_image_list.count == _huodongModel.photoURL.count) {
+                       
+                       [_image_list addObject:addImage];
+                       [self reloadPhotoViews];
+                       
+                   }
                    
                }];
                 
