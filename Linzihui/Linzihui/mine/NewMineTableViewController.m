@@ -13,6 +13,8 @@
 #import "ShengHuoQuanTVC.h"
 #import "LevelDetailViewController.h"
 #import "HongBaoViewController.h"
+#import "ShowDownLoadQRVC.h"
+
 
 
 
@@ -108,6 +110,19 @@
         _settting.hidesBottomBarWhenPushed = YES;
         
         [self.navigationController pushViewController:_settting animated:YES];
+        
+        
+    }
+    
+    if (indexPath.section == 4) {
+        
+        ShowDownLoadQRVC *_showDownLoad = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDownLoadQRVC"];
+        
+        _showDownLoad.hidesBottomBarWhenPushed = YES;
+        
+        
+        [self.navigationController pushViewController:_showDownLoad animated:YES];
+        
         
         
     }

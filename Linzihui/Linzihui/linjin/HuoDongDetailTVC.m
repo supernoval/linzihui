@@ -760,7 +760,17 @@
             
             
             
+            BmobUser *current = [BmobUser getCurrentUser];
             
+            if ([current.username isEqualToString:_usermodel.userName]) {
+                
+                button.hidden = NO;
+            }
+            else
+            {
+                button.hidden = YES;
+                
+            }
             
             label.text = _usermodel.nickName;
             
@@ -777,7 +787,9 @@
                 
                    label.text = [NSString stringWithFormat:@"%@(已签到)",label.text];
                 
+                
             }
+           
          
             
             

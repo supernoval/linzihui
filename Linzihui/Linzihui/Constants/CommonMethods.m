@@ -544,11 +544,11 @@
     
     if (dis < 1000) {
         
-        return [NSString stringWithFormat:@"%.0fm",dis];
+        return [NSString stringWithFormat:@"%.0f米",dis];
     }
     else
     {
-        return [NSString stringWithFormat:@"%.2fKM",dis/1000.0];
+        return [NSString stringWithFormat:@"%.2f公里",dis/1000.0];
         
     }
 }

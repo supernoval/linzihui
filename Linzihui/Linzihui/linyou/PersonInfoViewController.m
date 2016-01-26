@@ -174,6 +174,8 @@
         
         _sendButton.hidden =YES;
           _linhao.text = _model.username;
+       
+        
         return;
         
     }
@@ -198,7 +200,7 @@
     if (isFriend) {
         
           _linhao.text = _model.username;
-        
+       
         [_sendButton setTitle:@"发送消息" forState:UIControlStateNormal];
     }
     else
@@ -207,7 +209,7 @@
         
         _linhao.text = @"";
         
-        
+          _linhaoTitleLabel.hidden = YES;
   
         
         

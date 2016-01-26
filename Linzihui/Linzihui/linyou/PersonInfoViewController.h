@@ -11,6 +11,10 @@
 
 @interface PersonInfoViewController : BaseTableViewController
 
+
+@property (weak, nonatomic) IBOutlet UILabel *linhaoTitleLabel;
+
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightButton;
 
 - (IBAction)showInfo:(id)sender;

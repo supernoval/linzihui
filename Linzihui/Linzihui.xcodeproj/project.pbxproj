@@ -267,6 +267,7 @@
 		1536C6EC1C2CDFA4001DB61A /* LevelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1536C6EB1C2CDFA4001DB61A /* LevelDetailViewController.m */; };
 		153723511BF59F2B005A4340 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 153723501BF59F2B005A4340 /* libstdc++.tbd */; };
 		1538EA151C2A6DDD002A23C7 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1538EA141C2A6DDD002A23C7 /* PersonInfoViewController.m */; };
+		153B6A741C57419100B7F92D /* ShowDownLoadQRVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 153B6A731C57419100B7F92D /* ShowDownLoadQRVC.m */; };
 		153CE0151BE50D910032517E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0141BE50D910032517E /* main.m */; };
 		153CE0181BE50D910032517E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0171BE50D910032517E /* AppDelegate.mm */; };
 		153CE01E1BE50D910032517E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153CE01C1BE50D910032517E /* Storyboard.storyboard */; };
@@ -1039,6 +1040,8 @@
 		153723501BF59F2B005A4340 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		1538EA131C2A6DDD002A23C7 /* PersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
 		1538EA141C2A6DDD002A23C7 /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
+		153B6A721C57419100B7F92D /* ShowDownLoadQRVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDownLoadQRVC.h; sourceTree = "<group>"; };
+		153B6A731C57419100B7F92D /* ShowDownLoadQRVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDownLoadQRVC.m; sourceTree = "<group>"; };
 		153CE0101BE50D910032517E /* Linzihui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linzihui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		153CE0141BE50D910032517E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		153CE0161BE50D910032517E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -3386,6 +3389,8 @@
 				1530E8531BFCA6E000A78DB5 /* NewMineTableViewController.m */,
 				15858D521C1B8AEC000550FD /* SettingTableViewController.h */,
 				15858D531C1B8AEC000550FD /* SettingTableViewController.m */,
+				153B6A721C57419100B7F92D /* ShowDownLoadQRVC.h */,
+				153B6A731C57419100B7F92D /* ShowDownLoadQRVC.m */,
 			);
 			path = mine;
 			sourceTree = "<group>";
@@ -4198,6 +4203,7 @@
 				150F31911C0FEA5D00E5CC8B /* ZXAI01AndOtherAIs.m in Sources */,
 				1530E8541BFCA6E000A78DB5 /* NewMineTableViewController.m in Sources */,
 				150F31DF1C0FEA5D00E5CC8B /* ZXQRCodeDecoderMetaData.m in Sources */,
+				153B6A741C57419100B7F92D /* ShowDownLoadQRVC.m in Sources */,
 				150F316C1C0FEA5D00E5CC8B /* ZXPlanarYUVLuminanceSource.m in Sources */,
 				150F31951C0FEA5D00E5CC8B /* ZXRSSExpandedBlockParsedResult.m in Sources */,
 				150F31A71C0FEA5D00E5CC8B /* ZXCodaBarReader.m in Sources */,
