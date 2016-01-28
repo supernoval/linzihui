@@ -54,51 +54,49 @@
 - (IBAction)sendCodeAction:(id)sender {
     
     
-#warning test
-    [self getCode];
-#warning test
+
     
     
-//    if ([CommonMethods checkTel:_phoneTF.text])
-//    {
-//        
-//    
-//        //检测是否注册过
-//        
-//        BmobQuery *query = [BmobQuery queryForUser];
-//        
-//        [query whereKey:@"username" equalTo:_phoneTF.text];
-//        
-//        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-//            
-//            if (!error ) {
-//                
-//                if (array.count > 0) {
-//                    
-//                    [CommonMethods showDefaultErrorString:@"该用户已注册"];
-//                    
-//                }
-//                else
-//                {
-//                    [self getCode];
-//                    
-//                    
-//                }
-//            }
-//            
-//        }];
-//        
-//        
-//        
-//     
-//        
-//        
-//    }
-//    else
-//    {
-//        [MyProgressHUD showError:@"手机号码不正确"];
-//        
-//    }
+    if ([CommonMethods checkTel:_phoneTF.text])
+    {
+        
+    
+        //检测是否注册过
+        
+        BmobQuery *query = [BmobQuery queryForUser];
+        
+        [query whereKey:@"username" equalTo:_phoneTF.text];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            if (!error ) {
+                
+                if (array.count > 0) {
+                    
+                    [CommonMethods showDefaultErrorString:@"该用户已注册"];
+                    
+                }
+                else
+                {
+                    [self getCode];
+                    
+                    
+                }
+            }
+            
+        }];
+        
+        
+        
+     
+        
+        
+    }
+    else
+    {
+        [MyProgressHUD showError:@"手机号码不正确"];
+        
+    }
     
 }
 
