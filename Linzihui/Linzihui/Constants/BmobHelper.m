@@ -991,6 +991,9 @@
                     
                     if ([groupId isEqualToString:_temCon.chatter]) {
                         
+                        EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:groupId error:nil];
+                        
+                        
                         NSDictionary *dataDict = [ob valueForKey:kBmobDataDic];
                         
                         MyConversation *_myConver = [[MyConversation alloc]init];
@@ -999,6 +1002,8 @@
                         
                         _myConver.converstion = _temCon;
                         _myConver.messageType = 1;
+                        
+                        _myConver.subTitle  = group.groupSubject;
                         
                         [muArray addObject:_myConver];
                         
@@ -1062,10 +1067,17 @@
                 
                 NSDictionary *dataDic = [ob valueForKey:kBmobDataDic];
                 
+               
                 [model setValuesForKeysWithDictionary:dataDic];
+                
+//             EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:model.groupId error:nil];
+//               
+//                model.subTitle = group.groupSubject;
                 
                 
                 [resutls addObject:model];
+                
+                
             }
             
             if (result) {
