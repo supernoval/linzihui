@@ -313,6 +313,7 @@
 		15858D4C1C1B5E2B000550FD /* EditGroupNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D4B1C1B5E2B000550FD /* EditGroupNameVC.m */; };
 		15858D511C1B71F7000550FD /* HuoDongMessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D501C1B71F7000550FD /* HuoDongMessageTVC.m */; };
 		15858D541C1B8AEC000550FD /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D531C1B8AEC000550FD /* SettingTableViewController.m */; };
+		15A05BC81C59E0F2002BBAD3 /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A05BC71C59E0F2002BBAD3 /* ActivityDetailViewController.m */; };
 		15AB5AA81C140B5B0070F6DA /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */; };
 		15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */; };
 		15AB5AAF1C1715440070F6DA /* GroupChatListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */; };
@@ -1105,6 +1106,8 @@
 		15858D501C1B71F7000550FD /* HuoDongMessageTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongMessageTVC.m; sourceTree = "<group>"; };
 		15858D521C1B8AEC000550FD /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		15858D531C1B8AEC000550FD /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		15A05BC61C59E0F2002BBAD3 /* ActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailViewController.h; sourceTree = "<group>"; };
+		15A05BC71C59E0F2002BBAD3 /* ActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailViewController.m; sourceTree = "<group>"; };
 		15AB5AA61C140B5B0070F6DA /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		15AB5AAA1C140F030070F6DA /* YaoYiYaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoYiYaoViewController.h; sourceTree = "<group>"; };
@@ -2803,6 +2806,8 @@
 			children = (
 				15B6864C1C069C1B007EE8CB /* PublishActivity.h */,
 				15B6864D1C069C1B007EE8CB /* PublishActivity.m */,
+				15A05BC61C59E0F2002BBAD3 /* ActivityDetailViewController.h */,
+				15A05BC71C59E0F2002BBAD3 /* ActivityDetailViewController.m */,
 			);
 			name = publishActivity;
 			sourceTree = "<group>";
@@ -4119,6 +4124,7 @@
 				150F31771C0FEA5D00E5CC8B /* ZXDataMatrixBase256Encoder.m in Sources */,
 				150F31D21C0FEA5D00E5CC8B /* ZXPDF417BarcodeRow.m in Sources */,
 				15B7A5401BE730460052115F /* EMSDImageCache.m in Sources */,
+				15A05BC81C59E0F2002BBAD3 /* ActivityDetailViewController.m in Sources */,
 				15B7A4D51BE730320052115F /* UIScrollView+MJRefresh.m in Sources */,
 				150F318B1C0FEA5D00E5CC8B /* ZXAI013103decoder.m in Sources */,
 				150F313D1C0FEA5D00E5CC8B /* ZXSMTPResultParser.m in Sources */,

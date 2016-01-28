@@ -9,6 +9,8 @@
 #import "PublishActivity.h"
 #import "LocationViewController.h"
 #import "HuodongTVCViewController.h"
+#import "ActivityDetailViewController.h"
+
 
 
 static NSString *textFieldCell = @"textFieldCell";
@@ -39,8 +41,7 @@ static NSString *textViewCell  =@"textViewCell";
     
     
    
-    
-    
+
     
     UIView *_view_pickDate;
     
@@ -53,6 +54,11 @@ static NSString *textViewCell  =@"textViewCell";
     BmobObject *_huodongOB;
     
     BOOL hadShowedImage;
+    
+    BOOL hadChangedDetailImage;
+    
+    BOOL hadChangeBackGroundImage;
+    
     
    
     
@@ -75,13 +81,7 @@ static NSString *textViewCell  =@"textViewCell";
 {
     [super viewDidAppear:animated];
     
-    if (!hadShowedImage) {
-        
-       [self setEditeTypeButtonImage];
-        
-        hadShowedImage = YES;
-        
-    }
+
     
 }
 -(void)viewWillDisappear:(BOOL)animated
@@ -106,19 +106,17 @@ static NSString *textViewCell  =@"textViewCell";
     
     _image_list = [[NSMutableArray alloc]init];
     
-    self.headerView.frame = CGRectMake(0, 0, ScreenWidth, 233);
+    self.headerView.frame = CGRectMake(0, 0, ScreenWidth, 70);
     
     
-   
-    
+
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navbar_return_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
     
 //    UITapGestureRecognizer *_tag = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
 //    
 //    [self.tableView addGestureRecognizer:_tag];
-    
-    
+
     
     
     addImage  = [UIImage imageNamed:@"tianjiazhaopian"];
@@ -150,10 +148,7 @@ static NSString *textViewCell  =@"textViewCell";
                           @{@"title":@"截止报名时间",@"content":_huodongModel.endRegistTime,@"key":@"endRegistTime"},
                           @{@"title":@"需要家庭数",@"content":_huodongModel.needFamilyNum,@"placeHolder":@"家庭数",@"key":@"needFamilyNum"},
                           @{@"title":@"年龄要求",@"content":_huodongModel.ageRequest,@"placeHolder":@"年龄要求",@"key":@"ageRequest"},
-                          @{@"title":@"费用情况",@"content":_huodongModel.feeNum,@"placeHolder":@"请输入费用",@"key":@"feeNum"},
-                          @{@"title":@"活动特点",@"content":_huodongModel.TeDian,@"key":@"TeDian"},
-                          @{@"title":@"活动流程",@"content":_huodongModel.LiuCheng,@"key":@"LiuCheng"},
-                          @{@"title":@"注意事项",@"content":_huodongModel.ZhuYiShiXiang,@"key":@"ZhuYiShiXiang"}];
+                          @{@"title":@"费用情况",@"content":_huodongModel.feeNum,@"placeHolder":@"请输入费用",@"key":@"feeNum"}];
         
          [_backGroundImageButton sd_setImageWithURL:[NSURL URLWithString:_huodongModel.backImage] forState:UIControlStateNormal placeholderImage:kDefaultLoadingImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
              
@@ -197,17 +192,14 @@ static NSString *textViewCell  =@"textViewCell";
                      @{@"title":@"截止报名时间",@"content":@"",@"key":@"endRegistTime"},
                      @{@"title":@"需要家庭数",@"content":@"",@"placeHolder":@"家庭数",@"key":@"needFamilyNum"},
                      @{@"title":@"年龄要求",@"content":@"",@"placeHolder":@"年龄要求",@"key":@"ageRequest"},
-                     @{@"title":@"费用情况",@"content":@"",@"placeHolder":@"请输入费用",@"key":@"feeNum"},
-                     @{@"title":@"活动特点",@"content":@"",@"key":@"TeDian"},
-                     @{@"title":@"活动流程",@"content":@"",@"key":@"LiuCheng"},
-                     @{@"title":@"注意事项",@"content":@"",@"key":@"ZhuYiShiXiang"}];
+                     @{@"title":@"费用情况",@"content":@"",@"placeHolder":@"请输入费用",@"key":@"feeNum"}];
     
     
         
         
-        [_image_list addObject:addImage];
+      
         
-        [self reloadPhotoViews];
+       
         
     }
     
@@ -366,6 +358,9 @@ static NSString *textViewCell  =@"textViewCell";
 -(void)publishHuoDong
 {
     
+    [self.view endEditing:YES];
+    
+    
     if (!backGroundImage) {
         
         [CommonMethods showDefaultErrorString:@"请上传活动背景图片"];
@@ -425,10 +420,18 @@ static NSString *textViewCell  =@"textViewCell";
             [MyProgressHUD showProgress];
             
             
-            
-            //先上传背景图片
-            [self upLoadBackGroundImage];
-            
+            if (hadChangeBackGroundImage) {
+                
+                //先上传背景图片
+                [self upLoadBackGroundImage];
+                
+            }
+            else
+            {
+                //直接跳到活动详情
+                [self upLoadDetailImage:nil];
+                
+            }
             
             
         }
@@ -446,7 +449,7 @@ static NSString *textViewCell  =@"textViewCell";
     {
         
    
-    if (_image_list.count > 1) {
+    if (_image_list.count > 0) {
         
          [MyProgressHUD showProgress];
         
@@ -481,13 +484,23 @@ static NSString *textViewCell  =@"textViewCell";
 -(void)upLoadDetailImage:(NSString*)backGroundImageURL
 {
     
-   
+    
+    //如果是编辑状态
+    if (_isEdited) {
         
-    [_image_list removeObjectAtIndex:_image_list.count -1];
-    
+        
+        //没有修改详情图片
+        if (!hadChangedDetailImage) {
+            
+            
+            [self upLoadData:nil backImageURL:backGroundImageURL];
+            
+            return;
+            
+        }
+    }
+
  
-   
-    
     
     [CommonMethods upLoadPhotos:_image_list resultBlock:^(BOOL success, NSArray *results) {
         
@@ -612,8 +625,13 @@ static NSString *textViewCell  =@"textViewCell";
     }
     
     //背景图片地址
-    [_huodongOB setObject:backImageURL forKey:@"backImage"];
-    
+    if (backImageURL.length > 0) {
+        
+        [_huodongOB setObject:backImageURL forKey:@"backImage"];
+        
+        
+    }
+  
     
     
     //如果是编辑
@@ -825,7 +843,7 @@ static NSString *textViewCell  =@"textViewCell";
             break;
         case 7: //活动详情
         {
-            _cellId = textViewCell;
+            _cellId = labelCell;
             
         }
             break;
@@ -851,22 +869,7 @@ static NSString *textViewCell  =@"textViewCell";
             _cellId = textFieldCell;
         }
             break;
-        case 12://活动特点
-        {
-            _cellId = textViewCell;
-        }
-            break;
-        case 13: //活动流程
-        {
-            _cellId = textViewCell;
-        }
-            break;
-        case 14:  //注意事项
-        {
-            _cellId = textViewCell;
-            
-        }
-            break;
+   
             
             
         default:
@@ -893,7 +896,7 @@ static NSString *textViewCell  =@"textViewCell";
             
             textField.placeholder = [dict objectForKey:@"placeHolder"];
             
-            if (indexPath.section == 1 || indexPath.section == 9 ||  indexPath.section == 10 || indexPath.section == 11) {
+            if (indexPath.section == 1 || indexPath.section == 9  || indexPath.section == 11) {
                 
                 textField.keyboardType = UIKeyboardTypeNumberPad;
                 
@@ -993,6 +996,63 @@ static NSString *textViewCell  =@"textViewCell";
         
         
     }
+    
+    if (indexPath.section == 7) {
+        
+        ActivityDetailViewController *_detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
+        
+        _detailVC.hidesBottomBarWhenPushed = YES;
+        
+        [_detailVC setBlock:^(NSMutableArray *imagesArray, NSString *detail) {
+           
+            if (imagesArray.count > 0) {
+                
+                hadChangedDetailImage = YES;
+                
+            }
+            [_image_list removeAllObjects];
+        
+            [_image_list addObjectsFromArray:imagesArray];
+            
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:_titlesArray];
+            
+            NSInteger tag = 7;
+            
+            NSDictionary *dict = [muArray objectAtIndex:tag];
+            
+            NSMutableDictionary *muDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+            
+            if (detail.length > 0) {
+                
+                [muDict setObject:detail forKey:@"content"];
+            }
+            
+            [muArray replaceObjectAtIndex:tag withObject:muDict];
+            
+            _titlesArray = [NSArray arrayWithArray:muArray];
+            
+            [self.tableView reloadData];
+            
+            
+        }];
+        
+        NSDictionary *dict = [_titlesArray objectAtIndex:7];
+        _detailVC.detailStr = [dict objectForKey:@"content"];
+        _detailVC.image_list = _image_list;
+        
+        if (_isEdited) {
+            
+            _detailVC.photoURLs = _huodongModel.photoURL;
+            
+        }
+        [self.navigationController pushViewController:_detailVC animated:YES];
+        
+        
+    }
+    
+    
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
@@ -1036,27 +1096,7 @@ static NSString *textViewCell  =@"textViewCell";
 
 
 
-#pragma mark - 刷新图片界面
--(void)reloadPhotoViews
-{
-    
-    
-    for (int i = 0; i < _image_list.count; i ++) {
-        
-        UIImage *image = [_image_list objectAtIndex:i];
-        
-        [self setButtonImageWithTag:i image:image];
-        
-        
-    }
-    
-    //将没有放置图片的按钮设置成不可点击
-    [self setButtonEnAble];
-    
-  
-    
-    
-}
+
 
 -(void)setButtonImageWithTag:(NSInteger)tag image:(UIImage*)image
 {
@@ -1075,59 +1115,8 @@ static NSString *textViewCell  =@"textViewCell";
 }
 
 
-#pragma mark - 编辑的时候先加载图片
--(void)setEditeTypeButtonImage
-{
-    NSArray *photos = _huodongModel.photoURL;
-    
-    for (int i = 0; i < photos.count; i++) {
-        
-        NSString *url = [photos objectAtIndex:i];
-        
-//        NSArray *subView = _photoFooterView.subviews;
-        
-        for (UIButton *button in _photoFooterView.subviews) {
-            
-            if (button.tag == i + 1 ) {
-                
-               [button sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal placeholderImage:kDefaultLoadingImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                  
-                   [_image_list addObject:image];
-                   
-                   if (_image_list.count == _huodongModel.photoURL.count) {
-                       
-                       [_image_list addObject:addImage];
-                       [self reloadPhotoViews];
-                       
-                   }
-                   
-               }];
-                
-            }
-        }
-        
-       
-    }
-    
 
-    
-}
--(void)setButtonEnAble
-{
-    for (UIButton *button in _photoFooterView.subviews) {
-        
-        if (button.tag <= _image_list.count) {
-            
-            button.enabled = YES;
-            
-        }
-        else
-        {
-            button.enabled = NO;
-            
-        }
-    }
-}
+
 
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -1141,44 +1130,15 @@ static NSString *textViewCell  =@"textViewCell";
     
     if (isPickBackImage) {
         
+        hadChangeBackGroundImage = YES;
+        
         backGroundImage = image;
         
         [_backGroundImageButton setImage:backGroundImage forState:UIControlStateNormal];
         
         
     }
-    else
-    {
-        
-   
-     
-        if (_image_list.count > 0) {
-            
-             [_image_list removeObjectAtIndex:_image_list.count -1];
-        }
-       
-
-    
-    if (image)
-       {
-        
-        
-        [_image_list addObject:image];
-        
-    
-        
-        
-        }
-    
-    //再把加号 放进去
-    if (_image_list.count < 8) {
-        
-        [_image_list addObject:addImage];
-        
-    }
-    [self reloadPhotoViews];
-        
-         }
+  
     
     
     
@@ -1219,21 +1179,7 @@ static NSString *textViewCell  =@"textViewCell";
                     
                     
                 }
-                else
-                {
-                
-                    if (_image_list.count > 1 && actionSheet.tag < _image_list.count ) {
-                        
-                        [_image_list removeObjectAtIndex:actionSheet.tag -1];
-                        
-                        
-                        [self reloadPhotoViews];
-                        
-                    }
-              
-                
-              
-                }
+        
                 
                   return;
                 

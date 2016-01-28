@@ -424,57 +424,20 @@
     CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
     int totalRowCount = ceil(imageCount / perRowImageCountF);
     
-    photoViewHeight = 95 * totalRowCount;
+    photoViewHeight = 80 * totalRowCount;
     
-    CGFloat detailHeight = [StringHeight heightWithText:_huodong.content font:FONT_15 constrainedToWidth:ScreenWidth - 120 ];
-    
-    CGFloat tedianHeight = [StringHeight heightWithText:_huodong.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 120];
-    
-    CGFloat liuchenHeight = [StringHeight heightWithText:_huodong.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 120];
-    
-    CGFloat zhuyiHeight = [StringHeight heightWithText:_huodong.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 120];
-    
-    CGFloat plusHeight = 0;
-    
-    if (detailHeight < 30) {
-        detailHeight = 30;
-    }
-    
-    if (tedianHeight < 30) {
-        
-        tedianHeight = 30;
-    }
-    if (liuchenHeight < 30) {
-        
-        liuchenHeight = 30;
-    }
-    
-    if (zhuyiHeight < 30) {
-        zhuyiHeight = 30;
-        
-    }
-    
-    plusHeight = detailHeight - 30 + tedianHeight - 30 + liuchenHeight - 30 + zhuyiHeight- 30;
+    NSString *detailText = [NSString stringWithFormat:@"%@",_huodong.content];
     
     
-    _detailtitleheight.constant = detailHeight;
-    _detailheight.constant = detailHeight;
-    
-    _tedianheight.constant = tedianHeight;
-    _tediantitleheight.constant = tedianHeight;
-  
-    
-    _liuchenheight.constant = liuchenHeight;
-    _liuchentitleheight.constant = liuchenHeight;
+    CGFloat detailHeight = [StringHeight heightWithText:detailText font:FONT_15 constrainedToWidth:ScreenWidth - 30 ];
 
     
-    _zhuyiheight.constant = zhuyiHeight;
-    _zhuyititleHeight.constant = zhuyiHeight;
     
-    _detailButtonHeight.constant = detailHeight + tedianHeight + liuchenHeight;
+    _detailButtonHeight.constant = detailHeight;
     
+    _detailheight.constant = detailHeight ;
     
-     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 680 + photoViewHeight + plusHeight);
+     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 600 + photoViewHeight + detailHeight);
     
     
     _backGroundImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -490,6 +453,10 @@
     
     _timeLabel.adjustsFontSizeToFitWidth = YES;
     
+    
+    _endTimeLabel.text = [CommonMethods getYYYYMMddhhmmDateStr:_huodong.endTime];
+    
+    
     _feelabel.text = _huodong.feeNum;
     
     _distanceLabel.text = [CommonMethods distanceStringWithLatitude:[[_huodong.location valueForKey:@"latitude"]floatValue] longitude:[[_huodong.location valueForKey:@"longitude"]floatValue]];
@@ -500,15 +467,9 @@
     [_publishButton setTitle:_huodong.realName forState:UIControlStateNormal];
     
     
-
-  
-    _detailLabel.text = _huodong.content;
+    _detailLabel.text = detailText;
     
-    _tedianLabel.text = _huodong.TeDian;
     
-    _liuchengLabel.text = _huodong.LiuCheng;
-    
-    _shixianglabel.text = _huodong.ZhuYiShiXiang;
     
     _endRegistTimeLabel.text = [CommonMethods getYYYYMMddhhmmDateStr: _huodong.endRegistTime];
     
@@ -1003,7 +964,7 @@
     
     if ([[BmobUser getCurrentUser].username isEqualToString:[_huodong.starter objectForKey:@"username"]]) {
         
-        [CommonMethods showDefaultErrorString:@"已报名"];
+        [CommonMethods showDefaultErrorString:@"您自己发布的活动，无需报名"];
         
         return;
         

@@ -84,6 +84,11 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailButtonHeight;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
+
+
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tedianButtonHeght;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *liuchengButtonHeight;
