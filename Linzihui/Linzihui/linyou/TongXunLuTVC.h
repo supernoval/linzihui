@@ -13,7 +13,7 @@
 #import "ConstantsHeaders.h"
 
 
-@interface TongXunLuTVC : BaseTableViewController<MFMessageComposeViewControllerDelegate,UINavigationControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface TongXunLuTVC : UITableViewController<MFMessageComposeViewControllerDelegate,UINavigationControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
 
 @property (nonatomic) BOOL isFromNewFriend;
 

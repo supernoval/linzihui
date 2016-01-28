@@ -18,11 +18,18 @@ static NSString *ContactsCell = @"ContactsCell";
     
     UIActionSheet *_yaoqingActionsheet;
     
+  
+    
+    
 }
+@property (nonatomic) UISearchDisplayController *displayController;
+@property (nonatomic) UISearchBar *mySearchBar;
 
 @property(nonatomic,assign) ABAddressBookRef addressBook;
 @property(nonatomic,strong)  NSMutableArray *abDataSource;
 @property (nonatomic,strong) NSMutableArray *inviteDataSource;
+@property (nonatomic)        NSMutableArray *searchResults;
+
 
 
 @end
@@ -36,7 +43,12 @@ static NSString *ContactsCell = @"ContactsCell";
     
     _abDataSource = [[NSMutableArray alloc]init];
     _inviteDataSource = [[NSMutableArray alloc]init];
+    _searchResults = [[NSMutableArray alloc]init];
     
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navbar_return_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
+    
+
     
     yaoqingma = [BmobUser getCurrentUser].objectId;
     
@@ -46,10 +58,112 @@ static NSString *ContactsCell = @"ContactsCell";
     }
   
     
+    self.tableView.tableHeaderView = [self displayController].searchBar;
+    
+    
     [self requestAuthor];
     
 }
 
+-(void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+-(UISearchBar*)mySearchBar
+{
+    
+    if (!_mySearchBar) {
+        
+        _mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        
+        _mySearchBar.delegate = self;
+        
+    }
+    
+    return _mySearchBar;
+    
+}
+
+-(UISearchDisplayController*)displayController
+{
+    if (!_displayController) {
+        
+        _displayController = [[UISearchDisplayController alloc]initWithSearchBar:self.mySearchBar contentsController:self];
+        
+        
+        _displayController.delegate = self;
+        _displayController.searchResultsDataSource = self;
+        _displayController.searchResultsDelegate = self;
+        
+        
+    }
+    
+    return _displayController;
+    
+    
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    
+    if (searchBar.text.length == 0) {
+        
+        return;
+    }
+    
+    [self search:searchBar.text];
+    
+}
+
+-(void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
+{
+    
+
+    
+    [controller setActive:NO];
+    
+}
+
+#pragma mark - 搜索
+-(void)search:(NSString*)str
+{
+    
+   
+     [_searchResults removeAllObjects];
+    
+    
+    
+    for (int i = 0 ; i < _abDataSource.count; i++ ) {
+        
+        ContactModel *model = [_abDataSource objectAtIndex:i];
+        
+        NSRange rang = [model.nickName rangeOfString:str];
+        
+        if (rang.length > 0) {
+            
+            [_searchResults addObject:model];
+            
+        }
+        else
+        {
+            rang = [model.username rangeOfString:str];
+            
+            if (rang.length > 0) {
+                
+                [_searchResults addObject:model];
+                
+            }
+        }
+    }
+    
+    
+    [_displayController.searchResultsTableView reloadData];
+    
+    
+    
+}
 #pragma mark -  获取好友邀请
 -(void)getLocateInviteData
 {
@@ -202,6 +316,13 @@ static NSString *ContactsCell = @"ContactsCell";
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    if (tableView == _displayController.searchResultsTableView) {
+        
+        
+        return _searchResults.count;
+        
+    }
     if (section == 0) {
         
         return _inviteDataSource.count;
@@ -215,6 +336,12 @@ static NSString *ContactsCell = @"ContactsCell";
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
    
+    if (tableView == _displayController.searchResultsTableView) {
+        
+        return 1;
+        
+        
+    }
     return 2;
     
     
@@ -222,7 +349,7 @@ static NSString *ContactsCell = @"ContactsCell";
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactsCell];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactsCell];
     
     dispatch_async(dispatch_get_main_queue(), ^{
     
@@ -237,7 +364,7 @@ static NSString *ContactsCell = @"ContactsCell";
         addButto.layer.cornerRadius = 5;
         
     
-        if (indexPath.section == 0) {
+        if (indexPath.section == 0 && tableView != _displayController.searchResultsTableView) {
             
            
             addButto.enabled = YES;
@@ -294,8 +421,28 @@ static NSString *ContactsCell = @"ContactsCell";
         else
         {
             
-      
-        ContactModel *oneContact = [_abDataSource objectAtIndex:indexPath.row];
+            ContactModel *oneContact = nil;
+            
+            if (tableView == _displayController.searchResultsTableView) {
+                
+                 if (_searchResults.count > indexPath.row) {
+                oneContact = [_searchResults objectAtIndex:indexPath.row];
+                 }
+                
+            }
+            else
+            {
+                
+               
+                if (_abDataSource.count > indexPath.row) {
+                    
+                    oneContact = [_abDataSource objectAtIndex:indexPath.row];
+                }
+                
+                
+                
+            }
+          
         
             if (oneContact.headImageURL) {
                 
