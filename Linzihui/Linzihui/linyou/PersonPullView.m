@@ -18,9 +18,20 @@
     if (self == [super init]) {
         
         
-        self.frame = CGRectMake(0, 0,ScreenWidth , ScreenHeight);
+        self.frame = CGRectMake(0, 64,ScreenWidth , ScreenHeight);
         
         self.model = model;
+        
+        if (model.followType == CheckTypeFriend) {
+            
+            self.isFriend = YES;
+        }
+        else
+        {
+            self.isFriend = NO;
+            
+        }
+        
         
         UIControl *backGroundView = [[UIControl alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
         
@@ -49,6 +60,11 @@
     
     CGFloat pullHeight = 150;
     
+    if (!_isFriend) {
+        
+        pullHeight = 100;
+        
+    }
     
     UIView *pullView = [[UIView alloc]initWithFrame:CGRectMake(ScreenWidth - pullwith, 0, pullwith, pullHeight)];
     
@@ -57,6 +73,15 @@
     
     
     [self addSubview:pullView];
+    
+    
+    CGFloat origion =0;
+    
+    if (!_isFriend) {
+        
+        origion = pullHeight/3;
+        
+    }
     
     
     UIButton *deleButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, pullwith, pullHeight/3)];
@@ -72,10 +97,28 @@
     [deleButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
     
     
-    [pullView addSubview:deleButton];
+
+    
+    UIButton *blockButton = [[UIButton alloc]init];
+    
+    UIButton *jubao = [[UIButton alloc]init];
     
     
-    UIButton *blockButton = [[UIButton alloc]initWithFrame:CGRectMake(0, pullHeight/3, pullwith, pullHeight/3)];
+    if (_isFriend) {
+        
+            [pullView addSubview:deleButton];
+        
+        blockButton.frame = CGRectMake(0, pullHeight/3 , pullwith, pullHeight/3);
+        
+        jubao.frame= CGRectMake(0, pullHeight/3 * 2, pullwith, pullHeight/3);
+    }
+  else
+  {
+      blockButton.frame = CGRectMake(0, 0 , pullwith, pullHeight/2);
+      
+      jubao.frame= CGRectMake(0, pullHeight/2 , pullwith, pullHeight/2);
+  }
+    
     
     blockButton.backgroundColor = [UIColor clearColor];
     
@@ -91,7 +134,7 @@
     [pullView addSubview:blockButton];
     
     
-    UIButton *jubao = [[UIButton alloc]initWithFrame:CGRectMake(0, pullHeight/3 * 2, pullwith, pullHeight/3)];
+  
     
     jubao.backgroundColor = [UIColor clearColor];
     

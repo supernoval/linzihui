@@ -4623,11 +4623,11 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等级:(分为从幼儿园到大学教授级别) \n 1、使用天数(在线超过8小时算一天):每90天升一级 \n2、邀请好友：每邀请10个好友升一级" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sv5-rm-xDl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="等级:(分为从幼儿园到大学教授级别) \n 邀请好友：每邀请10个好友升一级" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sv5-rm-xDl">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="102" id="uL5-0h-oag">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="120"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="80"/>
                                     </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -4700,7 +4700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbn-iy-nG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4881.75" y="2063.625"/>
+            <point key="canvasLocation" x="4847.25" y="2063.625"/>
         </scene>
         <!--Hong Bao View Controller-->
         <scene sceneID="mwQ-NM-emf">

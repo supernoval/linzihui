@@ -273,22 +273,18 @@ static NSString *textViewCell  =@"textViewCell";
     }
     
     
-    //报名截止时间要在开始之后 结束之前
+    //报名截止时间要在开始之前
     if (pickIndex == 8) {
         
         NSMutableDictionary *muDict = [[NSMutableDictionary alloc]initWithDictionary:[_titlesArray objectAtIndex:3]];
         
         NSDate *  date = [muDict objectForKey:@"content"];
         
-        _picker.minimumDate = date;
+        _picker.minimumDate = [NSDate date];
         
         
-        NSMutableDictionary *endDict = [[NSMutableDictionary alloc]initWithDictionary:[_titlesArray objectAtIndex:4]];
         
-        NSDate *  endDate = [endDict objectForKey:@"content"];
-        
-        
-        _picker.maximumDate = endDate;
+        _picker.maximumDate = date;
         
         
     }

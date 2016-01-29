@@ -71,7 +71,7 @@
             
             _model = [array firstObject];
             
-            _pullView = [[PersonPullView alloc]initwithUserModel:self.model];
+           
             
            
             
@@ -202,6 +202,11 @@
           _linhao.text = _model.username;
        
         [_sendButton setTitle:@"发送消息" forState:UIControlStateNormal];
+        
+           self.model.followType = CheckTypeFriend;
+        
+            _pullView = [[PersonPullView alloc]initwithUserModel:self.model];
+        
     }
     else
     {
@@ -243,10 +248,10 @@
                 {
                     friendType = CheckTypeOnlyMyFollow;
                     
-                    [_sendButton setTitle:@"已关注" forState:UIControlStateNormal];
+                    [_sendButton setTitle:@"取消关注" forState:UIControlStateNormal];
                     
                     
-                    _sendButton.enabled = NO;
+
                     
                     
                 }
@@ -257,6 +262,10 @@
                     [_sendButton setTitle:@"关注" forState:UIControlStateNormal];
                 }
                 
+                
+                _pullView = [[PersonPullView alloc]initwithUserModel:self.model];
+                
+         
                 
             }
             
@@ -296,6 +305,20 @@
         [EMHelper sendFriendRequestWithBuddyName:_username Mesage:@"请求加你好友"];
         
     }
+    else if (_model.followType == CheckTypeOnlyMyFollow)
+    {
+        [BmobHelper cancelFollowWithUserModel:_model username:[BmobUser getCurrentUser].username result:^(BOOL success) {
+           
+            if (success) {
+                
+                NSLog(@"取消关注成功");
+                
+                friendType = CheckTypeNone;
+                
+                [_sendButton setTitle:@"关注" forState:UIControlStateNormal];
+            }
+        }];
+    }
     else
     {
         [BmobHelper addFollowWithFollowedUserModel:_model result:^(BOOL success) {
@@ -305,9 +328,9 @@
                 
                 [CommonMethods showDefaultErrorString:@"关注成功"];
                 
-                [_sendButton setTitle:@"已关注" forState:UIControlStateNormal];
+                [_sendButton setTitle:@"取消关注" forState:UIControlStateNormal];
                 
-                _sendButton.enabled = NO;
+            
                 
             }
         }];
@@ -318,9 +341,13 @@
     
     
     
+    
+
+    
+    
     if (hadShowed) {
        
-        
+
         [_pullView removeFromSuperview];
         
         hadShowed = NO;
@@ -328,7 +355,7 @@
     
     else
     {
-        [self.view addSubview:_pullView];
+        [self.navigationController.view addSubview:_pullView];
         
         hadShowed = YES;
         
