@@ -1459,12 +1459,12 @@
                                 <exclude reference="WQn-sJ-PML"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="BZ3-pl-ORW"/>
-                                <exclude reference="psc-G9-lbZ"/>
-                                <exclude reference="ylG-51-wQf"/>
                                 <exclude reference="Azv-uG-Vcz"/>
                                 <exclude reference="fCu-VR-Tuv"/>
                                 <exclude reference="voY-bl-thU"/>
+                                <exclude reference="BZ3-pl-ORW"/>
+                                <exclude reference="psc-G9-lbZ"/>
+                                <exclude reference="ylG-51-wQf"/>
                                 <exclude reference="Kl1-05-AEP"/>
                                 <exclude reference="Woj-rp-zHW"/>
                                 <exclude reference="bkJ-27-K7J"/>
@@ -1477,12 +1477,12 @@
                                 <include reference="WQn-sJ-PML"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="BZ3-pl-ORW"/>
-                                <include reference="psc-G9-lbZ"/>
-                                <include reference="ylG-51-wQf"/>
                                 <include reference="Azv-uG-Vcz"/>
                                 <include reference="fCu-VR-Tuv"/>
                                 <include reference="voY-bl-thU"/>
+                                <include reference="BZ3-pl-ORW"/>
+                                <include reference="psc-G9-lbZ"/>
+                                <include reference="ylG-51-wQf"/>
                                 <include reference="Kl1-05-AEP"/>
                                 <include reference="Woj-rp-zHW"/>
                                 <include reference="bkJ-27-K7J"/>
@@ -1923,8 +1923,7 @@
                                             <exclude reference="gox-rv-ifT"/>
                                         </mask>
                                     </variation>
-                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="0.0" y="127" width="375" height="1"/>
+                                    <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="constraints">
                                             <include reference="gox-rv-ifT"/>
                                         </mask>
@@ -4779,7 +4778,7 @@
         <!--Show Down LoadQRVC-->
         <scene sceneID="3sO-Oq-NNp">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="mYb-uh-f76" customClass="ShowDownLoadQRVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShowDownLoadQRVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mYb-uh-f76" customClass="ShowDownLoadQRVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G1i-K9-KrX"/>
                         <viewControllerLayoutGuide type="bottom" id="tpG-09-fP8"/>

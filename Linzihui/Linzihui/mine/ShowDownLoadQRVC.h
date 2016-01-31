@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ShowDownLoadQRVC : UIViewController
+#import "BaseViewController.h"
+@interface ShowDownLoadQRVC : BaseViewController
 
 @end

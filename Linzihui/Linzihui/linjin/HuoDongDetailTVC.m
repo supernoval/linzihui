@@ -264,6 +264,7 @@
     if (!hadAttend) {
         
         
+        [CommonMethods showDefaultErrorString:@"请先报名"];
         
         return;
         
@@ -961,15 +962,7 @@
     }
 
     
-    
-    if ([[BmobUser getCurrentUser].username isEqualToString:[_huodong.starter objectForKey:@"username"]]) {
-        
-        [CommonMethods showDefaultErrorString:@"您自己发布的活动，无需报名"];
-        
-        return;
-        
-        
-    }
+
     
     
     
