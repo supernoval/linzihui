@@ -8,7 +8,7 @@
 
 #import "ActivityDetailViewController.h"
 
-@interface ActivityDetailViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface ActivityDetailViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate>
 {
    UIActionSheet *_pickPhotoActionSheet;
      UIImage *addImage;
@@ -29,6 +29,8 @@
     }
    
     _detailTV.text = _detailStr;
+    _detailTV.delegate = self;
+    
     
     
     
@@ -360,6 +362,21 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     
     
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    _placeHolderLabel.hidden = YES;
+    
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if (textView.text.length == 0) {
+        
+        _placeHolderLabel.hidden = NO;
+        
+    }
 }
 
 

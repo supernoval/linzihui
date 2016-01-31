@@ -137,7 +137,7 @@ static NSString *textViewCell  =@"textViewCell";
         NSString *locationStr = [NSString stringWithFormat:@"纬度:%.2f 经度:%.2f",[[_huodongModel.location valueForKey:@"latitude"]floatValue],[[_huodongModel.location valueForKey:@"longitude"]floatValue]];
         
         
-        _titlesArray = @[ @{@"title":@"真实姓名",@"content":_huodongModel.realName,@"placeHolder":@"请输入真实姓名",@"key":@"realName"},
+        _titlesArray = @[ @{@"title":@"组织者实名",@"content":_huodongModel.realName,@"placeHolder":@"请输入真实姓名",@"key":@"realName"},
                           @{@"title":@"手机号",@"content":_huodongModel.phoneNum,@"placeHolder":@"请输入手机号码",@"key":@"phoneNum"},@{@"title":@"活动标题",@"content":_huodongModel.title,@"key":@"title"},
                           @{@"title":@"开始时间",@"content":_huodongModel.startTime,@"key":@"startTime"},
                           @{@"title":@"结束时间",@"content":_huodongModel.endTime,@"key":@"endTime"},
@@ -181,7 +181,7 @@ static NSString *textViewCell  =@"textViewCell";
         self.navigationItem.rightBarButtonItem = barButton;
         
         
-    _titlesArray = @[ @{@"title":@"真实姓名",@"content":@"",@"placeHolder":@"请输入真实姓名",@"key":@"realName"},
+    _titlesArray = @[ @{@"title":@"组织者实名",@"content":@"",@"placeHolder":@"请输入真实姓名",@"key":@"realName"},
                     @{@"title":@"手机号",@"content":@"",@"placeHolder":@"请输入手机号码",@"key":@"phoneNum"},@{@"title":@"活动标题",@"content":@"",@"key":@"title"},
                      @{@"title":@"开始时间",@"content":@"",@"key":@"startTime"},
                       @{@"title":@"结束时间",@"content":@"",@"key":@"endTime"},

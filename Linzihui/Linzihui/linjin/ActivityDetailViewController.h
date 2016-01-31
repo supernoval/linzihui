@@ -29,6 +29,7 @@ typedef void (^DetailBlock)(NSMutableArray*imagesArray,NSString*detail);
 
 @property (weak, nonatomic) IBOutlet UITextView *detailTV;
 
+@property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *photoView;
 
