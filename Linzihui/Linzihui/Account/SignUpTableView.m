@@ -47,14 +47,7 @@
         return;
     }
     
-    if (_yaoqingmaTF.text.length > 0 && ![CommonMethods checkTel:_yaoqingmaTF.text]) {
-        
-        [MyProgressHUD showError:@"推荐人手机号码不正确"];
-        
-        return;
-        
-        
-    }
+
     
 
     

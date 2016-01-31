@@ -51,6 +51,9 @@
         
     }
     
+    _cancelAttendButton.hidden = YES;
+    
+    
 
     
 }
@@ -233,6 +236,10 @@
                     [_sendButton setTitle:@"发送好友请求" forState:UIControlStateNormal];
                     
                     friendType = CheckTypeFollowEachOther;
+                    
+                    
+                    _cancelAttendButton.hidden = NO;
+                    
                 }
                 
                 else if (_model.followType == CheckTypeOnlyFollowMe)
@@ -335,6 +342,26 @@
             }
         }];
     }
+    
+}
+
+- (IBAction)cancelAttend:(id)sender {
+    
+    [BmobHelper cancelFollowWithUserModel:_model username:[BmobUser getCurrentUser].username result:^(BOOL success) {
+        
+        if (success) {
+            
+            NSLog(@"取消关注成功");
+            
+            friendType = CheckTypeNone;
+            
+            [_sendButton setTitle:@"关注" forState:UIControlStateNormal];
+            
+            _cancelAttendButton.hidden = YES;
+            
+        }
+    }];
+    
     
 }
 - (IBAction)showInfo:(id)sender {

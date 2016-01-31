@@ -11,6 +11,7 @@
 
 @interface PersonInfoViewController : BaseTableViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *cancelAttendButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *linhaoTitleLabel;
 
@@ -42,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 
 - (IBAction)sendAction:(id)sender;
+- (IBAction)cancelAttend:(id)sender;
 
 
 @end

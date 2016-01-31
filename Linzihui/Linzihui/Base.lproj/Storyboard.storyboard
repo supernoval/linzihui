@@ -7522,7 +7522,8 @@
                                             <exclude reference="3Ge-lh-UhY"/>
                                         </mask>
                                     </variation>
-                                    <variation key="heightClass=regular-widthClass=compact">
+                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <rect key="frame" x="8" y="32" width="359" height="50"/>
                                         <mask key="constraints">
                                             <include reference="3Ge-lh-UhY"/>
                                         </mask>
@@ -7531,31 +7532,63 @@
                                         <action selector="sendAction:" destination="zVo-gY-AAj" eventType="touchUpInside" id="KCQ-nM-cJu"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuO-lP-eFz">
+                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="d1r-o7-ihc"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <state key="normal" title="取消关注"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="d1r-o7-ihc"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="constraints">
+                                            <include reference="d1r-o7-ihc"/>
+                                        </mask>
+                                    </variation>
+                                    <connections>
+                                        <action selector="cancelAttend:" destination="zVo-gY-AAj" eventType="touchUpInside" id="t2z-eZ-9t2"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="9eo-QD-sPx" secondAttribute="trailing" constant="8" id="CgG-NA-mHt"/>
+                                <constraint firstAttribute="trailing" secondItem="NuO-lP-eFz" secondAttribute="trailing" constant="8" id="FGm-ov-62V"/>
                                 <constraint firstItem="9eo-QD-sPx" firstAttribute="leading" secondItem="695-5M-ikE" secondAttribute="leading" constant="8" id="YCK-yI-0Jq"/>
+                                <constraint firstItem="NuO-lP-eFz" firstAttribute="leading" secondItem="695-5M-ikE" secondAttribute="leading" constant="8" id="dWv-6M-OCw"/>
                                 <constraint firstItem="9eo-QD-sPx" firstAttribute="top" secondItem="695-5M-ikE" secondAttribute="top" constant="32" id="in1-2m-rZW"/>
+                                <constraint firstItem="NuO-lP-eFz" firstAttribute="top" secondItem="9eo-QD-sPx" secondAttribute="bottom" constant="21" id="vYm-zx-Y7J"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="subviews">
                                     <exclude reference="9eo-QD-sPx"/>
+                                    <exclude reference="NuO-lP-eFz"/>
                                 </mask>
                                 <mask key="constraints">
                                     <exclude reference="CgG-NA-mHt"/>
                                     <exclude reference="YCK-yI-0Jq"/>
                                     <exclude reference="in1-2m-rZW"/>
+                                    <exclude reference="FGm-ov-62V"/>
+                                    <exclude reference="dWv-6M-OCw"/>
+                                    <exclude reference="vYm-zx-Y7J"/>
                                 </mask>
                             </variation>
                             <variation key="heightClass=regular-widthClass=compact">
                                 <mask key="subviews">
                                     <include reference="9eo-QD-sPx"/>
+                                    <include reference="NuO-lP-eFz"/>
                                 </mask>
                                 <mask key="constraints">
                                     <include reference="CgG-NA-mHt"/>
                                     <include reference="YCK-yI-0Jq"/>
                                     <include reference="in1-2m-rZW"/>
+                                    <include reference="FGm-ov-62V"/>
+                                    <include reference="dWv-6M-OCw"/>
+                                    <include reference="vYm-zx-Y7J"/>
                                 </mask>
                             </variation>
                         </view>
@@ -7601,7 +7634,8 @@
                                                             <exclude reference="My2-QM-kPg"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="66" y="15" width="301" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="My2-QM-kPg"/>
                                                         </mask>
@@ -7642,7 +7676,8 @@
                                                             <exclude reference="16r-g6-ege"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="111" y="44" width="251" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="16r-g6-ege"/>
                                                         </mask>
@@ -7742,6 +7777,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="106" y="4" width="236" height="51"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -7880,6 +7918,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="95" y="0.0" width="272" height="59"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -7958,6 +7999,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="95" y="0.0" width="272" height="59"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -8017,10 +8061,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="address" destination="OHB-QK-3wa" id="LlT-1M-eVj"/>
                         <outlet property="beizhuLabel" destination="5yd-Dq-BWc" id="i9C-SO-nC4"/>
+                        <outlet property="cancelAttendButton" destination="NuO-lP-eFz" id="DUD-5U-Nh7"/>
                         <outlet property="headImageView" destination="y8d-db-cGX" id="wjk-R1-FoS"/>
                         <outlet property="linhao" destination="UYE-u7-KzE" id="bcg-2M-Y7Q"/>
                         <outlet property="linhaoTitleLabel" destination="Jt3-zu-bKa" id="7YE-Ll-53i"/>
@@ -8032,7 +8077,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTd-4y-t88" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2592.75" y="-1908.375"/>
+            <point key="canvasLocation" x="2592" y="-1908.75"/>
         </scene>
         <!--Friend EditedTVC-->
         <scene sceneID="wbi-NV-ZQc">
