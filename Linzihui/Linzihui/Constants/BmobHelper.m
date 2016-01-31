@@ -673,6 +673,53 @@
 
 }
 
+#pragma mark - 取消关注
++ (void)cancelFollowWithUserModel:(UserModel*)model username:(NSString*)toDeleteusername result:(void(^)(BOOL success))result
+{
+    BmobQuery *query = [BmobQuery queryWithClassName:@"Follow"];
+    
+    [query whereKey:@"userObjectId" equalTo:model.objectId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (!error  && array.count > 0) {
+            
+            BmobObject *ob = [array firstObject];
+            
+            NSArray *usernames = [ob objectForKey:@"followMes"];
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:usernames];
+            
+            for (NSString *username in muArray) {
+                
+                if ([username isEqualToString:toDeleteusername]) {
+                    
+                    [muArray removeObject:username];
+                    
+                }
+            }
+            
+            [ob setObject:muArray forKey:@"followMes"];
+            
+            [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    if (result) {
+                        
+                        result(YES);
+                        
+                        
+                    }
+                }
+            }];
+            
+            
+        }
+        
+    }];
+}
+
 //添加我的关注
 + (void)addMyFollowsWithModel:(UserModel*)model result:(void (^)(BOOL))result
 {

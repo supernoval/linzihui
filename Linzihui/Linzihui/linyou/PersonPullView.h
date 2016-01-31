@@ -13,5 +13,7 @@
 
 -(id)initwithUserModel:(UserModel*)model;
 @property (nonatomic) UserModel *model;
+@property (nonatomic) BOOL isFriend;
+
 
 @end
