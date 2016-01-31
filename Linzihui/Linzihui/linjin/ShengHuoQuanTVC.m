@@ -547,6 +547,9 @@ static NSString *commentCellID = @"CommentCell";
             cell.nickNameLabel.text = [user objectForKey:@"username"];
             
         }
+            
+            cell.nickNameLabel.adjustsFontSizeToFitWidth = YES;
+            
         
         cell.photoView.photoItemArray = oneModel.image_url;
         
