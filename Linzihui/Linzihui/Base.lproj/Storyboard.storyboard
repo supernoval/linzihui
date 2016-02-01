@@ -4118,6 +4118,104 @@
             </objects>
             <point key="canvasLocation" x="4623.75" y="1431.375"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Gng-K4-SYw">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4dw-bg-4Q6" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hPn-WY-Eyp"/>
+                        <viewControllerLayoutGuide type="bottom" id="FZy-LJ-KXi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sxa-ql-jWI">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Irw-Ye-8fP">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="172" id="d52-8H-4RQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="d52-8H-4RQ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="d52-8H-4RQ"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enG-1C-3gX" customClass="SDPhotoGroup">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="T9g-dd-O1j"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="T9g-dd-O1j"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="T9g-dd-O1j"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="enG-1C-3gX" firstAttribute="top" secondItem="Irw-Ye-8fP" secondAttribute="bottom" constant="22" id="0Rv-uf-TTM"/>
+                            <constraint firstAttribute="trailing" secondItem="Irw-Ye-8fP" secondAttribute="trailing" constant="9" id="7ZA-hD-25U"/>
+                            <constraint firstItem="enG-1C-3gX" firstAttribute="leading" secondItem="Sxa-ql-jWI" secondAttribute="leading" constant="8" id="BC9-FI-qrB"/>
+                            <constraint firstAttribute="trailing" secondItem="enG-1C-3gX" secondAttribute="trailing" constant="9" id="Xif-4I-pJy"/>
+                            <constraint firstItem="Irw-Ye-8fP" firstAttribute="leading" secondItem="Sxa-ql-jWI" secondAttribute="leading" constant="8" id="ddD-e0-gla"/>
+                            <constraint firstItem="Irw-Ye-8fP" firstAttribute="top" secondItem="hPn-WY-Eyp" secondAttribute="bottom" constant="19" id="k8E-nD-Mxb"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Irw-Ye-8fP"/>
+                                <exclude reference="enG-1C-3gX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="7ZA-hD-25U"/>
+                                <exclude reference="ddD-e0-gla"/>
+                                <exclude reference="k8E-nD-Mxb"/>
+                                <exclude reference="0Rv-uf-TTM"/>
+                                <exclude reference="BC9-FI-qrB"/>
+                                <exclude reference="Xif-4I-pJy"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Irw-Ye-8fP"/>
+                                <include reference="enG-1C-3gX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="7ZA-hD-25U"/>
+                                <include reference="ddD-e0-gla"/>
+                                <include reference="k8E-nD-Mxb"/>
+                                <include reference="0Rv-uf-TTM"/>
+                                <include reference="BC9-FI-qrB"/>
+                                <include reference="Xif-4I-pJy"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="detailHeight" destination="d52-8H-4RQ" id="lmw-aG-cG0"/>
+                        <outlet property="detailTV" destination="Irw-Ye-8fP" id="Lm1-yc-7VC"/>
+                        <outlet property="photoView" destination="enG-1C-3gX" id="H4T-TH-dP2"/>
+                        <outlet property="photoViewHeight" destination="T9g-dd-O1j" id="18j-n4-gAM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p0g-u9-SjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5328.75" y="1424.625"/>
+        </scene>
         <!--My Photos View Controller-->
         <scene sceneID="1AA-CR-nPb">
             <objects>

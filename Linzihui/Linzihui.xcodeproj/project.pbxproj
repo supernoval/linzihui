@@ -318,6 +318,7 @@
 		15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */; };
 		15AB5AAF1C1715440070F6DA /* GroupChatListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */; };
 		15AB5AB21C171C550070F6DA /* GroupChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AB11C171C550070F6DA /* GroupChatModel.m */; };
+		15AC4F701C5F24910007329F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AC4F6F1C5F24910007329F /* DetailViewController.m */; };
 		15B6864A1C069B60007EE8CB /* HuodongTVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B686491C069B60007EE8CB /* HuodongTVCViewController.m */; };
 		15B6864E1C069C1B007EE8CB /* PublishActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B6864D1C069C1B007EE8CB /* PublishActivity.m */; };
 		15B7A41F1BE72F760052115F /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B7A4181BE72F760052115F /* sr_refresh.png */; };
@@ -1116,6 +1117,8 @@
 		15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatListTVC.m; sourceTree = "<group>"; };
 		15AB5AB01C171C550070F6DA /* GroupChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatModel.h; sourceTree = "<group>"; };
 		15AB5AB11C171C550070F6DA /* GroupChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatModel.m; sourceTree = "<group>"; };
+		15AC4F6E1C5F24910007329F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		15AC4F6F1C5F24910007329F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		15B686481C069B60007EE8CB /* HuodongTVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuodongTVCViewController.h; sourceTree = "<group>"; };
 		15B686491C069B60007EE8CB /* HuodongTVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuodongTVCViewController.m; sourceTree = "<group>"; };
 		15B6864C1C069C1B007EE8CB /* PublishActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishActivity.h; sourceTree = "<group>"; };
@@ -2797,6 +2800,8 @@
 				15E452C81C36ADF700A6A549 /* HuoDongMapView.m */,
 				15093D5F1C48B5D600BA5C77 /* ShowDetailViewController.h */,
 				15093D601C48B5D600BA5C77 /* ShowDetailViewController.m */,
+				15AC4F6E1C5F24910007329F /* DetailViewController.h */,
+				15AC4F6F1C5F24910007329F /* DetailViewController.m */,
 			);
 			name = huodong;
 			sourceTree = "<group>";
@@ -4037,6 +4042,7 @@
 				150F31561C0FEA5D00E5CC8B /* ZXBitSource.m in Sources */,
 				15FB7FF71BEF6E39007D6EC8 /* ChineseToPinyin.m in Sources */,
 				1506EC301BF860A80010F349 /* SignUpTableView.m in Sources */,
+				15AC4F701C5F24910007329F /* DetailViewController.m in Sources */,
 				15EE46F51BE8644100538EA5 /* ChangeCodeTVC.m in Sources */,
 				150F31F61C0FEA5D00E5CC8B /* ZXingWrapper.m in Sources */,
 				150F31B01C0FEA5D00E5CC8B /* ZXEAN8Reader.m in Sources */,
