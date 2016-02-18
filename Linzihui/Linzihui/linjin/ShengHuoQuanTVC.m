@@ -134,6 +134,8 @@ static NSString *commentCellID = @"CommentCell";
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     
+    [_uiview_comment removeFromSuperview];
+    
     
     
 }

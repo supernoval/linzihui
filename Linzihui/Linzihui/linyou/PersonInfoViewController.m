@@ -16,7 +16,7 @@
 
 
 
-@interface PersonInfoViewController ()
+@interface PersonInfoViewController ()<PullViewDelegate>
 {
     CheckType friendType;
     
@@ -65,6 +65,12 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+     [_pullView removeFromSuperview];
+}
 -(void)getData
 {
     
@@ -403,6 +409,23 @@
     
 }
 
+
+#pragma mark - PullViewDelegate
+-(void)didRemoveFriend
+{
+     [_pullView removeFromSuperview];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+-(void)didAddBlackSheet
+{
+     [_pullView removeFromSuperview];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 
 

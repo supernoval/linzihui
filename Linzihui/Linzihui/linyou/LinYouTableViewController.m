@@ -196,12 +196,16 @@ static NSString *CellId  = @"CellId";
     //section数组为空的title过滤掉，不显示
     for (int i = 0; i < [self.sectionTitles count]; i++) {
         
-        NSArray *array = [_dataSource objectAtIndex:i];
-        
-        if ([array count] > 0) {
+        if (_dataSource.count > i ) {
             
-            [existTitles addObject:[self.sectionTitles objectAtIndex:i]];
+            NSArray *array = [_dataSource objectAtIndex:i];
+            
+            if ([array count] > 0) {
+                
+                [existTitles addObject:[self.sectionTitles objectAtIndex:i]];
+            }
         }
+     
     }
     return existTitles;
 }

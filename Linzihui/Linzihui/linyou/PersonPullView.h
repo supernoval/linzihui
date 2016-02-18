@@ -9,7 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "UserModel.h"
 
+
+@protocol PullViewDelegate <NSObject>
+
+-(void)didRemoveFriend;
+-(void)didAddBlackSheet;
+
+
+
+@end
 @interface PersonPullView : UIView<UIAlertViewDelegate>
+
+@property (nonatomic) id <PullViewDelegate> delegate;
+
 
 -(id)initwithUserModel:(UserModel*)model;
 @property (nonatomic) UserModel *model;

@@ -216,6 +216,13 @@
                     
                     [CommonMethods showDefaultErrorString:@"删除成功"];
                     
+                    if ([self.delegate respondsToSelector:@selector(didRemoveFriend)]) {
+                        
+                        [self.delegate didRemoveFriend];
+                        
+                    }
+                    
+                    
                     [self dismiss];
                     
                 }
@@ -230,6 +237,13 @@
                 BOOL success = [[EaseMob sharedInstance].chatManager blockBuddy:_model.username relationship:eRelationshipBoth];
                 
                 if (success) {
+                    
+                    
+                    if ([self.delegate respondsToSelector:@selector(didAddBlackSheet)]) {
+                        
+                        [self.delegate didAddBlackSheet];
+                        
+                    }
                     
                     [CommonMethods showDefaultErrorString:@"已加入黑名单"];
                     
