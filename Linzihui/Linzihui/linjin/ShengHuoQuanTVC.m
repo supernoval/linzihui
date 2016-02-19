@@ -398,6 +398,7 @@ static NSString *commentCellID = @"CommentCell";
 {
    
     if (indexPath.row == 0) {
+        
         ShengHuoModel *oneModel = [_dataSource objectAtIndex:indexPath.section];
         
         CGFloat photoViewHeight = 0;
@@ -550,6 +551,9 @@ static NSString *commentCellID = @"CommentCell";
             
         }
             
+         
+            
+            
             cell.nickNameLabel.adjustsFontSizeToFitWidth = YES;
             
         
@@ -638,6 +642,12 @@ static NSString *commentCellID = @"CommentCell";
         else  //评论内容
         {
             
+       
+               
+                
+                
+                
+          
             NSDictionary *oneComment = [oneModel.comment objectAtIndex:indexPath.row -1];
             
             CommentModel *_model_comment = [[CommentModel alloc]init];
@@ -655,6 +665,14 @@ static NSString *commentCellID = @"CommentCell";
                 
             }
             
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                     
+                     
+             CGFloat nameWith = [StringHeight widthtWithText:_commentCell.nameLabel.text font:FONT_14 constrainedToHeight:21];
+            
+            _commentCell.nameHeight.constant = nameWith;
+            
             NSString *content = nil;
             
             if (_model_comment.replayToNick.length > 0) {
@@ -668,13 +686,13 @@ static NSString *commentCellID = @"CommentCell";
             }
             _commentCell.commentLabel.text = content;
             
-            
+                });
           
             
             
             return _commentCell;
             
-            
+          
             
         }
         
@@ -712,7 +730,7 @@ static NSString *commentCellID = @"CommentCell";
         _toReplayNick = [replayDict objectForKey:@"username"];
         
     }
-    _textField_comment.placeholder = [NSString stringWithFormat:@"回复:%@",_toReplayNick];
+    _textField_comment.placeholder = [NSString stringWithFormat:@"回复%@:",_toReplayNick];
     
     [self.navigationController.view addSubview:_uiview_comment];
     

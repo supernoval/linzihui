@@ -79,7 +79,7 @@
                 NSInteger times = [[bo objectForKey:@"level"]integerValue];
                 
                 
-                NSInteger level = times/90 ;
+                NSInteger level = times/5 ;
                 
                 NSString *str = nil;
                 

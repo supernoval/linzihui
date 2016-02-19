@@ -84,8 +84,7 @@
     
 
     
-    //记录等级
-    [BmobHelper saveLevelRecord];
+   
     
     
     // 要使用百度地图，请先启动BaiduMapManager

@@ -13,4 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameHeight;
+
+
 @end

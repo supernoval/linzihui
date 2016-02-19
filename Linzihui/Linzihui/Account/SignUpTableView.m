@@ -55,7 +55,7 @@
     
     object.username = _phone;
     object.password = _codeTF.text;
-    object.mobilePhoneNumber = _phone;
+//    object.mobilePhoneNumber = _phone;
     
     
     [object signUpInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
@@ -65,6 +65,27 @@
         
         if (isSuccessful) {
             
+            
+            NSString *objectID = object.objectId;
+            
+            objectID = [objectID substringToIndex:4];
+            
+            [object setObject:objectID forKey:@"inviteCode"];
+            
+            [object saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    NSLog(@"success login string:%@",objectID);
+                    
+                }
+                else
+                {
+                    NSLog(@"error:%@",error);
+                    
+                }
+                
+            }];
             [CommonMethods showDefaultErrorString:@"注册成功"];
             
             [self.navigationController popToRootViewControllerAnimated:YES];

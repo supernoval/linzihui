@@ -122,7 +122,10 @@
 }
 - (IBAction)registAction:(id)sender {
     
-
+  
+    
+ 
+    
     
     if (![CommonMethods checkTel:_phoneTF.text]) {
         
