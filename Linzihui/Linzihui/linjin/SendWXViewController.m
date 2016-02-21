@@ -120,6 +120,57 @@
     
     [_inputTextView resignFirstResponder];
     
+    if (_image_list.count == 0) {
+        
+        NSDictionary *dic = [model toDictionary];
+        
+        BmobObject *_huodongOB = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+        
+        [_huodongOB addObjectsFromArray:@[dic] forKey:@"comment"];
+        
+        
+        [_huodongOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            [MyProgressHUD dismiss];
+            
+            
+            if (isSuccessful) {
+                
+                NSMutableArray *muArray = [[NSMutableArray alloc]init];
+                
+                [muArray addObjectsFromArray:_huodong.comment];
+                
+                [muArray addObject:dic];
+                
+                _huodong.comment = muArray;
+                
+                if (_block) {
+                    
+                    _block(YES,_huodong);
+                    
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+                
+                
+                
+                
+                
+            }
+            else
+            {
+                if (_block) {
+                    
+                    _block(YES,_huodong);
+                    
+                }
+                
+                [CommonMethods showDefaultErrorString:@"发送失败"];
+                
+            }
+        }];
+    }
+    else
+    {
     
     [CommonMethods upLoadPhotos:_image_list resultBlock:^(BOOL success, NSArray *results) {
         
@@ -191,7 +242,7 @@
         }
     }];
     
-    
+    }
     
 
     
