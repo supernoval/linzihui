@@ -33,4 +33,4 @@
 
 
 //等级
-#define kDengJi                       @"DengJi"
+#define kLevel                       @"Level"

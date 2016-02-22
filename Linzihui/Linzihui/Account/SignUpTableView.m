@@ -30,6 +30,13 @@
 
 - (IBAction)registAction:(id)sender {
     
+    if (_nickNameLabel.text.length == 0) {
+        
+        [MyProgressHUD showError:@"请输入昵称"];
+        
+        return;
+        
+    }
     if (_codeTF.text.length > 16 || _codeTF.text.length == 0) {
         
         [MyProgressHUD showError:@"请输入小于16位的密码"];
@@ -55,6 +62,8 @@
     
     object.username = _phone;
     object.password = _codeTF.text;
+    [object setObject:_nickNameLabel.text forKey:@"nickName"];
+    
 //    object.mobilePhoneNumber = _phone;
     
     
@@ -66,26 +75,18 @@
         if (isSuccessful) {
             
             
-            NSString *objectID = object.objectId;
+            //邀请码
+            NSString *invitecode = _yaoqingmaTF.text;
             
-            objectID = [objectID substringToIndex:4];
-            
-            [object setObject:objectID forKey:@"inviteCode"];
-            
-            [object saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-               
-                if (isSuccessful) {
-                    
-                    NSLog(@"success login string:%@",objectID);
-                    
-                }
-                else
-                {
-                    NSLog(@"error:%@",error);
-                    
-                }
+            if (invitecode.length > 0) {
                 
-            }];
+                [BmobHelper addLevel:invitecode];
+                
+                
+            }
+            
+            
+            
             [CommonMethods showDefaultErrorString:@"注册成功"];
             
             [self.navigationController popToRootViewControllerAnimated:YES];

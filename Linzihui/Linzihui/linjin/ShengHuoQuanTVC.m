@@ -659,6 +659,7 @@ static NSString *commentCellID = @"CommentCell";
             
             _commentCell.nameLabel.text = _model_comment.nick;
             
+            
             if (!_model_comment.nick) {
                 
                 _commentCell.nameLabel.text = _model_comment.username;
@@ -677,7 +678,7 @@ static NSString *commentCellID = @"CommentCell";
             
             if (_model_comment.replayToNick.length > 0) {
                 
-                content = [NSString stringWithFormat:@"回复:%@ %@",_model_comment.replayToNick,_model_comment.content];
+                content = [NSString stringWithFormat:@"回复%@:%@",_model_comment.replayToNick,_model_comment.content];
             }
             else
             {
@@ -973,6 +974,11 @@ static NSString *commentCellID = @"CommentCell";
     
 }
 
+
+-(void)showPersoninfo:(UIButton*)sender
+{
+    
+}
 
 -(void)dealloc
 {

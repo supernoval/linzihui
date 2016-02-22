@@ -19,43 +19,60 @@
 {
     
     
-    //增加打开次数
+
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin])
-    {
-        
-        NSDate *lastLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastLaunchDate];
-        NSDate *now = [NSDate date];
-        now = [CommonMethods getYYYMMddFromString:[CommonMethods getYYYYMMddFromDefaultDateStr:now]];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
         
         
-        if (![lastLaunchDate isEqualToDate:now]) {
+    
+    BmobUser *_currentUser = [BmobUser getCurrentUser];
+    
+    NSString *username = _currentUser.username;
+    
+    NSString *inviteCode = _currentUser.objectId;
+    
+    inviteCode = [inviteCode substringToIndex:4];
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:kLevel];
+    
+    
+    [query whereKey:@"username" equalTo:username];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (array.count > 0) {
+        
             
             
-            BmobUser *currentUser = [BmobUser getCurrentUser];
+        }
+        else
+        {
+            BmobObject *levelOB = [BmobObject objectWithClassName:kLevel];
             
-            [currentUser incrementKey:@"level"];
+            [levelOB setObject:username forKey:@"username"];
             
-            [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            [levelOB setObject:inviteCode forKey:@"invitecode"];
+            
+            [levelOB saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                
                 if (isSuccessful) {
                     
+                    NSLog(@"level saved");
                     
-                }
-                else
+                    
+                }else
                 {
-                    NSLog(@"error:%@",error);
                     
                 }
                 
             }];
-      
-            
         }
-  
-        
-        
-     }
+    }];
+    
+    
+    }
+    
+    
     
     
 }
@@ -64,7 +81,7 @@
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
         
-        BmobQuery *query = [BmobQuery queryForUser];
+        BmobQuery *query = [BmobQuery queryWithClassName:kLevel];
         
         [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
         
@@ -76,7 +93,7 @@
                 
                 BmobObject *bo = [array firstObject];
                 
-                NSInteger times = [[bo objectForKey:@"level"]integerValue];
+                NSInteger times = [[bo objectForKey:@"levelNum"]integerValue];
                 
                 
                 NSInteger level = times/5 ;
@@ -160,7 +177,34 @@
     }
 
 }
-
+//注册时给别人添加等级
++(void)addLevel:(NSString*)invitecode
+{
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:kLevel];
+    
+    [query whereKey:@"invitecode" equalTo:invitecode];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (array.count > 0) {
+            
+            BmobObject *ob = [array firstObject];
+            
+            [ob incrementKey:@"levelNum"];
+            
+            [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    NSLog(@"邀请码成功");
+                    
+                    
+                }
+            }];
+        }
+    }];
+}
 #pragma mark - 获取当前用户 UserModel
 +(UserModel*)getCurrentUserModel
 {
