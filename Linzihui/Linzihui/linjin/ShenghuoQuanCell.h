@@ -12,6 +12,10 @@
 
 
 @interface ShenghuoQuanCell : UITableViewCell
+
+
+@property (weak, nonatomic) IBOutlet UIButton *headButton;
+
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentextLabel;

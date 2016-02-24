@@ -15,6 +15,8 @@
 
 @property (nonatomic,assign) NSInteger isShuRenQuan;  // 0生活圈   1 熟人圈 2相册自己   3相册别人的
 @property (nonatomic)  NSString *username;
+@property (nonatomic) NSArray *myFollows;  //我关注的人的 usernames
+
 
 
 

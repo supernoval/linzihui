@@ -181,7 +181,7 @@
     
     NSTimeInterval time = [startTime timeIntervalSinceNow];
     
-    if (time < 0)
+    if (time > 0)
     {
         
         [CommonMethods showDefaultErrorString:@"*温馨提示:活动开始后才能记录!"];

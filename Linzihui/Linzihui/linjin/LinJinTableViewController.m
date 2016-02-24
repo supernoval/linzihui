@@ -128,16 +128,41 @@ static NSString *CellID = @"CellID";
     {
         
         
-        ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+        //先获取我关注的人 username
+        [MyProgressHUD showProgress];
+        
+        BmobQuery *queryfollow = [BmobQuery queryWithClassName:kFollowTableName];
+        
+        [queryfollow whereKey:@"userObjectId" equalTo:[BmobUser getCurrentUser].objectId];
+        
+        [queryfollow findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            [MyProgressHUD dismiss];
+            
+            if (array.count > 0) {
+                
+                BmobObject *ob = [array firstObject];
+                NSArray *myFollows = [ob objectForKey:@"myFollows"];
+                
+                
+                ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+                
+                
+                _shengHuoquan.isShuRenQuan = 0;
+                
+                _shengHuoquan.hidesBottomBarWhenPushed = YES;
+                
+                _shengHuoquan.myFollows = myFollows;
+                
+                
+                
+                [self.navigationController pushViewController:_shengHuoquan animated:YES];
+                
+            }
+        }];
         
         
-        _shengHuoquan.isShuRenQuan = 0;
-        
-        _shengHuoquan.hidesBottomBarWhenPushed = YES;
-        
-        
-        
-        [self.navigationController pushViewController:_shengHuoquan animated:YES];
+    
         
         
     }
@@ -146,6 +171,7 @@ static NSString *CellID = @"CellID";
     if (indexPath.section == 1)//邻近活动
     {
         
+   
         HuodongTVCViewController *_huodongTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"HuodongTVCViewController"];
         
         _huodongTVC.hidesBottomBarWhenPushed = YES;

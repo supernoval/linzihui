@@ -33,7 +33,7 @@ typedef enum{
 +(BOOL)isBuddyWithUsername:(NSString*)userName;
 
 #pragma mark - 创建群组 
-+ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg result:(void(^)(BOOL success,EMGroup*group))result;
++ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg friends:(NSArray*)friends result:(void(^)(BOOL success,EMGroup*group))result;
 
 #pragma  mark - 邀请加入群
 + (void)inviteBuddyJoinGroup;

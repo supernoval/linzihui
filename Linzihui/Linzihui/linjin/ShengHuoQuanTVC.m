@@ -9,6 +9,8 @@
 #import "ShengHuoQuanTVC.h"
 #import "SendWXViewController.h"
 #import "ShengHuoModel.h"
+#import "PersonInfoViewController.h"
+
 
 static NSString *contentCell = @"ShenghuoQuanCell";
 static NSString *commentCellID = @"CommentCell";
@@ -261,6 +263,9 @@ static NSString *commentCellID = @"CommentCell";
         //    附近 3公里 条件限制
         [query whereKey:@"location" nearGeoPoint:_currentPoint  withinKilometers:3.0];
         
+        [query whereKey:@"username" containedIn:_myFollows];
+        
+        
     }
     
     else if (_isShuRenQuan == 2)
@@ -483,6 +488,7 @@ static NSString *commentCellID = @"CommentCell";
             
         ShenghuoQuanCell *cell = [tableView dequeueReusableCellWithIdentifier:contentCell];
         
+        cell.contentView.tag = indexPath.section;
             
         //时间
         NSString *timeStr = [CommonMethods timeStringFromNow:oneModel.createdAt];
@@ -492,6 +498,9 @@ static NSString *commentCellID = @"CommentCell";
         [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[user objectForKey:@"headImageURL"]]
                               placeholderImage:kDefaultHeadImage];
         
+        
+        [cell.headButton addTarget:self action:@selector(showPublisher:) forControlEvents:UIControlEventTouchUpInside];
+            
         
        //等级
          [BmobHelper getLevel:^(NSString *levelStr) {
@@ -655,7 +664,15 @@ static NSString *commentCellID = @"CommentCell";
             
             CommentCell *_commentCell = [tableView dequeueReusableCellWithIdentifier:commentCellID];
             
+            _commentCell.contentView.tag = indexPath.section;
+            
+            
             [_commentCell.headButton sd_setImageWithURL:[NSURL URLWithString:_model_comment.headImageURL] forState:UIControlStateNormal placeholderImage:kDefaultHeadImage];
+            
+            [_commentCell.headButton setTitle:[NSString stringWithFormat:@"%ld",indexPath.row-1] forState:UIControlStateNormal];
+            
+            [_commentCell.headButton addTarget:self action:@selector(showCommenderPersonInfo:) forControlEvents:UIControlEventTouchUpInside];
+            
             
             _commentCell.nameLabel.text = _model_comment.nick;
             
@@ -974,11 +991,54 @@ static NSString *commentCellID = @"CommentCell";
     
 }
 
-
--(void)showPersoninfo:(UIButton*)sender
+//显示评论个人信息
+-(void)showCommenderPersonInfo:(UIButton*)sender
 {
+    NSInteger section = [sender superview].tag;
+    
+    NSInteger row = [sender.titleLabel.text integerValue];
+    
+    ShengHuoModel *oneModel = [_dataSource objectAtIndex:section];
+    
+    NSDictionary *oneComment = [oneModel.comment objectAtIndex:row];
+    
+    CommentModel *_model_comment = [[CommentModel alloc]init];
+    [_model_comment setValuesForKeysWithDictionary:oneComment];
+    
+    [self showPersonInfo:_model_comment.username];
+    
+    
+    
     
 }
+
+//显示发布者个人信息
+-(void)showPublisher:(UIButton*)sender
+{
+    
+    NSInteger tag = [sender superview].tag;
+    
+    ShengHuoModel *oneModel = [_dataSource objectAtIndex:tag];
+    
+    BmobUser *user = oneModel.publisher;
+    
+    [self showPersonInfo:[user objectForKey:@"username"]];
+    
+}
+
+
+//显示个人信息
+-(void)showPersonInfo:(NSString*)username
+{
+    PersonInfoViewController *_personInfo = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+    
+    _personInfo.username = username;
+    
+    
+    [self.navigationController pushViewController:_personInfo animated:YES];
+    
+}
+
 
 -(void)dealloc
 {
