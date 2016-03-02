@@ -153,7 +153,7 @@ static EMHelper *_helper;
     
     
     EMGroupStyleSetting *setting = [[EMGroupStyleSetting alloc]init];
-    setting.groupStyle = eGroupStyle_PrivateMemberCanInvite;
+    setting.groupStyle = eGroupStyle_PublicJoinNeedApproval;
     
     [[EaseMob sharedInstance].chatManager asyncCreateGroupWithSubject:title description:description invitees:invitees initialWelcomeMessage:welcomeMsg styleSetting:setting completion:^(EMGroup *group, EMError *error) {
         

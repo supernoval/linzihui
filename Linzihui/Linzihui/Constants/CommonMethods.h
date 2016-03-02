@@ -102,7 +102,7 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 +(void)addLine:(float)x startY:(float)y color:(UIColor *)color toView:(UIView *)parentView;
 
 
-#pragma mark - 计算距离
+#pragma mark - 计算距离 返回 米
 +(CGFloat)distanceFromLocation:(CGFloat)latitude  longitude:(CGFloat)longitude;
 
 #pragma  mark - 得到距离字符串
