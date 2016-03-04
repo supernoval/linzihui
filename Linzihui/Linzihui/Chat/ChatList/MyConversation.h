@@ -32,13 +32,17 @@
 @property (nonatomic,strong)  NSString *objectId;
 @property (nonatomic,strong) NSString *groupHeadImage;
 
-@property (nonatomic,assign) NSInteger messageType; // 0 单聊  1群聊   2活动消息
+@property (nonatomic,assign) NSInteger messageType; // 0 单聊  1群聊   2活动消息 3申请入群信息
 
 
 @property (nonatomic,strong) NSString *message;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) BmobObject *huodong;
 @property (nonatomic,assign) NSInteger status;
+
+//拒绝加群理由
+@property (nonatomic,weak)  NSString *reason;
+
 
 
 

@@ -28,11 +28,18 @@
 static NSString *cellId = @"ChatListCell";
 static NSString *headCellID = @"CellID";
 
-@interface ChatListTableViewController ()<EMChatManagerDelegate,UITableViewDataSource,UITableViewDelegate,IChatManagerDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
+@interface ChatListTableViewController ()<EMChatManagerDelegate,UITableViewDataSource,UITableViewDelegate,IChatManagerDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UIAlertViewDelegate>
 {
     NSMutableArray *_conversations;
     
     NSMutableArray *_searchResults;
+    
+    NSMutableArray *_applyJoinMsgS;
+    
+    
+    UIAlertView *_acceptAlertView;
+    
+    
     
     
     
@@ -58,8 +65,9 @@ static NSString *headCellID = @"CellID";
     
     _conversations = [[NSMutableArray alloc]init];
     _searchResults = [[NSMutableArray alloc]init];
+    _applyJoinMsgS = [[NSMutableArray alloc]init];
     
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivegroupNoti:) name:kCreategroupSuccessNoti object:nil];
     
     
@@ -263,7 +271,7 @@ static NSString *headCellID = @"CellID";
                 
              }
             
-            else
+            else if ( model.messageType ==2)
             {
                 
                 NSArray *photoURL = [model.huodong objectForKey:@"photoURL"];
@@ -276,11 +284,23 @@ static NSString *headCellID = @"CellID";
                 cell.timeLabel.adjustsFontSizeToFitWidth = YES;
                 
              }
+            else if (model.messageType == 3)
+            {
+                
+                cell.headImageView.image = kDefaultHeadImage;
+                
+                cell.titleLabel.text = [NSString stringWithFormat:@"申请加群信息"];
+                
+                cell.lastestChatlabel.text = [NSString stringWithFormat:@"%@申请加入%@",model.username,model.subTitle];
+                
+                
+                
+            }
             
             
             return cell;
             
-        }
+         }
     }
     
     
@@ -392,7 +412,7 @@ static NSString *headCellID = @"CellID";
             
          }
         
-        else
+        else if(model.messageType == 2)
         {
             
             NSArray *photoURL = [model.huodong objectForKey:@"photoURL"];
@@ -405,6 +425,18 @@ static NSString *headCellID = @"CellID";
             
             cell.timeLabel.adjustsFontSizeToFitWidth = YES;
           
+        }
+        else if (model.messageType == 3)
+        {
+            
+            cell.headImageView.image = kDefaultHeadImage;
+            
+            cell.titleLabel.text = [NSString stringWithFormat:@"申请加群信息"];
+            
+            cell.lastestChatlabel.text = [NSString stringWithFormat:@"%@申请加入%@",model.username,model.subTitle];
+            
+            
+            
         }
 
     
@@ -561,6 +593,20 @@ static NSString *headCellID = @"CellID";
             
             
            
+            
+            
+            
+        }
+        
+        else if (model.messageType == 3)
+        {
+            
+            _acceptAlertView = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"是否同意%@加入%@?",model.username,model.subTitle] delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
+            _acceptAlertView.tag = indexPath.section -1;
+            
+            [_acceptAlertView show];
+            
+            
             
             
             
@@ -790,6 +836,9 @@ static NSString *headCellID = @"CellID";
             }
             
             
+            //将申请加群的信息也显示出来
+            [_conversations addObjectsFromArray:_applyJoinMsgS];
+            
             [self.tableView reloadData];
             
             
@@ -812,6 +861,40 @@ static NSString *headCellID = @"CellID";
 - (void)didUpdateGroupList:(NSArray *)allGroups error:(EMError *)error
 {
     [self reFreshDataSource];
+}
+
+-(void)didReceiveApplyToJoinGroup:(NSString *)groupId groupname:(NSString *)groupname applyUsername:(NSString *)username reason:(NSString *)reason error:(EMError *)error
+{
+    MyConversation *applyInfo = [[MyConversation alloc]init];
+    
+    applyInfo.groupId = groupId;
+    
+    applyInfo.subTitle = groupname;
+    
+    applyInfo.message = reason;
+    
+    applyInfo.username = username;
+    applyInfo.messageType = 3;
+    
+    
+    [_applyJoinMsgS addObject:applyInfo];
+    
+    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    
+    [muArray addObjectsFromArray:_applyJoinMsgS];
+    
+    [muArray addObjectsFromArray:_conversations];
+    
+    _conversations = muArray;
+    
+
+    
+    [self.tableView reloadData];
+    
+    
+    
+    
+    
 }
 
 
@@ -929,6 +1012,35 @@ static NSString *headCellID = @"CellID";
         
         
         [_mysearchConroller.searchResultsTableView reloadData];
+        
+    }
+    
+}
+
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    
+    if (alertView == _acceptAlertView ) {
+        
+        MyConversation *model = [_conversations objectAtIndex:alertView.tag];
+        
+        if (buttonIndex == 0) {
+            
+            [EMHelper rejectJoinGroupApplyWithModel:model result:^(BOOL success, NSString *message) {
+                
+            }];
+            
+        }
+        else
+        {
+            [EMHelper agreadJoinGroupApplyWithModel:model result:^(BOOL success, EMGroup *group) {
+               
+                
+            }];
+        }
         
     }
     

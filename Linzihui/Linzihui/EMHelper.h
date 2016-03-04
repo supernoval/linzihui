@@ -17,6 +17,8 @@ typedef enum{
 #import "EaseMob.h"
 #import "ConstantsHeaders.h"
 #import "InvitationManager.h"
+#import "ModelHeader.h"
+
 
 @interface EMHelper : NSObject<IChatManagerDelegate>
 
@@ -40,6 +42,19 @@ typedef enum{
 
 #pragma mark - 添加群
 +(void)joinGroup:(NSString*)groupId username:(NSString*)username result:(void(^)(BOOL success,EMGroup*group))result;
+
+#pragma mark - 申请加群
++(void)applyJoinGroup:(NSString*)groupId groupName:(NSString*)groupName username:(NSString*)username message:(NSString*)msg result:(void(^)(BOOL success,EMGroup*group))result;
+
+#pragma mark - 同意加群
++(void)agreadJoinGroupApplyWithModel:(MyConversation*)converModel result:(void(^)(BOOL success,EMGroup*group))result;
+
+#pragma mark - 拒绝加群申请
++(void)rejectJoinGroupApplyWithModel:(MyConversation*)converModel result:(void(^)(BOOL success,NSString*message))result;
+
+
+                                                                              
+
 
 
 

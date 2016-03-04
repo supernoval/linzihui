@@ -310,5 +310,63 @@ static EMHelper *_helper;
     } onQueue:nil];
 }
 
+#pragma mark - 申请加群
++(void)applyJoinGroup:(NSString*)groupId groupName:(NSString*)groupName username:(NSString*)username message:(NSString*)msg result:(void(^)(BOOL success,EMGroup*group))result
+{
+    [[EaseMob sharedInstance].chatManager asyncApplyJoinPublicGroup:groupId withGroupname:groupName message:msg completion:^(EMGroup *group, EMError *error) {
+        
+        if (group) {
+            
+            if (result) {
+                
+                result(YES,group);
+                
+            }
+        }
+        else
+        {
+            if (result) {
+                
+                result(NO,nil);
+                
+            }
+        }
+        
+    } onQueue:nil];
+    
+}
+
+#pragma mark - 同意加群
++(void)agreadJoinGroupApplyWithModel:(MyConversation*)converModel result:(void(^)(BOOL success,EMGroup*group))result
+{
+    [[EaseMob sharedInstance].chatManager asyncAcceptApplyJoinGroup:converModel.groupId groupname:converModel.subTitle applicant:converModel.username completion:^(EMError *error) {
+        
+        if (!error) {
+            
+            if (result) {
+                
+                result(YES,nil);
+            }
+        }
+        else
+        {
+            if (result) {
+                
+                result(NO,nil);
+                
+            }
+        }
+        
+    } onQueue:nil];
+}
+
+#pragma mark - 拒绝加群申请
++(void)rejectJoinGroupApplyWithModel:(MyConversation*)converModel result:(void(^)(BOOL success,NSString*message))result
+{
+    
+    [[EaseMob sharedInstance].chatManager rejectApplyJoinGroup:converModel.groupId groupname:converModel.subTitle toApplicant:converModel.username reason:converModel.reason];
+    
+    
+}
 
 @end

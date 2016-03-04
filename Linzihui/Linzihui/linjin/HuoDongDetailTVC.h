@@ -44,6 +44,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *endRegistTimeLabel;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *ageRequest;
+
+@property (weak, nonatomic) IBOutlet UILabel *familyNum;
+
+
+
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *attendButton;

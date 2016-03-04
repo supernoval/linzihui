@@ -438,7 +438,7 @@
     
     _detailheight.constant = detailHeight ;
     
-     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 600 + photoViewHeight + detailHeight);
+     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 660 + photoViewHeight + detailHeight);
     
     
     _backGroundImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -463,7 +463,12 @@
     _distanceLabel.text = [CommonMethods distanceStringWithLatitude:[[_huodong.location valueForKey:@"latitude"]floatValue] longitude:[[_huodong.location valueForKey:@"longitude"]floatValue]];
     
     
-   
+   //需要家庭数
+    _familyNum.text = _huodong.needFamilyNum;
+    
+    //年龄要求
+    _ageRequest.text = _huodong.ageRequest;
+    
     
     [_publishButton setTitle:_huodong.realName forState:UIControlStateNormal];
     

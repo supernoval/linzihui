@@ -471,6 +471,7 @@
 		15CFFE791C433A46008A0D97 /* libEaseMobClientSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CFFE781C433A46008A0D97 /* libEaseMobClientSDK.a */; };
 		15CFFE7F1C4390BD008A0D97 /* HuodongCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */; };
 		15D05C101C0433F600E0EA0D /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */; };
+		15D0ADE41C8959080098E3CE /* ApplyJoinGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0ADE31C8959080098E3CE /* ApplyJoinGroupViewController.m */; };
 		15D75F011C41F90800ACC0E0 /* HongBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */; };
 		15D75F041C41FC9200ACC0E0 /* FriendEditedTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F031C41FC9200ACC0E0 /* FriendEditedTVC.m */; };
 		15E4524B1C366BE800A6A549 /* callRing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 15E4524A1C366BE800A6A549 /* callRing.mp3 */; };
@@ -1429,6 +1430,8 @@
 		15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuodongCommentCell.m; sourceTree = "<group>"; };
 		15D05C0E1C0433F600E0EA0D /* MyPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPhotosViewController.h; sourceTree = "<group>"; };
 		15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPhotosViewController.m; sourceTree = "<group>"; };
+		15D0ADE21C8959080098E3CE /* ApplyJoinGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyJoinGroupViewController.h; sourceTree = "<group>"; };
+		15D0ADE31C8959080098E3CE /* ApplyJoinGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyJoinGroupViewController.m; sourceTree = "<group>"; };
 		15D75EFF1C41F90800ACC0E0 /* HongBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoViewController.h; sourceTree = "<group>"; };
 		15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoViewController.m; sourceTree = "<group>"; };
 		15D75F021C41FC9200ACC0E0 /* FriendEditedTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendEditedTVC.h; sourceTree = "<group>"; };
@@ -1651,6 +1654,7 @@
 		1506EC271BF82C8B0010F349 /* mygrouplist */ = {
 			isa = PBXGroup;
 			children = (
+				15D0ADE11C8958790098E3CE /* applyJoinGroup */,
 				1531670A1BF4639E00B88CF4 /* wechatShareController */,
 				1506EC281BF82CAA0010F349 /* MygroupListTVC.h */,
 				1506EC291BF82CAA0010F349 /* MygroupListTVC.m */,
@@ -3476,6 +3480,15 @@
 			name = photos;
 			sourceTree = "<group>";
 		};
+		15D0ADE11C8958790098E3CE /* applyJoinGroup */ = {
+			isa = PBXGroup;
+			children = (
+				15D0ADE21C8959080098E3CE /* ApplyJoinGroupViewController.h */,
+				15D0ADE31C8959080098E3CE /* ApplyJoinGroupViewController.m */,
+			);
+			name = applyJoinGroup;
+			sourceTree = "<group>";
+		};
 		15D75EFE1C41F8EF00ACC0E0 /* hongbao */ = {
 			isa = PBXGroup;
 			children = (
@@ -4076,6 +4089,7 @@
 				1530E8441BFC6B2100A78DB5 /* ShengHuoQuanTVC.m in Sources */,
 				15B7A4591BE72FE30052115F /* UIViewController+HUD.m in Sources */,
 				15D75F011C41F90800ACC0E0 /* HongBaoViewController.m in Sources */,
+				15D0ADE41C8959080098E3CE /* ApplyJoinGroupViewController.m in Sources */,
 				150F31A11C0FEA5D00E5CC8B /* ZXAbstractRSSReader.m in Sources */,
 				150F31C71C0FEA5D00E5CC8B /* ZXPDF417Codeword.m in Sources */,
 				15B7A4A41BE72FEE0052115F /* MessageModel.m in Sources */,
