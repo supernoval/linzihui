@@ -127,40 +127,54 @@ static NSString *CellID = @"CellID";
     if (indexPath.section == 0) // 生活圈
     {
         
+        ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+        
+        
+        _shengHuoquan.isShuRenQuan = 0;
+        
+        _shengHuoquan.hidesBottomBarWhenPushed = YES;
+        
+//        _shengHuoquan.myFollows = myFollows;
+        
+        
+        
+        [self.navigationController pushViewController:_shengHuoquan animated:YES];
+        
         
         //先获取我关注的人 username
-        [MyProgressHUD showProgress];
-        
-        BmobQuery *queryfollow = [BmobQuery queryWithClassName:kFollowTableName];
-        
-        [queryfollow whereKey:@"userObjectId" equalTo:[BmobUser getCurrentUser].objectId];
-        
-        [queryfollow findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-            
-            [MyProgressHUD dismiss];
-            
-            if (array.count > 0) {
-                
-                BmobObject *ob = [array firstObject];
-                NSArray *myFollows = [ob objectForKey:@"myFollows"];
-                
-                
-                ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
-                
-                
-                _shengHuoquan.isShuRenQuan = 0;
-                
-                _shengHuoquan.hidesBottomBarWhenPushed = YES;
-                
-                _shengHuoquan.myFollows = myFollows;
-                
-                
-                
-                [self.navigationController pushViewController:_shengHuoquan animated:YES];
-                
-            }
-        }];
-        
+//        [MyProgressHUD showProgress];
+//        
+//        
+//        BmobQuery *queryfollow = [BmobQuery queryWithClassName:kFollowTableName];
+//        
+//        [queryfollow whereKey:@"userObjectId" equalTo:[BmobUser getCurrentUser].objectId];
+//        
+//        [queryfollow findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+//            
+//            [MyProgressHUD dismiss];
+//            
+//            if (array.count > 0) {
+//                
+//                BmobObject *ob = [array firstObject];
+//                NSArray *myFollows = [ob objectForKey:@"myFollows"];
+//                
+//                
+//                ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+//                
+//                
+//                _shengHuoquan.isShuRenQuan = 0;
+//                
+//                _shengHuoquan.hidesBottomBarWhenPushed = YES;
+//                
+//                _shengHuoquan.myFollows = myFollows;
+//                
+//                
+//                
+//                [self.navigationController pushViewController:_shengHuoquan animated:YES];
+//                
+//            }
+//        }];
+//        
         
     
         

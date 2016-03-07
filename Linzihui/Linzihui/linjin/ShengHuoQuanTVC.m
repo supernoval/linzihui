@@ -263,7 +263,7 @@ static NSString *commentCellID = @"CommentCell";
         //    附近 3公里 条件限制
         [query whereKey:@"location" nearGeoPoint:_currentPoint  withinKilometers:3.0];
         
-        [query whereKey:@"username" containedIn:_myFollows];
+//        [query whereKey:@"username" containedIn:_myFollows];
         
         
     }
