@@ -159,12 +159,16 @@ static EMHelper *_helper;
         
         if (!error && group) {
             
+            BmobUser *currentUser = [BmobUser getCurrentUser];
+            
             
             BmobObject *_groupOb = [[BmobObject alloc]initWithClassName:kChatGroupTableName];
             
             [_groupOb setObject:group.groupId forKey:@"groupId"];
             
             [_groupOb setObject:group.owner forKey:@"owner_username"];
+            
+            [_groupOb setObject:currentUser forKey:@"owner"];
             
             [_groupOb setObject:group.groupSubject forKey:@"subTitle"];
             [_groupOb setObject:group.description forKey:@"description"];
