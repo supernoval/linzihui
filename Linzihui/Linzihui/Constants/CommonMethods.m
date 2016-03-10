@@ -551,6 +551,8 @@
         return [NSString stringWithFormat:@"%.2f公里",dis/1000.0];
         
     }
+    
+    
 }
 
 +(CGFloat)distanceFromLocation:(CGFloat)latitude  longitude:(CGFloat)longitude

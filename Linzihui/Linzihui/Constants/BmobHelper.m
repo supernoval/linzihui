@@ -1070,7 +1070,7 @@
     
     [_query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
-        if (!error && array.count > 0) {
+        if ( array.count > 0 && array) {
             
             NSMutableArray *muArray = [[NSMutableArray alloc]init];
             

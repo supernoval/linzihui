@@ -85,7 +85,21 @@
                 
             }
             
+            //添加关注信息
+            BmobObject * _followOb = [[BmobObject alloc]initWithClassName:@"Follow"];
             
+            BmobUser *currentUser = [BmobUser getCurrentUser];
+            
+            [_followOb setObject:currentUser.objectId forKey:@"userObjectId"];
+            
+            [_followOb saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    NSLog(@"保存关注列表成功");
+                    
+                }
+            }];
             
             [CommonMethods showDefaultErrorString:@"注册成功"];
             
