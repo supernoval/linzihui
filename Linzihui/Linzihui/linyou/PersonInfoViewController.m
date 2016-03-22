@@ -82,8 +82,6 @@
             
            
             
-           
-            
             
             [_headImageView sd_setImageWithURL:[NSURL URLWithString:_model.headImageURL] placeholderImage:kDefaultHeadImage];
             
@@ -334,6 +332,27 @@
     }
     else
     {
+        
+        
+
+        BmobGeoPoint *otherpoint = _model.location;
+        
+        CLLocationCoordinate2D otherCoord = CLLocationCoordinate2DMake([[otherpoint valueForKey:@"latitude"]floatValue], [[otherpoint valueForKey:@"longitude"]floatValue]);
+        
+        CGFloat distance = [CommonMethods distanceFromLocation:otherCoord.latitude longitude:otherCoord.longitude];
+        
+        NSLog(@"distance:%.2f",distance);
+        
+        if (distance > 3000) {
+            
+            [CommonMethods showDefaultErrorString:@"只能关注3公里范围的人"];
+            
+            return;
+            
+        }
+        
+        
+        
         [BmobHelper addFollowWithFollowedUserModel:_model result:^(BOOL success) {
            
             

@@ -8,6 +8,7 @@
 
 #import "BaseTableViewController.h"
 
+
 @interface GroupChatListTVC : BaseTableViewController
 
 @property (nonatomic) BOOL isNearGroup;

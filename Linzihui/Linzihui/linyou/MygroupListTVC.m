@@ -8,6 +8,7 @@
 
 #import "MygroupListTVC.h"
 #import "ChatViewController.h"
+#import "ApplyJoinGroupViewController.h"
 
 
 @interface MygroupListTVC ()
@@ -118,6 +119,12 @@
     } onQueue:nil];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 60.0;
+    
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -221,38 +228,49 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+     GroupChatModel *selectedGroup = [_groupListArray objectAtIndex:indexPath.section];
     
-    
-  
-    GroupChatModel *selectedGroup = [_groupListArray objectAtIndex:indexPath.section];
-    
-    EMError *error = nil;
-    
-    EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:selectedGroup.groupId error:&error];
-    
-    if (error) {
+    if (_isNearGroup) {
         
-        [CommonMethods showDefaultErrorString:error.description];
+        ApplyJoinGroupViewController *_applyJoinGroupVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplyJoinGroupViewController"];
         
-        return;
+        _applyJoinGroupVC.groupModel = selectedGroup;
+        
+        [self.navigationController pushViewController:_applyJoinGroupVC animated:YES];
         
     }
-    
-    ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:selectedGroup.groupId isGroup:YES];
-    chatController.title = selectedGroup.subTitle;
-    chatController.subTitle = selectedGroup.subTitle;
-    chatController.hidesBottomBarWhenPushed = YES;
-    chatController.group = group ;
-    chatController.groupHeadImageURL = selectedGroup.groupHeadImage;
-    
-    [self.navigationController pushViewController:chatController animated:YES];
-    
-   
-    
-    
-    
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    else
+    {
+       
+        
+        EMError *error = nil;
+        
+        EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:selectedGroup.groupId error:&error];
+        
+        if (error) {
+            
+            [CommonMethods showDefaultErrorString:error.description];
+            
+            return;
+            
+        }
+        
+        ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:selectedGroup.groupId isGroup:YES];
+        chatController.title = selectedGroup.subTitle;
+        chatController.subTitle = selectedGroup.subTitle;
+        chatController.hidesBottomBarWhenPushed = YES;
+        chatController.group = group ;
+        chatController.groupHeadImageURL = selectedGroup.groupHeadImage;
+        
+        [self.navigationController pushViewController:chatController animated:YES];
+        
+        
+        
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+  
+
     
     
 }

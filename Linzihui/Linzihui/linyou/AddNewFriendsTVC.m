@@ -512,6 +512,25 @@ static NSString * RequestCell = @"RequestCell";
     }
     else
     {
+        
+        
+        BmobGeoPoint *otherpoint = model.location;
+        
+        CLLocationCoordinate2D otherCoord = CLLocationCoordinate2DMake([[otherpoint valueForKey:@"latitude"]floatValue], [[otherpoint valueForKey:@"longitude"]floatValue]);
+        
+        CGFloat distance = [CommonMethods distanceFromLocation:otherCoord.latitude longitude:otherCoord.longitude];
+        
+        NSLog(@"distance:%.2f",distance);
+        
+        if (distance > 3000) {
+            
+            [CommonMethods showDefaultErrorString:@"只能关注3公里范围的人"];
+            
+            return;
+            
+        }
+        
+        
     [BmobHelper addFollowWithFollowedUserModel:model result:^(BOOL isSuccess) {
        
         if (isSuccess) {

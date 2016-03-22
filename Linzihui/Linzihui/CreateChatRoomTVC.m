@@ -113,7 +113,7 @@
     
 //    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" ];
     
-    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" result:^(BOOL success, EMGroup *group) {
+    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" friends:_buddyListsArray result:^(BOOL success, EMGroup *group) {
         
         if (success) {
             

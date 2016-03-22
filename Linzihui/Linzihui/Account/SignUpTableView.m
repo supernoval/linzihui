@@ -30,6 +30,13 @@
 
 - (IBAction)registAction:(id)sender {
     
+    if (_nickNameLabel.text.length == 0) {
+        
+        [MyProgressHUD showError:@"请输入昵称"];
+        
+        return;
+        
+    }
     if (_codeTF.text.length > 16 || _codeTF.text.length == 0) {
         
         [MyProgressHUD showError:@"请输入小于16位的密码"];
@@ -55,6 +62,8 @@
     
     object.username = _phone;
     object.password = _codeTF.text;
+    [object setObject:_nickNameLabel.text forKey:@"nickName"];
+    
 //    object.mobilePhoneNumber = _phone;
     
     
@@ -66,26 +75,32 @@
         if (isSuccessful) {
             
             
-            NSString *objectID = object.objectId;
+            //邀请码
+            NSString *invitecode = _yaoqingmaTF.text;
             
-            objectID = [objectID substringToIndex:4];
+            if (invitecode.length > 0) {
+                
+                [BmobHelper addLevel:invitecode];
+                
+                
+            }
             
-            [object setObject:objectID forKey:@"inviteCode"];
+            //添加关注信息
+            BmobObject * _followOb = [[BmobObject alloc]initWithClassName:@"Follow"];
             
-            [object saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            BmobUser *currentUser = [BmobUser getCurrentUser];
+            
+            [_followOb setObject:currentUser.objectId forKey:@"userObjectId"];
+            
+            [_followOb saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                
                 if (isSuccessful) {
                     
-                    NSLog(@"success login string:%@",objectID);
+                    NSLog(@"保存关注列表成功");
                     
                 }
-                else
-                {
-                    NSLog(@"error:%@",error);
-                    
-                }
-                
             }];
+            
             [CommonMethods showDefaultErrorString:@"注册成功"];
             
             [self.navigationController popToRootViewControllerAnimated:YES];

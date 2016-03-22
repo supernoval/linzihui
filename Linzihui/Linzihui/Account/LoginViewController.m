@@ -85,6 +85,9 @@
         
         if (!error) {
             
+            
+ 
+            
             CGFloat longitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];
             
             CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];

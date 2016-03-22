@@ -284,7 +284,8 @@
     
     UIButton *_huodongButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 44)];
     
-    [_huodongButton setTitle:@"活动" forState:UIControlStateNormal];
+    [_huodongButton setImage:[UIImage imageNamed:@"dss"] forState:UIControlStateNormal];
+    
     
     [_huodongButton addTarget:self action:@selector(gotoActivity) forControlEvents:UIControlEventTouchUpInside];
     

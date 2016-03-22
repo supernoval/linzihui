@@ -38,6 +38,9 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 等级记录
 +(void)saveLevelRecord;
 +(void)getLevel:(void(^)(NSString*levelStr))result;
+//注册时给别人添加等级
++(void)addLevel:(NSString*)invitecode;
+
 
 #pragma mark - 获取当前用户 UserModel
 +(UserModel*)getCurrentUserModel;

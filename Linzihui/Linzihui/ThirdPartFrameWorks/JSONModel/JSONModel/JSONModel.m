@@ -26,6 +26,7 @@
 #import "JSONModel.h"
 #import "JSONModelClassProperty.h"
 #import "JSONModelArray.h"
+#import <BmobSDK/Bmob.h>
 
 #pragma mark - associated objects names
 static const char * kMapperObjectKey;
@@ -1046,10 +1047,10 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
                     //in this case most probably a custom property was defined in a model
                     //but no default reverse transofrmer for it
-                    @throw [NSException exceptionWithName:@"Value transformer not found"
-                                                   reason:[NSString stringWithFormat:@"[JSONValueTransformer %@] not found", selectorName]
-                                                 userInfo:nil];
-                    return nil;
+//                    @throw [NSException exceptionWithName:@"Value transformer not found"
+//                                                   reason:[NSString stringWithFormat:@"[JSONValueTransformer %@] not found", selectorName]
+//                                                 userInfo:nil];
+//                    return nil;
                 }
             }
         }

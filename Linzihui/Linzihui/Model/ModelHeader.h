@@ -16,3 +16,5 @@
 #import "HuoDongModel.h"
 #import "AttendUserModel.h"
 #import "GroupChatModel.h"
+#import "MyConversation.h"
+

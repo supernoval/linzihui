@@ -146,18 +146,20 @@ static EMHelper *_helper;
 }
 
 #pragma mark - 创建群组
-+ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg result:(void(^)(BOOL success,EMGroup*group))result
++ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg friends:(NSArray*)friends result:(void(^)(BOOL success,EMGroup*group))result
 {
     
     [MyProgressHUD showProgress];
     
     
     EMGroupStyleSetting *setting = [[EMGroupStyleSetting alloc]init];
-    setting.groupStyle = eGroupStyle_PrivateMemberCanInvite;
+    setting.groupStyle = eGroupStyle_PublicJoinNeedApproval;
     
     [[EaseMob sharedInstance].chatManager asyncCreateGroupWithSubject:title description:description invitees:invitees initialWelcomeMessage:welcomeMsg styleSetting:setting completion:^(EMGroup *group, EMError *error) {
         
         if (!error && group) {
+            
+            BmobUser *currentUser = [BmobUser getCurrentUser];
             
             
             BmobObject *_groupOb = [[BmobObject alloc]initWithClassName:kChatGroupTableName];
@@ -166,9 +168,26 @@ static EMHelper *_helper;
             
             [_groupOb setObject:group.owner forKey:@"owner_username"];
             
+            [_groupOb setObject:currentUser forKey:@"owner"];
+            
             [_groupOb setObject:group.groupSubject forKey:@"subTitle"];
             [_groupOb setObject:group.description forKey:@"description"];
             [_groupOb setObject:group.members forKey:@"members"];
+            
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            for (UserModel *model in friends) {
+                
+                NSDictionary *dic = [model toDictionary];
+                
+                [muArray addObject:dic];
+                
+                
+                
+            }
+            
+            [_groupOb setObject:muArray forKey:@"members"];
+            
             
             CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
             CGFloat longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
@@ -244,6 +263,41 @@ static EMHelper *_helper;
         
         if (!error && group ) {
             
+        
+            UserModel *currentUserModel = [BmobHelper getCurrentUserModel];
+            
+            NSDictionary *dic = [currentUserModel toDictionary];
+            
+            
+            BmobQuery *queryGroup = [BmobQuery queryWithClassName:kChatGroupTableName];
+            
+            [queryGroup whereKey:@"groupid" equalTo:groupId];
+            
+            [queryGroup findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+               
+                if (array.count > 0) {
+                    
+                    
+                    BmobObject *ob =[array firstObject];
+                    
+                    [ob addObjectsFromArray:@[dic] forKey:@"members"];
+                    
+                    [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                       
+                        if (isSuccessful) {
+                            
+                            
+                            NSLog(@"添加成功");
+                            
+                        }
+                        
+                    }];
+                    
+                }
+            }];
+            
+            
+            
             if (result) {
                 
                 result(YES,group);
@@ -260,5 +314,63 @@ static EMHelper *_helper;
     } onQueue:nil];
 }
 
+#pragma mark - 申请加群
++(void)applyJoinGroup:(NSString*)groupId groupName:(NSString*)groupName username:(NSString*)username message:(NSString*)msg result:(void(^)(BOOL success,EMGroup*group))result
+{
+    [[EaseMob sharedInstance].chatManager asyncApplyJoinPublicGroup:groupId withGroupname:groupName message:msg completion:^(EMGroup *group, EMError *error) {
+        
+        if (group) {
+            
+            if (result) {
+                
+                result(YES,group);
+                
+            }
+        }
+        else
+        {
+            if (result) {
+                
+                result(NO,nil);
+                
+            }
+        }
+        
+    } onQueue:nil];
+    
+}
+
+#pragma mark - 同意加群
++(void)agreadJoinGroupApplyWithModel:(MyConversation*)converModel result:(void(^)(BOOL success,EMGroup*group))result
+{
+    [[EaseMob sharedInstance].chatManager asyncAcceptApplyJoinGroup:converModel.groupId groupname:converModel.subTitle applicant:converModel.username completion:^(EMError *error) {
+        
+        if (!error) {
+            
+            if (result) {
+                
+                result(YES,nil);
+            }
+        }
+        else
+        {
+            if (result) {
+                
+                result(NO,nil);
+                
+            }
+        }
+        
+    } onQueue:nil];
+}
+
+#pragma mark - 拒绝加群申请
++(void)rejectJoinGroupApplyWithModel:(MyConversation*)converModel result:(void(^)(BOOL success,NSString*message))result
+{
+    
+    [[EaseMob sharedInstance].chatManager rejectApplyJoinGroup:converModel.groupId groupname:converModel.subTitle toApplicant:converModel.username reason:converModel.reason];
+    
+    
+}
 
 @end
