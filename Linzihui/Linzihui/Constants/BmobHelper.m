@@ -1042,17 +1042,23 @@
                         
                         
                         NSDictionary *dataDict = [ob valueForKey:kBmobDataDic];
+//                        NSLog(@"dataDict:%@",dataDict);
                         
-                        MyConversation *_myConver = [[MyConversation alloc]init];
-                        
-                        [_myConver setValuesForKeysWithDictionary:dataDict];
-                        
-                        _myConver.converstion = _temCon;
-                        _myConver.messageType = 1;
-                        
-                        _myConver.subTitle  = group.groupSubject;
-                        
-                        [muArray addObject:_myConver];
+                        if (dataDict != nil) {
+                            
+                            MyConversation *_myConver = [[MyConversation alloc]init];
+                            
+                            [_myConver setValuesForKeysWithDictionary:dataDict];
+                            
+                            _myConver.converstion = _temCon;
+                            _myConver.messageType = 1;
+                            
+                            _myConver.subTitle  = group.groupSubject;
+                            
+                            [muArray addObject:_myConver];
+                            
+                        }
+           
                         
                         
                         

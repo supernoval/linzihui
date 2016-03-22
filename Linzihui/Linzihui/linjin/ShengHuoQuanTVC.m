@@ -9,6 +9,8 @@
 #import "ShengHuoQuanTVC.h"
 #import "SendWXViewController.h"
 #import "ShengHuoModel.h"
+#import "ShengHuoQuanDetail.h"
+
 
 static NSString *contentCell = @"ShenghuoQuanCell";
 static NSString *commentCellID = @"CommentCell";
@@ -711,6 +713,18 @@ static NSString *commentCellID = @"CommentCell";
     
     if (indexPath.row == 0) {
         
+        ShengHuoModel *oneModel = [_dataSource objectAtIndex:indexPath.section];
+        
+        ShengHuoQuanDetail *shenghuoquanDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanDetail"];
+        
+        shenghuoquanDetail.detailText = oneModel.text;
+    
+        
+        
+        [self.navigationController pushViewController:shenghuoquanDetail animated:YES];
+        
+        
+        
         return;
     }
     
@@ -730,6 +744,8 @@ static NSString *commentCellID = @"CommentCell";
         _toReplayNick = [replayDict objectForKey:@"username"];
         
     }
+    
+    
     _textField_comment.placeholder = [NSString stringWithFormat:@"回复%@:",_toReplayNick];
     
     [self.navigationController.view addSubview:_uiview_comment];

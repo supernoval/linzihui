@@ -249,6 +249,7 @@
 		151671561BF972D900AD4C56 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151671551BF972D900AD4C56 /* TencentOpenAPI.framework */; };
 		151943BC1C0050A400E4E711 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 151943BB1C0050A400E4E711 /* CommentModel.m */; };
 		151943BF1C00543300E4E711 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 151943BE1C00543300E4E711 /* CommentCell.m */; };
+		152553EC1CA187AB00896A97 /* ShengHuoQuanDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 152553EB1CA187AB00896A97 /* ShengHuoQuanDetail.m */; };
 		152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C31BF1872900F91C06 /* EditPhotoViewController.m */; };
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
@@ -1007,6 +1008,8 @@
 		151943BB1C0050A400E4E711 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		151943BD1C00543300E4E711 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		151943BE1C00543300E4E711 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		152553EA1CA187AB00896A97 /* ShengHuoQuanDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShengHuoQuanDetail.h; sourceTree = "<group>"; };
+		152553EB1CA187AB00896A97 /* ShengHuoQuanDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShengHuoQuanDetail.m; sourceTree = "<group>"; };
 		152579C21BF1872900F91C06 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		152579C31BF1872900F91C06 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		152579C41BF1872900F91C06 /* STScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STScratchView.h; sourceTree = "<group>"; };
@@ -2494,6 +2497,8 @@
 				1530E8461BFC730900A78DB5 /* ShenghuoQuanCell.m */,
 				151943BD1C00543300E4E711 /* CommentCell.h */,
 				151943BE1C00543300E4E711 /* CommentCell.m */,
+				152553EA1CA187AB00896A97 /* ShengHuoQuanDetail.h */,
+				152553EB1CA187AB00896A97 /* ShengHuoQuanDetail.m */,
 			);
 			name = shenghuoquan;
 			sourceTree = "<group>";
@@ -4068,6 +4073,7 @@
 				150F315F1C0FEA5D00E5CC8B /* ZXHybridBinarizer.m in Sources */,
 				150F319E1C0FEA5D00E5CC8B /* ZXRSSExpandedPair.m in Sources */,
 				15B7A5451BE730460052115F /* EMSDWebImageManager.m in Sources */,
+				152553EC1CA187AB00896A97 /* ShengHuoQuanDetail.m in Sources */,
 				15B7A5D71BE744A70052115F /* LoginViewController.m in Sources */,
 				15B7A5DF1BE74E790052115F /* LinJinTableViewController.m in Sources */,
 				150F31661C0FEA5D00E5CC8B /* ZXDecodeHints.m in Sources */,
@@ -4589,7 +4595,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b94dfae8-a2b0-4f31-ba2f-4bab6d51037e";
+				PROVISIONING_PROFILE = "2f78ad11-89c2-4146-bfa4-2c38068df1c1";
 			};
 			name = Release;
 		};

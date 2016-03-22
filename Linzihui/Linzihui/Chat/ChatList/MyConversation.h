@@ -19,7 +19,9 @@
 @property (nonatomic,strong) NSString *nickName;
 @property (nonatomic)  NSString *beizhu;
 
+
 //群消息
+@property (nonatomic,strong) BmobObject *owner;
 @property (nonatomic,strong )NSString *groupId;
 @property (nonatomic,strong)  NSArray *members;
 @property (nonatomic,strong)  NSString *subTitle;

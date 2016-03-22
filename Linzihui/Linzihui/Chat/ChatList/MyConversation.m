@@ -11,6 +11,12 @@
 
 @implementation MyConversation
 
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    NSLog(@"MyConversation UndefineKey:%@",key);
+    
+    
+}
 -(id)init
 {
     if (self == [super init]) {
