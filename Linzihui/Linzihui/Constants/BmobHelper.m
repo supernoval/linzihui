@@ -732,13 +732,14 @@
             
             NSArray *usernames = [ob objectForKey:@"followMes"];
             
-            NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:usernames];
-            
-            for (NSString *username in muArray) {
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+           
+            for (NSString *username in usernames) {
                 
-                if ([username isEqualToString:toDeleteusername]) {
+                if (![username isEqualToString:toDeleteusername]) {
                     
-                    [muArray removeObject:username];
+                    [muArray addObject:username];
+                    
                     
                 }
             }
