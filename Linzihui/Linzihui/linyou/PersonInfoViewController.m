@@ -39,11 +39,7 @@
     
     self.title = @"详细资料";
     
-    if (_isShowed) {
-        
-        _sendButton.hidden = YES;
-        
-    }
+
 
     if ([_username isEqualToString:[BmobUser getCurrentUser].username]) {
         

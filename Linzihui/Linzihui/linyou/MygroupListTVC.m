@@ -232,39 +232,60 @@
     
     if (_isNearGroup) {
         
-        ApplyJoinGroupViewController *_applyJoinGroupVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplyJoinGroupViewController"];
         
-        _applyJoinGroupVC.groupModel = selectedGroup;
+        NSArray *members = selectedGroup.members;
         
-        [self.navigationController pushViewController:_applyJoinGroupVC animated:YES];
+        BOOL isMember = NO;
+        
+        BmobUser *currentUser = [BmobUser getCurrentUser];
+        
+        NSString *currentUsername = currentUser.username;
+        
+        if ([currentUsername isEqualToString:selectedGroup.owner_username]) {
+            
+            
+            isMember = YES;
+            
+            
+        }
+        else
+        {
+            
+           for (NSDictionary *dict in members) {
+            
+              
+            NSString *username = [dict objectForKey:@"username"];
+            
+              if ([currentUsername isEqualToString:username]) {
+                  
+                  isMember = YES;
+                  
+              }
+            
+            }
+        }
+        
+        if (isMember) {
+            
+            
+             [self chatWithgroupModel:selectedGroup];
+        }
+        else
+        {
+            ApplyJoinGroupViewController *_applyJoinGroupVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplyJoinGroupViewController"];
+            
+            _applyJoinGroupVC.groupModel = selectedGroup;
+            
+            [self.navigationController pushViewController:_applyJoinGroupVC animated:YES];
+        }
+       
         
     }
     else
     {
        
         
-        EMError *error = nil;
-        
-        EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:selectedGroup.groupId error:&error];
-        
-        if (error) {
-            
-            [CommonMethods showDefaultErrorString:error.description];
-            
-            return;
-            
-        }
-        
-        ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:selectedGroup.groupId isGroup:YES];
-        chatController.title = selectedGroup.subTitle;
-        chatController.subTitle = selectedGroup.subTitle;
-        chatController.hidesBottomBarWhenPushed = YES;
-        chatController.group = group ;
-        chatController.groupHeadImageURL = selectedGroup.groupHeadImage;
-        
-        [self.navigationController pushViewController:chatController animated:YES];
-        
-        
+        [self chatWithgroupModel:selectedGroup];
         
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -273,6 +294,30 @@
 
     
     
+}
+
+-(void)chatWithgroupModel:(GroupChatModel*)selectedGroup
+{
+    EMError *error = nil;
+    
+    EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:selectedGroup.groupId error:&error];
+    
+    if (error) {
+        
+        [CommonMethods showDefaultErrorString:error.description];
+        
+        return;
+        
+    }
+    
+    ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:selectedGroup.groupId isGroup:YES];
+    chatController.title = selectedGroup.subTitle;
+    chatController.subTitle = selectedGroup.subTitle;
+    chatController.hidesBottomBarWhenPushed = YES;
+    chatController.group = group ;
+    chatController.groupHeadImageURL = selectedGroup.groupHeadImage;
+    
+    [self.navigationController pushViewController:chatController animated:YES];
 }
 
 

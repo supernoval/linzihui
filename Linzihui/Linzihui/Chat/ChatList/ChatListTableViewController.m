@@ -293,6 +293,9 @@ static NSString *headCellID = @"CellID";
                 
                 cell.lastestChatlabel.text = [NSString stringWithFormat:@"%@申请加入%@",model.username,model.subTitle];
                 
+                cell.timeLabel.text = [CommonMethods getHHmmFromDefaultDateStr:[NSDate date]];
+                
+                
                 
                 
             }
@@ -435,6 +438,7 @@ static NSString *headCellID = @"CellID";
             
             cell.lastestChatlabel.text = [NSString stringWithFormat:@"%@申请加入%@",model.username,model.subTitle];
             
+            cell.timeLabel.text = [CommonMethods getHHmmFromDefaultDateStr:[NSDate date]];
             
             
         }
@@ -1037,6 +1041,14 @@ static NSString *headCellID = @"CellID";
         else
         {
             [EMHelper agreadJoinGroupApplyWithModel:model result:^(BOOL success, EMGroup *group) {
+                
+                if (success) {
+                    
+                    [_conversations removeObjectAtIndex:alertView.tag];
+                    
+                    [self.tableView reloadData];
+                    
+                }
                
                 
             }];

@@ -8100,11 +8100,16 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuO-lP-eFz">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                    <color key="backgroundColor" red="0.98039215690000003" green="0.3294117647" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="d1r-o7-ihc"/>
+                                        <constraint firstAttribute="height" constant="30" id="d1r-o7-ihc">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                                        </constraint>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <state key="normal" title="取消关注"/>
+                                    <state key="normal" title="取消关注">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="d1r-o7-ihc"/>
@@ -11086,6 +11091,7 @@
                         <viewControllerLayoutGuide type="bottom" id="b36-B5-WAq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xnS-eq-wAg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rBl-nC-R63">
@@ -11101,8 +11107,7 @@
                                         <exclude reference="z29-SZ-nba"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="10" y="28" width="354" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="z29-SZ-nba"/>
                                     </mask>

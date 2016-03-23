@@ -349,6 +349,8 @@ static EMHelper *_helper;
             
             if (result) {
                 
+                [self addMemberToGroup:converModel.groupId username:converModel.username];
+                
                 result(YES,nil);
             }
         }
@@ -371,6 +373,57 @@ static EMHelper *_helper;
     [[EaseMob sharedInstance].chatManager rejectApplyJoinGroup:converModel.groupId groupname:converModel.subTitle toApplicant:converModel.username reason:converModel.reason];
     
     
+}
+
+#pragma mark - 将群组新成员加入到bmob members 当中
++(void)addMemberToGroup:(NSString*)groupId username:(NSString*)username
+{
+    BmobQuery *queryForUser = [BmobQuery queryForUser];
+    
+    [queryForUser whereKey:@"username" equalTo:username];
+    
+    [queryForUser findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        
+        if (!error) {
+            
+            if (array.count > 0) {
+                
+                BmobObject *userOB = [array firstObject];
+                
+                NSDictionary *dic = [userOB valueForKey:kBmobDataDic];
+                
+                if (dic) {
+                    
+                    BmobQuery *queryChatGroup = [BmobQuery queryWithClassName:kChatGroupTableName];
+                    
+                    [queryChatGroup whereKey:@"groupId" equalTo:groupId];
+                    
+                    [queryChatGroup findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+                       
+                        if (!error) {
+                            
+                            BmobObject *chatGroupOB = [array firstObject];
+                            
+                            [chatGroupOB addObjectsFromArray:@[dic] forKey:@"members"];
+                            
+                            [chatGroupOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                               
+                                if (isSuccessful) {
+                                    
+                                    NSLog(@"群组成员添加成功");
+                                    
+                                    
+                                }
+                                
+                            }];
+                        }
+                    }];
+                }
+            }
+        }
+        
+    }];
 }
 
 @end

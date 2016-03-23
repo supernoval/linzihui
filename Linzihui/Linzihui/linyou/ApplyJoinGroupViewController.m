@@ -47,7 +47,7 @@
     
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:_groupModel.groupHeadImage] placeholderImage:kDefaultHeadImage];
     
-    self.memberNum.text = [NSString stringWithFormat:@"%ld人",(long)_groupModel.members.count];
+    self.memberNum.text = [NSString stringWithFormat:@"%ld人",(long)_groupModel.members.count +1];
 
     self.nickNameLabel.text = [NSString stringWithFormat:@"%@",_groupModel.subTitle];
     

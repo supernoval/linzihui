@@ -1155,6 +1155,7 @@
 
 
 
+#pragma mark - 显示发布者详情
 
 - (IBAction)showPublisherAction:(id)sender {
     

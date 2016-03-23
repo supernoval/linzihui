@@ -76,7 +76,7 @@
     
     BmobUser *currentUser = [BmobUser getCurrentUser];
     
-    NSString *nick = [currentUser objectForKey:@"nick"];
+    NSString *nick = [currentUser objectForKey:@"nickName"];
     
     NSString *username = currentUser.username;
     

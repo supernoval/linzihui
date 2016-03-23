@@ -109,7 +109,7 @@
     }
     
     self.bottomItemsView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame)-164,
-                                                                      CGRectGetWidth(self.view.frame), 100)];
+                                                                      CGRectGetWidth(self.view.frame), 400)];
     
     _bottomItemsView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
     
@@ -282,9 +282,22 @@
    else if ([str hasPrefix:@"g"])
     {
         
-//        NSString *groupId = [str substringFromIndex:1];
-//        
-//        [EMHelper sendFriendRequestWithBuddyName:groupId Mesage:@"请求加群"];
+        NSString *groupId = [str substringFromIndex:1];
+        BmobUser *currentUser = [BmobUser getCurrentUser];
+        NSString *username = currentUser.username;
+        
+        [EMHelper applyJoinGroup:groupId groupName:@"" username:username message:@"通过扫一扫加群" result:^(BOOL success, EMGroup *group) {
+           
+            if (success) {
+                
+                [CommonMethods showDefaultErrorString:@"申请加群信息已发送"];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            
+        }];
+        
         
     }
     else
