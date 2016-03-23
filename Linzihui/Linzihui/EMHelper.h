@@ -18,9 +18,9 @@ typedef enum{
 #import "ConstantsHeaders.h"
 #import "InvitationManager.h"
 #import "ModelHeader.h"
+#import "IDeviceManagerDelegate.h"
 
-
-@interface EMHelper : NSObject<IChatManagerDelegate>
+@interface EMHelper : NSObject<IChatManagerDelegate,EMDeviceManagerDelegate>
 
 +(EMHelper*)getHelper;
 

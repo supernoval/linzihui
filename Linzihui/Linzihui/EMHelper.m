@@ -34,12 +34,22 @@ static EMHelper *_helper;
     [self unRegisterEaseMobNotification];
     // 将self 添加到SDK回调中，以便本类可以收到SDK回调
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+    
+ 
+    
 }
 
 - (void)unRegisterEaseMobNotification{
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
 }
 
+-(void)didConnectionChanged:(EMConnectionType)connectionType fromConnectionType:(EMConnectionType)fromConnectionType
+{
+    if (connectionType == eConnectionType_None) {
+        
+        
+    }
+}
 
 #pragma mark - IChatManagerDelegate
 

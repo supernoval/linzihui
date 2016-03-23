@@ -720,6 +720,8 @@
 #pragma mark - 取消关注
 + (void)cancelFollowWithUserModel:(UserModel*)model username:(NSString*)toDeleteusername result:(void(^)(BOOL success))result
 {
+    
+   //先将对方的Follow 表数据删除自己的username
     BmobQuery *query = [BmobQuery queryWithClassName:@"Follow"];
     
     [query whereKey:@"userObjectId" equalTo:model.objectId];
@@ -750,12 +752,63 @@
                
                 if (isSuccessful) {
                     
-                    if (result) {
-                        
-                        result(YES);
-                        
-                        
-                    }
+                    
+                    //再删除自己的 Follow 表 myFollows 中对方的username
+                 
+                    BmobUser *currentUser = [BmobUser getCurrentUser];
+                    
+                    BmobQuery *queMy = [BmobQuery queryWithClassName:kFollowTableName];
+                    
+                    [queMy whereKey:@"userObjectId" equalTo:currentUser.objectId];
+                    
+                    [queMy findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+                       
+                        if (array.count > 0) {
+                            
+                            BmobObject *ob = [array firstObject];
+                            
+//                            NSArray *myFollows = [ob objectForKey:@"myFollows"];
+//                            
+//                            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+//                            
+//                            for (NSString *username in myFollows) {
+//                                
+//                                if (![username isEqualToString:toDeleteusername]) {
+//                                    
+//                                    [muArray addObject:username];
+//                                    
+//                                    
+//                                }
+//                            }
+                            
+                            
+                            [ob removeObjectsInArray:@[model.username] forKey:@"myFollows"];
+                            
+                            [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                               
+                                if (isSuccessful) {
+                                    if (result) {
+                                        
+                                        result(YES);
+                                        
+                                        
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    if (result) {
+                                        
+                                        result(NO);
+                                        
+                                        
+                                    }
+                                }
+                            }];
+                        }
+                    }];
+                    
+                
                 }
             }];
             

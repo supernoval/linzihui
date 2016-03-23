@@ -370,15 +370,20 @@ static NSString *commentCellID = @"CommentCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    return 15;
+    if (section == _dataSource.count -1) {
+        
+        return 0;
+        
+    }
+    return 20;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     
-    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
+    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
     
-    blankView.backgroundColor = [UIColor clearColor];
+    blankView.backgroundColor = [UIColor lightGrayColor];
     
     
     

@@ -312,13 +312,19 @@
         [EMHelper sendFriendRequestWithBuddyName:_username Mesage:@"请求加你好友"];
         
     }
-    else if (_model.followType == CheckTypeOnlyMyFollow)
+    else if (friendType == CheckTypeOnlyMyFollow)
     {
+        
+         [MyProgressHUD showProgress];
+        
         [BmobHelper cancelFollowWithUserModel:_model username:[BmobUser getCurrentUser].username result:^(BOOL success) {
            
+              [MyProgressHUD dismiss];
+            
             if (success) {
                 
                 NSLog(@"取消关注成功");
+                _model.followType = CheckTypeNone;
                 
                 friendType = CheckTypeNone;
                 
@@ -349,10 +355,18 @@
         
         
         
+        [MyProgressHUD showProgress];
+        
         [BmobHelper addFollowWithFollowedUserModel:_model result:^(BOOL success) {
            
             
+            [MyProgressHUD dismiss];
+            
             if (success) {
+                
+                
+                friendType = CheckTypeOnlyMyFollow;
+                
                 
                 [CommonMethods showDefaultErrorString:@"关注成功"];
                 
@@ -368,7 +382,11 @@
 
 - (IBAction)cancelAttend:(id)sender {
     
+     [MyProgressHUD showProgress];
+    
     [BmobHelper cancelFollowWithUserModel:_model username:[BmobUser getCurrentUser].username result:^(BOOL success) {
+        
+            [MyProgressHUD dismiss];
         
         if (success) {
             

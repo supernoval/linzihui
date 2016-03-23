@@ -51,7 +51,7 @@
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     [[EaseMob sharedInstance].chatManager setIsAutoFetchBuddyList:YES];
-    
+     
     //初始化下环信 监听
     [EMHelper getHelper];
     

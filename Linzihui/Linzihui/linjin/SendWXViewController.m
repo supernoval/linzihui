@@ -358,7 +358,7 @@
                 
                 if (isSuccessful) {
                     
-                    [CommonMethods showDefaultErrorString:@"发送成功"];
+
                     
                     [self.navigationController popViewControllerAnimated:YES];
                     
