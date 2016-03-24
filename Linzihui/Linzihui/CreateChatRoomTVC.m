@@ -7,6 +7,8 @@
 //
 
 #import "CreateChatRoomTVC.h"
+#import "SetNewGroupNameImageVC.h"
+
 
 @interface CreateChatRoomTVC ()
 {
@@ -52,9 +54,12 @@
 
 -(void)ok
 {
+    
+    
     NSMutableArray *muArray = [[NSMutableArray alloc]init];
     
-    for (UserModel *oneModel in _buddyListsArray) {
+    for (UserModel *oneModel in _buddyListsArray)
+    {
         
         if (oneModel.hadSelected) {
             
@@ -63,7 +68,9 @@
         }
     }
     
-    if (muArray.count == 0) {
+    
+    if (muArray.count == 0)
+    {
         
         
         [CommonMethods showDefaultErrorString:@"请选择朋友"];
@@ -72,71 +79,19 @@
     }
     
     
-    NSMutableString *muString = [[NSMutableString alloc]init];
     
-    BmobUser *currentUser = [BmobUser getCurrentUser];
+    SetNewGroupNameImageVC *_newGroupVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SetNewGroupNameImageVC"];
     
-    NSString *nick = [currentUser objectForKey:@"nickName"];
-    
-    NSString *username = currentUser.username;
-    
-    if (nick) {
+    if (_block) {
         
-        [muString appendString:nick];
-    }
-    else
-    {
-        [muString appendString:username];
-        
+        _newGroupVC.temBlock = _block;
         
     }
+    _newGroupVC.buddyList = _buddyListsArray;
     
     
-    NSMutableArray *addArray = [[NSMutableArray alloc]init];
-    
-    
-    for (UserModel *oneModel in _buddyListsArray) {
-        
-        if (oneModel.hadSelected) {
-            
-            [addArray addObject:oneModel];
-            
-            if (oneModel.nickName) {
-                
-                
-                [muString appendString:[NSString stringWithFormat:@" %@",oneModel.nickName]];
-        
-                
-            }
-            else
-            {
-               [muString appendString:[NSString stringWithFormat:@" %@",oneModel.username]];
-            }
-        }
-    }
-    
-//    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" ];
-    
-    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" friends:addArray result:^(BOOL success, EMGroup *group) {
-        
-        if (success) {
-            
-            
-            if (_block) {
-                
-                _block(success,group,muString);
-                
-            }
-            
-            [[NSNotificationCenter defaultCenter ] postNotificationName:kCreategroupSuccessNoti object:group userInfo:@{@"groupid":group.groupId}];
-            
-            
-        }
-    }];
-    
-    
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController pushViewController:_newGroupVC animated:YES];
+
     
     
     

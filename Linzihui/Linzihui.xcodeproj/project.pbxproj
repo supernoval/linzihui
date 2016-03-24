@@ -302,6 +302,7 @@
 		15521B7E1C4A0C040010E718 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15521B761C4A0C040010E718 /* BaiduMapAPI_Utils.framework */; };
 		15521B7F1C4A0C040010E718 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15521B771C4A0C040010E718 /* mapapi.bundle */; };
 		15521B831C4A0E620010E718 /* SearchNearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15521B821C4A0E620010E718 /* SearchNearByViewController.m */; };
+		15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */; };
 		1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577165E1C44A0530030DC0B /* BaseNavigationController.m */; };
 		157716621C44A08D0030DC0B /* LinXinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716611C44A08D0030DC0B /* LinXinNavigationController.m */; };
 		157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716641C44A0A00030DC0B /* LinYouNavigationController.m */; };
@@ -1087,6 +1088,8 @@
 		15521B771C4A0C040010E718 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		15521B811C4A0E620010E718 /* SearchNearByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNearByViewController.h; sourceTree = "<group>"; };
 		15521B821C4A0E620010E718 /* SearchNearByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNearByViewController.m; sourceTree = "<group>"; };
+		15697A5F1CA3FC80001756E9 /* SetNewGroupNameImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewGroupNameImageVC.h; sourceTree = "<group>"; };
+		15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewGroupNameImageVC.m; sourceTree = "<group>"; };
 		1577165D1C44A0530030DC0B /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1577165E1C44A0530030DC0B /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		157716601C44A08D0030DC0B /* LinXinNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinXinNavigationController.h; sourceTree = "<group>"; };
@@ -1649,6 +1652,8 @@
 			children = (
 				1506EC241BF712620010F349 /* CreateChatRoomTVC.h */,
 				1506EC251BF712620010F349 /* CreateChatRoomTVC.m */,
+				15697A5F1CA3FC80001756E9 /* SetNewGroupNameImageVC.h */,
+				15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */,
 			);
 			name = CreateChatRoom;
 			path = ..;
@@ -4293,6 +4298,7 @@
 				150F31491C0FEA5D00E5CC8B /* ZXWifiResultParser.m in Sources */,
 				15B7A43C1BE72F800052115F /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				150F31291C0FEA5D00E5CC8B /* ZXAddressBookParsedResult.m in Sources */,
+				15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */,
 				150F31421C0FEA5D00E5CC8B /* ZXURIResultParser.m in Sources */,
 				150F31941C0FEA5D00E5CC8B /* ZXAnyAIDecoder.m in Sources */,
 				15B7A4981BE72FEE0052115F /* FacialView.m in Sources */,

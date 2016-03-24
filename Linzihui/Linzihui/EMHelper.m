@@ -156,7 +156,7 @@ static EMHelper *_helper;
 }
 
 #pragma mark - 创建群组
-+ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg friends:(NSArray*)friends result:(void(^)(BOOL success,EMGroup*group))result
++ (void)createGroupWithinitTitle:(NSString*)title description:(NSString*)description invitees:(NSArray*)invitees welcomeMsg:(NSString*)welcomeMsg friends:(NSArray*)friends groupName:(NSString*)groupName headImage:(NSString*)imageURL result:(void(^)(BOOL success,EMGroup*group))result
 {
     
     [MyProgressHUD showProgress];
@@ -180,9 +180,10 @@ static EMHelper *_helper;
             
             [_groupOb setObject:currentUser forKey:@"owner"];
             
-            [_groupOb setObject:group.groupSubject forKey:@"subTitle"];
             [_groupOb setObject:group.description forKey:@"description"];
             [_groupOb setObject:group.members forKey:@"members"];
+            [_groupOb setObject:groupName forKey:@"subTitle"];
+            [_groupOb setObject:imageURL forKey:@"groupHeadImage"];
             
             NSMutableArray *muArray = [[NSMutableArray alloc]init];
             

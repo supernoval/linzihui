@@ -39,6 +39,9 @@ static NSString *headCellID = @"CellID";
     
     UIAlertView *_acceptAlertView;
     
+    BOOL HadFirstRefresh;
+    
+    
     
     
     
@@ -90,7 +93,12 @@ static NSString *headCellID = @"CellID";
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
         
-        [self reFreshDataSource];
+        if (!HadFirstRefresh) {
+            
+             [self reFreshDataSource];
+            
+        }
+       
         
         [self registerNotifications];
         
@@ -721,6 +729,8 @@ static NSString *headCellID = @"CellID";
 -(void)reFreshDataSource
 {
     
+    HadFirstRefresh = YES;
+    
     
     [self loadDataSource];
     
@@ -800,7 +810,7 @@ static NSString *headCellID = @"CellID";
         }
     
     
-         [self sortTime];
+//         [self sortTime];
         
         [self getHuoDongMessages];
         
@@ -854,7 +864,7 @@ static NSString *headCellID = @"CellID";
                           EMMessage *message2 = [obj2.converstion latestMessage];
                           
                           
-                          if(obj1.myTimeStamp> obj2.myTimeStamp) {
+                          if(message1.timestamp> message2.timestamp) {
                               return(NSComparisonResult)NSOrderedAscending;
                           }else {
                               return(NSComparisonResult)NSOrderedDescending;
@@ -871,8 +881,6 @@ static NSString *headCellID = @"CellID";
     
     if (groupApplyInfo.count > 0) {
         
-        
-      
         
         for (NSDictionary *oneDict in groupApplyInfo) {
             
@@ -915,6 +923,7 @@ static NSString *headCellID = @"CellID";
 
 -(void)didReceiveApplyToJoinGroup:(NSString *)groupId groupname:(NSString *)groupname applyUsername:(NSString *)username reason:(NSString *)reason error:(EMError *)error
 {
+    
     MyConversation *applyInfo = [[MyConversation alloc]init];
     
     applyInfo.groupId = groupId;
@@ -930,7 +939,10 @@ static NSString *headCellID = @"CellID";
     applyInfo.myTimeStamp = [[NSDate date]timeIntervalSince1970];
     
     
-    NSDictionary *dict = [applyInfo toDictionary];
+
+    NSDictionary *dict = @{@"groupId":groupId,@"subTitle":groupname,@"message":reason,@"username":username,@"messageType":@(3),@"myTimeStamp":@(applyInfo.myTimeStamp)};
+    
+    
     
     NSArray *beforeArray = [[NSUserDefaults standardUserDefaults] objectForKey:kGroupApplyInfos];
     
@@ -1087,9 +1099,16 @@ static NSString *headCellID = @"CellID";
         
         MyConversation *model = [_conversations objectAtIndex:alertView.tag];
         
+        [self deleteInviteMessagesWithModel:model];
+        
         if (buttonIndex == 0) {
             
             [EMHelper rejectJoinGroupApplyWithModel:model result:^(BOOL success, NSString *message) {
+                
+              
+                 [_conversations removeObjectAtIndex:alertView.tag];
+                
+                [self.tableView reloadData];
                 
             }];
             
@@ -1111,6 +1130,32 @@ static NSString *headCellID = @"CellID";
         }
         
     }
+    
+}
+
+-(void)deleteInviteMessagesWithModel:(MyConversation*)model
+{
+    
+    NSArray *msgs = [[NSUserDefaults standardUserDefaults] objectForKey:kGroupApplyInfos];
+    
+    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    
+    for (NSDictionary *dict in msgs) {
+        
+        NSString *groupId = [dict objectForKey:@"groupId"];
+        
+        if (![groupId isEqualToString:model.groupId]) {
+            
+            
+            [muArray addObject:dict];
+            
+            
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults ] setObject:muArray forKey:kGroupApplyInfos];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
