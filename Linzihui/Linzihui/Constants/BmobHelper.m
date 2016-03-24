@@ -1550,7 +1550,7 @@
                 [_convert setValuesForKeysWithDictionary:dataDict];
                 
                 _convert.messageType = 2;
-                _convert.myTimeStamp = [_convert.updatedAt timeIntervalSince1970];
+//                _convert.myTimeStamp = [_convert.updatedAt timeIntervalSince1970];
                 
                 
                 [muArray addObject:_convert];

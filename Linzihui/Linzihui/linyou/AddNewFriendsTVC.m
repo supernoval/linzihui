@@ -81,6 +81,7 @@ static NSString * RequestCell = @"RequestCell";
         
         
         _searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        _searchbar.placeholder = @"手机号码搜索好友";
         _searchbar.delegate = self;
         
         

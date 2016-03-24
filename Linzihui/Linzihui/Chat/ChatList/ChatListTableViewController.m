@@ -299,7 +299,7 @@ static NSString *headCellID = @"CellID";
                 
                 cell.titleLabel.text = [NSString stringWithFormat:@"申请加群信息"];
                 
-                cell.lastestChatlabel.text = [NSString stringWithFormat:@"%@申请加入%@",model.username,model.subTitle];
+                cell.lastestChatlabel.text = [NSString stringWithFormat:@"%@申请加入%@",model.nickName,model.subTitle];
                 
                 cell.timeLabel.text = [CommonMethods getHHmmFromDefaultDateStr:[NSDate date]];
                 
@@ -446,7 +446,7 @@ static NSString *headCellID = @"CellID";
             
             cell.titleLabel.text = [NSString stringWithFormat:@"申请加群信息"];
             
-            cell.lastestChatlabel.text = [NSString stringWithFormat:@"%@申请加入%@",model.username,model.subTitle];
+            cell.lastestChatlabel.text = [NSString stringWithFormat:@"%@申请加入%@",model.nickName,model.subTitle];
             
             cell.timeLabel.text = [CommonMethods getHHmmFromDefaultDateStr:[NSDate date]];
             
@@ -939,28 +939,55 @@ static NSString *headCellID = @"CellID";
     applyInfo.myTimeStamp = [[NSDate date]timeIntervalSince1970];
     
     
+    BmobQuery *query = [BmobQuery queryForUser];
+    
+    
+    [query whereKey:@"username" equalTo:username];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (array.count > 0) {
+            
+            
+            BmobObject *ob = [array firstObject];
+            
+            NSDictionary *userDic = [ob valueForKey:kBmobDataDic];
+            
+            NSString *nickName = [userDic objectForKey:@"nickName"];
+            
+            if (!nickName) {
+                
+                nickName = username;
+                
+                
+            }
+            NSDictionary *dict = @{@"groupId":groupId,@"subTitle":groupname,@"message":reason,@"username":username,@"nickName":nickName,@"messageType":@(3),@"myTimeStamp":@(applyInfo.myTimeStamp)};
+            
+            
+            
+            
+            NSArray *beforeArray = [[NSUserDefaults standardUserDefaults] objectForKey:kGroupApplyInfos];
+            
+            NSMutableArray *muGroupInfos = [[NSMutableArray alloc]init];
+            
+            [muGroupInfos addObject:dict];
+            
+            [muGroupInfos addObjectsFromArray:beforeArray];
+            
+            
+            [[NSUserDefaults standardUserDefaults] setObject:muGroupInfos forKey:kGroupApplyInfos ];
+            
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            
+            
+            
+            [self sortTime];
+            
+        }
+    }];
 
-    NSDictionary *dict = @{@"groupId":groupId,@"subTitle":groupname,@"message":reason,@"username":username,@"messageType":@(3),@"myTimeStamp":@(applyInfo.myTimeStamp)};
-    
-    
-    
-    NSArray *beforeArray = [[NSUserDefaults standardUserDefaults] objectForKey:kGroupApplyInfos];
-    
-    NSMutableArray *muGroupInfos = [[NSMutableArray alloc]init];
-    
-    [muGroupInfos addObject:dict];
-    
-    [muGroupInfos addObjectsFromArray:beforeArray];
-    
-    
-    [[NSUserDefaults standardUserDefaults] setObject:muGroupInfos forKey:kGroupApplyInfos ];
-    
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
-    
-    
-   
-    [self sortTime];
+ 
     
     
     
