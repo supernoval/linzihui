@@ -1014,6 +1014,8 @@
                         myConModel.headImageURL = model.headImageURL;
                         myConModel.converstion = _myConver;
                         myConModel.messageType = 0;
+                        myConModel.myTimeStamp = _myConver.latestMessage.timestamp;
+                        
                         myConModel.beizhu = [BmobHelper getBeizhu:model.username];
                         
                         [muArray addObject:myConModel];
@@ -1149,9 +1151,13 @@
                             [_myConver setValuesForKeysWithDictionary:dataDict];
                             
                             _myConver.converstion = _temCon;
+                            
                             _myConver.messageType = 1;
                             
                             _myConver.subTitle  = group.groupSubject;
+                            
+                            _myConver.myTimeStamp = _temCon.latestMessage.timestamp;
+                            
                             
                             [muArray addObject:_myConver];
                             
@@ -1539,9 +1545,12 @@
                 
                 
                 MyConversation *_convert = [[MyConversation alloc]init];
+                
+                
                 [_convert setValuesForKeysWithDictionary:dataDict];
                 
                 _convert.messageType = 2;
+                _convert.myTimeStamp = [_convert.updatedAt timeIntervalSince1970];
                 
                 
                 [muArray addObject:_convert];

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
+
+
 //环信账号是否登陆
 #define kEasyMobHadLogin   @"EasyMobHadLogin"
 
@@ -60,6 +62,12 @@
 
 //本地好友列表
 #define kLocateFriends  @"LocateFriends"
+
+
+//加群申请信息
+#define kGroupApplyInfos @"GroupApplyInfos"
+
+
 
 
 //位置

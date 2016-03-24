@@ -18,6 +18,8 @@
 @property (nonatomic,strong) NSString *headImageURL;
 @property (nonatomic,strong) NSString *nickName;
 @property (nonatomic)  NSString *beizhu;
+@property (nonatomic,assign) NSInteger myTimeStamp;
+
 
 
 //群消息

@@ -92,10 +92,14 @@
     }
     
     
+    NSMutableArray *addArray = [[NSMutableArray alloc]init];
+    
     
     for (UserModel *oneModel in _buddyListsArray) {
         
         if (oneModel.hadSelected) {
+            
+            [addArray addObject:oneModel];
             
             if (oneModel.nickName) {
                 
@@ -113,7 +117,7 @@
     
 //    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" ];
     
-    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" friends:_buddyListsArray result:^(BOOL success, EMGroup *group) {
+    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" friends:addArray result:^(BOOL success, EMGroup *group) {
         
         if (success) {
             

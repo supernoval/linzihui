@@ -339,6 +339,8 @@ static EMHelper *_helper;
         }
         else
         {
+            NSLog(@"error:%@",error);
+            
             if (result) {
                 
                 result(NO,nil);

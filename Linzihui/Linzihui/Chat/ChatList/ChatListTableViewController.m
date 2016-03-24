@@ -427,6 +427,8 @@ static NSString *headCellID = @"CellID";
             cell.lastestChatlabel.text = model.message;
             
             cell.timeLabel.adjustsFontSizeToFitWidth = YES;
+            
+            cell.timeLabel.text =  [CommonMethods getHHmmFromDefaultDateStr:[NSDate date]];
           
         }
         else if (model.messageType == 3)
@@ -738,6 +740,7 @@ static NSString *headCellID = @"CellID";
    
     for (EMConversation *convert in conversations) {
         
+        
         if (convert.conversationType == eConversationTypeChat) {
             
             
@@ -795,24 +798,9 @@ static NSString *headCellID = @"CellID";
         {
             
         }
-        
-        NSArray* sorte = [_conversations sortedArrayUsingComparator:
-                          ^(MyConversation *obj1, MyConversation* obj2){
-                              
-                              EMMessage *message1 = [obj1.converstion latestMessage];
-                              EMMessage *message2 = [obj2.converstion latestMessage];
-                              if(message1.timestamp > message2.timestamp) {
-                                  return(NSComparisonResult)NSOrderedAscending;
-                              }else {
-                                  return(NSComparisonResult)NSOrderedDescending;
-                              }
-                          }];
-        
-        
-        NSMutableArray *muArray = [[NSMutableArray alloc]initWithArray:sorte];
-        
-        _conversations = muArray;
-        
+    
+    
+         [self sortTime];
         
         [self getHuoDongMessages];
         
@@ -837,19 +825,77 @@ static NSString *headCellID = @"CellID";
                 
                 [_conversations addObjectsFromArray:array];
                 
+                 [self sortTime];
+                
             }
             
+        
             
-            //将申请加群的信息也显示出来
-            [_conversations addObjectsFromArray:_applyJoinMsgS];
+           
             
-            [self.tableView reloadData];
+        
+            
+          
             
             
             
         }];
     }
     
+    
+}
+
+-(void)sortTime
+{
+    NSArray* sorte = [_conversations sortedArrayUsingComparator:
+                      ^(MyConversation *obj1, MyConversation* obj2){
+                          
+                          EMMessage *message1 = [obj1.converstion latestMessage];
+                          EMMessage *message2 = [obj2.converstion latestMessage];
+                          
+                          
+                          if(obj1.myTimeStamp> obj2.myTimeStamp) {
+                              return(NSComparisonResult)NSOrderedAscending;
+                          }else {
+                              return(NSComparisonResult)NSOrderedDescending;
+                          }
+                          
+                          
+                      }];
+    
+    
+    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    
+    
+    NSArray *groupApplyInfo =[[ NSUserDefaults standardUserDefaults ]objectForKey:kGroupApplyInfos];
+    
+    if (groupApplyInfo.count > 0) {
+        
+        
+      
+        
+        for (NSDictionary *oneDict in groupApplyInfo) {
+            
+             MyConversation *applyInfo = [[MyConversation alloc]init];
+            
+            [applyInfo setValuesForKeysWithDictionary:oneDict];
+            
+            [muArray addObject:applyInfo];
+            
+        }
+        
+        
+
+        
+        
+        
+    }
+    
+    [muArray addObjectsFromArray:sorte];
+    
+    _conversations = muArray;
+    
+      [self.tableView reloadData];
     
 }
 
@@ -878,22 +924,32 @@ static NSString *headCellID = @"CellID";
     applyInfo.message = reason;
     
     applyInfo.username = username;
+    
     applyInfo.messageType = 3;
     
+    applyInfo.myTimeStamp = [[NSDate date]timeIntervalSince1970];
     
-    [_applyJoinMsgS addObject:applyInfo];
     
-    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    NSDictionary *dict = [applyInfo toDictionary];
     
-    [muArray addObjectsFromArray:_applyJoinMsgS];
+    NSArray *beforeArray = [[NSUserDefaults standardUserDefaults] objectForKey:kGroupApplyInfos];
     
-    [muArray addObjectsFromArray:_conversations];
+    NSMutableArray *muGroupInfos = [[NSMutableArray alloc]init];
     
-    _conversations = muArray;
+    [muGroupInfos addObject:dict];
     
-
+    [muGroupInfos addObjectsFromArray:beforeArray];
     
-    [self.tableView reloadData];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:muGroupInfos forKey:kGroupApplyInfos ];
+    
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    
+    
+   
+    [self sortTime];
+    
     
     
     
