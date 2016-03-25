@@ -36,6 +36,8 @@
 #import "EMCDDeviceManagerDelegate.h"
 #import "ChatSettingTVC.h"
 #import "PersonInfoViewController.h"
+#import "HuodongTVCViewController.h"
+
 
 
 
@@ -302,14 +304,21 @@
 #pragma mark - 跳到活动
 -(void)gotoActivity
 {
+
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
     
-    PublishActivity *_publish = [sb instantiateViewControllerWithIdentifier:@"PublishActivity"];
+    HuodongTVCViewController *_huodongTVC = [sb instantiateViewControllerWithIdentifier:@"HuodongTVCViewController"];
     
-    _publish.groupId = _group.groupId;
+    _huodongTVC.groupId = _chatter;
+    
+    _huodongTVC.isShowGroupActivity = YES;
     
     
-    [self.navigationController pushViewController:_publish animated:YES];
+    [self.navigationController pushViewController:_huodongTVC animated:YES];
+    
+    
+    
+    
 }
 #pragma mark - 收到修改群名通知
 -(void)changeSubTitle:(NSNotification*)noti

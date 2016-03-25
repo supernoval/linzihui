@@ -893,8 +893,6 @@ static NSString *headCellID = @"CellID";
         }
         
         
-
-        
         
         
     }
@@ -914,6 +912,10 @@ static NSString *headCellID = @"CellID";
 -(void)didUnreadMessagesCountChanged
 {
     [self reFreshDataSource];
+    [EMHelper playNewMessageSound];
+    
+    
+    
 }
 
 - (void)didUpdateGroupList:(NSArray *)allGroups error:(EMError *)error

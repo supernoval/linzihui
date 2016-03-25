@@ -29,12 +29,24 @@
     }
    
     _detailTV.text = _detailStr;
+    
+    if (_detailStr.length > 0) {
+        
+        _placeHolderLabel.hidden = YES;
+    }
     _detailTV.delegate = self;
+    
+    [_image_list addObjectsFromArray:_imagesArray];
     
     
     
     
     addImage  = [UIImage imageNamed:@"tianjiazhaopian"];
+    
+    [_image_list addObject:addImage];
+    
+   
+    
     
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(savedata)];
     
@@ -53,6 +65,8 @@
         [self setEditeTypeButtonImage];
         
     }
+    
+       [self reloadPhotoViews];
     
 }
 
@@ -268,7 +282,6 @@
             
             
         }
-        
         
         
         

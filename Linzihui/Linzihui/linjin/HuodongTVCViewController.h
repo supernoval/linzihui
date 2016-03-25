@@ -16,6 +16,9 @@
 
 @property (nonatomic,strong)  NSMutableArray *dataSource;
 
+@property (nonatomic,assign) BOOL isShowGroupActivity;
+@property (nonatomic,weak)    NSString *groupId;
+
 
 
 

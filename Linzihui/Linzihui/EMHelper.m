@@ -29,6 +29,13 @@ static EMHelper *_helper;
     return _helper;
     
 }
+
++(void)playNewMessageSound
+{
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    
+    AudioServicesPlaySystemSound(1002);
+}
 #pragma mark - registerEaseMobNotification
 - (void)registerEaseMobNotification{
     [self unRegisterEaseMobNotification];

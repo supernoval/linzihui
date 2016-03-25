@@ -1035,7 +1035,7 @@ static NSString *textViewCell  =@"textViewCell";
         
         NSDictionary *dict = [_titlesArray objectAtIndex:7];
         _detailVC.detailStr = [dict objectForKey:@"content"];
-        _detailVC.image_list = _image_list;
+        _detailVC.imagesArray = _image_list;
         
         if (_isEdited) {
             

@@ -25,6 +25,8 @@ typedef void (^DetailBlock)(NSMutableArray*imagesArray,NSString*detail);
 @property (nonatomic) NSString *detailStr;
 @property (nonatomic)  NSMutableArray *image_list;
 @property (nonatomic) NSArray *photoURLs;
+@property (nonatomic) NSArray *imagesArray;
+
 
 
 @property (weak, nonatomic) IBOutlet UITextView *detailTV;

@@ -26,7 +26,7 @@ static NSString *headerCellID = @"headerCell";
     
     NSInteger skip;
     
-    NSInteger huodongType;
+    NSInteger huodongType; // 0 全部活动   1 我的活动
     
     UIButton *allButton;
     UIButton *myButton;
@@ -317,6 +317,13 @@ static NSString *headerCellID = @"headerCell";
         }
         
         
+     }
+    
+    if (_isShowGroupActivity) {
+        
+        [query whereKey:@"groupId" equalTo:_groupId];
+        
+        
     }
     
     
@@ -383,6 +390,11 @@ static NSString *headerCellID = @"headerCell";
     
     PublishActivity *_publish = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishActivity"];
     
+    if (_isShowGroupActivity) {
+        
+        _publish.groupId = self.groupId;
+        
+    }
     
     [self.navigationController pushViewController:_publish animated:YES];
     
@@ -393,75 +405,7 @@ static NSString *headerCellID = @"headerCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//        HuoDongModel *model = [_dataSource objectAtIndex:indexPath.section];
-//    if (indexPath.row == 0) {
-//        
-//        CGFloat totalHeight = 440 - 21*4;
-//        
-//        
-//        CGFloat xiangqingHeight = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-//        
-//        if (xiangqingHeight < 21) {
-//            
-//            xiangqingHeight = 21;
-//        }
-//      
-//        totalHeight += xiangqingHeight;
-//        
-//        
-//        CGFloat teDianHeight = [StringHeight heightWithText:model.TeDian font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-//        if (teDianHeight < 21) {
-//            
-//            teDianHeight = 21;
-//            
-//        }
-//  
-//        totalHeight += teDianHeight;
-//        
-//        
-//        CGFloat liuchengHeight = [StringHeight heightWithText:model.LiuCheng font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-//        
-//        if (liuchengHeight < 21) {
-//            
-//            liuchengHeight = 21;
-//        }
-//        totalHeight += liuchengHeight;
-//        
-//        
-//        CGFloat zhuyiHeight = [StringHeight heightWithText:model.ZhuYiShiXiang font:FONT_15 constrainedToWidth:ScreenWidth - 85];
-//        
-//        if (zhuyiHeight < 21) {
-//            
-//            zhuyiHeight = 21;
-//            
-//        }
-//        
-//        totalHeight += zhuyiHeight;
-//        
-//        
-//        
-//        return totalHeight;
-//        
-//        
-//    }
-//    
-//    if (indexPath.row == 1) {
-//        
-//        CGFloat photoViewHeight = 0;
-//        
-//        NSArray *imgs = model.photoURL;
-//        
-//        long imageCount = imgs.count;
-//        int perRowImageCount = ((imageCount == 4) ? 2 : 3);
-//        CGFloat perRowImageCountF = (CGFloat)perRowImageCount;
-//        int totalRowCount = ceil(imageCount / perRowImageCountF);
-//        
-//        photoViewHeight = 95 * totalRowCount;
-//        
-//        return photoViewHeight;
-//        
-//        
-//    }
+
     
     
     if (indexPath.row == 0) {

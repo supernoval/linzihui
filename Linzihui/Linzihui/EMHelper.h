@@ -25,6 +25,8 @@ typedef enum{
 +(EMHelper*)getHelper;
 
 
++(void)playNewMessageSound;
+
 #pragma mark - 接受好友请求
 -(BOOL)accepBuddyRequestWithUserName:(NSString*)username error:(EMError**)error;
 
