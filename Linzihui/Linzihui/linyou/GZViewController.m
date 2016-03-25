@@ -41,8 +41,15 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self loadData];
     
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self loadData];
 }
 
 -(void)loadData
@@ -79,6 +86,8 @@
             [querymyFollows findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
                
                 if (!error && array.count > 0) {
+                    
+                    [_myFollows removeAllObjects];
                     
                     for (BmobObject *temOb in array) {
                         
@@ -127,6 +136,8 @@
         [queryFollowMes findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
            
             if (!error) {
+                
+                [_followMes removeAllObjects];
                 
                 for (BmobObject *ob in array) {
                     

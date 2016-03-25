@@ -68,6 +68,10 @@
 #define kGroupApplyInfos @"GroupApplyInfos"
 
 
+//删除好友后的通知
+#define kDidRemoveFriendNoti  @"DidRemoveFriendNoti"
+
+
 
 
 //位置

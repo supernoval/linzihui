@@ -55,6 +55,9 @@ typedef enum{
 +(void)rejectJoinGroupApplyWithModel:(MyConversation*)converModel result:(void(^)(BOOL success,NSString*message))result;
 
 
+#pragma mark - 删除聊天消息
++(void)removeChatMessage:(NSString*)username;
+
                                                                               
 
 

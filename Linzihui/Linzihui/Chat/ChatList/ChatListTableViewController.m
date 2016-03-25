@@ -73,6 +73,7 @@ static NSString *headCellID = @"CellID";
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivegroupNoti:) name:kCreategroupSuccessNoti object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reFreshDataSource) name:kDidRemoveFriendNoti object:nil];
     
 //    [self addHeaderRefresh];
 //    [self addFooterRefresh];

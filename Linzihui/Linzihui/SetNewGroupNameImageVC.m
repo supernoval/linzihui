@@ -173,6 +173,12 @@
     }
     
     
+    //将自己的也加进去
+    UserModel *currentUserModel = [BmobHelper getCurrentUserModel];
+    
+    [addArray addObject:currentUserModel];
+    
+    
     [MyProgressHUD showProgress];
     
     [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" friends:addArray  groupName:_nameTextField.text headImage:imageURL result:^(BOOL success, EMGroup *group) {

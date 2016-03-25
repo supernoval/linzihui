@@ -446,4 +446,12 @@ static EMHelper *_helper;
     }];
 }
 
+#pragma mark - 删除聊天消息
++(void)removeChatMessage:(NSString*)username
+{
+    
+    [[EaseMob sharedInstance].chatManager removeConversationByChatter:username deleteMessages:YES append2Chat:NO];
+    
+}
+
 @end

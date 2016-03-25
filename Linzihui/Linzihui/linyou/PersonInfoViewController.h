@@ -10,6 +10,7 @@
 #import "BaseTableViewController.h"
 
 @interface PersonInfoViewController : BaseTableViewController
+@property (weak, nonatomic) IBOutlet UIView *footerView;
 
 @property (weak, nonatomic) IBOutlet UIButton *cancelAttendButton;
 

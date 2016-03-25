@@ -8909,6 +8909,7 @@
                         <outlet property="address" destination="OHB-QK-3wa" id="LlT-1M-eVj"/>
                         <outlet property="beizhuLabel" destination="5yd-Dq-BWc" id="i9C-SO-nC4"/>
                         <outlet property="cancelAttendButton" destination="NuO-lP-eFz" id="DUD-5U-Nh7"/>
+                        <outlet property="footerView" destination="695-5M-ikE" id="uOe-Dh-gYA"/>
                         <outlet property="headImageView" destination="y8d-db-cGX" id="wjk-R1-FoS"/>
                         <outlet property="linhao" destination="UYE-u7-KzE" id="bcg-2M-Y7Q"/>
                         <outlet property="linhaoTitleLabel" destination="Jt3-zu-bKa" id="7YE-Ll-53i"/>

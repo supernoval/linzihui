@@ -213,6 +213,26 @@
                     
                     [[EaseMob sharedInstance].chatManager removeConversationByChatter:_model.username deleteMessages:YES append2Chat:YES];
                     
+                    [BmobHelper cancelFollowWithUserModel:_model username:[BmobUser getCurrentUser].username result:^(BOOL success) {
+                       
+                        if (success) {
+                            
+                            NSLog(@"取消关注");
+                            
+                        }
+                    }];
+                    
+                    UserModel *currentUserModel = [BmobHelper getCurrentUserModel];
+                    
+                    [BmobHelper cancelFollowWithUserModel:currentUserModel username:_model.username result:^(BOOL success) {
+                       
+                        if (success) {
+                            NSLog(@"取消关注");
+                            
+                        }
+                    }];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kDidRemoveFriendNoti object:nil];
+                    
                     
                     [CommonMethods showDefaultErrorString:@"删除成功"];
                     

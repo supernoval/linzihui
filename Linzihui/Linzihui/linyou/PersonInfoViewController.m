@@ -39,7 +39,8 @@
     
     self.title = @"详细资料";
     
-
+    self.footerView.frame = CGRectMake(0, 0, ScreenWidth, 160);
+    
 
     if ([_username isEqualToString:[BmobUser getCurrentUser].username]) {
         
@@ -448,6 +449,7 @@
 {
      [_pullView removeFromSuperview];
     
+     
     [self.navigationController popViewControllerAnimated:YES];
     
 }
