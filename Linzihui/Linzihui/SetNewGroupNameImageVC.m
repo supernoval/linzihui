@@ -130,7 +130,7 @@
     }
     
     
-    NSMutableString *muString = [[NSMutableString alloc]init];
+   
     
     BmobUser *currentUser = [BmobUser getCurrentUser];
     
@@ -138,17 +138,7 @@
     
     NSString *username = currentUser.username;
     
-    if (nick) {
-        
-        [muString appendString:nick];
-    }
-    else
-    {
-        [muString appendString:username];
-        
-        
-    }
-    
+
     
     NSMutableArray *addArray = [[NSMutableArray alloc]init];
     
@@ -158,17 +148,6 @@
             
             [addArray addObject:oneModel];
             
-            if (oneModel.nickName) {
-                
-                
-                [muString appendString:[NSString stringWithFormat:@" %@",oneModel.nickName]];
-                
-                
-            }
-            else
-            {
-                [muString appendString:[NSString stringWithFormat:@" %@",oneModel.username]];
-            }
         }
     }
     
@@ -181,7 +160,7 @@
     
     [MyProgressHUD showProgress];
     
-    [EMHelper createGroupWithinitTitle:muString description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" friends:addArray  groupName:_nameTextField.text headImage:imageURL result:^(BOOL success, EMGroup *group) {
+    [EMHelper createGroupWithinitTitle:_nameTextField.text description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" friends:addArray  groupName:_nameTextField.text headImage:imageURL result:^(BOOL success, EMGroup *group) {
         
         [MyProgressHUD dismiss];
         

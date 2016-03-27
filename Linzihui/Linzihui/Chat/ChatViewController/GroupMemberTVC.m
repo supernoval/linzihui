@@ -70,7 +70,7 @@
             return NSOrderedAscending;
             
         }
-        else if ([con1.username isEqualToString:ownerUsername])
+        else if ([con2.username isEqualToString:ownerUsername])
                  {
                      return NSOrderedDescending;
                  }

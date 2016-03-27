@@ -38,6 +38,8 @@
     }
     
     
+    
+    //修改环信群名称
     [[EaseMob sharedInstance].chatManager asyncChangeGroupSubject:_editTF.text forGroup:_groupId];
     
     NSString *subTitle = _editTF.text;
@@ -67,6 +69,8 @@
                         _block(subTitle);
                         
                     }
+                    
+                    
                     
                     [CommonMethods showDefaultErrorString:@"修改成功"];
                     

@@ -1154,9 +1154,9 @@
                             
                             _myConver.messageType = 1;
                             
-                            _myConver.subTitle  = group.groupSubject;
+//                            _myConver.subTitle  = group.groupSubject;
                             
-                            _myConver.myTimeStamp = _temCon.latestMessage.timestamp;
+//                            _myConver.myTimeStamp = _temCon.latestMessage.timestamp;
                             
                             
                             [muArray addObject:_myConver];
