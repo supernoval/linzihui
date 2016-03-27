@@ -117,6 +117,10 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 获取备注
 +(NSString*)getBeizhu:(NSString*)username;
 
+#pragma mark - 获取公开群
++(void)getPublicGroup:(void(^)(BOOL success,NSArray*groups))result;
+
+
 
 
 

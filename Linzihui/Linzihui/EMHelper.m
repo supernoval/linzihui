@@ -392,6 +392,12 @@ static EMHelper *_helper;
     
     [[EaseMob sharedInstance].chatManager rejectApplyJoinGroup:converModel.groupId groupname:converModel.subTitle toApplicant:converModel.username reason:converModel.reason];
     
+    if (result) {
+        
+        result(YES,nil);
+        
+    }
+    
     
 }
 

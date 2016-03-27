@@ -475,6 +475,8 @@
 		15D05C101C0433F600E0EA0D /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */; };
 		15D0ADE41C8959080098E3CE /* ApplyJoinGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0ADE31C8959080098E3CE /* ApplyJoinGroupViewController.m */; };
 		15D336731CA7D8FE00E948B7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D336721CA7D8FE00E948B7 /* Reachability.m */; };
+		15D336A51CA7E6F300E948B7 /* GongKaiQunVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D336A41CA7E6F300E948B7 /* GongKaiQunVC.m */; };
+		15D336A81CA7E82100E948B7 /* GongkaiqunCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D336A71CA7E82100E948B7 /* GongkaiqunCell.m */; };
 		15D75F011C41F90800ACC0E0 /* HongBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */; };
 		15D75F041C41FC9200ACC0E0 /* FriendEditedTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F031C41FC9200ACC0E0 /* FriendEditedTVC.m */; };
 		15E4524B1C366BE800A6A549 /* callRing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 15E4524A1C366BE800A6A549 /* callRing.mp3 */; };
@@ -1441,6 +1443,10 @@
 		15D0ADE31C8959080098E3CE /* ApplyJoinGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyJoinGroupViewController.m; sourceTree = "<group>"; };
 		15D336711CA7D8FA00E948B7 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		15D336721CA7D8FE00E948B7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		15D336A31CA7E6F300E948B7 /* GongKaiQunVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GongKaiQunVC.h; sourceTree = "<group>"; };
+		15D336A41CA7E6F300E948B7 /* GongKaiQunVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GongKaiQunVC.m; sourceTree = "<group>"; };
+		15D336A61CA7E82100E948B7 /* GongkaiqunCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GongkaiqunCell.h; sourceTree = "<group>"; };
+		15D336A71CA7E82100E948B7 /* GongkaiqunCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GongkaiqunCell.m; sourceTree = "<group>"; };
 		15D75EFF1C41F90800ACC0E0 /* HongBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoViewController.h; sourceTree = "<group>"; };
 		15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoViewController.m; sourceTree = "<group>"; };
 		15D75F021C41FC9200ACC0E0 /* FriendEditedTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendEditedTVC.h; sourceTree = "<group>"; };
@@ -3512,6 +3518,17 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
+		15D336A21CA7E6D700E948B7 /* gongkaiqun */ = {
+			isa = PBXGroup;
+			children = (
+				15D336A31CA7E6F300E948B7 /* GongKaiQunVC.h */,
+				15D336A41CA7E6F300E948B7 /* GongKaiQunVC.m */,
+				15D336A61CA7E82100E948B7 /* GongkaiqunCell.h */,
+				15D336A71CA7E82100E948B7 /* GongkaiqunCell.m */,
+			);
+			name = gongkaiqun;
+			sourceTree = "<group>";
+		};
 		15D75EFE1C41F8EF00ACC0E0 /* hongbao */ = {
 			isa = PBXGroup;
 			children = (
@@ -3877,6 +3894,7 @@
 		15EE46F61BE8796200538EA5 /* linyou */ = {
 			isa = PBXGroup;
 			children = (
+				15D336A21CA7E6D700E948B7 /* gongkaiqun */,
 				1538EA121C2A6D90002A23C7 /* PerfonInfoTVC */,
 				1506EC271BF82C8B0010F349 /* mygrouplist */,
 				15BE66ED1BF3F6ED000A9D1F /* guanzhu */,
@@ -4124,6 +4142,7 @@
 				1506EC261BF712620010F349 /* CreateChatRoomTVC.m in Sources */,
 				15EE46E41BE85C1700538EA5 /* JSONAPI.m in Sources */,
 				150F31901C0FEA5D00E5CC8B /* ZXAI013x0xDecoder.m in Sources */,
+				15D336A51CA7E6F300E948B7 /* GongKaiQunVC.m in Sources */,
 				15B7A4A51BE72FEE0052115F /* MessageModelManager.m in Sources */,
 				15B7A4941BE72FEE0052115F /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				150F31E91C0FEA5D00E5CC8B /* ZXQRCodeFinderPatternInfo.m in Sources */,
@@ -4181,6 +4200,7 @@
 				15EE46F91BE879D600538EA5 /* LinYouTableViewController.m in Sources */,
 				1577166E1C44F1B70030DC0B /* PersonPullView.m in Sources */,
 				150F31811C0FEA5D00E5CC8B /* ZXDataMatrixX12Encoder.m in Sources */,
+				15D336A81CA7E82100E948B7 /* GongkaiqunCell.m in Sources */,
 				15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */,
 				15B7A53B1BE730460052115F /* MWPhotoBrowser.m in Sources */,
 				15B7A4391BE72F800052115F /* EMAudioRecorderUtil.m in Sources */,

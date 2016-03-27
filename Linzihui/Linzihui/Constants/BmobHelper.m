@@ -1815,4 +1815,49 @@
     
 }
 
+#pragma mark - 获取公开群
++(void)getPublicGroup:(void(^)(BOOL success,NSArray*groups))result
+{
+    BmobQuery *queryForGroup = [BmobQuery queryWithClassName:kChatGroupTableName];
+    
+    [queryForGroup whereKey:@"isPublic" equalTo:[NSNumber numberWithBool:YES]];
+    
+    [queryForGroup findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        
+        if (array) {
+            
+            
+            NSMutableArray *resutls = [[NSMutableArray alloc]init];
+            
+            for (BmobObject *ob in array) {
+                
+                GroupChatModel *model = [[GroupChatModel alloc]init];
+                
+                NSDictionary *dataDic = [ob valueForKey:kBmobDataDic];
+                
+                
+                [model setValuesForKeysWithDictionary:dataDic];
+                
+                BmobGeoPoint *location  = [ob objectForKey:@"location"];
+                
+                model.location = location;
+                
+                
+                [resutls addObject:model];
+            }
+            
+            
+            if (result) {
+                
+                result(YES,resutls);
+                
+            }
+        }
+        
+    }];
+    
+    
+}
+
 @end

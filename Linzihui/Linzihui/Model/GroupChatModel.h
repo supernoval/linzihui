@@ -16,6 +16,10 @@
 @property (nonatomic,strong ) NSString *objectId;
 @property (nonatomic,strong ) NSString *groupId;
 @property (nonatomic,strong)  NSArray  *members; // 保存字典 {@"username":@"",@"nickName":@"",@"headImageURL":@""}
+@property (nonatomic,strong) BmobObject *owner;
+
+@property (nonatomic,assign)  BOOL isPublic;
+
 
 @property (nonatomic,strong) NSString *groupImage;
 @property (nonatomic,strong)  NSString *subTitle;

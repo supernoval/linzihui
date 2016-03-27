@@ -9,6 +9,7 @@
 #import "MygroupListTVC.h"
 #import "ChatViewController.h"
 #import "ApplyJoinGroupViewController.h"
+#import "GongKaiQunVC.h"
 
 
 @interface MygroupListTVC ()
@@ -129,12 +130,29 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
+    if (section == 0) {
+        
+        return 30;
+        
+    }
+    
     return 1;
     
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    
+    if (section == 0) {
+        
+        UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 30)];
+        
+        blankView.backgroundColor = [UIColor clearColor];
+        
+        return blankView;
+    
+        
+    }
     
     UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
     
@@ -146,7 +164,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _groupListArray.count;
+    return _groupListArray.count +1;
     
     
     
@@ -162,11 +180,37 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-         GroupChatModel *onegroup  = [_groupListArray objectAtIndex:indexPath.section];
+        
+        
+        //添加公开群
+        if (indexPath.section == 0) {
+            
+            
+            
+            UIImageView *headImageView = (UIImageView*)[cell viewWithTag:100];
+            
+            headImageView.image = [UIImage imageNamed:@"linyou_1"];
+            
+            UILabel *nameLabel = (UILabel*)[cell viewWithTag:101];
+            
+            nameLabel.text = @"添加公开群";
+            
+            
+            
+            
+        }
+        else
+        {
+        
+        
+        
+         GroupChatModel *onegroup  = [_groupListArray objectAtIndex:indexPath.section -1];
         
         UIImageView *headImageView = (UIImageView*)[cell viewWithTag:100];
         
@@ -178,9 +222,6 @@
         if (_isNearGroup) {
             
             distanceLabel.hidden = NO;
-            
-//            BmobGeoPoint *location = [onegroup.location ]
-//            CGFloat latitude = [[onegroup.location :@"latitude"]floatValue];
             
             
             
@@ -194,30 +235,12 @@
             
         }
        
-        
-        
-//        [headImageView sd_setImageWithURL:[NSURL URLWithString:oneModel.headImageURL] placeholderImage:kDefaultHeadImage];
+    
         
         nameLabel.text = onegroup.subTitle;
         
-//        if (!oneModel.nickName) {
-//            
-//            nameLabel.text = oneModel.username;
-//            
-//            
-//        }
-        
-        
-//        if (oneModel.hadSelected) {
-//            
-//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//        }
-//        else
-//        {
-//            cell.accessoryType = UITableViewCellAccessoryNone;
-//            
-//        }
-        
+
+        }
         
     });
     
@@ -228,7 +251,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     GroupChatModel *selectedGroup = [_groupListArray objectAtIndex:indexPath.section];
+    
+    if (indexPath.section == 0) {
+        
+        GongKaiQunVC *gongkaiQunTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GongKaiQunVC"];
+        
+        [self.navigationController pushViewController:gongkaiQunTVC animated:YES];
+        
+        
+        
+    }
+    
+    else
+    {
+     GroupChatModel *selectedGroup = [_groupListArray objectAtIndex:indexPath.section - 1];
     
     if (_isNearGroup) {
         
@@ -288,10 +324,11 @@
         [self chatWithgroupModel:selectedGroup];
         
         
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+       
     }
-  
+    }
 
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
 }

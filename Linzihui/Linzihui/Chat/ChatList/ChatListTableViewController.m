@@ -618,7 +618,7 @@ static NSString *headCellID = @"CellID";
         else if (model.messageType == 3)
         {
             
-            _acceptAlertView = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"是否同意%@加入%@?",model.username,model.subTitle] delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
+            _acceptAlertView = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"是否同意%@加入%@?\n附加信息:%@",model.nickName,model.subTitle,model.message] delegate:self cancelButtonTitle:@"不同意" otherButtonTitles:@"同意", nil];
             _acceptAlertView.tag = indexPath.section -1;
             
             [_acceptAlertView show];
