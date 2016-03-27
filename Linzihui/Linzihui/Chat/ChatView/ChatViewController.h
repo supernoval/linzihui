@@ -18,6 +18,8 @@
 #import "BaseViewController.h"
 #import "PublishActivity.h"
 #import "CallViewController.h"
+#import "Reachability.h"
+
 
 @protocol ChatViewControllerDelegate <NSObject>
 

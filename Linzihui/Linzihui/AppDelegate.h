@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import "Reachability.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {

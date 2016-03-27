@@ -31,7 +31,7 @@ static NSString *CellID = @"CellID";
     [super viewDidLoad];
     
     
-   _titlesArray = @[@{@"title":@"生活圈",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"}];
+   _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"}];
     
     
     

@@ -474,6 +474,7 @@
 		15CFFE7F1C4390BD008A0D97 /* HuodongCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */; };
 		15D05C101C0433F600E0EA0D /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */; };
 		15D0ADE41C8959080098E3CE /* ApplyJoinGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0ADE31C8959080098E3CE /* ApplyJoinGroupViewController.m */; };
+		15D336731CA7D8FE00E948B7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D336721CA7D8FE00E948B7 /* Reachability.m */; };
 		15D75F011C41F90800ACC0E0 /* HongBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */; };
 		15D75F041C41FC9200ACC0E0 /* FriendEditedTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F031C41FC9200ACC0E0 /* FriendEditedTVC.m */; };
 		15E4524B1C366BE800A6A549 /* callRing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 15E4524A1C366BE800A6A549 /* callRing.mp3 */; };
@@ -1438,6 +1439,8 @@
 		15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPhotosViewController.m; sourceTree = "<group>"; };
 		15D0ADE21C8959080098E3CE /* ApplyJoinGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyJoinGroupViewController.h; sourceTree = "<group>"; };
 		15D0ADE31C8959080098E3CE /* ApplyJoinGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyJoinGroupViewController.m; sourceTree = "<group>"; };
+		15D336711CA7D8FA00E948B7 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		15D336721CA7D8FE00E948B7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		15D75EFF1C41F90800ACC0E0 /* HongBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoViewController.h; sourceTree = "<group>"; };
 		15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoViewController.m; sourceTree = "<group>"; };
 		15D75F021C41FC9200ACC0E0 /* FriendEditedTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendEditedTVC.h; sourceTree = "<group>"; };
@@ -1591,6 +1594,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				154A396D1BE5E4450042632E /* CoreGraphics.framework in Frameworks */,
+				154A39751BE5E4690042632E /* SystemConfiguration.framework in Frameworks */,
 				154A39F41BE5E6F50042632E /* libstdc++.6.0.9.tbd in Frameworks */,
 				15521B7A1C4A0C040010E718 /* BaiduMapAPI_Location.framework in Frameworks */,
 				15521B7E1C4A0C040010E718 /* BaiduMapAPI_Utils.framework in Frameworks */,
@@ -1598,8 +1603,6 @@
 				15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */,
 				154A397B1BE5E4830042632E /* libsqlite3.tbd in Frameworks */,
 				154A396B1BE5E43F0042632E /* Security.framework in Frameworks */,
-				154A396D1BE5E4450042632E /* CoreGraphics.framework in Frameworks */,
-				154A39751BE5E4690042632E /* SystemConfiguration.framework in Frameworks */,
 				15521B4D1C4A0A850010E718 /* OpenGLES.framework in Frameworks */,
 				15521B4B1C4A0A760010E718 /* QuartzCore.framework in Frameworks */,
 				154A39691BE5E4370042632E /* CoreLocation.framework in Frameworks */,
@@ -2622,6 +2625,7 @@
 		154A39641BE5E3BD0042632E /* ThirdPartFrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				15D336701CA7D8E400E948B7 /* Reachability */,
 				15521B5F1C4A0BEF0010E718 /* BaiduMapApi */,
 				15E4524F1C366F6900A6A549 /* EaseMobSDK */,
 				150F2F0F1C0FEA5D00E5CC8B /* LBXScan */,
@@ -3499,6 +3503,15 @@
 			name = applyJoinGroup;
 			sourceTree = "<group>";
 		};
+		15D336701CA7D8E400E948B7 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				15D336711CA7D8FA00E948B7 /* Reachability.h */,
+				15D336721CA7D8FE00E948B7 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		15D75EFE1C41F8EF00ACC0E0 /* hongbao */ = {
 			isa = PBXGroup;
 			children = (
@@ -4038,6 +4051,7 @@
 				150F31B41C0FEA5D00E5CC8B /* ZXITFWriter.m in Sources */,
 				15B7A5571BE730460052115F /* PSTCollectionViewLayout.m in Sources */,
 				150F31A31C0FEA5D00E5CC8B /* ZXRSSDataCharacter.m in Sources */,
+				15D336731CA7D8FE00E948B7 /* Reachability.m in Sources */,
 				15B7A5511BE730460052115F /* PSTCollectionView.m in Sources */,
 				150F314E1C0FEA5D00E5CC8B /* ZXMonochromeRectangleDetector.m in Sources */,
 				150F31D11C0FEA5D00E5CC8B /* ZXPDF417BarcodeMatrix.m in Sources */,
@@ -4615,7 +4629,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "41ebd607-9546-42f8-96bd-df5d6fc22c38";
+				PROVISIONING_PROFILE = "2f78ad11-89c2-4146-bfa4-2c38068df1c1";
 			};
 			name = Release;
 		};

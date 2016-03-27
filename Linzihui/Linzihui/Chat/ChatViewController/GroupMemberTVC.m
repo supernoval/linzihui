@@ -45,12 +45,53 @@
        
         if (arary) {
             
-            _friendList = arary;
+          
+            [self sortGroupMembers:arary];
             
-            [self.tableView reloadData];
+            
+            
             
         }
     }];
+}
+
+
+
+-(void)sortGroupMembers:(NSArray*)members
+{
+
+    
+    NSString *ownerUsername = _group.owner;
+    
+    NSArray *sorted = [members sortedArrayUsingComparator:^NSComparisonResult(MyConversation *con1, MyConversation *con2) {
+        
+        if ([con1.username isEqualToString:ownerUsername]) {
+            
+            return NSOrderedAscending;
+            
+        }
+        else if ([con1.username isEqualToString:ownerUsername])
+                 {
+                     return NSOrderedDescending;
+                 }
+        
+        else
+        {
+            
+            return NSOrderedAscending;
+            
+        }
+    
+        
+    }];
+    
+    
+    _friendList = sorted;
+    
+    [self.tableView reloadData];
+    
+    
+
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section

@@ -22,6 +22,9 @@
     
     
 }
+
+@property (nonatomic) Reachability *internetReachability;
+
 @end
 
 @implementation AppDelegate
@@ -96,7 +99,47 @@
         NSLog(@"manager start failed!");
     }
     
+    
+    
+    //网络状态监测
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    
+    self.internetReachability = [Reachability reachabilityForInternetConnection];
+    
+    
+    [self.internetReachability startNotifier];
+    
+    NSInteger status = [self.internetReachability currentReachabilityStatus];
+    
+    if (status  == NotReachable) {
+        
+        [CommonMethods showDefaultErrorString:@"世界上最远的距离是没有网络"];
+        
+        
+    }
+    
+    
     return YES;
+}
+
+#pragma mark -网络监测
+
+- (void) reachabilityChanged:(NSNotification *)note
+{
+    Reachability* curReach = [note object];
+  
+    NSInteger status = [curReach currentReachabilityStatus];
+    
+    
+    if (status  == NotReachable) {
+        
+        
+        [CommonMethods showDefaultErrorString:@"世界上最远的距离是没有网络"];
+        
+        
+        
+    }
 }
 
 #ifdef __IPHONE_8_0

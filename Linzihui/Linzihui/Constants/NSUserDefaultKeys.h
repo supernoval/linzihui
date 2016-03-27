@@ -71,6 +71,14 @@
 //删除好友后的通知
 #define kDidRemoveFriendNoti  @"DidRemoveFriendNoti"
 
+//邻近动态提示过
+#define kHadShowLinJinNoti   @"HadShowLinJinNoti"
+
+//熟人圈提示过
+#define kHadShowShuRenQuanNoti  @"HadSHowShuRenQuanNoti"
+
+
+
 
 
 

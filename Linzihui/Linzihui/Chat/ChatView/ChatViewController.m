@@ -226,6 +226,11 @@
         [self editeTitleView];
     }
     
+ 
+    
+
+    
+    
     
 }
 
@@ -982,6 +987,9 @@
              }
          }
      }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidRemoveFriendNoti object:nil];
+    
     [self.tableView reloadData];
 }
 
@@ -2010,60 +2018,6 @@
 
 
 
-#pragma mark - 创建带附件的消息体和批量导入消息的示例
-//- (void)loadMessage
-//{
-//    NSDictionary *imageDic = @{EMMessageBodyAttrKeySecret:@"fmIgiuSuEeSdyLffbqYspd3oOH6uMSGkXaOvZUF9ayy5b26c",
-//                               EMMessageBodyAttrKeySize:@{EMMessageBodyAttrKeySizeWidth:@640,EMMessageBodyAttrKeySizeHeight:@1136},
-//                               EMMessageBodyAttrKeyFileName:@"image.jpg",
-//                               EMMessageBodyAttrKeyType:EMMessageBodyAttrTypeImag,
-//                               EMMessageBodyAttrKeyUrl:@"https://a1.easemob.com/easemob-demo/chatdemoui/chatfiles/7e622080-e4ae-11e4-8a29-c1c8b3fc3a16",
-//                               EMMessageBodyAttrKeyFileLength:@178212};
-//    EMImageMessageBody *imageBody = [EMImageMessageBody imageMessageBodyFromBodyDict:imageDic forChatter:_chatter];
-//    EMMessage *image = [[EMMessage alloc] initMessageWithID:@"50152415936119390" sender:_chatter receiver:@"my_test4" bodies:@[imageBody]];
-//    image.timestamp = ([[NSDate date] timeIntervalSince1970] - 10) * 1000;
-//    image.isReadAcked = YES;
-//    image.deliveryState = eMessageDeliveryState_Delivered;
-//    image.isRead = YES;
-//    image.isGroup = self.isChatGroup;
-//    image.conversationChatter = @"my_test5";
-//
-//    NSDictionary *voiceDic = @{EMMessageBodyAttrKeySecret:@"ZTKmSuSxEeS2upsPo9JVK-E7e7W_Ieu6g55uSbYCQikqSmh1",
-//                               EMMessageBodyAttrKeyFileName:@"audio chat",
-//                               EMMessageBodyAttrKeyDuration:@6,
-//                               EMMessageBodyAttrKeyType:EMMessageBodyAttrTypeAudio,
-//                               EMMessageBodyAttrKeyUrl:@"https://a1.easemob.com/easemob-demo/chatdemoui/chatfiles/6532a640-e4b1-11e4-9a0a-019cf64935ae",
-//                               EMMessageBodyAttrKeyFileLength:@8870};
-//
-//    EMVoiceMessageBody *voiceBody = [EMVoiceMessageBody voiceMessageBodyFromBodyDict:voiceDic forChatter:_chatter];
-//    EMMessage *voice = [[EMMessage alloc] initMessageWithID:@"50152415936119490" sender:_chatter receiver:@"my_test4" bodies:@[voiceBody]];
-//    voice.timestamp = ([[NSDate date] timeIntervalSince1970] - 5) * 1000;
-//    voice.isReadAcked = YES;
-//    voice.deliveryState = eMessageDeliveryState_Delivered;
-//    voice.isRead = YES;
-//    voice.isGroup = isChatGroup;
-//    voice.conversationChatter = @"my_test5";
-//
-//    NSDictionary *videoDic = @{EMMessageBodyAttrKeySecret:@"ANfQauSzEeSWceXUdNLCzOoCWyafJ0jg5AticaEKlEVCeqD2",
-//                               EMMessageBodyAttrKeyDuration:@12,
-//                               EMMessageBodyAttrKeyThumbSecret:@"AHShyuSzEeS9Eo2-FC-hEqTv7L96P5LNxUCo2zGrbZfu9FWz",
-//                               EMMessageBodyAttrKeySize:@{EMMessageBodyAttrKeySizeWidth:@68,EMMessageBodyAttrKeySizeHeight:@90},
-//                               EMMessageBodyAttrKeyThumb:@"https://a1.easemob.com/easemob-demo/chatdemoui/chatfiles/0074a1c0-e4b3-11e4-9adb-9da24ed370c3",
-//                               EMMessageBodyAttrKeyFileName:@"video.mp4",
-//                               EMMessageBodyAttrKeyType:@"video",
-//                               EMMessageBodyAttrKeyFileLength:@1235670,
-//                               EMMessageBodyAttrKeyUrl:@"https://a1.easemob.com/easemob-demo/chatdemoui/chatfiles/00d7d060-e4b3-11e4-9906-8311a663fa09"};
-//
-//    EMVideoMessageBody *videoBody = [EMVideoMessageBody videoMessageBodyFromBodyDict:videoDic forChatter:_chatter];
-//    EMMessage *video = [[EMMessage alloc] initMessageWithID:@"50152415936119590" sender:_chatter receiver:@"my_test4" bodies:@[videoBody]];
-//    video.timestamp = ([[NSDate date] timeIntervalSince1970] - 1) * 1000;
-//    video.isReadAcked = YES;
-//    video.deliveryState = eMessageDeliveryState_Delivered;
-//    video.isRead = YES;
-//    video.isGroup = isChatGroup;
-//    video.conversationChatter = @"my_test5";
-//    [[EaseMob sharedInstance].chatManager insertMessagesToDB:@[image, voice, video]];
-//    [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:YES];
-//}
+
 
 @end

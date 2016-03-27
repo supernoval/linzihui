@@ -77,6 +77,14 @@
                 myFollows = @[];
             }
             
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            [muArray addObjectsFromArray:myFollows];
+            
+            [muArray removeObject:[BmobUser getCurrentUser].username];
+            
+            myFollows = muArray;
+            
             
             //获取我的关注的人信息
             BmobQuery *querymyFollows = [BmobQuery queryForUser];
@@ -125,6 +133,16 @@
             followMes = @[];
             
         }
+        
+        NSMutableArray *muArray = [[NSMutableArray alloc]init];
+        
+        [muArray addObjectsFromArray:followMes];
+        
+        [muArray removeObject:[BmobUser getCurrentUser].username];
+        
+        followMes = muArray;
+        
+        
         BmobQuery *queryFollowMes = [BmobQuery queryForUser];
         
 

@@ -80,12 +80,45 @@ static NSString *commentCellID = @"CommentCell";
         
         [_shurenUserNameArray addObject:[BmobUser getCurrentUser].username];
         
+        
+        //提示信息
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:kHadShowShuRenQuanNoti]) {
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"只有多邀请熟人建立好友才能接收私密信息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            
+            
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHadShowShuRenQuanNoti];
+            
+            [[NSUserDefaults standardUserDefaults ] synchronize];
+            
+            
+        }
+        
+        
     }
     else if (_isShuRenQuan == 0)
     {
-          self.title = @"生活圈";
+          self.title = @"邻近动态";
+        
+        
+        
+        //提示信息
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:kHadShowLinJinNoti]) {
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"只有关注邻居才能接受信息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            
+            
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHadShowLinJinNoti];
+            
+            [[NSUserDefaults standardUserDefaults ] synchronize];
+            
+            
+        }
+        
     }
-    else 
+    else
     {
         self.title = @"相册";
         
@@ -94,7 +127,7 @@ static NSString *commentCellID = @"CommentCell";
     }
 
     
-    self.tableView.backgroundColor = kBackgroundColor;
+    self.tableView.backgroundColor = [UIColor lightGrayColor];
     
     CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
     CGFloat longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
@@ -383,7 +416,7 @@ static NSString *commentCellID = @"CommentCell";
     
     UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
     
-    blankView.backgroundColor = [UIColor lightGrayColor];
+    blankView.backgroundColor = [UIColor clearColor];
     
     
     
