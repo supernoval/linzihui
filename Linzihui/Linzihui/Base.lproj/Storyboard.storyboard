@@ -5218,6 +5218,100 @@
             </objects>
             <point key="canvasLocation" x="840.75" y="2705.625"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="tZf-gQ-Yqg">
+            <objects>
+                <viewController id="Dnd-cX-qY8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nNa-93-sEy"/>
+                        <viewControllerLayoutGuide type="bottom" id="GAi-5w-LTM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gmb-ph-YeI">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0um-h4-7Io">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="4S2-41-S2i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4S2-41-S2i"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="4S2-41-S2i"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品名称、价格、几成新、原价、自取或送货" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkj-A2-DEM">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="n8d-Sg-NdF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="n8d-Sg-NdF"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="n8d-Sg-NdF"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fkj-A2-DEM" firstAttribute="top" secondItem="nNa-93-sEy" secondAttribute="bottom" constant="13" id="1QY-8K-fj2"/>
+                            <constraint firstAttribute="trailing" secondItem="0um-h4-7Io" secondAttribute="trailing" constant="11" id="FNq-Yo-3qz"/>
+                            <constraint firstAttribute="trailing" secondItem="fkj-A2-DEM" secondAttribute="trailing" constant="20" id="Ifr-XF-TE0"/>
+                            <constraint firstItem="fkj-A2-DEM" firstAttribute="leading" secondItem="Gmb-ph-YeI" secondAttribute="leading" constant="20" id="Uz3-7s-dku"/>
+                            <constraint firstItem="0um-h4-7Io" firstAttribute="leading" secondItem="Gmb-ph-YeI" secondAttribute="leading" constant="10" id="Y3X-UO-mLx"/>
+                            <constraint firstItem="0um-h4-7Io" firstAttribute="top" secondItem="nNa-93-sEy" secondAttribute="bottom" constant="8" id="oFf-rH-Fug"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="0um-h4-7Io"/>
+                                <exclude reference="fkj-A2-DEM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="FNq-Yo-3qz"/>
+                                <exclude reference="Y3X-UO-mLx"/>
+                                <exclude reference="oFf-rH-Fug"/>
+                                <exclude reference="1QY-8K-fj2"/>
+                                <exclude reference="Ifr-XF-TE0"/>
+                                <exclude reference="Uz3-7s-dku"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="0um-h4-7Io"/>
+                                <include reference="fkj-A2-DEM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="FNq-Yo-3qz"/>
+                                <include reference="Y3X-UO-mLx"/>
+                                <include reference="oFf-rH-Fug"/>
+                                <include reference="1QY-8K-fj2"/>
+                                <include reference="Ifr-XF-TE0"/>
+                                <include reference="Uz3-7s-dku"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sQT-zT-q55" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="840.75" y="3286.125"/>
+        </scene>
         <!--Yao Yi Yao View Controller-->
         <scene sceneID="2YH-Av-wjT">
             <objects>
@@ -7538,12 +7632,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="GongKaiQunVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aGa-3g-X0B" customClass="GongKaiQunVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="VNG-7W-Lyk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GongkaiqunCell" rowHeight="60" id="Ldp-Kn-svk" customClass="GongkaiqunCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ldp-Kn-svk" id="VAg-pR-0FP">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hhW-X3-7yC">
@@ -7586,12 +7683,12 @@
                                             <exclude reference="yBy-FP-cgc"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="ewP-yt-JIK"/>
-                                            <exclude reference="s0s-4Z-6MU"/>
                                             <exclude reference="JwJ-qf-PNd"/>
                                             <exclude reference="Lww-jB-WUX"/>
                                             <exclude reference="lpT-5G-MfL"/>
                                             <exclude reference="zPs-9x-4Ej"/>
+                                            <exclude reference="ewP-yt-JIK"/>
+                                            <exclude reference="s0s-4Z-6MU"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -7600,12 +7697,12 @@
                                             <include reference="yBy-FP-cgc"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="ewP-yt-JIK"/>
-                                            <include reference="s0s-4Z-6MU"/>
                                             <include reference="JwJ-qf-PNd"/>
                                             <include reference="Lww-jB-WUX"/>
                                             <include reference="lpT-5G-MfL"/>
                                             <include reference="zPs-9x-4Ej"/>
+                                            <include reference="ewP-yt-JIK"/>
+                                            <include reference="s0s-4Z-6MU"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -7720,7 +7817,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glb-49-fGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4559.25" y="-674.625"/>
+            <point key="canvasLocation" x="4571.25" y="-698.625"/>
         </scene>
         <!--LoginNav-->
         <scene sceneID="UG0-we-ent">

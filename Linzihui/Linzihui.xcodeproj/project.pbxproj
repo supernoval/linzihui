@@ -303,6 +303,9 @@
 		15521B7F1C4A0C040010E718 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15521B771C4A0C040010E718 /* mapapi.bundle */; };
 		15521B831C4A0E620010E718 /* SearchNearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15521B821C4A0E620010E718 /* SearchNearByViewController.m */; };
 		15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */; };
+		156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */; };
+		156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */; };
+		156CB2CB1CA95F42000E7F7E /* AddPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 156CB2CA1CA95F42000E7F7E /* AddPhotoView.xib */; };
 		1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577165E1C44A0530030DC0B /* BaseNavigationController.m */; };
 		157716621C44A08D0030DC0B /* LinXinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716611C44A08D0030DC0B /* LinXinNavigationController.m */; };
 		157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716641C44A0A00030DC0B /* LinYouNavigationController.m */; };
@@ -1093,6 +1096,11 @@
 		15521B821C4A0E620010E718 /* SearchNearByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNearByViewController.m; sourceTree = "<group>"; };
 		15697A5F1CA3FC80001756E9 /* SetNewGroupNameImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewGroupNameImageVC.h; sourceTree = "<group>"; };
 		15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewGroupNameImageVC.m; sourceTree = "<group>"; };
+		156CB2C31CA959BE000E7F7E /* PublishErShouVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishErShouVC.h; sourceTree = "<group>"; };
+		156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishErShouVC.m; sourceTree = "<group>"; };
+		156CB2C71CA95F1E000E7F7E /* AddPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPhotoView.h; sourceTree = "<group>"; };
+		156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPhotoView.m; sourceTree = "<group>"; };
+		156CB2CA1CA95F42000E7F7E /* AddPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPhotoView.xib; sourceTree = "<group>"; };
 		1577165D1C44A0530030DC0B /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1577165E1C44A0530030DC0B /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		157716601C44A08D0030DC0B /* LinXinNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinXinNavigationController.h; sourceTree = "<group>"; };
@@ -1650,6 +1658,7 @@
 		1506EC1C1BF702A70010F349 /* MyViews */ = {
 			isa = PBXGroup;
 			children = (
+				156CB2C61CA95F09000E7F7E /* addPhotoView */,
 				1506EC1D1BF702C80010F349 /* PullView.h */,
 				1506EC1E1BF702C80010F349 /* PullView.m */,
 			);
@@ -2725,6 +2734,25 @@
 			name = nearAddress;
 			sourceTree = "<group>";
 		};
+		156CB2BF1CA956F7000E7F7E /* linjin'ershou */ = {
+			isa = PBXGroup;
+			children = (
+				156CB2C31CA959BE000E7F7E /* PublishErShouVC.h */,
+				156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */,
+			);
+			name = "linjin'ershou";
+			sourceTree = "<group>";
+		};
+		156CB2C61CA95F09000E7F7E /* addPhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				156CB2C71CA95F1E000E7F7E /* AddPhotoView.h */,
+				156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */,
+				156CB2CA1CA95F42000E7F7E /* AddPhotoView.xib */,
+			);
+			name = addPhotoView;
+			sourceTree = "<group>";
+		};
 		1577165C1C44A0080030DC0B /* navigationControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -3432,6 +3460,7 @@
 		15B7A5DC1BE74E490052115F /* linjin */ = {
 			isa = PBXGroup;
 			children = (
+				156CB2BF1CA956F7000E7F7E /* linjin'ershou */,
 				157790431C26805A00A70E4B /* wodehuodong */,
 				15B686471C069B36007EE8CB /* huodong */,
 				1530E8411BFC6AF000A78DB5 /* shenghuoquan */,
@@ -3996,6 +4025,7 @@
 				153CE01E1BE50D910032517E /* Storyboard.storyboard in Resources */,
 				15B7A5C01BE730770052115F /* SMS_SDKLocalizable.strings in Resources */,
 				15B7A5D01BE730E40052115F /* ProgressHUD.bundle in Resources */,
+				156CB2CB1CA95F42000E7F7E /* AddPhotoView.xib in Resources */,
 				15E4524B1C366BE800A6A549 /* callRing.mp3 in Resources */,
 				15B7A55D1BE730460052115F /* MWPhotoBrowser.bundle in Resources */,
 				15521B7F1C4A0C040010E718 /* mapapi.bundle in Resources */,
@@ -4204,6 +4234,7 @@
 				15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */,
 				15B7A53B1BE730460052115F /* MWPhotoBrowser.m in Sources */,
 				15B7A4391BE72F800052115F /* EMAudioRecorderUtil.m in Sources */,
+				156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */,
 				15D75F041C41FC9200ACC0E0 /* FriendEditedTVC.m in Sources */,
 				15858D541C1B8AEC000550FD /* SettingTableViewController.m in Sources */,
 				150F31461C0FEA5D00E5CC8B /* ZXVINParsedResult.m in Sources */,
@@ -4329,6 +4360,7 @@
 				15E4524E1C366BEE00A6A549 /* CallViewController.m in Sources */,
 				15B7A55A1BE730460052115F /* PSTGridLayoutItem.m in Sources */,
 				150F319D1C0FEA5D00E5CC8B /* ZXBitArrayBuilder.m in Sources */,
+				156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */,
 				150F31491C0FEA5D00E5CC8B /* ZXWifiResultParser.m in Sources */,
 				15B7A43C1BE72F800052115F /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				150F31291C0FEA5D00E5CC8B /* ZXAddressBookParsedResult.m in Sources */,
