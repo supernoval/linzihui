@@ -94,7 +94,6 @@
     
     [CommonMethods upLoadPhotos:@[headImage] resultBlock:^(BOOL success, NSArray *results) {
        
-        [MyProgressHUD dismiss];
         
         if (success && results.count > 0) {
             
@@ -102,6 +101,11 @@
             
             [self createGroup];
             
+            
+        }
+        else
+        {
+            [MyProgressHUD dismiss];
             
         }
     }];
@@ -132,11 +136,11 @@
     
    
     
-    BmobUser *currentUser = [BmobUser getCurrentUser];
+//    BmobUser *currentUser = [BmobUser getCurrentUser];
     
-    NSString *nick = [currentUser objectForKey:@"nickName"];
+//    NSString *nick = [currentUser objectForKey:@"nickName"];
     
-    NSString *username = currentUser.username;
+//    NSString *username = currentUser.username;
     
 
     
@@ -158,7 +162,7 @@
     [addArray addObject:currentUserModel];
     
     
-    [MyProgressHUD showProgress];
+   
     
     [EMHelper createGroupWithinitTitle:_nameTextField.text description:@"邻里互帮" invitees:muArray welcomeMsg:@"欢迎加入" friends:addArray  groupName:_nameTextField.text headImage:imageURL result:^(BOOL success, EMGroup *group) {
         
