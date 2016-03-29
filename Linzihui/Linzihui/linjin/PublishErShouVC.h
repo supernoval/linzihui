@@ -7,7 +7,23 @@
 //
 
 #import "BaseViewController.h"
+#import "AddPhotoView.h"
+#import "ErShouTypeTVC.h"
+
 
 @interface PublishErShouVC : BaseViewController
+
+@property (weak, nonatomic) IBOutlet UITextView *desTextView;
+
+@property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
+
+@property (weak, nonatomic) IBOutlet AddPhotoView *addPhotoView;
+
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UIButton *typeButton;
+
+- (IBAction)typeAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *priceTextField;
 
 @end

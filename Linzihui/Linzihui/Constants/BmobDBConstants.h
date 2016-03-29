@@ -34,3 +34,6 @@
 
 //等级
 #define kLevel                       @"Level"
+
+//邻近二手
+#define kErShou                      @"ErShou"

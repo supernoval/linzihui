@@ -305,7 +305,6 @@
 		15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */; };
 		156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */; };
 		156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */; };
-		156CB2CB1CA95F42000E7F7E /* AddPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 156CB2CA1CA95F42000E7F7E /* AddPhotoView.xib */; };
 		1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577165E1C44A0530030DC0B /* BaseNavigationController.m */; };
 		157716621C44A08D0030DC0B /* LinXinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716611C44A08D0030DC0B /* LinXinNavigationController.m */; };
 		157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716641C44A0A00030DC0B /* LinYouNavigationController.m */; };
@@ -507,6 +506,7 @@
 		15EE46F91BE879D600538EA5 /* LinYouTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46F81BE879D600538EA5 /* LinYouTableViewController.m */; };
 		15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46FF1BE891FC00538EA5 /* AddNewFriendsTVC.m */; };
 		15EFF9331BE7266A00069F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EFF9321BE7266A00069F38 /* Assets.xcassets */; };
+		15F2809D1CAA47A5005F4E7F /* ErShouTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F2809C1CAA47A5005F4E7F /* ErShouTypeTVC.m */; };
 		15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */; };
 		15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */; };
 		15FB7FED1BEF48E6007D6EC8 /* BaseBmobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */; };
@@ -1100,7 +1100,6 @@
 		156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishErShouVC.m; sourceTree = "<group>"; };
 		156CB2C71CA95F1E000E7F7E /* AddPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPhotoView.h; sourceTree = "<group>"; };
 		156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPhotoView.m; sourceTree = "<group>"; };
-		156CB2CA1CA95F42000E7F7E /* AddPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPhotoView.xib; sourceTree = "<group>"; };
 		1577165D1C44A0530030DC0B /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1577165E1C44A0530030DC0B /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		157716601C44A08D0030DC0B /* LinXinNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinXinNavigationController.h; sourceTree = "<group>"; };
@@ -1591,6 +1590,8 @@
 		15EE46FE1BE891FC00538EA5 /* AddNewFriendsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewFriendsTVC.h; sourceTree = "<group>"; };
 		15EE46FF1BE891FC00538EA5 /* AddNewFriendsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewFriendsTVC.m; sourceTree = "<group>"; };
 		15EFF9321BE7266A00069F38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15F2809B1CAA47A5005F4E7F /* ErShouTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouTypeTVC.h; sourceTree = "<group>"; };
+		15F2809C1CAA47A5005F4E7F /* ErShouTypeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouTypeTVC.m; sourceTree = "<group>"; };
 		15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 		15FB7FEB1BEF48E6007D6EC8 /* BaseBmobModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseBmobModel.h; sourceTree = "<group>"; };
@@ -2739,6 +2740,8 @@
 			children = (
 				156CB2C31CA959BE000E7F7E /* PublishErShouVC.h */,
 				156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */,
+				15F2809B1CAA47A5005F4E7F /* ErShouTypeTVC.h */,
+				15F2809C1CAA47A5005F4E7F /* ErShouTypeTVC.m */,
 			);
 			name = "linjin'ershou";
 			sourceTree = "<group>";
@@ -2748,7 +2751,6 @@
 			children = (
 				156CB2C71CA95F1E000E7F7E /* AddPhotoView.h */,
 				156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */,
-				156CB2CA1CA95F42000E7F7E /* AddPhotoView.xib */,
 			);
 			name = addPhotoView;
 			sourceTree = "<group>";
@@ -4025,7 +4027,6 @@
 				153CE01E1BE50D910032517E /* Storyboard.storyboard in Resources */,
 				15B7A5C01BE730770052115F /* SMS_SDKLocalizable.strings in Resources */,
 				15B7A5D01BE730E40052115F /* ProgressHUD.bundle in Resources */,
-				156CB2CB1CA95F42000E7F7E /* AddPhotoView.xib in Resources */,
 				15E4524B1C366BE800A6A549 /* callRing.mp3 in Resources */,
 				15B7A55D1BE730460052115F /* MWPhotoBrowser.bundle in Resources */,
 				15521B7F1C4A0C040010E718 /* mapapi.bundle in Resources */,
@@ -4333,6 +4334,7 @@
 				15B7A4A01BE72FEE0052115F /* EMChatVideoBubbleView.m in Sources */,
 				150F31651C0FEA5D00E5CC8B /* ZXByteMatrix.m in Sources */,
 				15EE46F21BE8640600538EA5 /* ForgetCodeTVC.m in Sources */,
+				15F2809D1CAA47A5005F4E7F /* ErShouTypeTVC.m in Sources */,
 				15EE46E71BE85C1700538EA5 /* JSONKeyMapper.m in Sources */,
 				150F31171C0FEA5D00E5CC8B /* LBXScanNative.m in Sources */,
 				150F31B91C0FEA5D00E5CC8B /* ZXUPCAReader.m in Sources */,

@@ -7,8 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonMethods.h"
 
-@interface AddPhotoView : UIView
+@protocol AddPhotoViewDelegate <NSObject>
+
+-(void)didChangePhotos:(NSArray*)photos;
+
+
+@end
+@interface AddPhotoView : UIView<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+{
+    NSMutableArray *muPhotosArray ;  //放包括加号在内的图片
+    
+}
+
+@property (nonatomic,assign) id < AddPhotoViewDelegate> delegate;
+
 
 -(id)initWithFrame:(CGRect)frame;
 

@@ -11,6 +11,8 @@
 #import "HuodongTVCViewController.h"
 #import "MygroupListTVC.h"
 #import "WodeHuodongTVC.h"
+#import "PublishErShouVC.h"
+
 
 static NSString *CellID = @"CellID";
 
@@ -31,7 +33,7 @@ static NSString *CellID = @"CellID";
     [super viewDidLoad];
     
     
-   _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"}];
+   _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"},@{@"title":@"邻近二手",@"image":@"lingjids"},@{@"title":@"邻近互助",@"image":@"lingjids"},@{@"title":@"邻近商家",@"image":@"lingjids"},@{@"title":@"红包大战",@"image":@"lingjids"},@{@"title":@"互助买卖房",@"image":@"lingjids"},@{@"title":@"团购新房",@"image":@"lingjids"}];
     
     
     
@@ -134,47 +136,11 @@ static NSString *CellID = @"CellID";
         
         _shengHuoquan.hidesBottomBarWhenPushed = YES;
         
-//        _shengHuoquan.myFollows = myFollows;
-        
-        
         
         [self.navigationController pushViewController:_shengHuoquan animated:YES];
         
         
-        //先获取我关注的人 username
-//        [MyProgressHUD showProgress];
-//        
-//        
-//        BmobQuery *queryfollow = [BmobQuery queryWithClassName:kFollowTableName];
-//        
-//        [queryfollow whereKey:@"userObjectId" equalTo:[BmobUser getCurrentUser].objectId];
-//        
-//        [queryfollow findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-//            
-//            [MyProgressHUD dismiss];
-//            
-//            if (array.count > 0) {
-//                
-//                BmobObject *ob = [array firstObject];
-//                NSArray *myFollows = [ob objectForKey:@"myFollows"];
-//                
-//                
-//                ShengHuoQuanTVC *_shengHuoquan = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
-//                
-//                
-//                _shengHuoquan.isShuRenQuan = 0;
-//                
-//                _shengHuoquan.hidesBottomBarWhenPushed = YES;
-//                
-//                _shengHuoquan.myFollows = myFollows;
-//                
-//                
-//                
-//                [self.navigationController pushViewController:_shengHuoquan animated:YES];
-//                
-//            }
-//        }];
-//        
+
         
     
         
@@ -195,20 +161,7 @@ static NSString *CellID = @"CellID";
         
         
     }
-//    if (indexPath.section == 2) {
-//        
-//        
-//        WodeHuodongTVC *_wodeHuodong = [self.storyboard instantiateViewControllerWithIdentifier:@"WodeHuodongTVC"];
-//        
-//        
-//        _wodeHuodong.hidesBottomBarWhenPushed = YES;
-//        
-//        
-//        [self.navigationController pushViewController:_wodeHuodong animated:YES];
-//        
-//        
-//        
-//    }
+
     if (indexPath.section == 2) //领近群组
     {
         
@@ -221,6 +174,20 @@ static NSString *CellID = @"CellID";
         
         
         [self.navigationController pushViewController:_groupList animated:YES];
+        
+        
+    }
+    
+    if (indexPath.section == 3) //邻近二手
+    {
+        
+        PublishErShouVC *_publishErShou = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishErShouVC"];
+        
+        _publishErShou.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:_publishErShou animated:YES];
+        
+        
         
         
     }
