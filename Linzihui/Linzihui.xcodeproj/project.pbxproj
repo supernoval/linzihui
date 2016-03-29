@@ -507,6 +507,7 @@
 		15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE46FF1BE891FC00538EA5 /* AddNewFriendsTVC.m */; };
 		15EFF9331BE7266A00069F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EFF9321BE7266A00069F38 /* Assets.xcassets */; };
 		15F2809D1CAA47A5005F4E7F /* ErShouTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F2809C1CAA47A5005F4E7F /* ErShouTypeTVC.m */; };
+		15F280A01CAA6AB5005F4E7F /* ErShouModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F2809F1CAA6AB5005F4E7F /* ErShouModel.m */; };
 		15FB7FE61BEDC62A007D6EC8 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */; };
 		15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */; };
 		15FB7FED1BEF48E6007D6EC8 /* BaseBmobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FB7FEC1BEF48E6007D6EC8 /* BaseBmobModel.m */; };
@@ -1592,6 +1593,8 @@
 		15EFF9321BE7266A00069F38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15F2809B1CAA47A5005F4E7F /* ErShouTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouTypeTVC.h; sourceTree = "<group>"; };
 		15F2809C1CAA47A5005F4E7F /* ErShouTypeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouTypeTVC.m; sourceTree = "<group>"; };
+		15F2809E1CAA6AB5005F4E7F /* ErShouModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouModel.h; sourceTree = "<group>"; };
+		15F2809F1CAA6AB5005F4E7F /* ErShouModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouModel.m; sourceTree = "<group>"; };
 		15FB7FE51BEDC62A007D6EC8 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		15FB7FE71BEDC62F007D6EC8 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 		15FB7FEB1BEF48E6007D6EC8 /* BaseBmobModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseBmobModel.h; sourceTree = "<group>"; };
@@ -3918,6 +3921,8 @@
 				152C0BEC1C0D700000615A33 /* AttendUserModel.m */,
 				15AB5AB01C171C550070F6DA /* GroupChatModel.h */,
 				15AB5AB11C171C550070F6DA /* GroupChatModel.m */,
+				15F2809E1CAA6AB5005F4E7F /* ErShouModel.h */,
+				15F2809F1CAA6AB5005F4E7F /* ErShouModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4279,6 +4284,7 @@
 				150F31D41C0FEA5D00E5CC8B /* ZXPDF417ErrorCorrection.m in Sources */,
 				150F31C01C0FEA5D00E5CC8B /* ZXUPCEReader.m in Sources */,
 				15B7A4521BE72FBC0052115F /* ChatListCellTableViewCell.m in Sources */,
+				15F280A01CAA6AB5005F4E7F /* ErShouModel.m in Sources */,
 				150F31891C0FEA5D00E5CC8B /* ZXGenericMultipleBarcodeReader.m in Sources */,
 				15B7A5541BE730460052115F /* PSTCollectionViewData.m in Sources */,
 				15B7A5501BE730460052115F /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,

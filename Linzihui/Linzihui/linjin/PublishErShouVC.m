@@ -35,6 +35,10 @@
     self.desTextView.delegate = self;
     
     
+    self.addPhotoView.delegate = self;
+    
+    self.priceTextField.delegate = self;
+    
     
     
     
@@ -43,6 +47,10 @@
 
 -(void)publish
 {
+    
+    [self.view endEditing:YES];
+    
+    
     if (self.desTextView.text.length == 0) {
         
         
@@ -79,8 +87,103 @@
     }
     
     
+    [self upLoadImages];
+    
+    
+    
 }
 
+-(void)upLoadImages
+{
+    
+    [MyProgressHUD showProgress];
+    
+    
+    [CommonMethods upLoadPhotos:_photos resultBlock:^(BOOL success, NSArray *results) {
+        
+        if (success && results.count > 0) {
+            
+            [self saveDataWithImageURLs:results];
+            
+        }
+        else
+        {
+            [MyProgressHUD dismiss];
+            
+            [CommonMethods showDefaultErrorString:@"上传失败，请重试"];
+            
+        }
+    } ];
+}
+
+-(void)saveDataWithImageURLs:(NSArray*)imgURLS
+{
+    
+    
+    CGFloat longitude = [[NSUserDefaults standardUserDefaults ] floatForKey:kCurrentLongitude];
+    
+    CGFloat latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
+    
+    
+    
+    ErShouModel *model = [[ErShouModel alloc]init];
+    
+    BmobUser *currentUser = [BmobUser getCurrentUser];
+    
+    model.publisher = currentUser;
+    
+    model.des = _desTextView.text;
+    
+    model.photos = imgURLS;
+    
+    model.comments = @[];
+    model.price = _priceTextField.text;
+    
+    if (longitude > 0 && latitude > 0) {
+        
+        
+        
+        BmobGeoPoint *point  = [[BmobGeoPoint alloc]initWithLongitude:longitude WithLatitude:latitude];
+        
+        model.location = point;
+        
+        
+        
+    }
+    model.zan = @[];
+    
+    model.type = _type;
+    
+    
+    BmobObject *_ErshouOb = [BmobObject objectWithClassName:kErShou];
+    
+    [_ErshouOb setObject:model.publisher forKey:@"publisher"];
+    [_ErshouOb setObject:model.des forKey:@"des"];
+    [_ErshouOb setObject:model.photos forKey:@"photos"];
+    [_ErshouOb setObject:model.comments forKey:@"comments"];
+    [_ErshouOb setObject:model.location forKey:@"location"];
+    [_ErshouOb setObject:model.zan forKey:@"zan"];
+    [_ErshouOb setObject:model.type forKey:@"type"];
+    [_ErshouOb setObject:model.price forKey:@"price"];
+    
+    [_ErshouOb saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        
+        if (isSuccessful) {
+            
+            
+            [MyProgressHUD dismiss];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            
+            
+            
+        }
+        
+    }];
+
+}
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
@@ -110,6 +213,13 @@
     
 }
 
+- (void)showActionSheet
+{
+
+    [self.view endEditing:YES];
+    
+}
+
 
 
 
@@ -125,12 +235,38 @@
         
         _type = typeString;
         
+        [_typeButton setTitle:_type forState:UIControlStateNormal];
         
     }];
     
     
     [self.navigationController pushViewController:typeTVC animated:YES];
     
+    
+}
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+       
+        self.view.center = CGPointMake(self.view.center.x, self.view.center.y - 200);
+        
+        
+    }];
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+  
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        self.view.center = CGPointMake(self.view.center.x, self.view.center.y + 200);
+        
+        
+    }];
     
 }
 

@@ -17,4 +17,6 @@
 #import "AttendUserModel.h"
 #import "GroupChatModel.h"
 #import "MyConversation.h"
+#import "ErShouModel.h"
+
 

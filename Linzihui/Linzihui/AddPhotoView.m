@@ -143,7 +143,11 @@
 -(void)pickPhoto:(UIButton*)sender
 {
     
-    
+    if ([self.delegate respondsToSelector:@selector(showActionSheet)]) {
+        
+        [self.delegate showActionSheet];
+        
+    }
 
     
     if (_photosArray.count < 8 && _photosArray.count == sender.tag)

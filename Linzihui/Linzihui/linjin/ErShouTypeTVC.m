@@ -22,6 +22,8 @@
     
     typeArray = @[@"女装",@"男装",@"鞋包配饰",@"手机",@"相机/摄像机",@"电脑/电脑配件",@"数码3C产品",@"奢侈品转让",@"服装/服饰",@"美容/美颜/香水",@"家居/日用品",@"食品/保健品",@"家用电器/影音设备",@"母婴/儿童用品/玩具",@"宠物/宠物用品",@"生活服务/票务/卡券",@"书刊音像/问题用品",@"二手汽车",@"汽摩/电动车/自行车"];
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     
 }
 
@@ -63,12 +65,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ershoutypeCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ershoutypeCell" ];
   
     if (!cell) {
         
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ershoutypeCell"];
         
+     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ershoutypeCell"];
         
         
         

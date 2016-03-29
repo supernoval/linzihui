@@ -11,6 +11,7 @@
 #import "ErShouTypeTVC.h"
 
 
+
 @interface PublishErShouVC : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UITextView *desTextView;

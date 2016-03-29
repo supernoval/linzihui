@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
+#import "ErShouModel.h"
 
 typedef void (^ErShouTypeBlock)(BOOL success,NSString *typeString);
 

@@ -11,6 +11,10 @@
 
 @protocol AddPhotoViewDelegate <NSObject>
 
+//只是用来隐藏键盘
+-(void)showActionSheet;
+
+
 -(void)didChangePhotos:(NSArray*)photos;
 
 
