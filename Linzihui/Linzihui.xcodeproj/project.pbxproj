@@ -302,6 +302,8 @@
 		15521B7E1C4A0C040010E718 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15521B761C4A0C040010E718 /* BaiduMapAPI_Utils.framework */; };
 		15521B7F1C4A0C040010E718 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15521B771C4A0C040010E718 /* mapapi.bundle */; };
 		15521B831C4A0E620010E718 /* SearchNearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15521B821C4A0E620010E718 /* SearchNearByViewController.m */; };
+		155AB66F1CAB7BAF001A7451 /* ErShouListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 155AB66E1CAB7BAF001A7451 /* ErShouListTVC.m */; };
+		155AB6721CABA077001A7451 /* ErShouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 155AB6711CABA077001A7451 /* ErShouCell.m */; };
 		15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */; };
 		156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */; };
 		156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */; };
@@ -1095,6 +1097,10 @@
 		15521B771C4A0C040010E718 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		15521B811C4A0E620010E718 /* SearchNearByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNearByViewController.h; sourceTree = "<group>"; };
 		15521B821C4A0E620010E718 /* SearchNearByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNearByViewController.m; sourceTree = "<group>"; };
+		155AB66D1CAB7BAF001A7451 /* ErShouListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouListTVC.h; sourceTree = "<group>"; };
+		155AB66E1CAB7BAF001A7451 /* ErShouListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouListTVC.m; sourceTree = "<group>"; };
+		155AB6701CABA077001A7451 /* ErShouCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouCell.h; sourceTree = "<group>"; };
+		155AB6711CABA077001A7451 /* ErShouCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouCell.m; sourceTree = "<group>"; };
 		15697A5F1CA3FC80001756E9 /* SetNewGroupNameImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewGroupNameImageVC.h; sourceTree = "<group>"; };
 		15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewGroupNameImageVC.m; sourceTree = "<group>"; };
 		156CB2C31CA959BE000E7F7E /* PublishErShouVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishErShouVC.h; sourceTree = "<group>"; };
@@ -2745,6 +2751,10 @@
 				156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */,
 				15F2809B1CAA47A5005F4E7F /* ErShouTypeTVC.h */,
 				15F2809C1CAA47A5005F4E7F /* ErShouTypeTVC.m */,
+				155AB66D1CAB7BAF001A7451 /* ErShouListTVC.h */,
+				155AB66E1CAB7BAF001A7451 /* ErShouListTVC.m */,
+				155AB6701CABA077001A7451 /* ErShouCell.h */,
+				155AB6711CABA077001A7451 /* ErShouCell.m */,
 			);
 			name = "linjin'ershou";
 			sourceTree = "<group>";
@@ -4349,6 +4359,7 @@
 				150F31871C0FEA5D00E5CC8B /* ZXMaxiCodeReader.m in Sources */,
 				15B7A4A11BE72FEE0052115F /* EMChatTimeCell.m in Sources */,
 				15B7A54C1BE730460052115F /* UIImage+EMWebP.m in Sources */,
+				155AB66F1CAB7BAF001A7451 /* ErShouListTVC.m in Sources */,
 				150F317C1C0FEA5D00E5CC8B /* ZXDataMatrixErrorCorrection.m in Sources */,
 				15EE46EC1BE85C5D00538EA5 /* UserModel.m in Sources */,
 				150F31D01C0FEA5D00E5CC8B /* ZXPDF417.m in Sources */,
@@ -4367,6 +4378,7 @@
 				15B7A4A21BE72FEE0052115F /* EMChatViewBaseCell.m in Sources */,
 				15E4524E1C366BEE00A6A549 /* CallViewController.m in Sources */,
 				15B7A55A1BE730460052115F /* PSTGridLayoutItem.m in Sources */,
+				155AB6721CABA077001A7451 /* ErShouCell.m in Sources */,
 				150F319D1C0FEA5D00E5CC8B /* ZXBitArrayBuilder.m in Sources */,
 				156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */,
 				150F31491C0FEA5D00E5CC8B /* ZXWifiResultParser.m in Sources */,

@@ -896,4 +896,69 @@
 }
 
 
+#pragma mark - 获取当前地址
++(void)getCurrentLocation:(void(^)(BOOL success,NSString *address))result
+{
+    
+    CGFloat latitude = [[NSUserDefaults standardUserDefaults]floatForKey:kCurrentLatitude];
+    
+    CGFloat longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+    
+    
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+    
+    CLGeocoder *coder = [[CLGeocoder alloc]init];
+    
+    [coder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> *  placemarks, NSError *  error) {
+       
+        if (!error && placemarks.count > 0) {
+            
+            
+            CLPlacemark *placeMark = [placemarks firstObject];
+            
+            NSLog(@"address->>>>>>>%@",placeMark.addressDictionary);
+            
+            NSString *address = nil;
+            
+            NSString *SubThoroughfare = [placeMark.addressDictionary objectForKey:@"SubThoroughfare"];
+            
+            if (!SubThoroughfare) {
+                
+                SubThoroughfare = @"";
+            }
+            NSString *subLocality = [placeMark.addressDictionary objectForKey:@"SubLocality"];
+            
+            if (!subLocality) {
+                
+                subLocality = @"";
+                
+            }
+            NSString *street = [placeMark.addressDictionary objectForKey:@"Street"];
+            
+            if (!street) {
+                
+                street = @"";
+                
+            }
+            
+            address = [NSString stringWithFormat:@"  %@%@",subLocality,street];
+            
+            
+            if (result) {
+                
+                result(YES,address);
+                
+            }
+            
+            
+        }
+        
+        
+    }];
+    
+    
+    
+}
+
+
 @end

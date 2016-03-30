@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 #import "AddPhotoView.h"
 #import "ErShouTypeTVC.h"
-
+#import <CoreLocation/CoreLocation.h>
 
 
 @interface PublishErShouVC : BaseViewController

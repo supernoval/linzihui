@@ -177,6 +177,109 @@
     }
 
 }
+
+#pragma makr - 获取别人等级
++(void)getOtherLevelWithUserName:(NSString*)username result:(void(^)(NSString*levelStr))result
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
+        
+        BmobQuery *query = [BmobQuery queryWithClassName:kLevel];
+        
+        [query whereKey:@"username" equalTo:username];
+        
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            if (!error && array.count > 0) {
+                
+                
+                BmobObject *bo = [array firstObject];
+                
+                NSInteger times = [[bo objectForKey:@"levelNum"]integerValue];
+                
+                
+                NSInteger level = times/5 ;
+                
+                NSString *str = nil;
+                
+                switch (level) {
+                    case 0:
+                    {
+                        str =  @"幼小";
+                    }
+                        break;
+                    case 1:
+                    {
+                        str = @"幼中";
+                    }
+                        break;
+                    case 2:
+                    {
+                        str = @"幼大";
+                    }
+                        break;
+                    case 3:
+                    {
+                        str = @"小一";
+                    }
+                        break;
+                    case 4:
+                    {
+                        str = @"小二";
+                    }
+                        break;
+                    case 5:
+                    {
+                        str = @"小三";
+                    }
+                        break;
+                    case 6:
+                    {
+                        str = @"小四";
+                    }
+                        break;
+                    case 7:
+                    {
+                        str = @"小五";
+                    }
+                        break;
+                        
+                    case 8:
+                    {
+                        str = @"小五";
+                    }
+                        break;
+                        
+                        
+                    default:
+                    {
+                        str = @"教授";
+                    }
+                        break;
+                }
+                
+                
+                
+                if (result) {
+                    
+                    result(str);
+                    
+                }
+            }
+            else
+            {
+                if (result) {
+                    
+                    result(nil);
+                }
+            }
+        }];
+        
+        
+    }
+}
+
+
 //注册时给别人添加等级
 +(void)addLevel:(NSString*)invitecode
 {
@@ -1859,5 +1962,7 @@
     
     
 }
+
+
 
 @end

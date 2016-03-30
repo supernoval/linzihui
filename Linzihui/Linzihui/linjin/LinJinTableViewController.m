@@ -12,6 +12,7 @@
 #import "MygroupListTVC.h"
 #import "WodeHuodongTVC.h"
 #import "PublishErShouVC.h"
+#import "ErShouListTVC.h"
 
 
 static NSString *CellID = @"CellID";
@@ -180,12 +181,18 @@ static NSString *CellID = @"CellID";
     
     if (indexPath.section == 3) //邻近二手
     {
+        ErShouListTVC *erShouListTVC =[self.storyboard instantiateViewControllerWithIdentifier:@"ErShouListTVC"];
         
-        PublishErShouVC *_publishErShou = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishErShouVC"];
+        erShouListTVC.hidesBottomBarWhenPushed = YES;
         
-        _publishErShou.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:erShouListTVC animated:YES];
         
-        [self.navigationController pushViewController:_publishErShou animated:YES];
+        
+//        PublishErShouVC *_publishErShou = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishErShouVC"];
+//        
+//        _publishErShou.hidesBottomBarWhenPushed = YES;
+//        
+//        [self.navigationController pushViewController:_publishErShou animated:YES];
         
         
         

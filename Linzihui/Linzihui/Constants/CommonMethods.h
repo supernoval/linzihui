@@ -46,6 +46,10 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 
 
 
+#pragma mark - 获取当前地址
++(void)getCurrentLocation:(void(^)(BOOL success,NSString *address))result;
+
+
 #pragma mark - 获取当前机型
 +(NSString*)getCurrentDeviceName;
 

@@ -39,7 +39,15 @@
     
     self.priceTextField.delegate = self;
     
-    
+    [CommonMethods getCurrentLocation:^(BOOL success, NSString *address) {
+       
+        if (success) {
+            
+            self.locationLabel.text = [NSString stringWithFormat:@"所在地址:%@",address];
+            
+            
+        }
+    }];
     
     
 }
@@ -97,7 +105,6 @@
 {
     
     [MyProgressHUD showProgress];
-    
     
     [CommonMethods upLoadPhotos:_photos resultBlock:^(BOOL success, NSArray *results) {
         

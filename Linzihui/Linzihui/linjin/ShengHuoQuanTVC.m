@@ -545,7 +545,7 @@ static NSString *commentCellID = @"CommentCell";
             
         
        //等级
-         [BmobHelper getLevel:^(NSString *levelStr) {
+         [BmobHelper getOtherLevelWithUserName:[user objectForKey:@"username"] result:^(NSString *levelStr) {
              
              cell.levelLabel.text =  [NSString stringWithFormat:@"等级:%@",levelStr];
              
