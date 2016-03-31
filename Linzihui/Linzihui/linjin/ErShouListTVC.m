@@ -294,12 +294,12 @@
             }
             
             
-            [self.tableView reloadData];
+      
             
             
             
         }
-        
+             [self.tableView reloadData];
     }];
 }
 
@@ -380,8 +380,6 @@
     
     photoViewHeight = 80 * totalRowCount;
     
-    
-
     
     
     cell.contentLabelHeight.constant = textHeight;
