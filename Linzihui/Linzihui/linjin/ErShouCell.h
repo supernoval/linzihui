@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 
+@property (weak, nonatomic) IBOutlet UIButton *headButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
@@ -27,6 +28,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *replayButton;
+
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentLabelHeight;
