@@ -648,6 +648,8 @@ static NSString *ContactsCell = @"ContactsCell";
          [[InvitationManager sharedInstance] removeInvitation:entity loginUser:[BmobUser getCurrentUser].username];
         
         
+        [[EMHelper getHelper] checkBuddyInviteNum];
+        
         [self getLocateInviteData];
         
         

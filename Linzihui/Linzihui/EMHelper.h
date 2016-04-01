@@ -58,7 +58,9 @@ typedef enum{
 #pragma mark - 删除聊天消息
 +(void)removeChatMessage:(NSString*)username;
 
-                                                                              
+
+-(void)checkBuddyInviteNum;
+
 
 
 

@@ -177,18 +177,7 @@
 -(void)coment
 {
     
-//    NSDate *startTime = _huodong.startTime;
-//    
-//    NSTimeInterval time = [startTime timeIntervalSinceNow];
-//    
-//    if (time > 0)
-//    {
-//        
-//        [CommonMethods showDefaultErrorString:@"*温馨提示:活动开始后才能记录!"];
-//        
-//        return;
-//        
-//    }
+
     
     
     SendWXViewController *_sendVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SendWXViewController"];

@@ -4713,7 +4713,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linzihui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2f78ad11-89c2-4146-bfa4-2c38068df1c1";
+				PROVISIONING_PROFILE = "41ebd607-9546-42f8-96bd-df5d6fc22c38";
 			};
 			name = Release;
 		};

@@ -113,7 +113,39 @@ static EMHelper *_helper;
             
             NSString *loginUsername = [[[EaseMob sharedInstance].chatManager loginInfo] objectForKey:kSDKUsername];
             [[InvitationManager sharedInstance] addInvitation:entity loginUser:loginUsername];
-            
+        
+        
+        [self checkBuddyInviteNum];
+        
+        
+    }
+}
+
+
+#pragma mark - 检测好友邀请数目
+-(void)checkBuddyInviteNum
+{
+    
+    UITabBarController *tabbarController =(UITabBarController*) [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    UINavigationController *linyouNav = [tabbarController.viewControllers objectAtIndex:1];
+    
+  
+    
+    NSString *loginUsername = [[[EaseMob sharedInstance].chatManager loginInfo] objectForKey:kSDKUsername];
+    NSArray *array = [[InvitationManager sharedInstance] applyEmtitiesWithloginUser:loginUsername];
+    
+    if (array.count > 0) {
+        
+        
+          linyouNav.tabBarItem.badgeValue  = [NSString stringWithFormat:@"%ld",(long)array.count];
+        
+        
+    }
+    else
+    {
+         linyouNav.tabBarItem.badgeValue  = nil;
+        
         
     }
 }

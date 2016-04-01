@@ -130,7 +130,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    if (section == 0) {
+    if (section == 0 && !_isNearGroup) {
         
         return 30;
         
@@ -164,6 +164,14 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
+    if (_isNearGroup) {
+        
+        
+        return _groupListArray.count;
+        
+    }
+    
     return _groupListArray.count +1;
     
     
@@ -189,7 +197,7 @@
         
         
         //添加公开群
-        if (indexPath.section == 0) {
+        if (indexPath.section == 0 && !_isNearGroup) {
             
             
             
@@ -210,8 +218,18 @@
         
         
         
-         GroupChatModel *onegroup  = [_groupListArray objectAtIndex:indexPath.section -1];
-        
+            GroupChatModel *onegroup ;
+            
+            if (_isNearGroup) {
+                
+                onegroup = [_groupListArray objectAtIndex:indexPath.section ];
+
+            }
+            else
+            {
+                onegroup = [_groupListArray objectAtIndex:indexPath.section -1 ];
+            }
+            
         UIImageView *headImageView = (UIImageView*)[cell viewWithTag:100];
         
         [headImageView sd_setImageWithURL:[NSURL URLWithString:onegroup.groupHeadImage] placeholderImage:kDefaultHeadImage];
