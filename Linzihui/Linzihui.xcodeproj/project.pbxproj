@@ -307,6 +307,7 @@
 		15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */; };
 		156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */; };
 		156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */; };
+		1570C9A01CB3606B00FD73BF /* HeaderOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1570C99F1CB3606B00FD73BF /* HeaderOrderView.m */; };
 		1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577165E1C44A0530030DC0B /* BaseNavigationController.m */; };
 		157716621C44A08D0030DC0B /* LinXinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716611C44A08D0030DC0B /* LinXinNavigationController.m */; };
 		157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716641C44A0A00030DC0B /* LinYouNavigationController.m */; };
@@ -1109,6 +1110,8 @@
 		156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishErShouVC.m; sourceTree = "<group>"; };
 		156CB2C71CA95F1E000E7F7E /* AddPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPhotoView.h; sourceTree = "<group>"; };
 		156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPhotoView.m; sourceTree = "<group>"; };
+		1570C99E1CB3606B00FD73BF /* HeaderOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderOrderView.h; sourceTree = "<group>"; };
+		1570C99F1CB3606B00FD73BF /* HeaderOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderOrderView.m; sourceTree = "<group>"; };
 		1577165D1C44A0530030DC0B /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1577165E1C44A0530030DC0B /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		157716601C44A08D0030DC0B /* LinXinNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinXinNavigationController.h; sourceTree = "<group>"; };
@@ -1674,6 +1677,7 @@
 		1506EC1C1BF702A70010F349 /* MyViews */ = {
 			isa = PBXGroup;
 			children = (
+				1570C99D1CB35BFB00FD73BF /* headerOrderView */,
 				156CB2C61CA95F09000E7F7E /* addPhotoView */,
 				1506EC1D1BF702C80010F349 /* PullView.h */,
 				1506EC1E1BF702C80010F349 /* PullView.m */,
@@ -2776,6 +2780,15 @@
 				156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */,
 			);
 			name = addPhotoView;
+			sourceTree = "<group>";
+		};
+		1570C99D1CB35BFB00FD73BF /* headerOrderView */ = {
+			isa = PBXGroup;
+			children = (
+				1570C99E1CB3606B00FD73BF /* HeaderOrderView.h */,
+				1570C99F1CB3606B00FD73BF /* HeaderOrderView.m */,
+			);
+			name = headerOrderView;
 			sourceTree = "<group>";
 		};
 		1577165C1C44A0080030DC0B /* navigationControllers */ = {
@@ -4248,6 +4261,7 @@
 				15A05BC81C59E0F2002BBAD3 /* ActivityDetailViewController.m in Sources */,
 				15B7A4D51BE730320052115F /* UIScrollView+MJRefresh.m in Sources */,
 				150F318B1C0FEA5D00E5CC8B /* ZXAI013103decoder.m in Sources */,
+				1570C9A01CB3606B00FD73BF /* HeaderOrderView.m in Sources */,
 				150F313D1C0FEA5D00E5CC8B /* ZXSMTPResultParser.m in Sources */,
 				15B7A5471BE730460052115F /* MKAnnotationView+EMWebCache.m in Sources */,
 				15B7A4991BE72FEE0052115F /* DXChatBarMoreView.m in Sources */,

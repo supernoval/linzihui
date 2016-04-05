@@ -11,10 +11,11 @@
 #import "PublishErShouVC.h"
 #import "PersonInfoViewController.h"
 #import "ErShouDetailTVC.h"
+#import "HeaderOrderView.h"
 
 
 
-@interface ErShouListTVC ()<UITextFieldDelegate>
+@interface ErShouListTVC ()<UITextFieldDelegate,HeaderOrderDelegate>
 {
     NSMutableArray *_dataSource;
     
@@ -35,8 +36,11 @@
     
     NSInteger commentSection ; //评论的 section
     
+    
+    
 }
 @property (nonatomic,strong) UIView*footerView;
+@property (nonatomic,strong) HeaderOrderView*headerOrderView;
 
 @end
 
@@ -62,6 +66,8 @@
     
     [self addHeaderRefresh];
     [self addFooterRefresh];
+    
+    self.tableView.tableHeaderView = self.headerOrderView;
     
 
     
@@ -90,6 +96,8 @@
     
 }
 
+
+
 -(void)headerRefresh
 {
     pageIndex = 0;
@@ -108,6 +116,23 @@
     
 }
 
+
+-(HeaderOrderView*)headerOrderView
+{
+    if (!_headerOrderView) {
+        
+        _headerOrderView = [[HeaderOrderView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+        
+        _headerOrderView.delegate = self;
+        
+        _headerOrderView.listTVC = self;
+        
+    }
+    
+    return _headerOrderView;
+    
+    
+}
 -(void)initCommentView
 {
     _uiview_comment = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 50)];
@@ -231,6 +256,7 @@
 #pragma mark-发布
 -(void)publish
 {
+    
     PublishErShouVC *_publishErShou = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishErShouVC"];
     
     _publishErShou.hidesBottomBarWhenPushed = YES;
@@ -244,7 +270,7 @@
     BmobQuery *query = [BmobQuery queryWithClassName:kErShou];
     
     
-    [query orderByAscending:@"createdAt"];
+    [query orderByDescending:@"createdAt"];
     
     [query includeKey:@"publisher"];
     
@@ -255,6 +281,15 @@
     if (isShowMine) {
         
         [query whereKey:@"publisher" equalTo:[BmobUser getCurrentUser]];
+        
+    }
+    else
+    {
+        BmobGeoPoint *currentLocation = [[BmobGeoPoint alloc]init];
+        currentLocation.latitude = [[NSUserDefaults standardUserDefaults]floatForKey:kCurrentLatitude];
+        currentLocation.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+        
+        [query whereKey:@"location" nearGeoPoint:currentLocation withinKilometers:3];
         
     }
     
@@ -584,6 +619,17 @@
     
 }
 
+
+#pragma mark - HeaderOrderDelegate
+-(void)selectedType:(NSString *)type
+{
+    
+}
+
+- (void)changeDistance
+{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
