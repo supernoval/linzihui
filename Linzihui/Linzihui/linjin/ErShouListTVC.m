@@ -36,6 +36,10 @@
     
     NSInteger commentSection ; //评论的 section
     
+    NSString *_seletedType;  // 筛选类型
+    
+    BOOL distanceOrder; // 按照距离排序
+    
     
     
 }
@@ -270,7 +274,7 @@
     BmobQuery *query = [BmobQuery queryWithClassName:kErShou];
     
     
-    [query orderByDescending:@"createdAt"];
+  
     
     [query includeKey:@"publisher"];
     
@@ -290,6 +294,27 @@
         currentLocation.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
         
         [query whereKey:@"location" nearGeoPoint:currentLocation withinKilometers:3];
+        
+    }
+    
+    
+    //按距离排序
+    if (distanceOrder) {
+        
+        [query orderByDescending:@"location"];
+        
+        
+    }
+    else
+    {
+        [query orderByDescending:@"createdAt"];
+    }
+    
+    //分类
+    if (_seletedType.length > 0) {
+        
+        [query whereKey:@"type" equalTo:_seletedType];
+        
         
     }
     
@@ -624,10 +649,29 @@
 -(void)selectedType:(NSString *)type
 {
     
+    
+    _seletedType = type;
+    
+    
+    [self.tableView.header beginRefreshing];
+    
+    
 }
 
 - (void)changeDistance
 {
+    if (distanceOrder) {
+        
+        distanceOrder = NO;
+    }
+    else
+    {
+        distanceOrder = YES;
+        
+    }
+    
+    [self.tableView.header beginRefreshing];
+    
     
 }
 - (void)didReceiveMemoryWarning {
