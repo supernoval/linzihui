@@ -16,5 +16,7 @@
 @property (nonatomic,strong) NSString *headImageURL;   //评论者头像URL
 @property (nonatomic,strong) NSString *replayToNick;   //回复谁
 @property (nonatomic,strong) NSArray *imageURLs;  //评论图片
+@property (nonatomic,strong) NSString *createdAt; //创建
+@property (nonatomic,strong) NSString *updatedAt; //更新
 
 @end

@@ -20,6 +20,8 @@
 @property (nonatomic,strong) NSArray *zan;
 @property (nonatomic,strong) NSString *type;
 @property (nonatomic,strong) NSString *price;
+@property (nonatomic,strong) NSArray *buyers;
+
 
 @property (nonatomic,strong) NSDate *updatedAt;
 @property (nonatomic,strong) NSDate *createdAt;

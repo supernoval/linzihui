@@ -480,6 +480,8 @@
     
     cell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:latitude longitude:longitude];
     
+    //价格
+    cell.pirceLabel.text = [NSString stringWithFormat:@"%@元",model.price];
     
     //zan
     if (model.zan.count == 0) {

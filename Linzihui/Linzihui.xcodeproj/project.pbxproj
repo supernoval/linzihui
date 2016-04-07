@@ -308,6 +308,7 @@
 		156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */; };
 		156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */; };
 		1570C9A01CB3606B00FD73BF /* HeaderOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1570C99F1CB3606B00FD73BF /* HeaderOrderView.m */; };
+		1576941A1CB60783007AEC3C /* ErShouBuyerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 157694191CB60783007AEC3C /* ErShouBuyerCell.m */; };
 		1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577165E1C44A0530030DC0B /* BaseNavigationController.m */; };
 		157716621C44A08D0030DC0B /* LinXinNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716611C44A08D0030DC0B /* LinXinNavigationController.m */; };
 		157716651C44A0A00030DC0B /* LinYouNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157716641C44A0A00030DC0B /* LinYouNavigationController.m */; };
@@ -1112,6 +1113,8 @@
 		156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPhotoView.m; sourceTree = "<group>"; };
 		1570C99E1CB3606B00FD73BF /* HeaderOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderOrderView.h; sourceTree = "<group>"; };
 		1570C99F1CB3606B00FD73BF /* HeaderOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderOrderView.m; sourceTree = "<group>"; };
+		157694181CB60783007AEC3C /* ErShouBuyerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouBuyerCell.h; sourceTree = "<group>"; };
+		157694191CB60783007AEC3C /* ErShouBuyerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouBuyerCell.m; sourceTree = "<group>"; };
 		1577165D1C44A0530030DC0B /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1577165E1C44A0530030DC0B /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		157716601C44A08D0030DC0B /* LinXinNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinXinNavigationController.h; sourceTree = "<group>"; };
@@ -2769,6 +2772,8 @@
 				1593093E1CAD0DEB006272DB /* ErShouDetailTVC.m */,
 				159309401CAD10C4006272DB /* ErShouCommentCell.h */,
 				159309411CAD10C4006272DB /* ErShouCommentCell.m */,
+				157694181CB60783007AEC3C /* ErShouBuyerCell.h */,
+				157694191CB60783007AEC3C /* ErShouBuyerCell.m */,
 			);
 			name = "linjin'ershou";
 			sourceTree = "<group>";
@@ -4219,6 +4224,7 @@
 				150F31D81C0FEA5D00E5CC8B /* ZXPDF417ResultMetadata.m in Sources */,
 				150F31D31C0FEA5D00E5CC8B /* ZXPDF417Dimensions.m in Sources */,
 				150F31B71C0FEA5D00E5CC8B /* ZXOneDimensionalCodeWriter.m in Sources */,
+				1576941A1CB60783007AEC3C /* ErShouBuyerCell.m in Sources */,
 				150F316B1C0FEA5D00E5CC8B /* ZXLuminanceSource.m in Sources */,
 				150F316D1C0FEA5D00E5CC8B /* ZXResult.m in Sources */,
 				15B7A4A71BE72FEE0052115F /* UIResponder+Router.m in Sources */,

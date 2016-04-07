@@ -9,6 +9,7 @@
 #import "BaseTableViewController.h"
 #import "ErShouCommentCell.h"
 #import "ErShouCell.h"
+#import "ErShouBuyerCell.h"
 
 @interface ErShouDetailTVC : BaseTableViewController
 

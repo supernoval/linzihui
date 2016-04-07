@@ -60,7 +60,14 @@ typedef NS_ENUM(NSInteger,CheckType)
 
 @property (nonatomic,assign) BOOL hadSelected;  //额外添加 是否选中  （群聊）
 
-@property (nonatomic,assign) BOOL isIngroup;  //是否在群聊里面 
+@property (nonatomic,assign) BOOL isIngroup;  //是否在群聊里面
+
+
+
+//邻近二手添加
+@property (nonatomic,strong) NSString *price; //价格 
+@property (nonatomic,assign) BOOL isAccepted;//是否接受该卖家
+
 
 
 

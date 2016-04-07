@@ -36,12 +36,14 @@
     
     UIAlertView *_jubaoAlertView;
     
+    UIAlertView *_buyerAlert; //填写出价 价格
     
     
     
 }
 
-@property (nonatomic,strong) UILabel *headLabel; //头部label
+@property (nonatomic,strong) UILabel *buyerHeaderLabel; //买家头部label
+@property (nonatomic,strong) UILabel *headLabel; //回复头部label
 
 @end
 
@@ -173,7 +175,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    if (section == 1) {
+    if (section > 0) {
         
         return 50;
     }
@@ -184,27 +186,55 @@
 }
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    _headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
     
-    _headLabel.font = FONT_16;
+    if (section == 1)
+    {
+        
+       _buyerHeaderLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+        
+        _buyerHeaderLabel.font = FONT_16;
+        
+        _buyerHeaderLabel.textColor = [UIColor darkGrayColor];
+        
+        _buyerHeaderLabel.textAlignment = NSTextAlignmentLeft;
+        
+        _buyerHeaderLabel.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        _buyerHeaderLabel.text = [NSString stringWithFormat:@"  出价%ld人",(long)_model.buyers.count];
+        
+        
+        return _buyerHeaderLabel;
+        
+    }
     
-    _headLabel.textColor = [UIColor darkGrayColor];
+    if (section == 2) {
+        
+        _headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+        
+        _headLabel.font = FONT_16;
+        
+        _headLabel.textColor = [UIColor darkGrayColor];
+        
+        _headLabel.textAlignment = NSTextAlignmentLeft;
+        
+        _headLabel.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        _headLabel.text = [NSString stringWithFormat:@"  回复%ld条",(long)_model.comments.count];
+        
+        
+        return _headLabel;
+    }
     
-    _headLabel.textAlignment = NSTextAlignmentLeft;
+    return nil;
     
-    _headLabel.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
-    _headLabel.text = [NSString stringWithFormat:@"  回复%ld条",(long)_model.comments.count];
-    
-    
-    return _headLabel;
+
     
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    if (section == 1) {
+    if (section == 2) {
         
         return 50;
     }
@@ -266,20 +296,27 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (section == 0) {
+    if (section == 0 ) {
         
         return 1;
     }
-    else
+    
+    else if (section == 1)
     {
-        return comments.count;
+       
+        return _model.buyers.count;
         
     }
+    else
+    {
+         return comments.count;
+    }
+  
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
     
 }
 
@@ -301,8 +338,6 @@
         int totalRowCount = ceil(imageCount / perRowImageCountF);
         
         photoViewHeight = 80 * totalRowCount;
-        
-        
         
         
         
@@ -343,6 +378,11 @@
         
         
         _erShouCell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:latitude longitude:longitude];
+        
+        //价格
+        _erShouCell.pirceLabel.text = [NSString stringWithFormat:@"%@元",_model.price];
+        
+        
         
         
         //zan
@@ -399,7 +439,45 @@
         return _erShouCell;
         
     }
-    
+    else if (indexPath.section == 1) //出价者列表
+    {
+        ErShouBuyerCell *_buyerCell = [tableView dequeueReusableCellWithIdentifier:@"ErShouBuyerCell"];
+        
+        if (indexPath.row < _model.buyers.count) {
+            
+            NSDictionary *oneBuyer = [_model.buyers objectAtIndex:indexPath.row];
+            
+            UserModel *temModel = [[UserModel alloc]init];
+            
+            [temModel setValuesForKeysWithDictionary:oneBuyer];
+            
+            
+            [_buyerCell.headImageButton sd_setImageWithURL:[NSURL URLWithString:temModel.headImageURL] forState:UIControlStateNormal placeholderImage:kDefaultHeadImage];
+            
+            _buyerCell.nameLabel.text = temModel.nickName;
+            
+            _buyerCell.timeLabel.text = temModel.createdAt;
+            
+            _buyerCell.priceLabel.text = [NSString stringWithFormat:@"出价:%@元",temModel.price];
+            
+            [_buyerCell.headImageButton addTarget:self action:@selector(showCommentPersonInfo:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            //等级
+            [BmobHelper getOtherLevelWithUserName:temModel.username result:^(NSString *levelStr) {
+                
+                _buyerCell.levelLabel.text =  [NSString stringWithFormat:@"等级:%@",levelStr];
+                
+            }];
+            
+            
+        }
+        
+        return _buyerCell;
+        
+        
+        
+    }
    else
    {
        
@@ -413,7 +491,8 @@
        
        [model setValuesForKeysWithDictionary:dict];
        
-       [_commentCell.headButton sd_setBackgroundImageWithURL:[NSURL URLWithString:model.headImageURL] forState:UIControlStateNormal placeholderImage:kDefaultHeadImage];
+       
+       [_commentCell.headButton sd_setImageWithURL:[NSURL URLWithString:model.headImageURL] forState:UIControlStateNormal placeholderImage:kDefaultHeadImage] ;
        
        _commentCell.nameLabel.text = model.nick;
        
@@ -423,7 +502,14 @@
        
        [_commentCell.headButton addTarget:self action:@selector(showCommentPersonInfo:) forControlEvents:UIControlEventTouchUpInside];
        
+       //等级
+       [BmobHelper getOtherLevelWithUserName:model.username result:^(NSString *levelStr) {
+           
+           _commentCell.levelLabel.text =  [NSString stringWithFormat:@"等级:%@",levelStr];
+           
+       }];
        
+       _commentCell.timeLabel.text = model.createdAt;
        
        
        return _commentCell;
@@ -512,6 +598,17 @@
 #pragma mark - 我想要
 - (void)xiangyao
 {
+   _buyerAlert = [[UIAlertView alloc]initWithTitle:@"填写价格" message:nil
+delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    
+    _buyerAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    [_buyerAlert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
+    
+    
+    [_buyerAlert show];
+    
+    
     
 }
 
@@ -590,6 +687,8 @@
     
     _commentModel.content = _textField_comment.text;
     
+    _commentModel.createdAt = [CommonMethods getYYYYMMddHHmmssDateStr:[NSDate date]];
+    
     if (isReplay) {
         
         _commentModel.replayToNick = _toReplayNick;
@@ -634,7 +733,7 @@
             _headLabel.text = [NSString stringWithFormat:@"回复%ld条",(long)_model.comments.count];
             
             
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
             
             NSLog(@"评论成功");
             
@@ -784,6 +883,18 @@
     
 }
 
+-(void)showBuyerPersonInfo:(UIButton*)sender
+{
+    NSDictionary *dict =[_model.buyers objectAtIndex:sender.tag];
+    
+    UserModel *model = [[UserModel alloc]init];
+    
+    [model setValuesForKeysWithDictionary:dict];
+    
+    [self showPersonInfo:model.username];
+    
+}
+
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -825,6 +936,73 @@
                 
             }
         }];
+        
+    }
+    
+    
+    if (alertView == _buyerAlert && buttonIndex == 1) {
+        
+        UITextField *inputTF = [alertView textFieldAtIndex:0];
+        
+        if (inputTF.text.length  == 0) {
+            
+            [CommonMethods showDefaultErrorString:@"请输入抢购金额"];
+            
+            
+        }else
+        {
+            
+            [MyProgressHUD showProgress];
+            
+            
+            CGFloat jinEr = [inputTF.text floatValue];
+            
+           BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
+            
+            UserModel *model = [BmobHelper getCurrentUserModel];
+            
+           
+            
+            if (jinEr == 0) {
+                
+                model.price = [NSString stringWithFormat:@"%.0f",jinEr];
+            }
+            else
+            {
+                model.price = [NSString stringWithFormat:@"%.2f",jinEr];
+            }
+            
+             NSDictionary *dic = [model toDictionary];
+            
+            
+            [ob addObjectsFromArray:@[dic] forKey:@"buyers"];
+            
+            [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                [MyProgressHUD dismiss];
+                
+                
+                if (isSuccessful) {
+                    
+                    
+                    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+                    
+                    [muArray addObjectsFromArray:_model.buyers];
+                    
+                    [muArray addObject:dic];
+                    
+                    _model.buyers = muArray;
+                    
+                    [self.tableView reloadData];
+                    
+                
+                }
+                
+                
+            }];
+        }
+        
+        
         
     }
 }

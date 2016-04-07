@@ -23,6 +23,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *pirceLabel;
+
+
 
 @property (weak, nonatomic) IBOutlet SDPhotoGroup *photoView;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
