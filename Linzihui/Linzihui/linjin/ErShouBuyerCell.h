@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *acceptButton;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
 
 @end

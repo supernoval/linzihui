@@ -9,9 +9,10 @@
 #import "ErShouDetailTVC.h"
 #import "PersonInfoViewController.h"
 #import "ChatViewController.h"
+#import "WechatShareController.h"
 
 
-@interface ErShouDetailTVC ()<UITextFieldDelegate,UIAlertViewDelegate>
+@interface ErShouDetailTVC ()<UITextFieldDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
 {
     NSMutableArray *comments;
     
@@ -283,9 +284,26 @@
         return 160 + textHeight + photoViewHeight;
     }
 
-    else
+    else if(indexPath.section == 1) //出价
     {
         return 120;
+        
+    }
+    else
+    {
+        
+        NSDictionary *dict = [comments objectAtIndex:indexPath.row];
+        
+        CommentModel *model = [[CommentModel alloc]init];
+        
+        [model setValuesForKeysWithDictionary:dict];
+        
+        
+        CGFloat textHeight = [StringHeight heightWithText:model.content font:FONT_14 constrainedToWidth:ScreenWidth - 60];
+        
+        
+        
+        return 140 + textHeight;
         
     }
     
@@ -344,7 +362,6 @@
         _erShouCell.contentLabelHeight.constant = textHeight;
         
         _erShouCell.photoViewHeight.constant = photoViewHeight;
-        
         
         
         _erShouCell.contentLabel.text = _model.des;
@@ -462,6 +479,27 @@
             
             [_buyerCell.headImageButton addTarget:self action:@selector(showCommentPersonInfo:) forControlEvents:UIControlEventTouchUpInside];
             
+            _buyerCell.distanceLabel.text = [NSString stringWithFormat:@"距离:%@",[CommonMethods distanceStringWithLatitude:temModel.latitude longitude:temModel.longitude]];
+            
+            NSString *currentUserObjectId = [BmobUser getCurrentUser].objectId;
+            
+            NSString *publisherObjectId = [_model.publisher objectForKey:@"objectId"];
+            
+            if ([currentUserObjectId isEqualToString:publisherObjectId]) {
+                
+                
+                _buyerCell.acceptButton.hidden = NO;
+                
+                _buyerCell.acceptButton.tag = indexPath.row;
+                
+                [_buyerCell.acceptButton addTarget:self action:@selector(accept:) forControlEvents:UIControlEventTouchUpInside];
+                
+            }
+            else
+            {
+                _buyerCell.acceptButton.hidden = YES;
+                
+            }
             
             //等级
             [BmobHelper getOtherLevelWithUserName:temModel.username result:^(NSString *levelStr) {
@@ -511,6 +549,7 @@
        
        _commentCell.timeLabel.text = model.createdAt;
        
+       _commentCell.distanceLabel.text = [NSString stringWithFormat:@"距离:%@",[CommonMethods distanceStringWithLatitude:model.latitude longitude:model.longitude]];
        
        return _commentCell;
        
@@ -530,7 +569,7 @@
     
     UIBarButtonItem *xiangyao = [[UIBarButtonItem alloc]initWithTitle:@"我想要" style:UIBarButtonItemStylePlain target:self action:@selector(xiangyao)];
     
-    UIBarButtonItem *common = [[UIBarButtonItem alloc]initWithTitle:@"评论" style:UIBarButtonItemStylePlain target:self action:@selector(coment)];
+    UIBarButtonItem *common = [[UIBarButtonItem alloc]initWithTitle:@"回复" style:UIBarButtonItemStylePlain target:self action:@selector(coment)];
     
     UIBarButtonItem *fenxiang = [[UIBarButtonItem alloc]initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(fenxiang)];
     
@@ -554,6 +593,39 @@
     _myToolBar.tintColor = kBlueBackColor;
 }
 
+#pragma mark - 私下交易
+-(void)accept:(UIButton*)acceptButton
+{
+    
+    
+    
+    NSDictionary *oneBuyer = [_model.buyers objectAtIndex:acceptButton.tag];
+    
+    
+    UserModel *temModel = [[UserModel alloc]init];
+    
+    [temModel setValuesForKeysWithDictionary:oneBuyer];
+    
+    ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:temModel.username isGroup:NO];
+    
+    if (temModel.nickName) {
+        
+        _chat.title = temModel.nickName;
+    }
+    else
+    {
+        _chat.title = temModel.username;
+    }
+    
+    _chat.hidesBottomBarWhenPushed = YES;
+    
+    _chat.userModel = temModel;
+    
+    [self.navigationController pushViewController:_chat animated:YES];
+
+    
+    
+}
 #pragma mark - 咨询
 -(void)ask
 {
@@ -568,7 +640,7 @@
     
     if ([username isEqualToString:[BmobUser getCurrentUser].username]) {
         
-        [CommonMethods showDefaultErrorString:@"您自己发布的活动，无法与自己聊天"];
+        [CommonMethods showDefaultErrorString:@"无法与自己聊天"];
         
         return;
         
@@ -598,6 +670,22 @@
 #pragma mark - 我想要
 - (void)xiangyao
 {
+    
+    
+    NSString *username = [_model.publisher objectForKey:@"username"];
+    
+    
+    if ([username isEqualToString:[BmobUser getCurrentUser].username]) {
+        
+        [CommonMethods showDefaultErrorString:@"您自己发布的二手商品，无需出价"];
+        
+        return;
+        
+    }
+    
+    
+    
+    
    _buyerAlert = [[UIAlertView alloc]initWithTitle:@"填写价格" message:nil
 delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
@@ -612,7 +700,7 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
 }
 
-#pragma mark -评论
+#pragma mark -回复
 - (void)coment
 {
     
@@ -641,6 +729,19 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 #pragma mark - 分享
 - (void)fenxiang
 {
+    UIActionSheet *_actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    [_actionSheet addButtonWithTitle:@"分享到微信"];
+    [_actionSheet addButtonWithTitle:@"分享到QQ"];
+    
+    [_actionSheet addButtonWithTitle:@"取消"];
+    
+    
+    _actionSheet.cancelButtonIndex = 2;
+    
+    [_actionSheet showInView:self.view];
+    
+    
     
 }
 
@@ -689,6 +790,11 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
     _commentModel.createdAt = [CommonMethods getYYYYMMddHHmmssDateStr:[NSDate date]];
     
+    _commentModel.latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
+   
+    _commentModel.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+    
+    
     if (isReplay) {
         
         _commentModel.replayToNick = _toReplayNick;
@@ -704,8 +810,7 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
     NSDictionary *_dict = [_commentModel toDictionary];
     
-    
-    
+   
     [MyProgressHUD showProgress];
     
     BmobObject *shenghuoOB = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
@@ -972,8 +1077,18 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 model.price = [NSString stringWithFormat:@"%.2f",jinEr];
             }
             
+            model.createdAt = [CommonMethods getYYYYMMddHHmmssDateStr:[NSDate date]];
+            
+            model.latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
+            
+            model.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+            
+            
+            
              NSDictionary *dic = [model toDictionary];
             
+            
+  
             
             [ob addObjectsFromArray:@[dic] forKey:@"buyers"];
             
@@ -1003,6 +1118,22 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         }
         
         
+        
+     }
+}
+
+#pragma mark -  UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex < 2) {
+        
+        WechatShareController *_shareVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WechatShareController"];
+        
+        _shareVC.hidesBottomBarWhenPushed = YES;
+        _shareVC.shareType = buttonIndex + 1;
+        
+        [self.navigationController pushViewController:_shareVC animated:YES];
         
     }
 }

@@ -20,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
 
 

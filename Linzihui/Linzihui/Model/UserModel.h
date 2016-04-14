@@ -42,6 +42,11 @@ typedef NS_ENUM(NSInteger,CheckType)
 
 @property (nonatomic,strong)   BmobGeoPoint *location;
 
+//额外添加
+@property (nonatomic,assign) CGFloat latitude;
+@property (nonatomic,assign) CGFloat longitude;
+
+
 
 
 @property (nonatomic,strong ) NSString *card;
