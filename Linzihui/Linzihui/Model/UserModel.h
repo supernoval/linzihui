@@ -72,6 +72,8 @@ typedef NS_ENUM(NSInteger,CheckType)
 //邻近二手添加
 @property (nonatomic,strong) NSString *price; //价格 
 @property (nonatomic,assign) BOOL isAccepted;//是否接受该卖家
+@property (nonatomic,strong) NSString *message;
+
 
 
 

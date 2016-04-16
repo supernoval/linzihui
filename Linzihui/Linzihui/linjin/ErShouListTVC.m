@@ -77,7 +77,7 @@
     
   
     
-    [self loadDataErShou];
+
     
     
     
@@ -88,6 +88,9 @@
     [super viewWillAppear:animated];
     
      [self.navigationController.view addSubview:self.footerView];
+    
+    [self.tableView.header beginRefreshing];
+    
     
 }
 
@@ -156,7 +159,7 @@
     
     UIButton *sendButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 60, 10, 50, 30)];
     
-    [sendButton addTarget:self action:@selector(sendComment) forControlEvents:UIControlEventTouchUpInside];
+    [sendButton addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
     
     [sendButton setTitle:@"发送" forState:UIControlStateNormal];
     
@@ -225,6 +228,12 @@
 #pragma mark - 显示全部 或者我的
 -(void)showAll:(UIButton*)sender
 {
+    
+    [_headerOrderView.orderButton setTitle:@"分类" forState:UIControlStateNormal];
+    
+   _seletedType = @"";
+    
+    
     if (sender.tag == 0) {
         
         [allButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
@@ -529,6 +538,8 @@
     cell.replayButton.tag = indexPath.section;
     
     [cell.replayButton addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.replayNumLabel.text = [NSString stringWithFormat:@"%ld",(long)model.comments.count];
     
     
     return cell;

@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *replayButton;
+@property (weak, nonatomic) IBOutlet UILabel *replayNumLabel;
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoViewHeight;

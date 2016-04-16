@@ -21,11 +21,14 @@
 @end
 @interface HeaderOrderView : UIView
 {
-    UIButton *_orderButton;
-    
-    UIButton *_distanceButton;
+ 
     
 }
+
+@property (nonatomic,strong) UIButton *distanceButton;
+
+
+@property (nonatomic,strong) UIButton *orderButton;
 
 @property (nonatomic,weak) ErShouListTVC *listTVC;
 

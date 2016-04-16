@@ -10,9 +10,10 @@
 #import "PersonInfoViewController.h"
 #import "ChatViewController.h"
 #import "WechatShareController.h"
+#import "ErShouJiaGeView.h"
 
 
-@interface ErShouDetailTVC ()<UITextFieldDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
+@interface ErShouDetailTVC ()<UITextFieldDelegate,UIAlertViewDelegate,UIActionSheetDelegate,ErShouJiaGeDelegate>
 {
     NSMutableArray *comments;
     
@@ -38,6 +39,9 @@
     UIAlertView *_jubaoAlertView;
     
     UIAlertView *_buyerAlert; //填写出价 价格
+    
+    
+    ErShouJiaGeView *_jiageView;
     
     
     
@@ -67,6 +71,14 @@
     [self initCommentView];
     
     
+    //想要
+    NSArray *array = [[NSBundle mainBundle]loadNibNamed:@"ErShouJiaGeView" owner:self options:nil];
+    
+    _jiageView = [array objectAtIndex:0];
+    
+    _jiageView.frame = self.view.frame;
+    
+    _jiageView.delegate = self;
     
     
     
@@ -286,7 +298,16 @@
 
     else if(indexPath.section == 1) //出价
     {
-        return 120;
+        
+        NSDictionary *oneBuyer = [_model.buyers objectAtIndex:indexPath.row];
+        
+        UserModel *temModel = [[UserModel alloc]init];
+        
+        [temModel setValuesForKeysWithDictionary:oneBuyer];
+        
+        CGFloat messageHeigh = [StringHeight heightWithText:temModel.message font:FONT_15 constrainedToWidth:ScreenWidth - 130];
+        
+        return 120 + messageHeigh;
         
     }
     else
@@ -476,6 +497,14 @@
             _buyerCell.timeLabel.text = temModel.createdAt;
             
             _buyerCell.priceLabel.text = [NSString stringWithFormat:@"出价:%@元",temModel.price];
+            
+            _buyerCell.messageLabel.text = temModel.message;
+            
+            CGFloat messageHeigh = [StringHeight heightWithText:temModel.message font:FONT_15 constrainedToWidth:ScreenWidth - 130];
+            
+            _buyerCell.messageLabelHeigh.constant = messageHeigh;
+            
+            
             
             [_buyerCell.headImageButton addTarget:self action:@selector(showCommentPersonInfo:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -685,16 +714,14 @@
     
     
     
-    
-   _buyerAlert = [[UIAlertView alloc]initWithTitle:@"填写价格" message:nil
-delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    
-    _buyerAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    
-    [_buyerAlert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     
-    [_buyerAlert show];
+    [self.view addSubview:_jiageView];
+    
+    
+    
+
     
     
     
@@ -748,7 +775,7 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 #pragma mark - 举报
 - (void)jubao
 {
-    _jubaoAlertView = [[UIAlertView alloc]initWithTitle:nil message:@"确认要举报改用户吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"举报", nil];
+    _jubaoAlertView = [[UIAlertView alloc]initWithTitle:nil message:@"确认要举报该用户吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"举报", nil];
     
     [_jubaoAlertView show];
     
@@ -1045,81 +1072,7 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     }
     
     
-    if (alertView == _buyerAlert && buttonIndex == 1) {
-        
-        UITextField *inputTF = [alertView textFieldAtIndex:0];
-        
-        if (inputTF.text.length  == 0) {
-            
-            [CommonMethods showDefaultErrorString:@"请输入抢购金额"];
-            
-            
-        }else
-        {
-            
-            [MyProgressHUD showProgress];
-            
-            
-            CGFloat jinEr = [inputTF.text floatValue];
-            
-           BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
-            
-            UserModel *model = [BmobHelper getCurrentUserModel];
-            
-           
-            
-            if (jinEr == 0) {
-                
-                model.price = [NSString stringWithFormat:@"%.0f",jinEr];
-            }
-            else
-            {
-                model.price = [NSString stringWithFormat:@"%.2f",jinEr];
-            }
-            
-            model.createdAt = [CommonMethods getYYYYMMddHHmmssDateStr:[NSDate date]];
-            
-            model.latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
-            
-            model.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
-            
-            
-            
-             NSDictionary *dic = [model toDictionary];
-            
-            
-  
-            
-            [ob addObjectsFromArray:@[dic] forKey:@"buyers"];
-            
-            [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-               
-                [MyProgressHUD dismiss];
-                
-                
-                if (isSuccessful) {
-                    
-                    
-                    NSMutableArray *muArray = [[NSMutableArray alloc]init];
-                    
-                    [muArray addObjectsFromArray:_model.buyers];
-                    
-                    [muArray addObject:dic];
-                    
-                    _model.buyers = muArray;
-                    
-                    [self.tableView reloadData];
-                    
-                
-                }
-                
-                
-            }];
-        }
-        
-        
-        
-     }
+
 }
 
 #pragma mark -  UIActionSheetDelegate
@@ -1136,6 +1089,74 @@ delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [self.navigationController pushViewController:_shareVC animated:YES];
         
     }
+}
+
+#pragma mark - ErShouJiaGeDelegate
+-(void)didInputMSGandPrice:(NSString *)message price:(NSString *)price
+{
+    
+        
+        [MyProgressHUD showProgress];
+        
+        
+        CGFloat jinEr = [price floatValue];
+        
+        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
+        
+        UserModel *model = [BmobHelper getCurrentUserModel];
+        
+        
+        
+        if (jinEr == 0) {
+            
+            model.price = [NSString stringWithFormat:@"%.0f",jinEr];
+        }
+        else
+        {
+            model.price = [NSString stringWithFormat:@"%.2f",jinEr];
+        }
+        
+        model.createdAt = [CommonMethods getYYYYMMddHHmmssDateStr:[NSDate date]];
+        
+        model.latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
+        
+        model.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+    
+        model.message = message;
+    
+    
+        
+        NSDictionary *dic = [model toDictionary];
+        
+        
+        
+        
+        [ob addObjectsFromArray:@[dic] forKey:@"buyers"];
+        
+        [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            [MyProgressHUD dismiss];
+            
+            
+            if (isSuccessful) {
+                
+                
+                NSMutableArray *muArray = [[NSMutableArray alloc]init];
+                
+                [muArray addObjectsFromArray:_model.buyers];
+                
+                [muArray addObject:dic];
+                
+                _model.buyers = muArray;
+                
+                [self.tableView reloadData];
+                
+                
+            }
+            
+            
+        }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
