@@ -16,6 +16,8 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <CoreLocation/CoreLocation.h>
+#import "JPUSHService.h"
+
 @interface AppDelegate ()<WXApiDelegate,CLLocationManagerDelegate>
 {
     CLLocationManager *_locationManager;
@@ -32,6 +34,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    application.applicationIconBadgeNumber = 0;
     
     [Bmob registerWithAppKey:kBmobApplicationID];
     
@@ -72,16 +75,14 @@
     {
         [_locationManager requestWhenInUseAuthorization];
         
-        
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        
+       
     }
     else
     {
         
         [_locationManager startUpdatingLocation];
         
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
+        
     }
     
     
@@ -118,6 +119,30 @@
         
         
     }
+    
+    
+    //极光推送
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    [JPUSHService setupWithOption:launchOptions appKey:kJPushAppKey
+                          channel:KJPushChannel
+                 apsForProduction:KJPushProduction
+            advertisingIdentifier:nil];
+    
+    
+    
     
     
     return YES;
@@ -168,12 +193,19 @@
     
     NSLog(@"STR:%@",dToken);
     
+    [JPUSHService registerDeviceToken:deviceToken];
     
-    if (dToken)
-    {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
         
-        
+       [JPUSHService setTags:nil alias:[BmobUser getCurrentUser].username fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+          
+           NSLog(@"regist account to Jpush");
+           
+           
+           
+       }];
     }
+
     
 }
 
@@ -209,6 +241,8 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
    
      [[EaseMob sharedInstance] applicationWillEnterForeground:application];
+    
+     application.applicationIconBadgeNumber = 0;
     
 }
 

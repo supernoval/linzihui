@@ -29,6 +29,10 @@
 #pragma mark - 百度地图key
 #define kBaiduMapKey                @"Zp1EsdgXIa2RG8PKXBi1z1GU"
 
+#pragma mark -  极光推送
+#define kJPushAppKey              @"b1ee251ae6ef4cd03ea1107c"
+#define KJPushChannel             @"Publish channel"
+#define KJPushProduction            0
 
 
 

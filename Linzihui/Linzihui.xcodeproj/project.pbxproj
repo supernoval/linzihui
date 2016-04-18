@@ -305,6 +305,10 @@
 		155AB66F1CAB7BAF001A7451 /* ErShouListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 155AB66E1CAB7BAF001A7451 /* ErShouListTVC.m */; };
 		155AB6721CABA077001A7451 /* ErShouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 155AB6711CABA077001A7451 /* ErShouCell.m */; };
 		15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */; };
+		156A6F5D1CC55ADC00FDB276 /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 156A6F5B1CC55ADC00FDB276 /* jpush-ios-2.1.6.a */; };
+		156A6F5F1CC55B1F00FDB276 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156A6F5E1CC55B1F00FDB276 /* CoreFoundation.framework */; };
+		156A6F611CC55B3D00FDB276 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156A6F601CC55B3D00FDB276 /* Foundation.framework */; };
+		156A6F631CC55B4700FDB276 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156A6F621CC55B4700FDB276 /* UIKit.framework */; };
 		156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */; };
 		156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */; };
 		1570C9A01CB3606B00FD73BF /* HeaderOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1570C99F1CB3606B00FD73BF /* HeaderOrderView.m */; };
@@ -1109,6 +1113,11 @@
 		155AB6711CABA077001A7451 /* ErShouCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouCell.m; sourceTree = "<group>"; };
 		15697A5F1CA3FC80001756E9 /* SetNewGroupNameImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewGroupNameImageVC.h; sourceTree = "<group>"; };
 		15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewGroupNameImageVC.m; sourceTree = "<group>"; };
+		156A6F5B1CC55ADC00FDB276 /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
+		156A6F5C1CC55ADC00FDB276 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		156A6F5E1CC55B1F00FDB276 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		156A6F601CC55B3D00FDB276 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		156A6F621CC55B4700FDB276 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		156CB2C31CA959BE000E7F7E /* PublishErShouVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishErShouVC.h; sourceTree = "<group>"; };
 		156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishErShouVC.m; sourceTree = "<group>"; };
 		156CB2C71CA95F1E000E7F7E /* AddPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPhotoView.h; sourceTree = "<group>"; };
@@ -1635,26 +1644,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15BE66E81BF3F5B5000A9D1F /* libz.tbd in Frameworks */,
+				154A396B1BE5E43F0042632E /* Security.framework in Frameworks */,
+				156A6F631CC55B4700FDB276 /* UIKit.framework in Frameworks */,
+				156A6F611CC55B3D00FDB276 /* Foundation.framework in Frameworks */,
 				154A396D1BE5E4450042632E /* CoreGraphics.framework in Frameworks */,
 				154A39751BE5E4690042632E /* SystemConfiguration.framework in Frameworks */,
+				154A39731BE5E4570042632E /* CoreTelephony.framework in Frameworks */,
+				156A6F5F1CC55B1F00FDB276 /* CoreFoundation.framework in Frameworks */,
+				154A39711BE5E4520042632E /* CFNetwork.framework in Frameworks */,
 				154A39F41BE5E6F50042632E /* libstdc++.6.0.9.tbd in Frameworks */,
 				15521B7A1C4A0C040010E718 /* BaiduMapAPI_Location.framework in Frameworks */,
 				15521B7E1C4A0C040010E718 /* BaiduMapAPI_Utils.framework in Frameworks */,
-				154A39731BE5E4570042632E /* CoreTelephony.framework in Frameworks */,
 				15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */,
 				154A397B1BE5E4830042632E /* libsqlite3.tbd in Frameworks */,
-				154A396B1BE5E43F0042632E /* Security.framework in Frameworks */,
 				15521B4D1C4A0A850010E718 /* OpenGLES.framework in Frameworks */,
 				1593093C1CACF037006272DB /* libEaseMobClientSDK.a in Frameworks */,
 				15521B4B1C4A0A760010E718 /* QuartzCore.framework in Frameworks */,
 				154A39691BE5E4370042632E /* CoreLocation.framework in Frameworks */,
 				154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */,
-				15BE66E81BF3F5B5000A9D1F /* libz.tbd in Frameworks */,
 				154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */,
 				154A39F61BE5E7030042632E /* libxml2.tbd in Frameworks */,
 				15521B791C4A0C040010E718 /* BaiduMapAPI_Cloud.framework in Frameworks */,
 				15521B7C1C4A0C040010E718 /* BaiduMapAPI_Radar.framework in Frameworks */,
-				154A39711BE5E4520042632E /* CFNetwork.framework in Frameworks */,
 				154A396F1BE5E44C0042632E /* MobileCoreServices.framework in Frameworks */,
 				153723511BF59F2B005A4340 /* libstdc++.tbd in Frameworks */,
 				15BE66EC1BF3F5CA000A9D1F /* libc++.tbd in Frameworks */,
@@ -1671,6 +1683,7 @@
 				15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */,
 				15B7A5C11BE730770052115F /* MOBFoundation.framework in Frameworks */,
 				154A397F1BE5E5100042632E /* MediaPlayer.framework in Frameworks */,
+				156A6F5D1CC55ADC00FDB276 /* jpush-ios-2.1.6.a in Frameworks */,
 				154A397D1BE5E5070042632E /* AVFoundation.framework in Frameworks */,
 				154A39791BE5E47A0042632E /* libicucore.tbd in Frameworks */,
 				154A39771BE5E4730042632E /* libz.1.2.5.tbd in Frameworks */,
@@ -2669,6 +2682,7 @@
 		154A39641BE5E3BD0042632E /* ThirdPartFrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				156A6F5A1CC55ADC00FDB276 /* lib */,
 				15D336701CA7D8E400E948B7 /* Reachability */,
 				15521B5F1C4A0BEF0010E718 /* BaiduMapApi */,
 				15E4524F1C366F6900A6A549 /* EaseMobSDK */,
@@ -2694,6 +2708,9 @@
 		154A39671BE5E4010042632E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				156A6F621CC55B4700FDB276 /* UIKit.framework */,
+				156A6F601CC55B3D00FDB276 /* Foundation.framework */,
+				156A6F5E1CC55B1F00FDB276 /* CoreFoundation.framework */,
 				15521B4C1C4A0A850010E718 /* OpenGLES.framework */,
 				15521B4A1C4A0A760010E718 /* QuartzCore.framework */,
 				153723501BF59F2B005A4340 /* libstdc++.tbd */,
@@ -2761,6 +2778,15 @@
 				15521B821C4A0E620010E718 /* SearchNearByViewController.m */,
 			);
 			name = nearAddress;
+			sourceTree = "<group>";
+		};
+		156A6F5A1CC55ADC00FDB276 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				156A6F5B1CC55ADC00FDB276 /* jpush-ios-2.1.6.a */,
+				156A6F5C1CC55ADC00FDB276 /* JPUSHService.h */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		156CB2BF1CA956F7000E7F7E /* linjin'ershou */ = {
@@ -4707,6 +4733,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SDKExport",
+					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/lib",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -4744,6 +4771,7 @@
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/SDKExport",
+					"$(PROJECT_DIR)/Linzihui/ThirdPartFrameWorks/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
