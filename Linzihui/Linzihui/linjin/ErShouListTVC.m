@@ -40,11 +40,20 @@
     
     BOOL distanceOrder; // 按照距离排序
     
+    BOOL isShowBuy; //是否显示我要买的
+    
+    
+    
     
     
 }
 @property (nonatomic,strong) UIView*footerView;
 @property (nonatomic,strong) HeaderOrderView*headerOrderView;
+
+//当选择“我的”时候显示这个HeaderView;
+
+@property (nonatomic,strong) UIView *myHeaderView;
+
 
 @end
 
@@ -138,6 +147,45 @@
     
     return _headerOrderView;
     
+    
+}
+
+-(UIView*)myHeaderView
+{
+    if (!_myHeaderView) {
+        
+       
+        _myHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+        _myHeaderView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        
+        UIButton *sellButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
+        
+        [sellButton setTitle:@"我出售" forState:UIControlStateNormal];
+        
+        [sellButton addTarget:self action:@selector(showMySell) forControlEvents:UIControlEventTouchUpInside];
+        
+        [sellButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+        
+        [_myHeaderView addSubview:sellButton];
+        
+        
+        UIButton *buyButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 50)];
+        
+        [buyButton setTitle:@"我想要" forState:UIControlStateNormal];
+        
+        [buyButton addTarget:self action:@selector(showMyBuy) forControlEvents:UIControlEventTouchUpInside];
+        [buyButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+        
+        
+        [_myHeaderView addSubview:buyButton];
+        
+        
+        
+        
+    }
+    
+    return _myHeaderView;
     
 }
 -(void)initCommentView
@@ -236,6 +284,9 @@
     
     if (sender.tag == 0) {
         
+        
+        self.tableView.tableHeaderView = self.headerOrderView;
+        
         [allButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
         
         [myButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
@@ -249,6 +300,9 @@
     }
     else
     {
+        
+        self.tableView.tableHeaderView = self.myHeaderView ;
+                                          
         [allButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
         
         [myButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
@@ -264,6 +318,25 @@
     [self.tableView.header beginRefreshing];
 }
 
+#pragma mark - 显示我要卖
+-(void)showMySell
+{
+      isShowBuy = NO;
+    
+     [self.tableView.header beginRefreshing];
+    
+  
+    
+}
+
+#pragma mark -  显示我要买
+-(void)showMyBuy
+{
+    isShowBuy = YES;
+    
+    [self.tableView.header beginRefreshing];
+    
+}
 
 
 #pragma mark-发布
@@ -293,8 +366,41 @@
     
     if (isShowMine) {
         
-        [query whereKey:@"publisher" equalTo:[BmobUser getCurrentUser]];
+        if (isShowBuy) {
+         
+            BmobUser *currentUser = [BmobUser getCurrentUser];
+           
+            NSArray *myBuyers = [currentUser objectForKey:@"buyErShou"];
+            
+            [query whereKey:@"objectId" containedIn:myBuyers];
+            
+            
+            if (myBuyers.count == 0) {
+                
+                
+                
+                
+                [self endHeaderRefresh];
+                [self endFooterRefresh];
+                
+                [_dataSource removeAllObjects];
+                
+                [self.tableView reloadData];
+                
+                
+                return;
+                
+            }
+            
+        }
+        else
+        {
+       
         
+            [query whereKey:@"publisher" equalTo:[BmobUser getCurrentUser]];
+            
+            
+        }
     }
     else
     {

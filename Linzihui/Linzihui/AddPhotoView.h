@@ -35,5 +35,10 @@
 @property (nonatomic,strong) NSMutableArray *photosArray;
 
 
+//现有的photos 的URL
+@property (nonatomic,strong) NSMutableArray *photosURL;
+
+
+
 
 @end

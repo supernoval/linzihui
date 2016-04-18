@@ -61,6 +61,23 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    
+    
+    NSString *currentUsername = [BmobUser getCurrentUser].username;
+    
+    NSString *modelUserName = [_model.publisher objectForKey:@"username"];
+    
+    
+    
+    if ([currentUsername isEqualToString:modelUserName]) {
+        
+        UIBarButtonItem *publishButton = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(edite)];
+        
+        self.navigationItem.rightBarButtonItem = publishButton;
+    }
+  
+    
+    
      _myToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, ScreenHeight - 44, ScreenWidth, 44)];
     
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -103,6 +120,24 @@
     
     
 }
+
+
+-(void)edite
+{
+    
+    PublishErShouVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishErShouVC"];
+    
+    
+    vc.editeModel = _model;
+    
+    vc.isEdited = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+  
+}
+
 
 -(void)initCommentView
 {
@@ -1139,6 +1174,20 @@
             
             
             if (isSuccessful) {
+                
+                
+                BmobUser *currentUser = [BmobUser getCurrentUser];
+                
+                [currentUser addObjectsFromArray:@[_model.objectId] forKey:@"buyErShou"];
+                
+                [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                   
+                    if (isSuccessful) {
+                        
+                        NSLog(@"添加我要买的到user表成功");
+                        
+                    }
+                }];
                 
                 
                 NSMutableArray *muArray = [[NSMutableArray alloc]init];

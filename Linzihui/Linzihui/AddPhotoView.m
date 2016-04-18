@@ -47,9 +47,16 @@
     }
     
     
+    [self setButtons];
     
     
     
+    
+}
+
+-(void)setPhotosURL:(NSMutableArray *)photosURL
+{
+    _photosURL = photosURL;
     
     
 }

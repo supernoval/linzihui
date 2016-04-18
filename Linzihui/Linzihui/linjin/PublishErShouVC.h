@@ -10,9 +10,14 @@
 #import "AddPhotoView.h"
 #import "ErShouTypeTVC.h"
 #import <CoreLocation/CoreLocation.h>
+#import "ErShouListTVC.h"
 
 
 @interface PublishErShouVC : BaseViewController
+
+@property (nonatomic,assign) BOOL isEdited;
+
+@property (nonatomic,strong) ErShouModel *editeModel;
 
 @property (weak, nonatomic) IBOutlet UITextView *desTextView;
 

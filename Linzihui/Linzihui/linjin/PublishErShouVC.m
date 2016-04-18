@@ -29,6 +29,8 @@
     
     UIBarButtonItem *publishButton = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publish)];
     
+
+    
     self.navigationItem.rightBarButtonItem = publishButton;
     
     
@@ -36,6 +38,52 @@
     
     
     self.addPhotoView.delegate = self;
+    
+    if (_isEdited) {
+        
+        self.title = @"编辑二手";
+        
+         self.placeHolderLabel.hidden = YES;
+        
+        [publishButton setTitle:@"保存"];
+        
+        self.desTextView.text = _editeModel.des;
+        
+        self.priceTextField.text = _editeModel.price;
+        
+        [self.typeButton setTitle:_editeModel.type forState:UIControlStateNormal];
+        
+        _type = _editeModel.type;
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+           
+            NSMutableArray *muArray = [[NSMutableArray alloc]init];
+            
+            for (int i = 0; i < _editeModel.photos.count; i++ ) {
+                
+                NSString *url = [_editeModel.photos objectAtIndex:i];
+                
+                UIImage *temimage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+                
+                [muArray addObject:temimage];
+                
+                
+            }
+            
+            _photos = muArray;
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+               
+                self.addPhotoView.photosArray = muArray;
+                
+                
+            });
+            
+            
+        });
+    }
     
     self.priceTextField.delegate = self;
     
@@ -148,8 +196,7 @@
     
     if (longitude > 0 && latitude > 0) {
         
-        
-        
+    
         BmobGeoPoint *point  = [[BmobGeoPoint alloc]initWithLongitude:longitude WithLatitude:latitude];
         
         model.location = point;
@@ -162,7 +209,25 @@
     model.type = _type;
     
     
-    BmobObject *_ErshouOb = [BmobObject objectWithClassName:kErShou];
+    
+    
+    BmobObject *_ErshouOb ;
+    
+    if (_isEdited) {
+        
+        
+        _ErshouOb = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_editeModel.objectId];
+        
+        
+        
+    }
+    else
+    {
+        _ErshouOb = [BmobObject objectWithClassName:kErShou];
+        
+        
+    }
+    
     
     [_ErshouOb setObject:model.publisher forKey:@"publisher"];
     [_ErshouOb setObject:model.des forKey:@"des"];
@@ -173,22 +238,62 @@
     [_ErshouOb setObject:model.type forKey:@"type"];
     [_ErshouOb setObject:model.price forKey:@"price"];
     
-    [_ErshouOb saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+    
+    if (_isEdited) {
+       
+        [_ErshouOb setObject:_editeModel.comments forKey:@"comments"];
+        [_ErshouOb setObject:_editeModel.buyers forKey:@"buyers"];
         
         
-        if (isSuccessful) {
+        [_ErshouOb updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
             
+            if (isSuccessful) {
+                
+                
+                [MyProgressHUD dismiss];
+                
+                for (UIViewController *vc in self.navigationController.viewControllers) {
+                    
+                    
+                    if ([vc isKindOfClass:[ErShouListTVC class]]) {
+                        
+                        
+                        [self.navigationController popToViewController:vc animated:YES];
+                        
+                        
+                    }
+                }
+              
+                
+                
+                
+                
+            }
             
-            [MyProgressHUD dismiss];
-            
-            [self.navigationController popViewControllerAnimated:YES];
-            
-            
-            
-            
-        }
+        }];
         
-    }];
+        
+    }
+    else
+    {
+        [_ErshouOb saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            
+            if (isSuccessful) {
+                
+                
+                [MyProgressHUD dismiss];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+                
+                
+                
+            }
+            
+        }];
+    }
+   
 
 }
 
