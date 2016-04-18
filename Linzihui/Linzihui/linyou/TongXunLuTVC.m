@@ -537,7 +537,7 @@ static NSString *ContactsCell = @"ContactsCell";
     
     if ([addButton.titleLabel.text isEqualToString:@"邀请"]) {
         
-        NSString *text = [NSString stringWithFormat:@"您的好友邀请您加入邻子会，社区邻妈互助众扶App,大量就近免费活动与奖励，邀请码为:%@,下载地址为:%@",yaoqingma,kAppDownloadURL];
+        NSString *text = [NSString stringWithFormat:@"您的好友邀请您加入邻子会，社区邻妈互助众扶App,大量就近免费活动与奖励，邀请码为:%@,安卓App下载地址%@,iOS下载地址为:%@",yaoqingma,kAndroidDownloadURL,kAppDownloadURL];
     
         [self sendSMSMessageWithPhoneNum:model.phoneNum content:text];
         
@@ -606,7 +606,7 @@ static NSString *ContactsCell = @"ContactsCell";
         
          ContactModel *model = [_abDataSource objectAtIndex:actionSheet.tag];
         
-         NSString *text = [NSString stringWithFormat:@"您的好友邀请您加入邻子会，社区邻妈互助众扶App,大量就近免费活动与奖励，邀请码为:%@,下载地址为:%@",yaoqingma,kAppDownloadURL];
+         NSString *text = [NSString stringWithFormat:@"您的好友邀请您加入邻子会，社区邻妈互助众扶App,大量就近免费活动与奖励，邀请码为:%@,安卓App下载地址%@,iOS下载地址为:%@",yaoqingma,kAndroidDownloadURL,kAppDownloadURL];
         
         switch (buttonIndex) {
             case 0:

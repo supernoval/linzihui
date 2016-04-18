@@ -33,8 +33,10 @@
 
 
 //app 下载地址
+//iOS下载地址
 #define kAppDownloadURL            @"https://itunes.apple.com/us/app/you-kang-fu-wu/id646300912?l=zh&ls=1&mt=8"
-
+//安卓下载地址
+#define kAndroidDownloadURL     @"http://shouji.360tpcdn.com/160330/9d178bb88dd50cb02a630123c3e57a23/com.linzihui_24.apk"
 
 
 #pragma mark - Color

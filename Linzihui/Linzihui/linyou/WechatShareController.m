@@ -32,7 +32,7 @@ static NSString *kLinkTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
     
     NSString *yaoqingma = [BmobUser getCurrentUser].objectId;
     
-    description =  [NSString stringWithFormat:@"您的好友邀请您加入邻子会，社区邻妈互助众扶App,大量就近免费活动与奖励，邀请码为:%@,下载地址为:%@",yaoqingma,kAppDownloadURL];
+    description =  [NSString stringWithFormat:@"您的好友邀请您加入邻子会，社区邻妈互助众扶App,大量就近免费活动与奖励，邀请码为:%@,安卓App下载地址%@,iOS下载地址为:%@",yaoqingma,kAndroidDownloadURL,kAppDownloadURL];
     thumbImage = kDefaultHeadImage;
     
    [[TencentOAuth alloc]initWithAppId:kQQAppID andDelegate:self];
