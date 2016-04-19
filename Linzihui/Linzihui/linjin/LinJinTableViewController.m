@@ -188,13 +188,16 @@ static NSString *CellID = @"CellID";
         [self.navigationController pushViewController:erShouListTVC animated:YES];
         
         
-//        PublishErShouVC *_publishErShou = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishErShouVC"];
-//        
-//        _publishErShou.hidesBottomBarWhenPushed = YES;
-//        
-//        [self.navigationController pushViewController:_publishErShou animated:YES];
+
         
         
+        
+        
+    }
+    
+    if (indexPath.section == 4)//邻近互助
+    {
+        [BmobHelper sendHongBaoJPush];
         
         
     }

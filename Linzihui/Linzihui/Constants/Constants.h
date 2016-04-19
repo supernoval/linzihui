@@ -11,6 +11,9 @@
 #pragma mark - bmob app id
 #define  kBmobApplicationID       @"953e584ada055ec7250cbc57f589f308"
 
+#pragma mark - bmob 云逻辑地址
+#define kBmobCloudHttpRequestHeader      @"http://cloud.bmob.cn/5985577c36b64742"
+
 #pragma mark -  环信
 #define kEseamobAppKey            @"shiwaitaoyuan#linzihui"
 

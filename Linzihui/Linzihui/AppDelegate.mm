@@ -209,6 +209,12 @@
     
 }
 
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"receive remoteNotification:%@",userInfo);
+    
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
     NSLog(@"url host:%@",url.host);

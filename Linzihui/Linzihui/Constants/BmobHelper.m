@@ -1963,6 +1963,31 @@
     
 }
 
-
+#pragma mark - 发送红包推送
++(void)sendHongBaoJPush
+{
+    CGFloat lat = [[NSUserDefaults standardUserDefaults ]floatForKey:kCurrentLatitude];
+    CGFloat lon = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+    NSString *username = [BmobUser getCurrentUser].username;
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/publishHuZhu?lat=%.4f&lon=%.4f&username=%@",kBmobCloudHttpRequestHeader,lat,lon,username];
+    
+    NSLog(@"url:%@",urlStr);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager GET:urlStr parameters:nil progress:^(NSProgress *  downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask *  task, id   responseObject) {
+        
+        NSLog(@"jpush Success :%@",responseObject);
+        
+        
+    } failure:^(NSURLSessionDataTask *  task, NSError *  error) {
+        
+          NSLog(@"jpush Success :%@",error);
+    }];
+    
+}
 
 @end

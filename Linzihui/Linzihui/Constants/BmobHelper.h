@@ -12,6 +12,8 @@
 #import "EaseMob.h"
 #import "NSUserDefaultKeys.h"
 #import "EMHelper.h"
+#import "AFNetworking.h"
+
 
 
 
@@ -126,6 +128,8 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 +(void)getPublicGroup:(void(^)(BOOL success,NSArray*groups))result;
 
 
+#pragma mark - 发送红包推送
++(void)sendHongBaoJPush;
 
 
 
