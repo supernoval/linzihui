@@ -37,3 +37,6 @@
 
 //邻近二手
 #define kErShou                      @"ErShou"
+
+//邻近互助
+#define kLinJinHuZhu                     @"LinJinHuZhu"

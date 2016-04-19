@@ -259,6 +259,7 @@
 		1526371F1CC5F10000F3BE15 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 152637181CC5F10000F3BE15 /* AFURLResponseSerialization.m */; };
 		152637201CC5F10000F3BE15 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1526371A1CC5F10000F3BE15 /* AFURLSessionManager.m */; };
 		152637241CC5FC2D00F3BE15 /* PublishHuZhuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 152637231CC5FC2D00F3BE15 /* PublishHuZhuTVC.m */; };
+		152637281CC60D6800F3BE15 /* PickDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152637271CC60D6800F3BE15 /* PickDateView.m */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
 		152877141BF251CE00321E50 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877131BF251CE00321E50 /* InvitationManager.m */; };
 		152C0BED1C0D700000615A33 /* AttendUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 152C0BEC1C0D700000615A33 /* AttendUserModel.m */; };
@@ -1057,6 +1058,8 @@
 		1526371A1CC5F10000F3BE15 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		152637221CC5FC2D00F3BE15 /* PublishHuZhuTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishHuZhuTVC.h; sourceTree = "<group>"; };
 		152637231CC5FC2D00F3BE15 /* PublishHuZhuTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishHuZhuTVC.m; sourceTree = "<group>"; };
+		152637261CC60D6800F3BE15 /* PickDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickDateView.h; sourceTree = "<group>"; };
+		152637271CC60D6800F3BE15 /* PickDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickDateView.m; sourceTree = "<group>"; };
 		1528770F1BF23B7100321E50 /* EMHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHelper.h; sourceTree = "<group>"; };
 		152877101BF23B7100321E50 /* EMHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHelper.m; sourceTree = "<group>"; };
 		152877121BF251CA00321E50 /* InvitationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
@@ -1720,6 +1723,7 @@
 		1506EC1C1BF702A70010F349 /* MyViews */ = {
 			isa = PBXGroup;
 			children = (
+				152637251CC60D5000F3BE15 /* pickdate */,
 				15FF168C1CC1EA7D005EF202 /* ershoujiageView */,
 				1570C99D1CB35BFB00FD73BF /* headerOrderView */,
 				156CB2C61CA95F09000E7F7E /* addPhotoView */,
@@ -2592,6 +2596,15 @@
 				152637231CC5FC2D00F3BE15 /* PublishHuZhuTVC.m */,
 			);
 			name = linjinHuZhu;
+			sourceTree = "<group>";
+		};
+		152637251CC60D5000F3BE15 /* pickdate */ = {
+			isa = PBXGroup;
+			children = (
+				152637261CC60D6800F3BE15 /* PickDateView.h */,
+				152637271CC60D6800F3BE15 /* PickDateView.m */,
+			);
+			name = pickdate;
 			sourceTree = "<group>";
 		};
 		1528770E1BF23B4100321E50 /* Helper */ = {
@@ -4571,6 +4584,7 @@
 				15B7A4461BE72FB30052115F /* EmojiEmoticons.m in Sources */,
 				150F31D51C0FEA5D00E5CC8B /* ZXPDF417HighLevelEncoder.m in Sources */,
 				15E91C851C239CF10060CA79 /* HuoDongDetailTVC.m in Sources */,
+				152637281CC60D6800F3BE15 /* PickDateView.m in Sources */,
 				15B7A54D1BE730460052115F /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				15B7A56C1BE7304D0052115F /* SDPhotoGroup.m in Sources */,
 				150F31451C0FEA5D00E5CC8B /* ZXVEventResultParser.m in Sources */,

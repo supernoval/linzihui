@@ -13,6 +13,8 @@
 #import "WodeHuodongTVC.h"
 #import "PublishErShouVC.h"
 #import "ErShouListTVC.h"
+#import "PublishHuZhuTVC.h"
+
 
 
 static NSString *CellID = @"CellID";
@@ -197,7 +199,14 @@ static NSString *CellID = @"CellID";
     
     if (indexPath.section == 4)//邻近互助
     {
-        [BmobHelper sendHongBaoJPush];
+      
+        
+        PublishHuZhuTVC *_publishHuZhuVc = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishHuZhuTVC"];
+        _publishHuZhuVc.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:_publishHuZhuVc animated:YES];
+        
+        
         
         
     }

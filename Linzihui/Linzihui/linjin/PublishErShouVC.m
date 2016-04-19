@@ -87,6 +87,8 @@
     
     self.priceTextField.delegate = self;
     
+    
+    //获取当前位置
     [CommonMethods getCurrentLocation:^(BOOL success, NSString *address) {
        
         if (success) {
