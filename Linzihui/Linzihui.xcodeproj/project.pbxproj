@@ -514,6 +514,9 @@
 		15D542C11CC8AF2700333405 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D542B71CC8AF2700333405 /* openssl_wrapper.m */; };
 		15D542C21CC8AF2700333405 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D542B91CC8AF2700333405 /* RSADataSigner.m */; };
 		15D542C31CC8AF2700333405 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D542BB1CC8AF2700333405 /* RSADataVerifier.m */; };
+		15D543131CC8B1E400333405 /* LinJinHuZhuListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D543121CC8B1E400333405 /* LinJinHuZhuListTVC.m */; };
+		15D543171CC8B35E00333405 /* HongBaoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D543161CC8B35E00333405 /* HongBaoModel.m */; };
+		15D5431A1CC8BD0200333405 /* LinJinDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D543191CC8BD0200333405 /* LinJinDetailTVC.m */; };
 		15D75F011C41F90800ACC0E0 /* HongBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */; };
 		15D75F041C41FC9200ACC0E0 /* FriendEditedTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D75F031C41FC9200ACC0E0 /* FriendEditedTVC.m */; };
 		15E4524B1C366BE800A6A549 /* callRing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 15E4524A1C366BE800A6A549 /* callRing.mp3 */; };
@@ -1630,6 +1633,12 @@
 		15D5430D1CC8AF5300333405 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		15D5430E1CC8AF5300333405 /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		15D5430F1CC8AF5300333405 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		15D543111CC8B1E400333405 /* LinJinHuZhuListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinJinHuZhuListTVC.h; sourceTree = "<group>"; };
+		15D543121CC8B1E400333405 /* LinJinHuZhuListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinJinHuZhuListTVC.m; sourceTree = "<group>"; };
+		15D543151CC8B35E00333405 /* HongBaoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoModel.h; sourceTree = "<group>"; };
+		15D543161CC8B35E00333405 /* HongBaoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoModel.m; sourceTree = "<group>"; };
+		15D543181CC8BD0200333405 /* LinJinDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinJinDetailTVC.h; sourceTree = "<group>"; };
+		15D543191CC8BD0200333405 /* LinJinDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinJinDetailTVC.m; sourceTree = "<group>"; };
 		15D75EFF1C41F90800ACC0E0 /* HongBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoViewController.h; sourceTree = "<group>"; };
 		15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoViewController.m; sourceTree = "<group>"; };
 		15D75F021C41FC9200ACC0E0 /* FriendEditedTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendEditedTVC.h; sourceTree = "<group>"; };
@@ -2720,6 +2729,10 @@
 			children = (
 				152637221CC5FC2D00F3BE15 /* PublishHuZhuTVC.h */,
 				152637231CC5FC2D00F3BE15 /* PublishHuZhuTVC.m */,
+				15D543111CC8B1E400333405 /* LinJinHuZhuListTVC.h */,
+				15D543121CC8B1E400333405 /* LinJinHuZhuListTVC.m */,
+				15D543181CC8BD0200333405 /* LinJinDetailTVC.h */,
+				15D543191CC8BD0200333405 /* LinJinDetailTVC.m */,
 			);
 			name = linjinHuZhu;
 			sourceTree = "<group>";
@@ -4321,6 +4334,8 @@
 				15AB5AB11C171C550070F6DA /* GroupChatModel.m */,
 				15F2809E1CAA6AB5005F4E7F /* ErShouModel.h */,
 				15F2809F1CAA6AB5005F4E7F /* ErShouModel.m */,
+				15D543151CC8B35E00333405 /* HongBaoModel.h */,
+				15D543161CC8B35E00333405 /* HongBaoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4539,6 +4554,7 @@
 				15B7A49B1BE72FEE0052115F /* EMChatAudioBubbleView.m in Sources */,
 				15B7A4D01BE730320052115F /* MJRefreshGifHeader.m in Sources */,
 				150F31711C0FEA5D00E5CC8B /* ZXDataMatrixDataBlock.m in Sources */,
+				15D5431A1CC8BD0200333405 /* LinJinDetailTVC.m in Sources */,
 				150F31C41C0FEA5D00E5CC8B /* ZXPDF417BarcodeMetadata.m in Sources */,
 				15B7A56E1BE7304D0052115F /* SDWaitingView.m in Sources */,
 				15B7A4CD1BE730320052115F /* MJRefreshConst.m in Sources */,
@@ -4658,6 +4674,7 @@
 				15D336A81CA7E82100E948B7 /* GongkaiqunCell.m in Sources */,
 				1526371D1CC5F10000F3BE15 /* AFSecurityPolicy.m in Sources */,
 				15EE47001BE891FC00538EA5 /* AddNewFriendsTVC.m in Sources */,
+				15D543131CC8B1E400333405 /* LinJinHuZhuListTVC.m in Sources */,
 				15B7A53B1BE730460052115F /* MWPhotoBrowser.m in Sources */,
 				15B7A4391BE72F800052115F /* EMAudioRecorderUtil.m in Sources */,
 				156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */,
@@ -4766,6 +4783,7 @@
 				15EE46F21BE8640600538EA5 /* ForgetCodeTVC.m in Sources */,
 				15F2809D1CAA47A5005F4E7F /* ErShouTypeTVC.m in Sources */,
 				15EE46E71BE85C1700538EA5 /* JSONKeyMapper.m in Sources */,
+				15D543171CC8B35E00333405 /* HongBaoModel.m in Sources */,
 				150F31171C0FEA5D00E5CC8B /* LBXScanNative.m in Sources */,
 				150F31B91C0FEA5D00E5CC8B /* ZXUPCAReader.m in Sources */,
 				15EE46E31BE85C1700538EA5 /* NSArray+JSONModel.m in Sources */,

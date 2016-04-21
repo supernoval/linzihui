@@ -149,6 +149,8 @@
     [ob setObject:_contentTF.text forKey:@"content"];
     
     [ob setObject:point forKey:@"location"];
+    [ob setObject:[NSNumber numberWithFloat:[_jinErTF.text floatValue]] forKey:@"hongbaoNum"];
+    
     
     [ob setObject:_validate forKey:@"validate"];
     
@@ -237,6 +239,8 @@
 
 
 - (IBAction)pickTimeAction:(id)sender {
+    
+    [self.view endEditing:YES];
     
     [self.navigationController.view addSubview:_pickdateView];
     

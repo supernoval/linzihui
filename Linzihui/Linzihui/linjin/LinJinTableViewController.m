@@ -14,6 +14,8 @@
 #import "PublishErShouVC.h"
 #import "ErShouListTVC.h"
 #import "PublishHuZhuTVC.h"
+#import "LinJinHuZhuListTVC.h"
+
 
 
 
@@ -200,13 +202,14 @@ static NSString *CellID = @"CellID";
     if (indexPath.section == 4)//邻近互助
     {
       
+        LinJinHuZhuListTVC *_linjinHuZhu = [self.storyboard instantiateViewControllerWithIdentifier:@"LinJinHuZhuListTVC"];
         
-        PublishHuZhuTVC *_publishHuZhuVc = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishHuZhuTVC"];
-        _publishHuZhuVc.hidesBottomBarWhenPushed = YES;
+        _linjinHuZhu.hidesBottomBarWhenPushed = YES;
         
-        [self.navigationController pushViewController:_publishHuZhuVc animated:YES];
+        [self.navigationController pushViewController:_linjinHuZhu animated:YES];
         
         
+    
         
         
     }
