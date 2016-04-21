@@ -22,7 +22,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.03</string>
+	<string>2.04</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -47,11 +47,22 @@
 				<string>tencent1104890893</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>alipay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>LinZiHuiAlipay</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.03</string>
+	<string>2.04</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>alipay</string>
 		<string>mqzone</string>
 		<string>mqqapi</string>
 		<string>wechat</string>

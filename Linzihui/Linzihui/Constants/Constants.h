@@ -38,6 +38,16 @@
 #define KJPushProduction            0
 
 
+#pragma mark - 支付宝
+#define  kAlipayParnerID        @""
+#define  kAliPaySellerID         @""
+#define  kAlipayPriviteKey      @""
+#define   kAlipayNotifyURL    @""
+#define  kAliPayURLSchemes     @"LinZiHuiAlipay"
+//支付成功通知
+#define kPaySucessNotification      @"PaySuccessNotification"
+
+
 
 //app 下载地址
 //iOS下载地址

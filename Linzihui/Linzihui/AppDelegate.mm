@@ -17,6 +17,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <CoreLocation/CoreLocation.h>
 #import "JPUSHService.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()<WXApiDelegate,CLLocationManagerDelegate>
 {
@@ -229,7 +230,24 @@
         return  [TencentOAuth HandleOpenURL:url];
         
     }
-    
+    //支付宝 支付结果回调
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        [[AlipaySDK defaultService]
+         processOrderWithPaymentResult:url
+         standbyCallback:^(NSDictionary *resultDic) {
+             NSLog(@"%s,result = %@",__func__, resultDic);
+             NSInteger resultStatus = [[resultDic objectForKey:@"resultStatus"]integerValue];
+             if (resultStatus == 9000) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:kPaySucessNotification object:nil];
+             }
+             else
+             {
+                 //                 [[NSNotificationCenter defaultCenter] postNotificationName:kPayFailNotification object:nil];
+             }
+         }];
+        
+    }
   
     return NO;
     
