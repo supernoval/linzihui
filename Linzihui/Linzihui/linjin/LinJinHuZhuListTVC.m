@@ -10,6 +10,7 @@
 #import "HongBaoModel.h"
 #import "PublishHuZhuTVC.h"
 #import "PersonInfoViewController.h"
+#import "LinJinDetailTVC.h"
 
 
 
@@ -306,12 +307,30 @@
 //    
 //    [cell.replayButton addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
     
-    cell.replayNumLabel.text = [NSString stringWithFormat:@"%ld",(long)model.comments];
+    cell.replayNumLabel.text = [NSString stringWithFormat:@"%ld",(long)model.comments.count];
     
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    HongBaoModel *model = [_huzhuDataSource objectAtIndex:indexPath.section];
+    
+    LinJinDetailTVC *_linjindetailTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LinJinDetailTVC"];
+    
+    _linjindetailTVC.model = model;
+    
+    [self.navigationController pushViewController:_linjindetailTVC animated:YES];
+    
+    
+   
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
 
 #pragma mark - 显示个人信息
 -(void)showPersonInfo:(UIButton*)sender

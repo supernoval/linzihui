@@ -117,6 +117,7 @@
     
     [_myToolBar removeFromSuperview];
     
+    [_uiview_comment removeFromSuperview];
     
     
 }

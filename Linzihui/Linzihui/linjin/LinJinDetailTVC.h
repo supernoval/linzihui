@@ -7,7 +7,12 @@
 //
 
 #import "BaseTableViewController.h"
+#import "ErShouCell.h"
+#import "ErShouBuyerCell.h"
+#import "HongBaoModel.h"
 
 @interface LinJinDetailTVC : BaseTableViewController
+
+@property (nonatomic,strong ) HongBaoModel *model;
 
 @end
