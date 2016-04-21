@@ -71,11 +71,14 @@ typedef NS_ENUM(NSInteger,CheckType)
 
 //邻近二手添加
 @property (nonatomic,strong) NSString *price; //价格 
-@property (nonatomic,assign) BOOL isAccepted;//是否接受该卖家
+
 @property (nonatomic,strong) NSString *message;
 
+@property (nonatomic,assign) BOOL isAccepted;//是否接受该卖家；对于邻近互助：是否发给他红包
 
-
+//邻近互助
+@property (nonatomic,assign) BOOL hadAccepted; //是否已经接受了红包
+@property (nonatomic,assign) CGFloat hongbaoNum; //领取的红包金额
 
 
 @end

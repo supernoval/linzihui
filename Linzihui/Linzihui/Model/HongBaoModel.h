@@ -14,6 +14,8 @@
 
 @property (nonatomic,strong) BmobObject*publisher;
 @property (nonatomic,strong) NSArray *photos;
+@property (nonatomic,strong ) NSArray *helpers;
+
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic,strong) BmobGeoPoint *location;
 @property (nonatomic,strong) NSDate *validate;
@@ -21,6 +23,8 @@
 @property (nonatomic,strong) NSDate *createdAt;
 @property (nonatomic,strong) NSDate *updatedAt;
 @property (nonatomic,strong) NSArray *comments;
+@property (nonatomic,assign) BOOL hasDisbuted;
+
 
 
 

@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentLabelHeight;
 
+@property (weak, nonatomic) IBOutlet UILabel *validateLabel;
 
 
 - (IBAction)likeAction:(id)sender;

@@ -240,7 +240,7 @@
         
         _erShouCell.headButton.tag = indexPath.section;
         
-        [_erShouCell.headButton addTarget:self action:@selector(showPersonInfo:) forControlEvents:UIControlEventTouchUpInside];
+        [_erShouCell.headButton addTarget:self action:@selector(showPublisherPersonInfo) forControlEvents:UIControlEventTouchUpInside];
         
         
         _erShouCell.nameLabel.text = [_model.publisher objectForKey:@"nickName"];
@@ -264,56 +264,13 @@
         
         _erShouCell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:latitude longitude:longitude];
         
-        //价格
+        //红包金额
         _erShouCell.pirceLabel.text = [NSString stringWithFormat:@"%.0f元",_model.hongbaoNum];
         
+        //到期时间
+        _erShouCell.validateLabel.text = [CommonMethods getYYYYMMddhhmmDateStr:_model.validate];
         
-        
-        
-//        //zan
-//        if (_model.zan.count == 0) {
-//            
-//            _erShouCell.likeNumLabel.text = nil;
-//        }
-//        else
-//        {
-//            _erShouCell.likeNumLabel.text = [NSString stringWithFormat:@"%ld",(long)_model.zan.count];
-//            
-//        }
-//        
-//        NSString *currentUsername = [BmobUser getCurrentUser].username;
-//        
-//        BOOL hadZan = NO;
-//        
-//        for (int i = 0; i < _model.zan.count; i++) {
-//            
-//            NSString *username = [_model.zan objectAtIndex:i];
-//            
-//            
-//            if ([username isEqualToString:currentUsername]) {
-//                
-//                hadZan = YES;
-//                
-//                
-//            }
-//            
-//        }
-//        
-//        if (hadZan) {
-//            
-//            [_erShouCell.likeButton setImage:[UIImage imageNamed:@"liked"] forState:UIControlStateNormal];
-//        }
-//        else
-//        {
-//            [_erShouCell.likeButton setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
-//            
-//        }
-        
-//        _erShouCell.likeButton.tag = indexPath.section;
-//        
-//        [_erShouCell.likeButton addTarget:self action:@selector(zanAction:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        _erShouCell.replayButton.tag = indexPath.section;
+
         
         [_erShouCell.replayButton addTarget:self action:@selector(coment) forControlEvents:UIControlEventTouchUpInside];
         
@@ -324,7 +281,7 @@
         return _erShouCell;
         
     }
-    else  //评论
+    else  //回复
     {
         ErShouBuyerCell *_buyerCell = [tableView dequeueReusableCellWithIdentifier:@"ErShouBuyerCell"];
         
@@ -360,21 +317,82 @@
             
             NSString *publisherObjectId = [_model.publisher objectForKey:@"objectId"];
             
+            
+            //如果是发布者查看
             if ([currentUserObjectId isEqualToString:publisherObjectId]) {
                 
                 
+                
+                if (_model.hasDisbuted ||[currentUserObjectId isEqualToString:temModel.objectId]) {
+                    
+                    _buyerCell.acceptButton.hidden = YES;
+                }
+                else
+                {
                 _buyerCell.acceptButton.hidden = NO;
                 
                 _buyerCell.acceptButton.tag = indexPath.row;
                 
-                [_buyerCell.acceptButton addTarget:self action:@selector(accept:) forControlEvents:UIControlEventTouchUpInside];
+                [_buyerCell.acceptButton addTarget:self action:@selector(giveMoney:) forControlEvents:UIControlEventTouchUpInside];
+                
+                }
+            }
+            else //回复者查看
+            {
+                
+                //是否到期
+                NSDate *validate = _model.validate;
+                
+                //如果已过期并且是自己的回复，并且没有领取
+                if ([validate isEqualToDate:[validate earlierDate:[NSDate date]]] && [currentUserObjectId isEqualToString:temModel.objectId] && !temModel.hadAccepted)
+                {
+                
+                  
+                    _buyerCell.acceptButton.tag = indexPath.row;
+                    
+                     [_buyerCell.acceptButton setTitle:@"领取红包" forState:UIControlStateNormal];
+                        
+                     _buyerCell.acceptButton.hidden = NO;
+                    
+                    
+                    [_buyerCell.acceptButton addTarget:self action:@selector(acceptMoney:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                
+                    
+                    
+                }
+                else
+                {
+                    _buyerCell.acceptButton.hidden = YES;
+                    
+                }
+                
+                
+                
+              
+            
+                
+                
+                
+                
+                
+                
+            }
+            
+            //如果已经领取红包，则显示领取的数量
+            if (temModel.hadAccepted) {
+                
+                _buyerCell.priceLabel.text = [NSString stringWithFormat:@"已领取:%.2f元",temModel.hongbaoNum];
+                _buyerCell.priceLabel.adjustsFontSizeToFitWidth = YES;
                 
             }
             else
             {
-                _buyerCell.acceptButton.hidden = YES;
+                _buyerCell.priceLabel.text = nil;
                 
             }
+            
+            
             
             //等级
             [BmobHelper getOtherLevelWithUserName:temModel.username result:^(NSString *levelStr) {
@@ -393,6 +411,108 @@
     }
 }
 
+#pragma mark - 发红包
+-(void)giveMoney:(UIButton*)sender
+{
+    NSDictionary *dic = [_model.comments objectAtIndex:sender.tag];
+    
+    UserModel *temUser = [[UserModel alloc]init];
+    
+    [temUser setValuesForKeysWithDictionary:dic];
+    
+    temUser.hadAccepted = YES;
+    
+    temUser.hongbaoNum = _model.hongbaoNum;
+    
+    
+    [self saveHongbao:temUser withtag:sender.tag isSend:YES];
+    
+    
+    
+    
+    
+    
+}
+
+#pragma mark - 邻红包
+-(void)acceptMoney:(UIButton*)sender
+{
+    NSDictionary *dic = [_model.comments objectAtIndex:sender.tag];
+    
+    UserModel *temUser = [[UserModel alloc]init];
+    
+    [temUser setValuesForKeysWithDictionary:dic];
+    
+    temUser.hadAccepted = YES;
+    
+    
+    NSInteger temNum = 0;
+    
+    for (int i = 0 ; i < _model.comments.count; i++) {
+        
+        NSDictionary *temDic = [_model.comments objectAtIndex:i];
+        
+        NSString *username = [temDic objectForKey:@"username"];
+        
+        NSString *pubUsername = [_model.publisher objectForKey:@"username"];
+        
+        if (![username isEqualToString:pubUsername]) {
+        
+            temNum ++;
+            
+        }
+        
+        
+    }
+    
+    CGFloat num =(CGFloat)temNum;
+    
+    
+    temUser.hongbaoNum = _model.hongbaoNum/num;
+    
+    
+    [self saveHongbao:temUser withtag:sender.tag isSend:NO];
+    
+}
+
+//保存红包
+-(void)saveHongbao:(UserModel*)temUser withtag:(NSInteger)tag isSend:(BOOL)issend
+{
+    NSDictionary *finalDic = [temUser toDictionary];
+    
+    NSMutableArray *muArray = [[NSMutableArray alloc]init];
+    
+    [muArray addObjectsFromArray:_model.comments];
+    
+    [muArray replaceObjectAtIndex:tag withObject:finalDic];
+    
+    _model.comments = muArray;
+    
+    _model.hasDisbuted =issend;
+    
+    [self.tableView reloadData];
+    
+    
+    BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kLinJinHuZhu objectId:_model.objectId];
+    
+    [ob setObject:muArray forKey:@"comments"];
+    
+    [ob setObject:@YES forKey:@"hasDisbuted"];
+    
+    [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        if (isSuccessful) {
+            
+            NSLog(@"发送红包成功");
+            
+        }
+        else
+        {
+            NSLog(@"error:%@",error);
+            
+        }
+    }];
+}
 
 #pragma mark -回复
 - (void)coment
@@ -420,6 +540,13 @@
     
 }
 
+-(void)showPublisherPersonInfo
+{
+    NSString *username = [_model.publisher objectForKey:@"username"];
+    
+    [self showPersonInfo:username];
+    
+}
 //显示个人信息
 -(void)showPersonInfo:(NSString*)username
 {
@@ -505,6 +632,36 @@
     }];
     
 }
+
+
+#pragma mark - 是否已经领取了红包
+-(BOOL)hadAcceptMoney:(NSString*)username
+{
+    BOOL hadAccept = NO;
+    
+    for (int i= 0 ; i < _model.helpers.count; i++) {
+        
+        
+        NSString *temUsername = [_model.helpers objectAtIndex:i];
+        
+        if ([username isEqualToString:temUsername]) {
+            
+            hadAccept = YES;
+            
+        }
+    }
+    
+    return hadAccept;
+    
+    
+    
+}
+
+
+
+
+
+
 
 
 @end

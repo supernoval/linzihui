@@ -9,5 +9,9 @@
 #import "CommentModel.h"
 
 @implementation CommentModel
-
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    NSLog(@"CommentModel undefinedKey:%@",key);
+    
+}
 @end

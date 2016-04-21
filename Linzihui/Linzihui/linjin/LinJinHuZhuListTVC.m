@@ -124,9 +124,12 @@
                 
                 BmobGeoPoint *location = [Ob objectForKey:@"location"];
                 
+                NSDate *validate = [Ob objectForKey:@"validate"];
+                
                 model.location = location;
                 model.updatedAt = Ob.updatedAt;
                 model.createdAt = Ob.createdAt;
+                model.validate = validate;
                 
                 [_huzhuDataSource addObject:model];
                 
@@ -257,8 +260,11 @@
     
     cell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:latitude longitude:longitude];
     
-    //价格
+    //红包金额
     cell.pirceLabel.text = [NSString stringWithFormat:@"%.0f元",model.hongbaoNum];
+    
+    //到期时间
+    cell.validateLabel.text = [CommonMethods getYYYYMMddhhmmDateStr:model.validate];
     
     //zan
 //    if (model.zan.count == 0) {
