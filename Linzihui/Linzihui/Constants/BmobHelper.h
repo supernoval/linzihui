@@ -137,7 +137,7 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 
 #pragma mark - 保存总账户金额
 //isDraw 是否为提现
-+(void)saveTotalAccount:(NSString*)username num:(CGFloat)num isincome:(BOOL)isincome isDraw:(BOOL)isDraw isDraw:(BOOL)isDraw alipayAccount:(NSString*)alipayAccount;
++(void)saveTotalAccount:(NSString*)username num:(CGFloat)num isincome:(BOOL)isincome isDraw:(BOOL)isDraw  alipayAccount:(NSString*)alipayAccount;
 
 
 

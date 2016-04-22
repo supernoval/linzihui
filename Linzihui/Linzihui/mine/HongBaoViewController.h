@@ -10,4 +10,10 @@
 
 @interface HongBaoViewController : BaseViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *NumLabel;
+
+- (IBAction)chognzhi:(id)sender;
+
+- (IBAction)tixian:(id)sender;
+
 @end

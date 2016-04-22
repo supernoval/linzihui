@@ -283,6 +283,9 @@
 		153CE01E1BE50D910032517E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153CE01C1BE50D910032517E /* Storyboard.storyboard */; };
 		153CE0231BE50D910032517E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153CE0211BE50D910032517E /* LaunchScreen.storyboard */; };
 		1542EF921C10111100AD7C9E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1542EF911C10111100AD7C9E /* WebViewController.m */; };
+		15449E881CCAD0560079948B /* HongBaoDetailList.m in Sources */ = {isa = PBXBuildFile; fileRef = 15449E871CCAD0560079948B /* HongBaoDetailList.m */; };
+		15449E8B1CCAD1560079948B /* HongBaoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15449E8A1CCAD1560079948B /* HongBaoDetailCell.m */; };
+		15449E8E1CCAD81C0079948B /* HongBaoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15449E8D1CCAD81C0079948B /* HongBaoDetailVC.m */; };
 		154A39661BE5E3D50042632E /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39651BE5E3D50042632E /* BmobSDK.framework */; };
 		154A39691BE5E4370042632E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39681BE5E4370042632E /* CoreLocation.framework */; };
 		154A396B1BE5E43F0042632E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A396A1BE5E43F0042632E /* Security.framework */; };
@@ -1123,6 +1126,12 @@
 		153CE0241BE50D910032517E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1542EF901C10111100AD7C9E /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		1542EF911C10111100AD7C9E /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		15449E861CCAD0560079948B /* HongBaoDetailList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoDetailList.h; sourceTree = "<group>"; };
+		15449E871CCAD0560079948B /* HongBaoDetailList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoDetailList.m; sourceTree = "<group>"; };
+		15449E891CCAD1560079948B /* HongBaoDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoDetailCell.h; sourceTree = "<group>"; };
+		15449E8A1CCAD1560079948B /* HongBaoDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoDetailCell.m; sourceTree = "<group>"; };
+		15449E8C1CCAD81C0079948B /* HongBaoDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoDetailVC.h; sourceTree = "<group>"; };
+		15449E8D1CCAD81C0079948B /* HongBaoDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoDetailVC.m; sourceTree = "<group>"; };
 		154A39651BE5E3D50042632E /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
 		154A39681BE5E4370042632E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		154A396A1BE5E43F0042632E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -3979,6 +3988,12 @@
 			children = (
 				15D75EFF1C41F90800ACC0E0 /* HongBaoViewController.h */,
 				15D75F001C41F90800ACC0E0 /* HongBaoViewController.m */,
+				15449E861CCAD0560079948B /* HongBaoDetailList.h */,
+				15449E871CCAD0560079948B /* HongBaoDetailList.m */,
+				15449E891CCAD1560079948B /* HongBaoDetailCell.h */,
+				15449E8A1CCAD1560079948B /* HongBaoDetailCell.m */,
+				15449E8C1CCAD81C0079948B /* HongBaoDetailVC.h */,
+				15449E8D1CCAD81C0079948B /* HongBaoDetailVC.m */,
 			);
 			name = hongbao;
 			sourceTree = "<group>";
@@ -4763,6 +4778,7 @@
 				150F31621C0FEA5D00E5CC8B /* ZXStringUtils.m in Sources */,
 				15B7A49C1BE72FEE0052115F /* EMChatBaseBubbleView.m in Sources */,
 				150F31F41C0FEA5D00E5CC8B /* ZXMultiFormatReader.m in Sources */,
+				15449E8B1CCAD1560079948B /* HongBaoDetailCell.m in Sources */,
 				15B7A4D11BE730320052115F /* MJRefreshHeader.m in Sources */,
 				150F31341C0FEA5D00E5CC8B /* ZXISBNParsedResult.m in Sources */,
 				15B7A5411BE730460052115F /* EMSDWebImageCompat.m in Sources */,
@@ -4797,6 +4813,7 @@
 				150F31D01C0FEA5D00E5CC8B /* ZXPDF417.m in Sources */,
 				150F31961C0FEA5D00E5CC8B /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				15EE46E21BE85C1700538EA5 /* JSONModelError.m in Sources */,
+				15449E881CCAD0560079948B /* HongBaoDetailList.m in Sources */,
 				15B7A53A1BE730460052115F /* MWPhoto.m in Sources */,
 				150F316F1C0FEA5D00E5CC8B /* ZXRGBLuminanceSource.m in Sources */,
 				15D542A91CC8ACF900333405 /* PayOrder.m in Sources */,
@@ -4806,6 +4823,7 @@
 				150F31C51C0FEA5D00E5CC8B /* ZXPDF417BarcodeValue.m in Sources */,
 				150F31BC1C0FEA5D00E5CC8B /* ZXUPCEANExtension5Support.m in Sources */,
 				15BE66DD1BF3CD6B000A9D1F /* ContactModel.m in Sources */,
+				15449E8E1CCAD81C0079948B /* HongBaoDetailVC.m in Sources */,
 				150F31181C0FEA5D00E5CC8B /* LBXScanResult.m in Sources */,
 				15B6864A1C069B60007EE8CB /* HuodongTVCViewController.m in Sources */,
 				15B7A4A21BE72FEE0052115F /* EMChatViewBaseCell.m in Sources */,
