@@ -40,3 +40,9 @@
 
 //邻近互助
 #define kLinJinHuZhu                     @"LinJinHuZhu"
+
+//个人账户
+#define kpersonAccount               @"personAccount"
+
+//个人账户明细
+#define kAccountDetail               @"AccountDetail"

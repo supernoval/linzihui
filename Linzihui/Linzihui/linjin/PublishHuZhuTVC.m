@@ -16,6 +16,9 @@
     
     PickDateView *_pickdateView;
     
+    CGFloat totalMoney;
+    
+    
     
     
 }
@@ -39,6 +42,7 @@
     
     self.navigationItem.rightBarButtonItem = publishButton;
     
+    [self loadPersonMoney];
     
     
     _pickdateView = [[PickDateView alloc]init];
@@ -64,6 +68,37 @@
     
     [_pickdateView removeFromSuperview];
     
+}
+
+-(void)loadPersonMoney
+{
+    
+    [MyProgressHUD showProgress];
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:kpersonAccount];
+    
+    [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        [MyProgressHUD dismiss];
+        
+        if (array.count > 0) {
+            
+            BmobObject *OB = [array firstObject];
+            totalMoney = [[OB objectForKey:@"totalNum"]floatValue];
+            
+            
+            
+        }
+        else
+        {
+            totalMoney = 0.0;
+            
+        }
+        
+        
+    }];
 }
 
 #pragma mark -发布互助
@@ -101,11 +136,23 @@
         
     }
     
+    if (totalMoney < [_jinErTF.text floatValue]) {
+        
+        [CommonMethods showDefaultErrorString:[NSString stringWithFormat:@"您的账户余额不足，余额为%.2f元,请先充值.",totalMoney]];
+        
+        
+        
+        return;
+        
+    }
+    
+    
     [self upLoadImages];
     
     
     
 }
+
 
 -(void)upLoadImages
 {
@@ -160,6 +207,10 @@
         
         if (isSuccessful) {
             
+            //加到明细表里
+            [BmobHelper saveAccountDetail:[BmobUser getCurrentUser].username num:[_jinErTF.text floatValue] isincome:NO beizhu:@"发布邻近互助红包" isDraw:NO alipayAccount:nil];
+            
+            
             
             if ([_jinErTF.text floatValue] > 1) {
                 
@@ -180,6 +231,8 @@
     }];
     
 }
+
+
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidBeginEditing:(UITextView *)textView

@@ -1990,4 +1990,119 @@
     
 }
 
+#pragma mark -保存交易明细,并且在总账户表中增加或者减少余额
++(void)saveAccountDetail:(NSString *)username  num:(CGFloat)num isincome:(BOOL)isincome beizhu:(NSString*)beizhu  isDraw:(BOOL)isDraw  alipayAccount:(NSString*)alipayAccount
+{
+    BmobObject *detailOB = [BmobObject objectWithClassName:kAccountDetail];
+    
+    [detailOB setObject:username forKey:@"username"];
+    
+    [detailOB setObject:[NSNumber numberWithFloat:num] forKey:@"num"];
+    
+    [detailOB setObject:[NSNumber numberWithBool:isincome] forKey:@"isincome"];
+    
+    [detailOB setObject:beizhu forKey:@"beizhu"];
+    
+    if (alipayAccount.length > 0) {
+        
+        [detailOB setObject:alipayAccount forKey:@"alipayaccount"];
+    }
+    
+    [detailOB saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+      
+        if (isSuccessful) {
+            
+            NSLog(@"账户明细保存成功");
+            
+            
+        }
+        
+    }];
+    
+    
+    //保存总账户
+    
+    [self saveTotalAccount:username num:num isincome:isincome isDraw:isDraw alipayAccount:alipayAccount];
+    
+    
+}
+
+#pragma mark - 保存总账户金额
++(void)saveTotalAccount:(NSString*)username num:(CGFloat)num isincome:(BOOL)isincome isDraw:(BOOL)isDraw  alipayAccount:(NSString*)alipayAccount
+{
+    BmobQuery *query = [BmobQuery queryWithClassName:kpersonAccount];
+    
+    [query whereKey:@"username" equalTo:username];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (!error && array.count > 0) {
+            
+            BmobObject *accountOB = [array firstObject];
+            
+            CGFloat totalNum = [[accountOB objectForKey:@"totalNum"]floatValue];
+            
+            CGFloat drawNum = [[accountOB objectForKey:@"drawNum"]floatValue];
+            
+            if (!isDraw) {
+                
+                if (isincome) {
+                    
+                    totalNum +=num;
+                }
+                else
+                {
+                    totalNum  -= num;
+                    
+                }
+            }
+            else
+            {
+                drawNum +=num;
+                
+                totalNum -=num;
+                
+            }
+            
+            [accountOB setObject:[NSNumber numberWithFloat:totalNum] forKey:@"totalNum"] ;
+            [accountOB setObject:[NSNumber numberWithFloat:drawNum] forKey:@"drawNum"];
+            
+            [accountOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    NSLog(@"更新总账户成功");
+                    
+                }
+                else
+                {
+                    NSLog(@"更新总账户失败:%@",error);
+                    
+                }
+                
+            }];
+            
+            
+        }
+        else
+        {
+            
+            //新建一条个人账户信息
+            BmobObject *personAccountOB = [BmobObject objectWithClassName:kpersonAccount];
+            
+            [personAccountOB setObject:username forKey:@"username"];
+            [personAccountOB setObject:[NSNumber numberWithFloat:num] forKey:@"totalNum"];
+            [personAccountOB saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    NSLog(@"新建个人账户成功");
+                }
+            }];
+            
+        }
+    }];
+    
+}
+
 @end

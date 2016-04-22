@@ -33,7 +33,6 @@ typedef NS_ENUM(NSInteger,CheckType)
 @property (nonatomic,assign) NSInteger level;
 @property (nonatomic,strong) NSArray *attendActivities;
 
-
 @property (nonatomic,strong) NSString *beizhu;
 @property (nonatomic)        NSInteger age;
 
@@ -79,6 +78,7 @@ typedef NS_ENUM(NSInteger,CheckType)
 //邻近互助
 @property (nonatomic,assign) BOOL hadAccepted; //是否已经接受了红包
 @property (nonatomic,assign) CGFloat hongbaoNum; //领取的红包金额
+@property (nonatomic,assign) BOOL isWithinValidate; //是否在有效期内回复
 
 
 @end

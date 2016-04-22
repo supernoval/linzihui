@@ -291,6 +291,7 @@
         
         //红包金额
         _erShouCell.pirceLabel.text = [NSString stringWithFormat:@"红包:%.0f元",_model.hongbaoNum];
+        
         _erShouCell.pirceLabel.adjustsFontSizeToFitWidth = YES;
         
         //到期时间
@@ -366,11 +367,24 @@
             else //回复者查看
             {
                 
-                //是否到期
-                NSDate *validate = _model.validate;
                 
-                //如果已过期并且是自己的回复，并且没有领取
-                if ([validate isEqualToDate:[validate earlierDate:[NSDate date]]] && [currentUserObjectId isEqualToString:temModel.objectId] && !temModel.hadAccepted)
+                //是否超过24小时
+                
+                NSDate *createdDate = _model.createdAt;
+                
+                NSDate *after24 = [createdDate dateByAddingTimeInterval:24*60*60];
+                
+                BOOL isUp24 = NO;
+                
+                if ( [after24 isEqualToDate:[after24 earlierDate:[NSDate date]]]) {
+                    
+                    isUp24 = YES;
+                    
+                }
+                
+                
+                //如果已超过24小时，并且是自己的回复，并且没有领取，并且自己是在有效期内回复
+                if (isUp24 && [currentUserObjectId isEqualToString:temModel.objectId] && !temModel.hadAccepted && temModel.isWithinValidate)
                 {
                 
                   
@@ -395,12 +409,8 @@
                 
                 
                 
-              
             
-                
-                
-                
-                
+            
                 
                 
             }
@@ -478,11 +488,16 @@
         
         NSDictionary *temDic = [_model.comments objectAtIndex:i];
         
+        UserModel *temModel = [[UserModel alloc]init];
+        
+        [temModel setValuesForKeysWithDictionary:temDic];
+        
         NSString *username = [temDic objectForKey:@"username"];
         
         NSString *pubUsername = [_model.publisher objectForKey:@"username"];
         
-        if (![username isEqualToString:pubUsername]) {
+        
+        if (![username isEqualToString:pubUsername] && temModel.isWithinValidate ) {
         
             temNum ++;
             
@@ -525,11 +540,19 @@
     
     [ob setObject:@YES forKey:@"hasDisbuted"];
     
+    
+   
+    
     [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         
         if (isSuccessful) {
             
             NSLog(@"发送红包成功");
+        
+        
+            NSString *beizhu = [NSString stringWithFormat:@"领取%@的红包",[_model.publisher objectForKey:@"nickName"]];
+            [BmobHelper saveAccountDetail:temUser.username num:temUser.hongbaoNum isincome:YES beizhu:beizhu isDraw:NO alipayAccount:nil];
+            
             
         }
         else
@@ -539,6 +562,8 @@
         }
     }];
 }
+
+
 
 #pragma mark -回复
 - (void)coment
@@ -626,6 +651,17 @@
     currentUserModel.latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
     
     currentUserModel.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+    
+    if ([[NSDate date] isEqualToDate:[_model.validate earlierDate:[NSDate date]]] && ![_model.objectId isEqualToString:currentUserModel.objectId]) {
+        
+        currentUserModel.isWithinValidate = YES;
+    }
+    else
+    {
+        currentUserModel.isWithinValidate = NO;
+        
+    }
+    
     NSDictionary *dic = [currentUserModel toDictionary];
     
     NSMutableArray *temArray = [[NSMutableArray alloc]init];
@@ -665,10 +701,10 @@
 {
     BOOL hadAccept = NO;
     
-    for (int i= 0 ; i < _model.helpers.count; i++) {
+    for (int i= 0 ; i < _model.comments.count; i++) {
         
         
-        NSString *temUsername = [_model.helpers objectAtIndex:i];
+        NSString *temUsername = [_model.comments objectAtIndex:i];
         
         if ([username isEqualToString:temUsername]) {
             

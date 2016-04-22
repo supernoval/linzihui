@@ -132,6 +132,13 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 +(void)sendHongBaoJPush;
 
 
+#pragma mark -保存交易明细,并且在总账户表中增加或者减少余额
++(void)saveAccountDetail:(NSString *)username  num:(CGFloat)num isincome:(BOOL)isincome beizhu:(NSString*)beizhu  isDraw:(BOOL)isDraw  alipayAccount:(NSString*)alipayAccount;
+
+#pragma mark - 保存总账户金额
+//isDraw 是否为提现
++(void)saveTotalAccount:(NSString*)username num:(CGFloat)num isincome:(BOOL)isincome isDraw:(BOOL)isDraw isDraw:(BOOL)isDraw alipayAccount:(NSString*)alipayAccount;
+
 
 
 @end
