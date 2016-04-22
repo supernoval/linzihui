@@ -96,6 +96,15 @@
     
     [query orderByDescending:@"createdAt"];
     
+    CGFloat lat = [[NSUserDefaults standardUserDefaults]floatForKey:kCurrentLatitude];
+    CGFloat lon = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
+    
+    BmobGeoPoint *myLocation = [[BmobGeoPoint alloc]init];
+    myLocation.latitude = lat;
+    myLocation.longitude = lon;
+    
+    [query whereKey:@"location" nearGeoPoint:myLocation withinMiles:3.0];
+    
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
@@ -261,7 +270,8 @@
     cell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:latitude longitude:longitude];
     
     //红包金额
-    cell.pirceLabel.text = [NSString stringWithFormat:@"%.0f元",model.hongbaoNum];
+    cell.pirceLabel.text = [NSString stringWithFormat:@"红包:%.0f元",model.hongbaoNum];
+    cell.pirceLabel.adjustsFontSizeToFitWidth = YES;
     
     //到期时间
     cell.validateLabel.text = [CommonMethods getYYYYMMddhhmmDateStr:model.validate];

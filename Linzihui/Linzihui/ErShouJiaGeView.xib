@@ -48,7 +48,7 @@
                                 <constraint firstAttribute="height" constant="30" id="aB8-Mj-Mqu"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcD-8s-czg">
                             <rect key="frame" x="19" y="218" width="91" height="30"/>

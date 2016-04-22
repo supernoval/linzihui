@@ -17,6 +17,8 @@
     
     UITextField *_textField_comment;
 }
+@property (nonatomic,strong) UILabel *headLabel; //回复头部label
+
 @end
 
 @implementation LinJinDetailTVC
@@ -123,13 +125,36 @@
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        
+        return 0;
+    }
+    return 50;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    _headLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+    
+    _headLabel.font = FONT_16;
+    
+    _headLabel.textColor = [UIColor darkGrayColor];
+    
+    _headLabel.textAlignment = NSTextAlignmentLeft;
+    
+    _headLabel.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
+    _headLabel.text = [NSString stringWithFormat:@"  回复%ld条",(long)_model.comments.count];
+    
+    
+    return _headLabel;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    if (section == 0) {
-        
-        return 40;
-    }
+ 
     
     return 0;
     
@@ -265,7 +290,8 @@
         _erShouCell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:latitude longitude:longitude];
         
         //红包金额
-        _erShouCell.pirceLabel.text = [NSString stringWithFormat:@"%.0f元",_model.hongbaoNum];
+        _erShouCell.pirceLabel.text = [NSString stringWithFormat:@"红包:%.0f元",_model.hongbaoNum];
+        _erShouCell.pirceLabel.adjustsFontSizeToFitWidth = YES;
         
         //到期时间
         _erShouCell.validateLabel.text = [CommonMethods getYYYYMMddhhmmDateStr:_model.validate];
@@ -350,7 +376,7 @@
                   
                     _buyerCell.acceptButton.tag = indexPath.row;
                     
-                     [_buyerCell.acceptButton setTitle:@"领取红包" forState:UIControlStateNormal];
+                     [_buyerCell.acceptButton setTitle:@"领赏" forState:UIControlStateNormal];
                         
                      _buyerCell.acceptButton.hidden = NO;
                     
