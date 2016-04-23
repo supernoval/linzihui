@@ -39,6 +39,8 @@ typedef void (^upLoadPhotoBlock)(BOOL success,NSArray*results);
 
 +(NSDate*)getYYYMMddFromString:(NSString*)dateStr;
 +(NSDate*)getYYYYMMddhhmmssFromString:(NSString*)dateStr;
++(NSString *)getNoSpaceDateStr:(NSDate*)date;
+
 
 +(NSInteger)getDay:(NSString*)dateStr;
 

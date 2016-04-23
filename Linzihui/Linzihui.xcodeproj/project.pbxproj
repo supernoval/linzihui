@@ -345,6 +345,7 @@
 		15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */; };
 		15AB5AAF1C1715440070F6DA /* GroupChatListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */; };
 		15AB5AB21C171C550070F6DA /* GroupChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AB11C171C550070F6DA /* GroupChatModel.m */; };
+		15ABF63A1CCBD47F00089B6D /* TixianVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ABF6391CCBD47F00089B6D /* TixianVC.m */; };
 		15AC4F701C5F24910007329F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AC4F6F1C5F24910007329F /* DetailViewController.m */; };
 		15B6864A1C069B60007EE8CB /* HuodongTVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B686491C069B60007EE8CB /* HuodongTVCViewController.m */; };
 		15B6864E1C069C1B007EE8CB /* PublishActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B6864D1C069C1B007EE8CB /* PublishActivity.m */; };
@@ -1220,6 +1221,8 @@
 		15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatListTVC.m; sourceTree = "<group>"; };
 		15AB5AB01C171C550070F6DA /* GroupChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatModel.h; sourceTree = "<group>"; };
 		15AB5AB11C171C550070F6DA /* GroupChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatModel.m; sourceTree = "<group>"; };
+		15ABF6381CCBD47F00089B6D /* TixianVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TixianVC.h; sourceTree = "<group>"; };
+		15ABF6391CCBD47F00089B6D /* TixianVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TixianVC.m; sourceTree = "<group>"; };
 		15AC4F6E1C5F24910007329F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		15AC4F6F1C5F24910007329F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		15B686481C069B60007EE8CB /* HuodongTVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuodongTVCViewController.h; sourceTree = "<group>"; };
@@ -3994,6 +3997,8 @@
 				15449E8A1CCAD1560079948B /* HongBaoDetailCell.m */,
 				15449E8C1CCAD81C0079948B /* HongBaoDetailVC.h */,
 				15449E8D1CCAD81C0079948B /* HongBaoDetailVC.m */,
+				15ABF6381CCBD47F00089B6D /* TixianVC.h */,
+				15ABF6391CCBD47F00089B6D /* TixianVC.m */,
 			);
 			name = hongbao;
 			sourceTree = "<group>";
@@ -4836,6 +4841,7 @@
 				15B7A43C1BE72F800052115F /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				150F31291C0FEA5D00E5CC8B /* ZXAddressBookParsedResult.m in Sources */,
 				15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */,
+				15ABF63A1CCBD47F00089B6D /* TixianVC.m in Sources */,
 				150F31421C0FEA5D00E5CC8B /* ZXURIResultParser.m in Sources */,
 				150F31941C0FEA5D00E5CC8B /* ZXAnyAIDecoder.m in Sources */,
 				15B7A4981BE72FEE0052115F /* FacialView.m in Sources */,

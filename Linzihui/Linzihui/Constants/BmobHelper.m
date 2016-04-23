@@ -2044,6 +2044,10 @@
             
             CGFloat drawNum = [[accountOB objectForKey:@"drawNum"]floatValue];
             
+            CGFloat frozenNum = [[accountOB objectForKey:@"fronzenNum"]floatValue];
+            
+            
+            
             if (!isDraw) {
                 
                 if (isincome) {
@@ -2060,17 +2064,27 @@
             {
                 drawNum +=num;
                 
+                frozenNum += num;
+                
                 totalNum -=num;
                 
             }
             
             [accountOB setObject:[NSNumber numberWithFloat:totalNum] forKey:@"totalNum"] ;
             [accountOB setObject:[NSNumber numberWithFloat:drawNum] forKey:@"drawNum"];
+            [accountOB setObject:[NSNumber numberWithFloat:frozenNum] forKey:@"fronzenNum"];
+            
             
             [accountOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                
                 if (isSuccessful) {
                     
+                    if (isDraw) {
+                        
+                        [CommonMethods showDefaultErrorString:@"提现申请提交成功,我们将在10个工作日内处理您的提现操作"];
+                        
+                        
+                    }
                     NSLog(@"更新总账户成功");
                     
                 }

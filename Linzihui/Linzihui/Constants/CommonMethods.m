@@ -146,6 +146,36 @@
     return timeStr;
 }
 
++(NSString *)getNoSpaceDateStr:(NSDate*)date
+{
+
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    
+    NSInteger dateFlag = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit |NSHourCalendarUnit | NSMinuteCalendarUnit |NSSecondCalendarUnit;
+    
+    NSDateComponents *components = [calendar components:dateFlag fromDate:date];
+    
+    NSInteger today = [components day];
+    
+    NSInteger year = [components year];
+    
+    NSInteger month = [components month];
+    
+    NSInteger hour = [components hour];
+    
+    NSInteger min = [components minute];
+    
+    NSInteger sec = [components second];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld%ld%ld%ld%ld%ld",(long)year,(long)month,(long)today,(long)hour,(long)min,(long)sec];
+    
+    return str;
+    
+    
+}
+
 
 
 #pragma mark - UILabel

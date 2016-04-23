@@ -39,10 +39,10 @@
 
 
 #pragma mark - 支付宝
-#define  kAlipayParnerID        @""
-#define  kAliPaySellerID         @""
-#define  kAlipayPriviteKey      @""
-#define   kAlipayNotifyURL    @""
+#define  kAlipayParnerID        @"2088221501579815"
+#define  kAliPaySellerID         @"gaopeng48@126.com"
+#define  kAlipayPriviteKey      @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJ45fyEyDYeL4I6CKsLd0DSF/V+Z/GzbOhuVvCU2NRC7PynKFdRsB4DcVoWFD4FBh4oRBvEE9oHsN5avW5g/1XpfbZBrY/tkoWE4lXP90VadfQbztjZIMhTGJtq364n0Ka7ip67XPNvUN5Z+PCy1YDzx0lBozJiQvAHLAPjiVd7fAgMBAAECgYEAlDcJ9r+bWuDV3sjiY55DHiBxw69MfXAzE4oFL9qChQTSW0QZhN4ZfUVpqzOE3bDT1aqzlOzwOa5cOERWCd2qC7nSIkFuB3UF9sXo+fDKKJU4zW8drTUwRBNfWUXd/kbPRH9Sqmm6ZBTR/qpXodPwpwsnd/z1He+zDbsc2bipaIECQQDOP8h8SjnhednoqYCxPYwBfNlf0XaHCs+SEh/xjoI/9/hXjxJeJn36Ku3518bR9TAMlFaikBpcSGkav6KQjGMfAkEAxGQerhOkps5buUpDg5qnWKl8PrVfViUvKZEQRXSPjgHelMYlhKW8ZJfL34SNVph0DKRoIra6eXxeSXzNTczMQQJALXMs0QbiXmelt3my3Fv9wE4s8MqN3hBp0XyhAXAwD7yrQ1BJ8el1lW1kZ8w/CgGIBx2hQc2ToYZrcvOL9WKabQJAWpFNcLvQT7iUpjNwRS26BPJMQOMFr0WApWunlFA3r6Z/Dh7+yFhiNAWo2FBZmdi+k+HxwCiCgGnxVXR/fWR3wQJANufp3Ld9sqba4ZUbIioEufwuUUUcjH/q5LLu72H5dcGlpEP3FIqfOHfCBQwUHDIPglBMygFuviOU7L+UnASYAA=="
+#define   kAlipayNotifyURL    @"http://cloud.bmob.cn/5985577c36b64742/alipaynotify"
 #define  kAliPayURLSchemes     @"LinZiHuiAlipay"
 //支付成功通知
 #define kPaySucessNotification      @"PaySuccessNotification"

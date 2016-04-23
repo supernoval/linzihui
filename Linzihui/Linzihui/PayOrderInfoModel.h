@@ -15,13 +15,5 @@
 @property (nonatomic, strong) NSString *amount;  //金额
 @property (nonatomic, strong) NSString *out_trade_no; //支付单号
 
-//下单成功返回
-@property (strong, nonatomic) NSString *buyerId;
-@property (strong, nonatomic) NSString *fcd;
-@property (strong, nonatomic) NSString *lmd;
-@property (strong, nonatomic) NSString *orderNo;
-@property (strong, nonatomic) NSString *orderPrice;
-@property (strong, nonatomic) NSString *resumeId;
-@property (strong, nonatomic) NSString *sellerId;
-@property (strong, nonatomic) NSString *status;
+
 @end
