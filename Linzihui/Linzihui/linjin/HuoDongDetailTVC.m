@@ -363,8 +363,7 @@
 #pragma mark - 咨询
 -(void)ask
 {
-    
-    
+
    
     UserModel *model = [[UserModel alloc]init];
     
@@ -375,7 +374,7 @@
     
     if ([username isEqualToString:[BmobUser getCurrentUser].username]) {
         
-        [CommonMethods showDefaultErrorString:@"您自己发布的活动，无法与自己聊天"];
+        [CommonMethods showDefaultErrorString:@"您自己发布的信息，无法与自己聊天"];
         
         return;
         

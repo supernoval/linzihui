@@ -8,14 +8,19 @@
 
 #import "LinJinDetailTVC.h"
 #import "PersonInfoViewController.h"
+#import "ChatViewController.h"
+#import "WechatShareController.h"
 
-@interface LinJinDetailTVC ()<UITextFieldDelegate>
+
+@interface LinJinDetailTVC ()<UITextFieldDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 {
     
     UIView *_uiview_comment;
     
-    
+       UIToolbar *_myToolBar;
     UITextField *_textField_comment;
+    UIAlertView *_jubaoAlertView;
+    
 }
 @property (nonatomic,strong) UILabel *headLabel; //回复头部label
 
@@ -35,7 +40,19 @@
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+     _myToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, ScreenHeight - 44, ScreenWidth, 44)];
     
+    [self initBottomView];
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    
+    
+    [self.navigationController.view addSubview:_myToolBar];
     
 }
 
@@ -45,7 +62,115 @@
     
     [_uiview_comment removeFromSuperview];
     
+    [_myToolBar removeFromSuperview];
+    
 }
+
+
+-(void)initBottomView
+{
+    
+    UIBarButtonItem *zixun = [[UIBarButtonItem alloc]initWithTitle:@"咨询" style:UIBarButtonItemStylePlain target:self action:@selector(ask)];
+    
+
+    
+    UIBarButtonItem *common = [[UIBarButtonItem alloc]initWithTitle:@"回复" style:UIBarButtonItemStylePlain target:self action:@selector(coment)];
+    
+    UIBarButtonItem *fenxiang = [[UIBarButtonItem alloc]initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(fenxiang)];
+    
+    UIBarButtonItem *jubao  = [[UIBarButtonItem alloc]initWithTitle:@"举报"style:UIBarButtonItemStylePlain target:self action:@selector(jubao)];
+    
+    
+    UIBarButtonItem *flex = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *flex1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *flex2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *flex3 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *flex4 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+    
+    
+    _myToolBar.items = @[flex,zixun,flex3,common,flex1,fenxiang,flex2,jubao,flex4];
+    
+    _myToolBar.tintColor = kBlueBackColor;
+}
+
+#pragma mark - 举报
+- (void)jubao
+{
+    _jubaoAlertView = [[UIAlertView alloc]initWithTitle:nil message:@"确认要举报该用户吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"举报", nil];
+    
+    [_jubaoAlertView show];
+    
+    
+}
+
+
+#pragma mark - 分享
+- (void)fenxiang
+{
+    UIActionSheet *_actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    [_actionSheet addButtonWithTitle:@"分享到微信"];
+    [_actionSheet addButtonWithTitle:@"分享到QQ"];
+    
+    [_actionSheet addButtonWithTitle:@"取消"];
+    
+    
+    _actionSheet.cancelButtonIndex = 2;
+    
+    [_actionSheet showInView:self.view];
+    
+    
+    
+}
+
+
+#pragma mark - 咨询
+-(void)ask
+{
+    
+    
+    UserModel *model = [[UserModel alloc]init];
+    
+    
+    NSString *nickName = [_model.publisher objectForKey:@"nickName"];
+    NSString *username = [_model.publisher objectForKey:@"username"];
+    
+    
+    if ([username isEqualToString:[BmobUser getCurrentUser].username]) {
+        
+        [CommonMethods showDefaultErrorString:@"您自己发布的信息，无法与自己聊天"];
+        
+        return;
+        
+    }
+    
+    model.username = username;
+    model.nickName = nickName;
+    
+    
+    ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:model.username isGroup:NO];
+    
+    if (model.nickName) {
+        
+        _chat.title = model.nickName;
+    }
+    else
+    {
+        _chat.title = model.username;
+    }
+    
+    _chat.hidesBottomBarWhenPushed = YES;
+    _chat.userModel = model;
+    
+    [self.navigationController pushViewController:_chat animated:YES];
+}
+
+
 
 -(void)keyboardShow:(NSNotification*)note
 {
@@ -155,7 +280,11 @@
 {
     
  
-    
+    if (section == 1) {
+        
+        return 50;
+        
+    }
     return 0;
     
     
@@ -164,7 +293,7 @@
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
     
     
     headerView.backgroundColor = [UIColor clearColor];
@@ -718,6 +847,50 @@
     
     
 }
+
+#pragma mark- UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView == _jubaoAlertView && buttonIndex == 1) {
+        
+        
+        
+        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
+        
+        [ob addObjectsFromArray:@[[BmobUser getCurrentUser].username] forKey:@"jubao"];
+        
+        [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            if (isSuccessful) {
+                
+                [CommonMethods showDefaultErrorString:@"举报成功"];
+                
+                
+            }
+        }];
+        
+    }
+    
+    
+    
+}
+
+#pragma mark -  UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex < 2) {
+        
+        WechatShareController *_shareVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WechatShareController"];
+        
+        _shareVC.hidesBottomBarWhenPushed = YES;
+        _shareVC.shareType = buttonIndex + 1;
+        
+        [self.navigationController pushViewController:_shareVC animated:YES];
+        
+    }
+}
+
 
 
 

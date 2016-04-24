@@ -35,6 +35,7 @@
     
     _contentTF.delegate = self;
     _jinErTF.delegate = self;
+    _jinErTF.placeholder = @"金额可以为0";
     
     UIBarButtonItem *publishButton = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publishHuZhu)];
     
@@ -114,15 +115,11 @@
         return;
     }
     
-    if (_photos.count == 0) {
-        
-        [CommonMethods showDefaultErrorString:@"上传图片" ];
-        return;
-    }
+
     
-    if (_jinErTF.text == 0 || [_jinErTF.text floatValue] == 0) {
+    if (_jinErTF.text.length == 0) {
         
-        [CommonMethods showDefaultErrorString:@"红包金额要大于0"];
+        [CommonMethods showDefaultErrorString:@"请输入红包金额"];
         
         return;
         
@@ -147,10 +144,17 @@
     }
     
     
-    [self upLoadImages];
+ 
     
     
-    
+    if (_photos.count == 0) {
+        
+          [self saveDataWithImageURLs:nil];
+    }
+    else
+    {
+        [self upLoadImages];
+    }
 }
 
 
@@ -191,7 +195,12 @@
     
     [ob setObject:[BmobUser getCurrentUser] forKey:@"publisher"];
     
-    [ob setObject:imgURLS forKey:@"photos"];
+    
+    if (imgURLS) {
+        
+       [ob setObject:imgURLS forKey:@"photos"];
+    }
+    
     
     [ob setObject:_contentTF.text forKey:@"content"];
     
