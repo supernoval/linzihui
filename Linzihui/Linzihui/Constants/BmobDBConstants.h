@@ -46,3 +46,6 @@
 
 //个人账户明细
 #define kAccountDetail               @"AccountDetail"
+
+//商家账号
+#define kShangJia                    @"ShangJia"

@@ -119,6 +119,8 @@
     
     [_uiview_comment removeFromSuperview];
     
+    [_jiageView removeFromSuperview];
+    
     
 }
 
@@ -753,7 +755,7 @@
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     
-    [self.view addSubview:_jiageView];
+    [self.navigationController.view addSubview:_jiageView];
     
     
     

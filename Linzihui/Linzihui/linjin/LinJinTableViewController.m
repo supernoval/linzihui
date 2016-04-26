@@ -15,6 +15,8 @@
 #import "ErShouListTVC.h"
 #import "PublishHuZhuTVC.h"
 #import "LinJinHuZhuListTVC.h"
+#import "LinjinShangJiaListVC.h"
+
 
 
 
@@ -40,7 +42,7 @@ static NSString *CellID = @"CellID";
     
 //   _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"},@{@"title":@"邻近二手",@"image":@"linjinershou"},@{@"title":@"邻近互助",@"image":@"linjinhuzhu"},@{@"title":@"邻近商家",@"image":@"lingjids"},@{@"title":@"红包大战",@"image":@"lingjids"},@{@"title":@"互助买卖房",@"image":@"lingjids"},@{@"title":@"团购新房",@"image":@"lingjids"}];
     
-     _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"},@{@"title":@"邻近二手",@"image":@"linjinershou"},@{@"title":@"邻近互助",@"image":@"linjinhuzhu"}];
+     _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"},@{@"title":@"邻近二手",@"image":@"linjinershou"},@{@"title":@"邻近互助",@"image":@"linjinhuzhu"},@{@"title":@"邻近商家",@"image":@"linjinshangjia"}];
     
     
 }
@@ -210,6 +212,18 @@ static NSString *CellID = @"CellID";
         
         
     
+        
+        
+    }
+    
+    if (indexPath.section == 5)  //邻近商家
+    {
+        LinjinShangJiaListVC *_shangjiaVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LinjinShangJiaListVC"];
+        
+        _shangjiaVC.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:_shangjiaVC animated:YES];
+        
         
         
     }

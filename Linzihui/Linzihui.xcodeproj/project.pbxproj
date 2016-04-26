@@ -323,6 +323,11 @@
 		156A6F631CC55B4700FDB276 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156A6F621CC55B4700FDB276 /* UIKit.framework */; };
 		156CB2C51CA959BE000E7F7E /* PublishErShouVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */; };
 		156CB2C91CA95F1E000E7F7E /* AddPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */; };
+		156D54251CCFB43700C04DC0 /* LinjinShangJiaListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156D54241CCFB43700C04DC0 /* LinjinShangJiaListVC.m */; };
+		156D54281CCFB65A00C04DC0 /* ShangJiaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 156D54271CCFB65A00C04DC0 /* ShangJiaModel.m */; };
+		156D542F1CCFBA4100C04DC0 /* RegistShangjiaTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 156D542E1CCFBA4100C04DC0 /* RegistShangjiaTVC.m */; };
+		156D54321CCFBBF000C04DC0 /* ShangjiaListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 156D54311CCFBBF000C04DC0 /* ShangjiaListCell.m */; };
+		156D54351CCFE44300C04DC0 /* TypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 156D54341CCFE44300C04DC0 /* TypeTableViewController.m */; };
 		1570C9A01CB3606B00FD73BF /* HeaderOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1570C99F1CB3606B00FD73BF /* HeaderOrderView.m */; };
 		1576941A1CB60783007AEC3C /* ErShouBuyerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 157694191CB60783007AEC3C /* ErShouBuyerCell.m */; };
 		1577165F1C44A0530030DC0B /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1577165E1C44A0530030DC0B /* BaseNavigationController.m */; };
@@ -1178,6 +1183,16 @@
 		156CB2C41CA959BE000E7F7E /* PublishErShouVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishErShouVC.m; sourceTree = "<group>"; };
 		156CB2C71CA95F1E000E7F7E /* AddPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPhotoView.h; sourceTree = "<group>"; };
 		156CB2C81CA95F1E000E7F7E /* AddPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPhotoView.m; sourceTree = "<group>"; };
+		156D54231CCFB43700C04DC0 /* LinjinShangJiaListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinjinShangJiaListVC.h; sourceTree = "<group>"; };
+		156D54241CCFB43700C04DC0 /* LinjinShangJiaListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinjinShangJiaListVC.m; sourceTree = "<group>"; };
+		156D54261CCFB65A00C04DC0 /* ShangJiaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangJiaModel.h; sourceTree = "<group>"; };
+		156D54271CCFB65A00C04DC0 /* ShangJiaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangJiaModel.m; sourceTree = "<group>"; };
+		156D542D1CCFBA4100C04DC0 /* RegistShangjiaTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistShangjiaTVC.h; sourceTree = "<group>"; };
+		156D542E1CCFBA4100C04DC0 /* RegistShangjiaTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistShangjiaTVC.m; sourceTree = "<group>"; };
+		156D54301CCFBBF000C04DC0 /* ShangjiaListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangjiaListCell.h; sourceTree = "<group>"; };
+		156D54311CCFBBF000C04DC0 /* ShangjiaListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangjiaListCell.m; sourceTree = "<group>"; };
+		156D54331CCFE44300C04DC0 /* TypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeTableViewController.h; sourceTree = "<group>"; };
+		156D54341CCFE44300C04DC0 /* TypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeTableViewController.m; sourceTree = "<group>"; };
 		1570C99E1CB3606B00FD73BF /* HeaderOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderOrderView.h; sourceTree = "<group>"; };
 		1570C99F1CB3606B00FD73BF /* HeaderOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderOrderView.m; sourceTree = "<group>"; };
 		157694181CB60783007AEC3C /* ErShouBuyerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouBuyerCell.h; sourceTree = "<group>"; };
@@ -3054,6 +3069,29 @@
 			name = addPhotoView;
 			sourceTree = "<group>";
 		};
+		156D54221CCFB3E900C04DC0 /* linjinshangjia */ = {
+			isa = PBXGroup;
+			children = (
+				156D54291CCFB88A00C04DC0 /* registShangjia */,
+				156D54231CCFB43700C04DC0 /* LinjinShangJiaListVC.h */,
+				156D54241CCFB43700C04DC0 /* LinjinShangJiaListVC.m */,
+				156D54301CCFBBF000C04DC0 /* ShangjiaListCell.h */,
+				156D54311CCFBBF000C04DC0 /* ShangjiaListCell.m */,
+			);
+			name = linjinshangjia;
+			sourceTree = "<group>";
+		};
+		156D54291CCFB88A00C04DC0 /* registShangjia */ = {
+			isa = PBXGroup;
+			children = (
+				156D542D1CCFBA4100C04DC0 /* RegistShangjiaTVC.h */,
+				156D542E1CCFBA4100C04DC0 /* RegistShangjiaTVC.m */,
+				156D54331CCFE44300C04DC0 /* TypeTableViewController.h */,
+				156D54341CCFE44300C04DC0 /* TypeTableViewController.m */,
+			);
+			name = registShangjia;
+			sourceTree = "<group>";
+		};
 		1570C99D1CB35BFB00FD73BF /* headerOrderView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3778,6 +3816,7 @@
 		15B7A5DC1BE74E490052115F /* linjin */ = {
 			isa = PBXGroup;
 			children = (
+				156D54221CCFB3E900C04DC0 /* linjinshangjia */,
 				152637211CC5FB4300F3BE15 /* linjinHuZhu */,
 				156CB2BF1CA956F7000E7F7E /* linjin'ershou */,
 				157790431C26805A00A70E4B /* wodehuodong */,
@@ -4356,6 +4395,8 @@
 				15F2809F1CAA6AB5005F4E7F /* ErShouModel.m */,
 				15D543151CC8B35E00333405 /* HongBaoModel.h */,
 				15D543161CC8B35E00333405 /* HongBaoModel.m */,
+				156D54261CCFB65A00C04DC0 /* ShangJiaModel.h */,
+				156D54271CCFB65A00C04DC0 /* ShangJiaModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4504,6 +4545,7 @@
 				15B7A4381BE72F800052115F /* EMAudioPlayerUtil.m in Sources */,
 				150F31571C0FEA5D00E5CC8B /* ZXBoolArray.m in Sources */,
 				15B7A5B21BE7305D0052115F /* SDWebImagePrefetcher.m in Sources */,
+				156D542F1CCFBA4100C04DC0 /* RegistShangjiaTVC.m in Sources */,
 				150F31D61C0FEA5D00E5CC8B /* ZXPDF417Common.m in Sources */,
 				15B7A4CF1BE730320052115F /* MJRefreshGifFooter.m in Sources */,
 				150F31C81C0FEA5D00E5CC8B /* ZXPDF417CodewordDecoder.m in Sources */,
@@ -4528,6 +4570,7 @@
 				150F319C1C0FEA5D00E5CC8B /* ZXRSSExpandedGeneralAppIdDecoder.m in Sources */,
 				150F31791C0FEA5D00E5CC8B /* ZXDataMatrixDefaultPlacement.m in Sources */,
 				150F31FB1C0FEF6500E5CC8B /* ShowQRViewController.m in Sources */,
+				156D54281CCFB65A00C04DC0 /* ShangJiaModel.m in Sources */,
 				150F31CA1C0FEA5D00E5CC8B /* ZXPDF417DetectionResult.m in Sources */,
 				15B7A5591BE730460052115F /* PSTGridLayoutInfo.m in Sources */,
 				150F31C11C0FEA5D00E5CC8B /* ZXModulusGF.m in Sources */,
@@ -4626,6 +4669,7 @@
 				15B7A4A41BE72FEE0052115F /* MessageModel.m in Sources */,
 				150F31731C0FEA5D00E5CC8B /* ZXDataMatrixDecoder.m in Sources */,
 				15AB5AB21C171C550070F6DA /* GroupChatModel.m in Sources */,
+				156D54321CCFBBF000C04DC0 /* ShangjiaListCell.m in Sources */,
 				15B7A53C1BE730460052115F /* MWTapDetectingImageView.m in Sources */,
 				1506EC261BF712620010F349 /* CreateChatRoomTVC.m in Sources */,
 				15EE46E41BE85C1700538EA5 /* JSONAPI.m in Sources */,
@@ -4784,6 +4828,7 @@
 				15B7A49C1BE72FEE0052115F /* EMChatBaseBubbleView.m in Sources */,
 				150F31F41C0FEA5D00E5CC8B /* ZXMultiFormatReader.m in Sources */,
 				15449E8B1CCAD1560079948B /* HongBaoDetailCell.m in Sources */,
+				156D54351CCFE44300C04DC0 /* TypeTableViewController.m in Sources */,
 				15B7A4D11BE730320052115F /* MJRefreshHeader.m in Sources */,
 				150F31341C0FEA5D00E5CC8B /* ZXISBNParsedResult.m in Sources */,
 				15B7A5411BE730460052115F /* EMSDWebImageCompat.m in Sources */,
@@ -4959,6 +5004,7 @@
 				157716681C44A1470030DC0B /* LinJinNavigationController.m in Sources */,
 				15D542A21CC8ACBD00333405 /* Order.m in Sources */,
 				1536C6EC1C2CDFA4001DB61A /* LevelDetailViewController.m in Sources */,
+				156D54251CCFB43700C04DC0 /* LinjinShangJiaListVC.m in Sources */,
 				15E452C31C36914600A6A549 /* WelcomViewVC.m in Sources */,
 				150F317E1C0FEA5D00E5CC8B /* ZXDataMatrixSymbolInfo.m in Sources */,
 				15EE46E51BE85C1700538EA5 /* JSONHTTPClient.m in Sources */,

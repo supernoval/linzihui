@@ -408,7 +408,7 @@
         currentLocation.latitude = [[NSUserDefaults standardUserDefaults]floatForKey:kCurrentLatitude];
         currentLocation.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
         
-        [query whereKey:@"location" nearGeoPoint:currentLocation withinKilometers:3];
+//        [query whereKey:@"location" nearGeoPoint:currentLocation withinKilometers:3];
         
     }
     

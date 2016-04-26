@@ -80,5 +80,9 @@ typedef NS_ENUM(NSInteger,CheckType)
 @property (nonatomic,assign) CGFloat hongbaoNum; //领取的红包金额
 @property (nonatomic,assign) BOOL isWithinValidate; //是否在有效期内回复
 
+//邻近商家
+@property (nonatomic,assign) BOOL isShangJia;
+
+
 
 @end

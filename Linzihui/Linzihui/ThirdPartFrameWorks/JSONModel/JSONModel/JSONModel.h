@@ -15,7 +15,7 @@
 // The MIT License in plain English: http://www.touch-code-magazine.com/JSONModel/MITLicense
 
 #import <Foundation/Foundation.h>
-
+#import <BmobSDK/Bmob.h>
 #import "JSONModelError.h"
 #import "JSONValueTransformer.h"
 #import "JSONKeyMapper.h"
