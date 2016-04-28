@@ -855,7 +855,7 @@
         
         
         
-        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
+        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kLinJinHuZhu objectId:_model.objectId];
         
         [ob addObjectsFromArray:@[[BmobUser getCurrentUser].username] forKey:@"jubao"];
         
