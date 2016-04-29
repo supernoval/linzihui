@@ -501,6 +501,9 @@
 		15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66E91BF3F5C1000A9D1F /* libsqlite3.0.tbd */; };
 		15BE66EC1BF3F5CA000A9D1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */; };
 		15BE66F31BF3F932000A9D1F /* GZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66F21BF3F932000A9D1F /* GZViewController.m */; };
+		15CC8A971CD3595200086B5C /* ShangJiaDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A961CD3595200086B5C /* ShangJiaDetailVC.m */; };
+		15CC8A9A1CD3634000086B5C /* ShangjiaCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A991CD3634000086B5C /* ShangjiaCommentCell.m */; };
+		15CC8A9D1CD363F700086B5C /* ShangPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A9C1CD363F700086B5C /* ShangPinCell.m */; };
 		15CFFE7F1C4390BD008A0D97 /* HuodongCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */; };
 		15D05C101C0433F600E0EA0D /* MyPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D05C0F1C0433F600E0EA0D /* MyPhotosViewController.m */; };
 		15D0ADE41C8959080098E3CE /* ApplyJoinGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D0ADE31C8959080098E3CE /* ApplyJoinGroupViewController.m */; };
@@ -1545,6 +1548,12 @@
 		15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		15BE66F11BF3F932000A9D1F /* GZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZViewController.h; sourceTree = "<group>"; };
 		15BE66F21BF3F932000A9D1F /* GZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZViewController.m; sourceTree = "<group>"; };
+		15CC8A951CD3595200086B5C /* ShangJiaDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangJiaDetailVC.h; sourceTree = "<group>"; };
+		15CC8A961CD3595200086B5C /* ShangJiaDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangJiaDetailVC.m; sourceTree = "<group>"; };
+		15CC8A981CD3634000086B5C /* ShangjiaCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangjiaCommentCell.h; sourceTree = "<group>"; };
+		15CC8A991CD3634000086B5C /* ShangjiaCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangjiaCommentCell.m; sourceTree = "<group>"; };
+		15CC8A9B1CD363F700086B5C /* ShangPinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangPinCell.h; sourceTree = "<group>"; };
+		15CC8A9C1CD363F700086B5C /* ShangPinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangPinCell.m; sourceTree = "<group>"; };
 		15CFFE7D1C4390BD008A0D97 /* HuodongCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuodongCommentCell.h; sourceTree = "<group>"; };
 		15CFFE7E1C4390BD008A0D97 /* HuodongCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuodongCommentCell.m; sourceTree = "<group>"; };
 		15D05C0E1C0433F600E0EA0D /* MyPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPhotosViewController.h; sourceTree = "<group>"; };
@@ -3077,6 +3086,12 @@
 				156D54241CCFB43700C04DC0 /* LinjinShangJiaListVC.m */,
 				156D54301CCFBBF000C04DC0 /* ShangjiaListCell.h */,
 				156D54311CCFBBF000C04DC0 /* ShangjiaListCell.m */,
+				15CC8A951CD3595200086B5C /* ShangJiaDetailVC.h */,
+				15CC8A961CD3595200086B5C /* ShangJiaDetailVC.m */,
+				15CC8A981CD3634000086B5C /* ShangjiaCommentCell.h */,
+				15CC8A991CD3634000086B5C /* ShangjiaCommentCell.m */,
+				15CC8A9B1CD363F700086B5C /* ShangPinCell.h */,
+				15CC8A9C1CD363F700086B5C /* ShangPinCell.m */,
 			);
 			name = linjinshangjia;
 			sourceTree = "<group>";
@@ -4567,6 +4582,7 @@
 				15EE46E61BE85C1700538EA5 /* JSONModel+networking.m in Sources */,
 				150F314B1C0FEA5D00E5CC8B /* ZXCGImageLuminanceSource.m in Sources */,
 				152637241CC5FC2D00F3BE15 /* PublishHuZhuTVC.m in Sources */,
+				15CC8A971CD3595200086B5C /* ShangJiaDetailVC.m in Sources */,
 				150F319C1C0FEA5D00E5CC8B /* ZXRSSExpandedGeneralAppIdDecoder.m in Sources */,
 				150F31791C0FEA5D00E5CC8B /* ZXDataMatrixDefaultPlacement.m in Sources */,
 				150F31FB1C0FEF6500E5CC8B /* ShowQRViewController.m in Sources */,
@@ -4690,6 +4706,7 @@
 				150F31841C0FEA5D00E5CC8B /* ZXMaxiCodeBitMatrixParser.m in Sources */,
 				15B7A5AB1BE7305D0052115F /* NSData+ImageContentType.m in Sources */,
 				15B7A54E1BE730460052115F /* UIImageView+EMWebCache.m in Sources */,
+				15CC8A9A1CD3634000086B5C /* ShangjiaCommentCell.m in Sources */,
 				15B7A5381BE730460052115F /* MWGridCell.m in Sources */,
 				152C0BED1C0D700000615A33 /* AttendUserModel.m in Sources */,
 				15B7A43A1BE72F800052115F /* EMCDDeviceManager+Media.m in Sources */,
@@ -4871,6 +4888,7 @@
 				15EE46BE1BE84BE200538EA5 /* RegistTableViewController.m in Sources */,
 				150F31B31C0FEA5D00E5CC8B /* ZXITFReader.m in Sources */,
 				150F31C51C0FEA5D00E5CC8B /* ZXPDF417BarcodeValue.m in Sources */,
+				15CC8A9D1CD363F700086B5C /* ShangPinCell.m in Sources */,
 				150F31BC1C0FEA5D00E5CC8B /* ZXUPCEANExtension5Support.m in Sources */,
 				15BE66DD1BF3CD6B000A9D1F /* ContactModel.m in Sources */,
 				15449E8E1CCAD81C0079948B /* HongBaoDetailVC.m in Sources */,

@@ -19,5 +19,11 @@
 @property (nonatomic,strong ) NSArray *IdImages;
 @property (nonatomic,strong)  BmobGeoPoint *location;
 @property (nonatomic,strong) NSString *username;
+@property (nonatomic,strong) BmobObject *publisher;
+@property (nonatomic,assign) CGFloat star;
+@property (nonatomic,strong) NSString *invitepeopleNumber;
+
+
+
 
 @end

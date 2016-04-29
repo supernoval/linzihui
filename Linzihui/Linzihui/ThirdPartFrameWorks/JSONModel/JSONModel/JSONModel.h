@@ -147,6 +147,13 @@ lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
  */
 @interface JSONModel : NSObject <AbstractJSONModelProtocol, NSSecureCoding>
 
+
+//额外添加  bmob
+@property (nonatomic,strong) NSString *objectId;
+
+@property (nonatomic,strong) NSDate *createdAt;
+@property (nonatomic,strong) NSDate *updatedAt;
+
 /** @name Creating and initializing models */
 
   /**

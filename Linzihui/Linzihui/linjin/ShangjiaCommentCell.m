@@ -1,20 +1,18 @@
 //
-//  ShangjiaListCell.m
+//  ShangjiaCommentCell.m
 //  Linzihui
 //
-//  Created by ZhuHaikun on 16/4/26.
+//  Created by ZhuHaikun on 16/4/29.
 //  Copyright © 2016年 haikunZhu. All rights reserved.
 //
 
-#import "ShangjiaListCell.h"
+#import "ShangjiaCommentCell.h"
 
-@implementation ShangjiaListCell
+@implementation ShangjiaCommentCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    self.starView.clipsToBounds = YES;
-    
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

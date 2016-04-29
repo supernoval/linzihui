@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"活动地点";
+  
     _point = [[MKPointAnnotation alloc]init];
     
     _point.coordinate = _coord;

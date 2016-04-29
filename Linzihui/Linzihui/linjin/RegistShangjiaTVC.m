@@ -51,6 +51,7 @@
     
     
     
+    
 }
 
 
@@ -250,7 +251,16 @@
     
     [_shagjiaOB setObject:IdImageURLs forKey:@"IdImages"];
     
+    [_shagjiaOB setObject:_typeLabel.text forKey:@"type"];
+    
+    
     [_shagjiaOB setObject:username forKey:@"username"];
+    
+    BmobUser *currentUser = [BmobUser getCurrentUser];
+    
+    [_shagjiaOB setObject:currentUser forKey:@"publisher"];
+    
+    [_shagjiaOB setObject:[NSNumber numberWithFloat:5.0] forKey:@"star"];
     
     [_shagjiaOB saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
        
@@ -258,6 +268,25 @@
        
         
         if (isSuccessful) {
+            
+            
+            
+            BmobUser *currentUser = [BmobUser getCurrentUser];
+            
+            [currentUser setObject:@YES forKey:@"isShangJia"];
+            
+            [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+               
+                if (isSuccessful) {
+                    
+                    NSLog(@"商家用户表保存成功 ");
+                }
+                else
+                {
+                    NSLog(@"error:%@ ",error);
+                    
+                }
+            }];
             
             [self.navigationController popViewControllerAnimated:YES];
             

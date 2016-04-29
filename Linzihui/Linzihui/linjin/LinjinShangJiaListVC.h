@@ -7,6 +7,7 @@
 //
 
 #import "BaseTableViewController.h"
+#import "ShangJiaDetailVC.h"
 
 @interface LinjinShangJiaListVC : BaseTableViewController
 
