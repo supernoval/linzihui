@@ -8,6 +8,7 @@
 
 #import "BaseTableViewController.h"
 #import "ShangJiaModel.h"
+#import "ShangPinTVC.h"
 
 @interface ShangJiaDetailVC : BaseTableViewController
 

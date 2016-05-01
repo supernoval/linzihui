@@ -49,3 +49,6 @@
 
 //商家账号
 #define kShangJia                    @"ShangJia"
+
+//商品
+#define kShangPin                     @"ShangPin"

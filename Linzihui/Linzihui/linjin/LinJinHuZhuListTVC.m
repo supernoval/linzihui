@@ -270,7 +270,7 @@
     cell.distanceLabel.text = [CommonMethods distanceStringWithLatitude:latitude longitude:longitude];
     
     //红包金额
-    cell.pirceLabel.text = [NSString stringWithFormat:@"红包:%.0f元",model.hongbaoNum];
+    cell.pirceLabel.text = [NSString stringWithFormat:@"红包:%.2f元",model.hongbaoNum];
     cell.pirceLabel.adjustsFontSizeToFitWidth = YES;
     
     //到期时间

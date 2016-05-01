@@ -10,6 +10,9 @@
 #import "HuoDongMapView.h"
 #import "ChatViewController.h"
 #import "WechatShareController.h"
+#import "ShengHuoQuanTVC.h"
+#import "ShangJiaCommentTVC.h"
+
 
 
 @interface ShangJiaDetailVC ()<UIActionSheetDelegate,UIAlertViewDelegate>
@@ -29,6 +32,8 @@
     
     self.title = @"商家详情";
     self.headView.frame = CGRectMake(0, 0, ScreenWidth, 100);
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self initHeadView];
     
@@ -182,6 +187,127 @@
     
     
     
+    
+}
+
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
+    
+    view.backgroundColor = [UIColor clearColor];
+    
+    
+    return view;
+    
+}
+
+#pragma mark - UITableViewDataSource
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+    
+    
+    if (!cell) {
+        
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
+        
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    switch (indexPath.section) {
+        case 0:
+        {
+            cell.textLabel.text = @"商家动态";
+        }
+            break;
+        case 1:
+        {
+            cell.textLabel.text = @"评论";
+        }
+            break;
+        case 2:
+        {
+            cell.textLabel.text = @"商品";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+        {
+            ShengHuoQuanTVC *_shenghuoquanTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShengHuoQuanTVC"];
+            _shenghuoquanTVC.isShuRenQuan = 4;
+            _shenghuoquanTVC.username = [_model.publisher objectForKey:@"username"];
+            
+            [self.navigationController pushViewController:_shenghuoquanTVC animated:YES];
+            
+            
+        }
+            break;
+        case 1:
+        {
+            ShangJiaCommentTVC *_commentTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShangJiaCommentTVC"];
+            
+            _commentTVC.model = _model;
+            
+            
+            [self.navigationController pushViewController:_commentTVC animated:YES];
+            
+            
+            
+        }
+            break;
+        case 2:
+        {
+            ShangPinTVC *_shangpinTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShangPinTVC"];
+            _shangpinTVC.model = _model;
+            
+            [self.navigationController pushViewController:_shangpinTVC animated:YES];
+            
+            
+        }
+            break;
+            
+            
+        default:
+            break;
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 

@@ -118,6 +118,12 @@ static NSString *commentCellID = @"CommentCell";
         }
         
     }
+    else if (_isShuRenQuan == 4)
+    {
+        self.title = @"商家动态";
+        
+        self.navigationItem.rightBarButtonItem = nil;
+    }
     else
     {
         self.title = @"相册";
@@ -336,6 +342,11 @@ static NSString *commentCellID = @"CommentCell";
         [query whereKey:@"username" equalTo:_username];
         
         
+    }
+    
+    else if (_isShuRenQuan == 4) //商家动态
+    {
+         [query whereKey:@"username" equalTo:_username];
     }
     
     

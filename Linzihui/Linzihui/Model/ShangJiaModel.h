@@ -22,6 +22,8 @@
 @property (nonatomic,strong) BmobObject *publisher;
 @property (nonatomic,assign) CGFloat star;
 @property (nonatomic,strong) NSString *invitepeopleNumber;
+@property (nonatomic,strong) NSArray *Comments;
+
 
 
 

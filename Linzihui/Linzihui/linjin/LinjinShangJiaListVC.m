@@ -24,14 +24,22 @@
     
     BOOL isShowMine;
     
+    BOOL isShowHistory;
+    
+    
+    
     
     
     
 }
 @property (nonatomic,strong) UIView*footerView;
-@property (nonatomic,strong) UIView *myHeaderView;
+@property (nonatomic,strong) UIView *allHeaderView;  //全部商家 header
 @property (nonatomic,strong) UIButton *typeButton;
 @property (nonatomic,strong) NSString *type;
+@property (nonatomic,strong) UIButton *distanceButton;
+
+@property (nonatomic,strong) UIView *myHeaderView; //我的 header
+
 
 
 
@@ -56,10 +64,7 @@
         self.navigationItem.rightBarButtonItem = item;
         
         
-        
     }
-    
-    
     
     
     pageSize = 10;
@@ -99,13 +104,74 @@
     if (!_myHeaderView) {
         
         
-        _myHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+        _myHeaderView  = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+        
         _myHeaderView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
+        UIButton *sellButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
         
-        _typeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+        [sellButton setTitle:@"我出售" forState:UIControlStateNormal];
+        [sellButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
         
-        [_typeButton setTitle:@"  类型:" forState:UIControlStateNormal];
+        [sellButton addTarget:self action:@selector(showMySell) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_myHeaderView addSubview:sellButton];
+        
+        
+        UIButton *buyButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2,0 , ScreenWidth/2, 50)];
+        [buyButton setTitle:@"我购买" forState:UIControlStateNormal];
+        
+        [buyButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+        
+        [buyButton addTarget:self action:@selector(showMyBuy) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_myHeaderView addSubview:buyButton];
+    
+        
+        
+        
+    }
+    
+    return _myHeaderView;
+    
+    
+}
+
+#pragma makr- 显示我出售
+-(void)showMySell
+{
+    isShowHistory = NO;
+    
+    
+    [self.tableView.header beginRefreshing];
+    
+    
+    
+    
+}
+
+#pragma mark - 显示我购买
+-(void)showMyBuy
+{
+    isShowHistory = YES;
+    
+   [self.tableView.header beginRefreshing];
+    
+}
+
+
+-(UIView*)allHeaderView
+{
+    if (!_allHeaderView) {
+        
+        
+        _allHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+        _allHeaderView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        
+        _typeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
+        
+        [_typeButton setTitle:@"  分类:" forState:UIControlStateNormal];
         
         [_typeButton addTarget:self action:@selector(showType) forControlEvents:UIControlEventTouchUpInside];
         
@@ -113,7 +179,18 @@
         
         [_typeButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
         
-        [_myHeaderView addSubview:_typeButton];
+        [_allHeaderView addSubview:_typeButton];
+        
+        
+        _distanceButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 50)];
+        
+        [_distanceButton setTitle:@"距离" forState:UIControlStateNormal];
+        
+        [_distanceButton addTarget:self action:@selector(filterDistance) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_distanceButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+        
+        [_allHeaderView addSubview:_distanceButton];
         
         
         
@@ -122,7 +199,11 @@
         
     }
     
-    return _myHeaderView;
+    return _allHeaderView;
+    
+}
+-(void)filterDistance
+{
     
 }
 
@@ -212,11 +293,39 @@
         
     }
     
-    if (isShowMine) {
+    if (isShowMine && !isShowHistory) {
         
         [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
         
     }
+    
+    if (isShowHistory && isShowMine) {
+        
+        UserModel *currentUser = [BmobHelper getCurrentUserModel];
+        
+        if (currentUser.buyHistory.count == 0) {
+            
+            [_dataSource removeAllObjects];
+            
+            [self endFooterRefresh];
+            [self endHeaderRefresh];
+            
+            [self.tableView reloadData];
+            
+            return;
+            
+            
+        }
+        else
+        {
+            [query whereKey:@"username" containedIn:currentUser.buyHistory];
+            
+        }
+        
+        
+    }
+    
+    
     
     
     [query includeKey:@"publisher"];
@@ -265,7 +374,7 @@
 -(void)showAll:(UIButton*)sender
 {
     
-    [_typeButton setTitle:@"  类型:" forState:UIControlStateNormal];
+    [_typeButton setTitle:@"  分类:" forState:UIControlStateNormal];
     
     _type = @"";
     
@@ -274,7 +383,7 @@
     if (sender.tag == 0) {
         
         
-        self.tableView.tableHeaderView = self.myHeaderView ;
+        self.tableView.tableHeaderView = self.allHeaderView ;
         [allButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
         
         [myButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
@@ -282,6 +391,7 @@
         
         isShowMine = NO;
         
+        isShowHistory = NO;
         
         
         
@@ -290,7 +400,7 @@
     {
         
         
-        self.tableView.tableHeaderView = nil;
+        self.tableView.tableHeaderView = self.myHeaderView;
         
         [allButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
         
@@ -320,7 +430,7 @@
         
         _type = type;
         
-        [_typeButton setTitle:[NSString stringWithFormat:@"  类型: %@",type] forState:UIControlStateNormal];
+        [_typeButton setTitle:[NSString stringWithFormat:@"  分类: %@",type] forState:UIControlStateNormal];
         
         
         

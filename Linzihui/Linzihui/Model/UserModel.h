@@ -82,6 +82,7 @@ typedef NS_ENUM(NSInteger,CheckType)
 
 //邻近商家
 @property (nonatomic,assign) BOOL isShangJia;
+@property (nonatomic,strong) NSArray *buyHistory; //保存商家 username
 
 
 

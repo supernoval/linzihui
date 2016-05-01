@@ -501,6 +501,8 @@
 		15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66E91BF3F5C1000A9D1F /* libsqlite3.0.tbd */; };
 		15BE66EC1BF3F5CA000A9D1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */; };
 		15BE66F31BF3F932000A9D1F /* GZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BE66F21BF3F932000A9D1F /* GZViewController.m */; };
+		15CA0E121CD6AA9200526DA9 /* ShangJiaCommentTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CA0E111CD6AA9200526DA9 /* ShangJiaCommentTVC.m */; };
+		15CA0E151CD6AD2500526DA9 /* ShangPinTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CA0E141CD6AD2500526DA9 /* ShangPinTVC.m */; };
 		15CC8A971CD3595200086B5C /* ShangJiaDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A961CD3595200086B5C /* ShangJiaDetailVC.m */; };
 		15CC8A9A1CD3634000086B5C /* ShangjiaCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A991CD3634000086B5C /* ShangjiaCommentCell.m */; };
 		15CC8A9D1CD363F700086B5C /* ShangPinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC8A9C1CD363F700086B5C /* ShangPinCell.m */; };
@@ -1548,6 +1550,10 @@
 		15BE66EB1BF3F5CA000A9D1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		15BE66F11BF3F932000A9D1F /* GZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZViewController.h; sourceTree = "<group>"; };
 		15BE66F21BF3F932000A9D1F /* GZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZViewController.m; sourceTree = "<group>"; };
+		15CA0E101CD6AA9200526DA9 /* ShangJiaCommentTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangJiaCommentTVC.h; sourceTree = "<group>"; };
+		15CA0E111CD6AA9200526DA9 /* ShangJiaCommentTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangJiaCommentTVC.m; sourceTree = "<group>"; };
+		15CA0E131CD6AD2500526DA9 /* ShangPinTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangPinTVC.h; sourceTree = "<group>"; };
+		15CA0E141CD6AD2500526DA9 /* ShangPinTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangPinTVC.m; sourceTree = "<group>"; };
 		15CC8A951CD3595200086B5C /* ShangJiaDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangJiaDetailVC.h; sourceTree = "<group>"; };
 		15CC8A961CD3595200086B5C /* ShangJiaDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangJiaDetailVC.m; sourceTree = "<group>"; };
 		15CC8A981CD3634000086B5C /* ShangjiaCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangjiaCommentCell.h; sourceTree = "<group>"; };
@@ -3092,6 +3098,10 @@
 				15CC8A991CD3634000086B5C /* ShangjiaCommentCell.m */,
 				15CC8A9B1CD363F700086B5C /* ShangPinCell.h */,
 				15CC8A9C1CD363F700086B5C /* ShangPinCell.m */,
+				15CA0E101CD6AA9200526DA9 /* ShangJiaCommentTVC.h */,
+				15CA0E111CD6AA9200526DA9 /* ShangJiaCommentTVC.m */,
+				15CA0E131CD6AD2500526DA9 /* ShangPinTVC.h */,
+				15CA0E141CD6AD2500526DA9 /* ShangPinTVC.m */,
 			);
 			name = linjinshangjia;
 			sourceTree = "<group>";
@@ -4692,6 +4702,7 @@
 				150F31901C0FEA5D00E5CC8B /* ZXAI013x0xDecoder.m in Sources */,
 				15D336A51CA7E6F300E948B7 /* GongKaiQunVC.m in Sources */,
 				15B7A4A51BE72FEE0052115F /* MessageModelManager.m in Sources */,
+				15CA0E121CD6AA9200526DA9 /* ShangJiaCommentTVC.m in Sources */,
 				15B7A4941BE72FEE0052115F /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				150F31E91C0FEA5D00E5CC8B /* ZXQRCodeFinderPatternInfo.m in Sources */,
 				150F31D81C0FEA5D00E5CC8B /* ZXPDF417ResultMetadata.m in Sources */,
@@ -4908,6 +4919,7 @@
 				150F31421C0FEA5D00E5CC8B /* ZXURIResultParser.m in Sources */,
 				150F31941C0FEA5D00E5CC8B /* ZXAnyAIDecoder.m in Sources */,
 				15B7A4981BE72FEE0052115F /* FacialView.m in Sources */,
+				15CA0E151CD6AD2500526DA9 /* ShangPinTVC.m in Sources */,
 				1506EC2D1BF839220010F349 /* ChatSettingTVC.m in Sources */,
 				150F315E1C0FEA5D00E5CC8B /* ZXGridSampler.m in Sources */,
 				15B7A5521BE730460052115F /* PSTCollectionViewCell.m in Sources */,
