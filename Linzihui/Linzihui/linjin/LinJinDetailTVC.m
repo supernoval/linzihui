@@ -781,7 +781,13 @@
     
     currentUserModel.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
     
-    if ([[NSDate date] isEqualToDate:[_model.validate earlierDate:[NSDate date]]] && ![_model.objectId isEqualToString:currentUserModel.objectId]) {
+
+                
+//    && ![_model.objectId isEqualToString:currentUserModel.objectId]
+    
+    NSLog(@"datestr:%@",[CommonMethods getYYYYMMddHHmmssDateStr:_model.validate]);
+    
+    if ([_model.validate isEqualToDate:[_model.validate laterDate:[NSDate date]]] ) {
         
         currentUserModel.isWithinValidate = YES;
     }
