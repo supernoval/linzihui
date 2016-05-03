@@ -52,3 +52,8 @@
 
 //商品
 #define kShangPin                     @"ShangPin"
+
+//送货地址
+#define kAddress                      @"Address"
+
+

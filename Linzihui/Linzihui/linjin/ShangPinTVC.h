@@ -9,6 +9,7 @@
 #import "BaseTableViewController.h"
 #import "ShangPinCell.h"
 #import "ShangJiaModel.h"
+#import "BuyAddressVC.h"
 
 @interface ShangPinTVC : BaseTableViewController
 

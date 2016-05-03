@@ -781,11 +781,6 @@
     
     currentUserModel.longitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude];
     
-
-                
-//    && ![_model.objectId isEqualToString:currentUserModel.objectId]
-    
-    NSLog(@"datestr:%@",[CommonMethods getYYYYMMddHHmmssDateStr:_model.validate]);
     
     if ([_model.validate isEqualToDate:[_model.validate laterDate:[NSDate date]]] ) {
         

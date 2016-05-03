@@ -10,9 +10,17 @@
 #import "ShangPinTVC.h"
 #import "PublishShangPinVC.h"
 
-@interface ShangPinTVC ()
+@interface ShangPinTVC ()<UIAlertViewDelegate>
 {
     NSMutableArray *_dataSource;
+    NSInteger buyTag;
+    UIAlertView *_buyAlertView;
+    
+    NSInteger pageSize;
+    
+    NSInteger pageIndex;
+    
+    
     
 }
 @end
@@ -25,6 +33,10 @@
     _dataSource = [[NSMutableArray alloc]init];
     
     self.title = @"商品";
+    
+    pageSize = 15;
+    pageIndex = 0;
+    
     
     NSString *username = [_model.publisher objectForKey:@"username"];
     
@@ -39,7 +51,11 @@
     }
     
     
-   
+    [self addHeaderRefresh];
+    
+    [self addFooterRefresh];
+    
+    
     
     
 }
@@ -47,7 +63,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-     [self loadData];
+    
+     [self.tableView.header beginRefreshing];
+    
     
 }
 -(void)publishShangpin
@@ -59,6 +77,24 @@
     
 }
 
+-(void)headerRefresh
+{
+    pageIndex = 0;
+    
+    [self loadData];
+    
+}
+
+-(void)footerRefresh
+{
+    pageIndex ++;
+    
+    [self loadData];
+    
+}
+
+
+
 -(void)loadData
 {
     [MyProgressHUD showProgress];
@@ -67,6 +103,9 @@
     BmobQuery *query = [BmobQuery queryWithClassName:kShangPin];
     
     [query orderByDescending:@"createdAt"];
+    query.skip = pageSize*pageIndex;
+    
+    query.limit = pageSize;
     
     [query whereKey:@"shangjiaObjectId" equalTo:_model.objectId];
     
@@ -74,6 +113,14 @@
        
         [MyProgressHUD dismiss];
         
+        [self endHeaderRefresh];
+        [self endFooterRefresh];
+        
+        if (pageIndex == 0) {
+            
+            [_dataSource removeAllObjects];
+            
+        }
         if (array.count > 0) {
             
             [_dataSource addObjectsFromArray:array];
@@ -108,7 +155,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 80;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -171,8 +218,24 @@
 -(void)buy:(UIButton*)sender{
     
     
+     NSDictionary *dict = [_dataSource objectAtIndex:sender.tag];
+    
+    
+    BuyAddressVC *_buyAddressVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BuyAddressVC"];
+    
+    _buyAddressVC.shangjiaModel = _model;
+    
+    _buyAddressVC.shangpinDict = dict;
+    
+    [self.navigationController pushViewController:_buyAddressVC animated:YES];
+    
+
     
 }
+
+
+
+
 
 
 

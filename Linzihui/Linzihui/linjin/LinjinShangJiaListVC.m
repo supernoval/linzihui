@@ -71,7 +71,7 @@
     pageIndex = 0;
     
     
-    self.tableView.tableHeaderView = self.myHeaderView;
+    self.tableView.tableHeaderView = self.allHeaderView;
     
     [self addHeaderRefresh];
     

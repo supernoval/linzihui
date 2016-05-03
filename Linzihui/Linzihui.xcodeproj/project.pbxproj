@@ -263,6 +263,8 @@
 		1526372C1CC8A66800F3BE15 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1526372B1CC8A66800F3BE15 /* AlipaySDK.bundle */; };
 		152877111BF23B7100321E50 /* EMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877101BF23B7100321E50 /* EMHelper.m */; };
 		152877141BF251CE00321E50 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 152877131BF251CE00321E50 /* InvitationManager.m */; };
+		1529CA6A1CD9394400773414 /* BuyAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1529CA691CD9394400773414 /* BuyAddressVC.m */; };
+		1529CA6D1CD93EC100773414 /* ConfirmOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1529CA6C1CD93EC100773414 /* ConfirmOrderVC.m */; };
 		152C0BED1C0D700000615A33 /* AttendUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 152C0BEC1C0D700000615A33 /* AttendUserModel.m */; };
 		152F408B1C0BF056003C1C62 /* HuoDongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F408A1C0BF056003C1C62 /* HuoDongCell.m */; };
 		152F408E1C0BF583003C1C62 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 152F408D1C0BF583003C1C62 /* PhotoCell.m */; };
@@ -1100,6 +1102,10 @@
 		152877101BF23B7100321E50 /* EMHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHelper.m; sourceTree = "<group>"; };
 		152877121BF251CA00321E50 /* InvitationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		152877131BF251CE00321E50 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
+		1529CA681CD9394400773414 /* BuyAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyAddressVC.h; sourceTree = "<group>"; };
+		1529CA691CD9394400773414 /* BuyAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyAddressVC.m; sourceTree = "<group>"; };
+		1529CA6B1CD93EC100773414 /* ConfirmOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmOrderVC.h; sourceTree = "<group>"; };
+		1529CA6C1CD93EC100773414 /* ConfirmOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmOrderVC.m; sourceTree = "<group>"; };
 		152C0BEB1C0D700000615A33 /* AttendUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendUserModel.h; sourceTree = "<group>"; };
 		152C0BEC1C0D700000615A33 /* AttendUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendUserModel.m; sourceTree = "<group>"; };
 		152F40891C0BF056003C1C62 /* HuoDongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongCell.h; sourceTree = "<group>"; };
@@ -3107,6 +3113,10 @@
 				15CA0E141CD6AD2500526DA9 /* ShangPinTVC.m */,
 				1546D2671CD7D8DC00275A84 /* PublishShangPinVC.h */,
 				1546D2681CD7D8DC00275A84 /* PublishShangPinVC.m */,
+				1529CA681CD9394400773414 /* BuyAddressVC.h */,
+				1529CA691CD9394400773414 /* BuyAddressVC.m */,
+				1529CA6B1CD93EC100773414 /* ConfirmOrderVC.h */,
+				1529CA6C1CD93EC100773414 /* ConfirmOrderVC.m */,
 			);
 			name = linjinshangjia;
 			sourceTree = "<group>";
@@ -4925,6 +4935,7 @@
 				150F31421C0FEA5D00E5CC8B /* ZXURIResultParser.m in Sources */,
 				150F31941C0FEA5D00E5CC8B /* ZXAnyAIDecoder.m in Sources */,
 				15B7A4981BE72FEE0052115F /* FacialView.m in Sources */,
+				1529CA6D1CD93EC100773414 /* ConfirmOrderVC.m in Sources */,
 				15CA0E151CD6AD2500526DA9 /* ShangPinTVC.m in Sources */,
 				1506EC2D1BF839220010F349 /* ChatSettingTVC.m in Sources */,
 				150F315E1C0FEA5D00E5CC8B /* ZXGridSampler.m in Sources */,
@@ -5033,6 +5044,7 @@
 				150F315B1C0FEA5D00E5CC8B /* ZXDefaultGridSampler.m in Sources */,
 				150F31C31C0FEA5D00E5CC8B /* ZXPDF417ECErrorCorrection.m in Sources */,
 				150F31B51C0FEA5D00E5CC8B /* ZXMultiFormatOneDReader.m in Sources */,
+				1529CA6A1CD9394400773414 /* BuyAddressVC.m in Sources */,
 				150F31521C0FEA5D00E5CC8B /* ZXReedSolomonDecoder.m in Sources */,
 				15B7A43E1BE72F800052115F /* EMCDDeviceManagerBase.m in Sources */,
 				150F31501C0FEA5D00E5CC8B /* ZXGenericGF.m in Sources */,
