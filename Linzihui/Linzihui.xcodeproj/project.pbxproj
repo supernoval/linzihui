@@ -286,6 +286,7 @@
 		15449E881CCAD0560079948B /* HongBaoDetailList.m in Sources */ = {isa = PBXBuildFile; fileRef = 15449E871CCAD0560079948B /* HongBaoDetailList.m */; };
 		15449E8B1CCAD1560079948B /* HongBaoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15449E8A1CCAD1560079948B /* HongBaoDetailCell.m */; };
 		15449E8E1CCAD81C0079948B /* HongBaoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15449E8D1CCAD81C0079948B /* HongBaoDetailVC.m */; };
+		1546D2691CD7D8DC00275A84 /* PublishShangPinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1546D2681CD7D8DC00275A84 /* PublishShangPinVC.m */; };
 		154A39661BE5E3D50042632E /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39651BE5E3D50042632E /* BmobSDK.framework */; };
 		154A39691BE5E4370042632E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A39681BE5E4370042632E /* CoreLocation.framework */; };
 		154A396B1BE5E43F0042632E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154A396A1BE5E43F0042632E /* Security.framework */; };
@@ -1143,6 +1144,8 @@
 		15449E8A1CCAD1560079948B /* HongBaoDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoDetailCell.m; sourceTree = "<group>"; };
 		15449E8C1CCAD81C0079948B /* HongBaoDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoDetailVC.h; sourceTree = "<group>"; };
 		15449E8D1CCAD81C0079948B /* HongBaoDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongBaoDetailVC.m; sourceTree = "<group>"; };
+		1546D2671CD7D8DC00275A84 /* PublishShangPinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishShangPinVC.h; sourceTree = "<group>"; };
+		1546D2681CD7D8DC00275A84 /* PublishShangPinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishShangPinVC.m; sourceTree = "<group>"; };
 		154A39651BE5E3D50042632E /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
 		154A39681BE5E4370042632E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		154A396A1BE5E43F0042632E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -3102,6 +3105,8 @@
 				15CA0E111CD6AA9200526DA9 /* ShangJiaCommentTVC.m */,
 				15CA0E131CD6AD2500526DA9 /* ShangPinTVC.h */,
 				15CA0E141CD6AD2500526DA9 /* ShangPinTVC.m */,
+				1546D2671CD7D8DC00275A84 /* PublishShangPinVC.h */,
+				1546D2681CD7D8DC00275A84 /* PublishShangPinVC.m */,
 			);
 			name = linjinshangjia;
 			sourceTree = "<group>";
@@ -4818,6 +4823,7 @@
 				15F280A01CAA6AB5005F4E7F /* ErShouModel.m in Sources */,
 				150F31891C0FEA5D00E5CC8B /* ZXGenericMultipleBarcodeReader.m in Sources */,
 				15B7A5541BE730460052115F /* PSTCollectionViewData.m in Sources */,
+				1546D2691CD7D8DC00275A84 /* PublishShangPinVC.m in Sources */,
 				15B7A5501BE730460052115F /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				150F31EE1C0FEA5D00E5CC8B /* ZXQRCodeMatrixUtil.m in Sources */,
 				150F31761C0FEA5D00E5CC8B /* ZXDataMatrixASCIIEncoder.m in Sources */,

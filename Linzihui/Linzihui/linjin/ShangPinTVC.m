@@ -8,6 +8,7 @@
 
 #import "ShangPinTVC.h"
 #import "ShangPinTVC.h"
+#import "PublishShangPinVC.h"
 
 @interface ShangPinTVC ()
 {
@@ -38,13 +39,23 @@
     }
     
     
-    [self loadData];
+   
     
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     [self loadData];
+    
+}
 -(void)publishShangpin
 {
+    PublishShangPinVC *_publishVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PublishShangPinVC"];
+    _publishVC.model = _model;
+    
+    [self.navigationController pushViewController:_publishVC animated:YES];
     
 }
 
@@ -54,6 +65,8 @@
     
     
     BmobQuery *query = [BmobQuery queryWithClassName:kShangPin];
+    
+    [query orderByDescending:@"createdAt"];
     
     [query whereKey:@"shangjiaObjectId" equalTo:_model.objectId];
     
@@ -95,7 +108,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 100;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -113,9 +126,28 @@
     
     [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"photos"]] placeholderImage:kDefaultHeadImage];
     
-    cell.desLabel.text = [dict objectForKey:@"des"];
+    cell.nameLabel.text = [dict objectForKey:@"des"];
     
-    cell.priceLabel.text = [NSString stringWithFormat:@"%@",[dict objectForKey:@"price"]];
+    cell.priceLabel.text = [NSString stringWithFormat:@"价格:%@",[dict objectForKey:@"price"]];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    NSString *username = [_model.publisher objectForKey:@"username"];
+    NSString *myusername = [BmobUser getCurrentUser].username;
+    
+    if ([username isEqualToString:myusername]) {
+        
+        cell.buyButton.hidden = YES;
+        
+    }
+    else
+    {
+        cell.buyButton.tag = indexPath.row ;
+        
+        [cell.buyButton addTarget:self action:@selector(buy:) forControlEvents:UIControlEventTouchUpInside ];
+    }
+
+    
     
     
     
@@ -126,7 +158,21 @@
 
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
 
+
+#pragma mark - 购买
+-(void)buy:(UIButton*)sender{
+    
+    
+    
+}
 
 
 

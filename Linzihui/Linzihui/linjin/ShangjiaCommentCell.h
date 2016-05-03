@@ -18,4 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *contentlabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *buyButton;
+
+
+
 @end
