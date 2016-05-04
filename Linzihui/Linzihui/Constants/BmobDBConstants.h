@@ -56,4 +56,7 @@
 //送货地址
 #define kAddress                      @"Address"
 
+//购买订单
+#define kBuyShangPin                     @"BuyShangPin"
+
 

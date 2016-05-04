@@ -59,7 +59,7 @@
     
     NSDictionary *addressDict = @{@"name":_contactNameLabel.text,@"phone":_contactPhoneNum.text,@"address":_contactAddress.text};
     
-    BmobObject *ob = [BmobObject objectWithClassName:kShangJia];
+    BmobObject *ob = [BmobObject objectWithClassName:kAddress];
     
     [ob setObject:_contactAddress.text forKey:@"address"];
     
@@ -83,6 +83,7 @@
             _confirnVC.addressDict = addressDict;
             
             _confirnVC.shangjiaModel = _shangjiaModel;
+            _confirnVC.addressOB = ob;
             
             [self.navigationController pushViewController:_confirnVC animated:YES];
             

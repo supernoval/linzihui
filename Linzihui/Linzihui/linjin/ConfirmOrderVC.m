@@ -9,7 +9,10 @@
 #import "ConfirmOrderVC.h"
 
 @interface ConfirmOrderVC ()
-
+{
+    BmobObject *buyShangpinOB;
+    
+}
 @end
 
 @implementation ConfirmOrderVC
@@ -20,10 +23,17 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buySuccess) name:kPaySucessNotification object:nil];
+    
+    
     [self showData];
     
     
+    
+    
 }
+
+
 
 -(void)showData
 {
@@ -49,7 +59,114 @@
 - (IBAction)ok:(id)sender
 {
     
+    
+    [MyProgressHUD showProgress];
+    
+    NSString *username = [BmobUser getCurrentUser].username;
+    
+    BmobObject *shangpinOB = [BmobObject objectWithoutDatatWithClassName:kShangPin objectId:[_shangpinDict objectForKey:@"objectId"]];
+    
+    BmobObject *shangjiaOB = [BmobObject objectWithoutDatatWithClassName:kShangJia objectId:[_shangjiaModel objectId]];
+    
+     buyShangpinOB = [BmobObject objectWithClassName:kBuyShangPin];
+    
+    [buyShangpinOB setObject:shangpinOB forKey:@"shangpin"];
+    [buyShangpinOB setObject:shangjiaOB forKey:@"shangjia"];
+    [buyShangpinOB setObject:_addressOB forKey:@"address"];
+    
+    [buyShangpinOB setObject:[_shangpinDict objectForKey:@"des"] forKey:@"shangpinName"];
+    [buyShangpinOB setObject:[_shangpinDict objectForKey:@"photos"] forKey:@"shangpinPhoto"];
+    [buyShangpinOB setObject:[_shangpinDict objectForKey:@"price"] forKey:@"price"];
+    
+    [buyShangpinOB setObject:[NSNumber numberWithInteger:0] forKey:@"status"];
+    
+    [buyShangpinOB setObject:username forKey:@"username"];
+    
+    [buyShangpinOB saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        [MyProgressHUD dismiss];
+        
+        if (isSuccessful) {
+            
+            
+            [self payOrder];
+            
+            
+        }
+        else
+        {
+            
+            [CommonMethods showDefaultErrorString:@"订单提交失败，请重试"];
+            
+            NSLog(@"fail:%@",error);
+            
+        }
+    }];
+    
+  
+    
+
+    
+    
 }
 
 
+-(void)buySuccess
+{
+    
+    [MyProgressHUD showProgress];
+    
+   [buyShangpinOB setObject:[NSNumber numberWithInteger:1] forKey:@"status"];
+    
+    [buyShangpinOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+       
+        [MyProgressHUD dismiss];
+        
+        if (isSuccessful) {
+            
+            for (UIViewController *vc in self.navigationController.viewControllers) {
+                
+                if ([vc isKindOfClass:[ShangPinTVC class]]) {
+                    
+                    [self.navigationController popToViewController:vc animated:YES];
+                    
+                }
+            }
+        }
+    }];
+    
+ 
+    
+
+}
+
+
+-(void)payOrder
+{
+    
+
+    NSString *dateStr = [CommonMethods getNoSpaceDateStr:[NSDate date]];
+    NSString *out_trade_no = [NSString stringWithFormat:@"%@%@",dateStr,[BmobUser getCurrentUser].username];
+    
+    
+    PayOrderInfoModel *model = [[PayOrderInfoModel alloc]init];
+    
+    model.productName = [_shangpinDict objectForKey:@"des"];
+    
+    model.productDescription = @"购买邻近商品";
+    
+    model.amount =  [NSString stringWithFormat:@"%.2f",[[_shangpinDict objectForKey:@"price"]floatValue]];
+    model.out_trade_no = out_trade_no;
+    
+    [PayOrder loadALiPaySDK:model];
+    
+    
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kPaySucessNotification object:nil];
+    
+    
+}
 @end
