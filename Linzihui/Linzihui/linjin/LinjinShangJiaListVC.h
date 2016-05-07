@@ -8,6 +8,12 @@
 
 #import "BaseTableViewController.h"
 #import "ShangJiaDetailVC.h"
+#import "BuyShangPinModel.h"
+#import "ShangPinCell.h"
+#import "PayOrderInfoModel.h"
+#import "PingJiaVC.h"
+
+
 
 @interface LinjinShangJiaListVC : BaseTableViewController
 

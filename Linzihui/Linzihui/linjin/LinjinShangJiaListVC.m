@@ -27,6 +27,15 @@
     BOOL isShowHistory;
     
     
+    BmobObject *buyShangpinOB; //要付款的商品
+    
+    NSInteger atcionStatus; // 1付款  2确认收货  3评价
+    
+    UIButton *sellButton;
+    
+    UIButton *buyButton;
+    
+    BmobObject *myShangjia; //我的商家
     
     
     
@@ -65,13 +74,24 @@
         
         
     }
-    
+    else
+    {
+        
+        [self getMyShangjia];
+        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"我的商家" style:UIBarButtonItemStylePlain target:self action:@selector(showMyShangJia)];
+        
+        self.navigationItem.rightBarButtonItem = item;
+    }
     
     pageSize = 10;
     pageIndex = 0;
     
     
     self.tableView.tableHeaderView = self.allHeaderView;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buySuccess) name:kPaySucessNotification object:nil];
+    
     
     [self addHeaderRefresh];
     
@@ -99,6 +119,55 @@
     
 }
 
+
+-(void)getMyShangjia
+{
+     [MyProgressHUD showProgress];
+    BmobQuery *query = [BmobQuery queryWithClassName:kShangJia];
+    
+    [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
+    
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        
+        [MyProgressHUD dismiss];
+        
+        if (array.count > 0) {
+            
+            
+            myShangjia = [array objectAtIndex:0];
+            
+    
+  
+            
+            
+        }
+        
+        else{
+            
+        }
+    }];
+}
+-(void)showMyShangJia
+{
+    
+    ShangJiaModel *model = [[ShangJiaModel alloc]init];
+    
+    NSDictionary *dataDic = [myShangjia valueForKey:kBmobDataDic];
+    BmobGeoPoint *location = [myShangjia objectForKey:@"location"];
+    [model setValuesForKeysWithDictionary:dataDic];
+    model.location = location;
+    ShangJiaDetailVC *_shagnjiaDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShangJiaDetailVC"];
+    
+    _shagnjiaDetailVC.model = model;
+    
+    
+    [self.navigationController pushViewController:_shagnjiaDetailVC animated:YES ];
+    
+
+    
+}
 -(UIView*)myHeaderView
 {
     if (!_myHeaderView) {
@@ -108,7 +177,7 @@
         
         _myHeaderView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
-        UIButton *sellButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
+        sellButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
         
         [sellButton setTitle:@"我出售" forState:UIControlStateNormal];
         [sellButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
@@ -118,7 +187,7 @@
         [_myHeaderView addSubview:sellButton];
         
         
-        UIButton *buyButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2,0 , ScreenWidth/2, 50)];
+        buyButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2,0 , ScreenWidth/2, 50)];
         [buyButton setTitle:@"我购买" forState:UIControlStateNormal];
         
         [buyButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
@@ -142,6 +211,10 @@
 {
     isShowHistory = NO;
     
+    [sellButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+    
+    [buyButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+    
     
     [self.tableView.header beginRefreshing];
     
@@ -155,9 +228,16 @@
 {
     isShowHistory = YES;
     
+    
+    [sellButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+    
+    [buyButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+    
    [self.tableView.header beginRefreshing];
     
 }
+
+
 
 
 -(UIView*)allHeaderView
@@ -171,11 +251,11 @@
         
         _typeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
         
-        [_typeButton setTitle:@"  分类:" forState:UIControlStateNormal];
+        [_typeButton setTitle:@"分类" forState:UIControlStateNormal];
         
         [_typeButton addTarget:self action:@selector(showType) forControlEvents:UIControlEventTouchUpInside];
         
-        _typeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
         
         [_typeButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
         
@@ -257,7 +337,16 @@
 {
     pageIndex = 0;
     
-    [self loadData];
+    
+    if (isShowMine) {
+        
+        [self getShangPin];
+    }
+    else
+    {
+        [self loadData];
+    }
+   
     
 }
 -(void)footerRefresh
@@ -268,6 +357,8 @@
     
 }
 
+
+#pragma mark - 获取商家列表数据
 -(void)loadData
 {
     BmobQuery *query = [BmobQuery queryWithClassName:kShangJia];
@@ -348,6 +439,11 @@
             
         
             
+            
+            if (!isShowMine) {
+                
+                
+         
             for (int i = 0; i< array.count; i++) {
                 
                 BmobObject *Ob = [array objectAtIndex:i];
@@ -366,15 +462,101 @@
             
         }
            [self.tableView reloadData];
+            
+        
+        }
         
     }];
+}
+
+#pragma mark - 获取购买或者出售商品
+-(void)getShangPin
+{
+    [MyProgressHUD showProgress];
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:kBuyShangPin];
+    
+    
+    //获取我购买
+    if (isShowHistory) {
+        
+        [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
+        
+        
+    }
+    else //获取我出售记录
+    {
+        [query whereKey:@"shangjia" equalTo:myShangjia];
+        
+        
+    }
+    
+    [query includeKey:@"shangpin"];
+    [query includeKey:@"shangjia"];
+    [query includeKey:@"address"];
+    
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+    
+        
+        [self endFooterRefresh];
+        [self endHeaderRefresh];
+        
+        
+        [MyProgressHUD dismiss];
+        
+        
+        if (pageIndex == 0) {
+            
+          [_dataSource removeAllObjects];
+        }
+        
+        
+        if (array.count > 0  && isShowMine) {
+          
+            for (BmobObject *ob in array) {
+                
+                
+                NSDictionary *data = [ob valueForKey:kBmobDataDic];
+                
+                BuyShangPinModel *model = [[BuyShangPinModel alloc]init];
+                
+                [model setValuesForKeysWithDictionary:data];
+                
+                NSDate *createdAt = [ob objectForKey:@"createdAt"];
+                
+                model.createdAt = createdAt;
+                
+                
+                [_dataSource addObject:model];
+                
+                
+                
+            }
+            
+          
+            
+            
+        }
+        else
+        {
+            NSLog(@"error:%@",error);
+            
+        }
+        
+          [self.tableView reloadData];
+        
+        
+    }];
+    
+    
 }
 
 #pragma mark - 显示全部 或者我的
 -(void)showAll:(UIButton*)sender
 {
     
-    [_typeButton setTitle:@"  分类:" forState:UIControlStateNormal];
+    [_typeButton setTitle:@"分类" forState:UIControlStateNormal];
     
     _type = @"";
     
@@ -430,7 +612,7 @@
         
         _type = type;
         
-        [_typeButton setTitle:[NSString stringWithFormat:@"  分类: %@",type] forState:UIControlStateNormal];
+        [_typeButton setTitle:[NSString stringWithFormat:@"%@",type] forState:UIControlStateNormal];
         
         
         
@@ -490,6 +672,96 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
+    if (isShowMine) {
+        
+        
+        
+        ShangPinCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShangPinCell"];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (indexPath.section < _dataSource.count) {
+            
+            BuyShangPinModel *model = [_dataSource objectAtIndex:indexPath.section];
+            
+            
+            [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.shangpinPhoto] placeholderImage:kDefaultHeadImage];
+            
+            cell.nameLabel.text = model.shangpinName;
+            
+            cell.priceLabel.text = [NSString stringWithFormat:@"价格:%.2f元",model.price];
+            
+            
+              cell.buyButton.tag = indexPath.section;
+            
+            if (isShowHistory) //显示我购买
+            {
+                
+                
+                         [cell.buyButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+                
+                
+                switch (model.status) {
+                    case 0:
+                    {
+                       //未付款
+                        
+                        [cell.buyButton setTitle:@"付款" forState:UIControlStateNormal];
+                        
+
+                        
+                        
+                    }
+                        break;
+                    case 1:
+                    {
+                        //已付款
+                        
+                        [cell.buyButton setTitle:@"确认收货" forState:UIControlStateNormal];
+                        
+                   
+                        
+                        
+                        
+                    }
+                        break;
+                    case 2:
+                    {
+                        //已确认收货
+                        [cell.buyButton setTitle:@"评价" forState:UIControlStateNormal];
+                        
+              
+                    }
+                        break;
+                    case 3:
+                    {
+                        //已评价
+                        cell.buyButton.hidden =YES;
+                        
+                        
+                        
+                    }
+                        
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                cell.buyButton.hidden = YES;
+                
+            }
+            
+            
+        }
+        
+        return cell;
+         
+        
+    }
+    else  //显示我出售
+    {
     ShangjiaListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShangjiaListCell"];
     
     ShangJiaModel *model = [_dataSource objectAtIndex:indexPath.section];
@@ -508,9 +780,11 @@
     cell.startViewConstant.constant = model.star/5 *100.0;
     
     
+        return cell;
+        
+    }
     
     
-    return cell;
     
     
 }
@@ -519,18 +793,168 @@
 {
     
     
-     ShangJiaModel *model = [_dataSource objectAtIndex:indexPath.section];
-    ShangJiaDetailVC *_shagnjiaDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShangJiaDetailVC"];
+    if (!isShowMine) {
+        
+        ShangJiaModel *model = [_dataSource objectAtIndex:indexPath.section];
+        ShangJiaDetailVC *_shagnjiaDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShangJiaDetailVC"];
+        
+        _shagnjiaDetailVC.model = model;
+        
+        
+        [self.navigationController pushViewController:_shagnjiaDetailVC animated:YES ];
+        
+
     
-    _shagnjiaDetailVC.model = model;
+        
+        
+    }
+    
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+
+}
+
+-(void)buttonAction:(UIButton*)sender
+{
+    
+    BuyShangPinModel *model = [_dataSource objectAtIndex:sender.tag];
+    
+    switch (model.status) {
+        case 0:
+        {
+            atcionStatus = 1;
+            
+            [self payShangPin:model];
+            
+        }
+            break;
+        case 1:
+        {
+            atcionStatus = 2;
+            
+            [self confirn:model];
+            
+        }
+            break;
+        case 2:
+        {
+            atcionStatus = 3;
+            
+            [self comment:model];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+#pragma mark - 付款
+-(void)payShangPin:(BuyShangPinModel*)model
+{
+    
+   
+    
+    buyShangpinOB = [BmobObject objectWithoutDatatWithClassName:kBuyShangPin objectId:model.objectId];
     
     
-    [self.navigationController pushViewController:_shagnjiaDetailVC animated:YES ];
+    NSString *dateStr = [CommonMethods getNoSpaceDateStr:[NSDate date]];
+    NSString *out_trade_no = [NSString stringWithFormat:@"%@%@",dateStr,[BmobUser getCurrentUser].username];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    PayOrderInfoModel *payModel = [[PayOrderInfoModel alloc]init];
+    
+    payModel.productName =model.shangpinName;
+    
+    payModel.productDescription = @"购买邻近商品";
+    
+    payModel.amount =  [NSString stringWithFormat:@"%.2f",model.price];
+    payModel.out_trade_no = out_trade_no;
+    
+    [PayOrder loadALiPaySDK:payModel];
+    
     
 }
 
+
+#pragma mark - 确认收货
+-(void)confirn:(BuyShangPinModel*)model
+{
+    
+    
+    buyShangpinOB = [BmobObject objectWithoutDatatWithClassName:kBuyShangPin objectId:model.objectId];
+    
+    [buyShangpinOB setObject:[NSNumber numberWithInteger:2] forKey:@"status"];
+    
+    [buyShangpinOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        [MyProgressHUD dismiss];
+        
+        
+        [CommonMethods showDefaultErrorString:@"确认成功"];
+        
+        model.status = 2;
+        
+        [self.tableView reloadData];
+        
+        
+        
+    }];
+}
+
+#pragma mark - 评价
+-(void)comment:(BuyShangPinModel*)model
+{
+    
+    
+    PingJiaVC *pingjiaVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PingJiaVC"];
+    
+    
+    pingjiaVC.model = model;
+    
+    
+   
+    [self.navigationController pushViewController:pingjiaVC animated:YES];
+    
+    
+    
+    
+}
+
+-(void)buySuccess
+{
+    
+    
+    if (buyShangpinOB && atcionStatus == 1)
+    {
+        
+        atcionStatus = 0;
+        
+        [MyProgressHUD showProgress];
+        
+        
+        [buyShangpinOB setObject:[NSNumber numberWithInteger:1] forKey:@"status"];
+        
+        [buyShangpinOB updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            [MyProgressHUD dismiss];
+            
+            
+            [CommonMethods showDefaultErrorString:@"购买成功"];
+            
+            [self.tableView.header beginRefreshing];
+            
+            
+        }];
+    }
+
+    
+    
+    
+    
+}
 
 
 

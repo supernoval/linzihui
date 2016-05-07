@@ -246,6 +246,8 @@
 		150F31F61C0FEA5D00E5CC8B /* ZXingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 150F31101C0FEA5D00E5CC8B /* ZXingWrapper.m */; };
 		150F31FB1C0FEF6500E5CC8B /* ShowQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150F31FA1C0FEF6500E5CC8B /* ShowQRViewController.m */; };
 		150F32011C1005EC00E5CC8B /* LBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150F32001C1005EC00E5CC8B /* LBXScanViewController.m */; };
+		15126CFB1CDD5B63007FD64A /* BuyShangPinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15126CFA1CDD5B63007FD64A /* BuyShangPinModel.m */; };
+		15126CFE1CDD7104007FD64A /* PingJiaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15126CFD1CDD7104007FD64A /* PingJiaVC.m */; };
 		151671561BF972D900AD4C56 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151671551BF972D900AD4C56 /* TencentOpenAPI.framework */; };
 		151943BC1C0050A400E4E711 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 151943BB1C0050A400E4E711 /* CommentModel.m */; };
 		151943BF1C00543300E4E711 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 151943BE1C00543300E4E711 /* CommentCell.m */; };
@@ -1069,6 +1071,10 @@
 		150F31FA1C0FEF6500E5CC8B /* ShowQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowQRViewController.m; sourceTree = "<group>"; };
 		150F31FF1C1005E800E5CC8B /* LBXScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBXScanViewController.h; sourceTree = "<group>"; };
 		150F32001C1005EC00E5CC8B /* LBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanViewController.m; sourceTree = "<group>"; };
+		15126CF91CDD5B63007FD64A /* BuyShangPinModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyShangPinModel.h; sourceTree = "<group>"; };
+		15126CFA1CDD5B63007FD64A /* BuyShangPinModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyShangPinModel.m; sourceTree = "<group>"; };
+		15126CFC1CDD7104007FD64A /* PingJiaVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingJiaVC.h; sourceTree = "<group>"; };
+		15126CFD1CDD7104007FD64A /* PingJiaVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingJiaVC.m; sourceTree = "<group>"; };
 		151671551BF972D900AD4C56 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		151943BA1C0050A400E4E711 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		151943BB1C0050A400E4E711 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
@@ -3117,6 +3123,8 @@
 				1529CA691CD9394400773414 /* BuyAddressVC.m */,
 				1529CA6B1CD93EC100773414 /* ConfirmOrderVC.h */,
 				1529CA6C1CD93EC100773414 /* ConfirmOrderVC.m */,
+				15126CFC1CDD7104007FD64A /* PingJiaVC.h */,
+				15126CFD1CDD7104007FD64A /* PingJiaVC.m */,
 			);
 			name = linjinshangjia;
 			sourceTree = "<group>";
@@ -4437,6 +4445,8 @@
 				15D543161CC8B35E00333405 /* HongBaoModel.m */,
 				156D54261CCFB65A00C04DC0 /* ShangJiaModel.h */,
 				156D54271CCFB65A00C04DC0 /* ShangJiaModel.m */,
+				15126CF91CDD5B63007FD64A /* BuyShangPinModel.h */,
+				15126CFA1CDD5B63007FD64A /* BuyShangPinModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4632,6 +4642,7 @@
 				15B7A5B91BE7305D0052115F /* UIView+WebCacheOperation.m in Sources */,
 				15FB7FF41BEF53D5007D6EC8 /* BmobHelper.m in Sources */,
 				150F318C1C0FEA5D00E5CC8B /* ZXAI01320xDecoder.m in Sources */,
+				15126CFE1CDD7104007FD64A /* PingJiaVC.m in Sources */,
 				15B7A4931BE72FEE0052115F /* ChatViewController.m in Sources */,
 				150F31B41C0FEA5D00E5CC8B /* ZXITFWriter.m in Sources */,
 				15B7A5571BE730460052115F /* PSTCollectionViewLayout.m in Sources */,
@@ -4647,6 +4658,7 @@
 				15B7A5441BE730460052115F /* EMSDWebImageDownloaderOperation.m in Sources */,
 				150F319A1C0FEA5D00E5CC8B /* ZXRSSExpandedDecodedObject.m in Sources */,
 				150F313A1C0FEA5D00E5CC8B /* ZXSMSMMSResultParser.m in Sources */,
+				15126CFB1CDD5B63007FD64A /* BuyShangPinModel.m in Sources */,
 				15EE46E11BE85C1700538EA5 /* JSONModelClassProperty.m in Sources */,
 				15EE46E01BE85C1700538EA5 /* JSONModelArray.m in Sources */,
 				150F313E1C0FEA5D00E5CC8B /* ZXTelParsedResult.m in Sources */,

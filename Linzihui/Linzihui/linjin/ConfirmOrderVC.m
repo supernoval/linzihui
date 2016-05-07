@@ -122,6 +122,8 @@
        
         [MyProgressHUD dismiss];
         
+        
+        [CommonMethods showDefaultErrorString:@"购买成功"];
         if (isSuccessful) {
             
             for (UIViewController *vc in self.navigationController.viewControllers) {

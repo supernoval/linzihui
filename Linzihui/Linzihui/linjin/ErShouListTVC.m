@@ -42,7 +42,10 @@
     
     BOOL isShowBuy; //是否显示我要买的
     
+    UIButton *buyButton;
     
+    
+    UIButton *sellButton;
     
     
     
@@ -159,7 +162,7 @@
         _myHeaderView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         
-        UIButton *sellButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
+        sellButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth/2, 50)];
         
         [sellButton setTitle:@"我出售" forState:UIControlStateNormal];
         
@@ -170,7 +173,7 @@
         [_myHeaderView addSubview:sellButton];
         
         
-        UIButton *buyButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 50)];
+         buyButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2, 0, ScreenWidth/2, 50)];
         
         [buyButton setTitle:@"我想要" forState:UIControlStateNormal];
         
@@ -323,6 +326,11 @@
 {
       isShowBuy = NO;
     
+    
+    [sellButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
+    
+    [buyButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+    
      [self.tableView.header beginRefreshing];
     
   
@@ -333,6 +341,10 @@
 -(void)showMyBuy
 {
     isShowBuy = YES;
+    
+    [sellButton setTitleColor:kDarkGrayColor forState:UIControlStateNormal];
+    
+    [buyButton setTitleColor:kBlueBackColor forState:UIControlStateNormal];
     
     [self.tableView.header beginRefreshing];
     
