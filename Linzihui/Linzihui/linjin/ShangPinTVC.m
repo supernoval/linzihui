@@ -38,7 +38,7 @@
     pageIndex = 0;
     
     
-    NSString *username = [_model.publisher objectForKey:@"username"];
+    NSString *username = _model.username;
     
     NSString *currentUsername = [BmobUser getCurrentUser].username;
     
@@ -173,7 +173,10 @@
     
     [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"photos"]] placeholderImage:kDefaultHeadImage];
     
-    cell.nameLabel.text = [dict objectForKey:@"des"];
+    cell.nameLabel.text = [dict objectForKey:@"name"];
+    
+    cell.desLabel.text = [dict objectForKey:@"des"];
+    
     
     cell.priceLabel.text = [NSString stringWithFormat:@"价格:%@",[dict objectForKey:@"price"]];
     

@@ -12,6 +12,8 @@
 #import "WechatShareController.h"
 #import "ShengHuoQuanTVC.h"
 #import "ShangJiaCommentTVC.h"
+#import "PingJiaVC.h"
+
 
 
 
@@ -102,6 +104,15 @@
 #pragma mark - 评价
 -(void)pinjia
 {
+    
+    PingJiaVC *pingjiaVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PingJiaVC"];
+    
+
+    pingjiaVC.shangjiausername = _model.username;
+    
+    
+    
+    [self.navigationController pushViewController:pingjiaVC animated:YES];
     
 }
 #pragma mark - 咨询

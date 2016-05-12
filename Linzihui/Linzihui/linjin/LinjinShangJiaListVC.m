@@ -692,6 +692,8 @@
             
             cell.priceLabel.text = [NSString stringWithFormat:@"价格:%.2f元",model.price];
             
+            cell.desLabel.text = [model.shangpin objectForKey:@"des"];
+            
             
               cell.buyButton.tag = indexPath.section;
             
@@ -913,6 +915,7 @@
     
     
     pingjiaVC.model = model;
+    pingjiaVC.shangjiausername = [model.shangjia objectForKey:@"username"];
     
     
    

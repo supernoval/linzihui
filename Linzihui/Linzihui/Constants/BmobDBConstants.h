@@ -59,4 +59,8 @@
 //购买订单
 #define kBuyShangPin                     @"BuyShangPin"
 
+//商家评论
+#define kShangJiaComment              @"ShangJiaComment"
+
+
 

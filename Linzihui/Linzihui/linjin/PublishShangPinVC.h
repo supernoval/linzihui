@@ -22,6 +22,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *shangpinnameLabel;
 
+@property (weak, nonatomic) IBOutlet UITextView *shangpinDesTV;
+
+
 
 @property (weak, nonatomic) IBOutlet UITextField *shangpinpriceLabel;
 

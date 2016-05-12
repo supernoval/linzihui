@@ -319,6 +319,7 @@
 		15521B7E1C4A0C040010E718 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15521B761C4A0C040010E718 /* BaiduMapAPI_Utils.framework */; };
 		15521B7F1C4A0C040010E718 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15521B771C4A0C040010E718 /* mapapi.bundle */; };
 		15521B831C4A0E620010E718 /* SearchNearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15521B821C4A0E620010E718 /* SearchNearByViewController.m */; };
+		1556DEFC1CE35868003CDE67 /* ShangJiaCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1556DEFB1CE35868003CDE67 /* ShangJiaCommentModel.m */; };
 		155AB66F1CAB7BAF001A7451 /* ErShouListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 155AB66E1CAB7BAF001A7451 /* ErShouListTVC.m */; };
 		155AB6721CABA077001A7451 /* ErShouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 155AB6711CABA077001A7451 /* ErShouCell.m */; };
 		15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697A601CA3FC80001756E9 /* SetNewGroupNameImageVC.m */; };
@@ -1188,6 +1189,8 @@
 		15521B771C4A0C040010E718 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		15521B811C4A0E620010E718 /* SearchNearByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNearByViewController.h; sourceTree = "<group>"; };
 		15521B821C4A0E620010E718 /* SearchNearByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNearByViewController.m; sourceTree = "<group>"; };
+		1556DEFA1CE35868003CDE67 /* ShangJiaCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangJiaCommentModel.h; sourceTree = "<group>"; };
+		1556DEFB1CE35868003CDE67 /* ShangJiaCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangJiaCommentModel.m; sourceTree = "<group>"; };
 		155AB66D1CAB7BAF001A7451 /* ErShouListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouListTVC.h; sourceTree = "<group>"; };
 		155AB66E1CAB7BAF001A7451 /* ErShouListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouListTVC.m; sourceTree = "<group>"; };
 		155AB6701CABA077001A7451 /* ErShouCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouCell.h; sourceTree = "<group>"; };
@@ -4447,6 +4450,8 @@
 				156D54271CCFB65A00C04DC0 /* ShangJiaModel.m */,
 				15126CF91CDD5B63007FD64A /* BuyShangPinModel.h */,
 				15126CFA1CDD5B63007FD64A /* BuyShangPinModel.m */,
+				1556DEFA1CE35868003CDE67 /* ShangJiaCommentModel.h */,
+				1556DEFB1CE35868003CDE67 /* ShangJiaCommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4752,6 +4757,7 @@
 				15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */,
 				150F31E51C0FEA5D00E5CC8B /* ZXQRCodeAlignmentPatternFinder.m in Sources */,
 				150F312D1C0FEA5D00E5CC8B /* ZXEmailAddressParsedResult.m in Sources */,
+				1556DEFC1CE35868003CDE67 /* ShangJiaCommentModel.m in Sources */,
 				150F31261C0FEA5D00E5CC8B /* ZXAbstractDoCoMoResultParser.m in Sources */,
 				150F31921C0FEA5D00E5CC8B /* ZXAI01decoder.m in Sources */,
 				15B7A5721BE730530052115F /* THProgressView.m in Sources */,

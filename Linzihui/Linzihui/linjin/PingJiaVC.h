@@ -13,9 +13,11 @@
 
 @property (nonatomic,strong) BuyShangPinModel *model;
 
+@property (nonatomic,strong) NSString *shangjiausername;
+
 @property (weak, nonatomic) IBOutlet UIView *starView;
 
-@property (weak, nonatomic) IBOutlet UIView *touchView;
+@property (strong, nonatomic)  UIView *touchView;
 
 
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;

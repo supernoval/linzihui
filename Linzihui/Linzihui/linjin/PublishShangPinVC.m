@@ -24,6 +24,10 @@
     self.title = @"发布商品";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.shangpinDesTV.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    
+    self.shangpinDesTV.layer.borderWidth = 1;
+    
     
 }
 
@@ -128,6 +132,14 @@
         
     }
     
+    if (_shangpinDesTV.text.length == 0) {
+        
+        [CommonMethods showDefaultErrorString:@"请填写商品描述"];
+        
+        return;
+        
+    }
+    
     if (_shangpinpriceLabel.text.length == 0) {
         
         [CommonMethods showDefaultErrorString:@"请填写商品价格"];
@@ -177,7 +189,9 @@
     
     [OB setObject:photourl forKey:@"photos"];
     
-    [OB setObject:_shangpinnameLabel.text forKey:@"des"];
+    [OB setObject:_shangpinnameLabel.text forKey:@"name"];
+    
+    [OB setObject:_shangpinDesTV.text forKey:@"des"];
     
     [OB setObject:[NSNumber numberWithFloat:[_shangpinpriceLabel.text floatValue]] forKey:@"price"];
     
