@@ -286,6 +286,8 @@
 		153CE0181BE50D910032517E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 153CE0171BE50D910032517E /* AppDelegate.mm */; };
 		153CE01E1BE50D910032517E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153CE01C1BE50D910032517E /* Storyboard.storyboard */; };
 		153CE0231BE50D910032517E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153CE0211BE50D910032517E /* LaunchScreen.storyboard */; };
+		15421B0E1CEC309A0001799E /* BuyHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15421B0D1CEC309A0001799E /* BuyHistoryCell.m */; };
+		15421B111CEC74C10001799E /* EditeShangJiaTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15421B101CEC74C10001799E /* EditeShangJiaTVC.m */; };
 		1542EF921C10111100AD7C9E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1542EF911C10111100AD7C9E /* WebViewController.m */; };
 		15449E881CCAD0560079948B /* HongBaoDetailList.m in Sources */ = {isa = PBXBuildFile; fileRef = 15449E871CCAD0560079948B /* HongBaoDetailList.m */; };
 		15449E8B1CCAD1560079948B /* HongBaoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15449E8A1CCAD1560079948B /* HongBaoDetailCell.m */; };
@@ -1149,6 +1151,10 @@
 		153CE01D1BE50D910032517E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
 		153CE0221BE50D910032517E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		153CE0241BE50D910032517E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15421B0C1CEC309A0001799E /* BuyHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyHistoryCell.h; sourceTree = "<group>"; };
+		15421B0D1CEC309A0001799E /* BuyHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyHistoryCell.m; sourceTree = "<group>"; };
+		15421B0F1CEC74C10001799E /* EditeShangJiaTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditeShangJiaTVC.h; sourceTree = "<group>"; };
+		15421B101CEC74C10001799E /* EditeShangJiaTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditeShangJiaTVC.m; sourceTree = "<group>"; };
 		1542EF901C10111100AD7C9E /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		1542EF911C10111100AD7C9E /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		15449E861CCAD0560079948B /* HongBaoDetailList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongBaoDetailList.h; sourceTree = "<group>"; };
@@ -3128,6 +3134,10 @@
 				1529CA6C1CD93EC100773414 /* ConfirmOrderVC.m */,
 				15126CFC1CDD7104007FD64A /* PingJiaVC.h */,
 				15126CFD1CDD7104007FD64A /* PingJiaVC.m */,
+				15421B0C1CEC309A0001799E /* BuyHistoryCell.h */,
+				15421B0D1CEC309A0001799E /* BuyHistoryCell.m */,
+				15421B0F1CEC74C10001799E /* EditeShangJiaTVC.h */,
+				15421B101CEC74C10001799E /* EditeShangJiaTVC.m */,
 			);
 			name = linjinshangjia;
 			sourceTree = "<group>";
@@ -4855,6 +4865,7 @@
 				15B7A5501BE730460052115F /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				150F31EE1C0FEA5D00E5CC8B /* ZXQRCodeMatrixUtil.m in Sources */,
 				150F31761C0FEA5D00E5CC8B /* ZXDataMatrixASCIIEncoder.m in Sources */,
+				15421B0E1CEC309A0001799E /* BuyHistoryCell.m in Sources */,
 				150F31831C0FEA5D00E5CC8B /* ZXDataMatrixWriter.m in Sources */,
 				150F31641C0FEA5D00E5CC8B /* ZXBinaryBitmap.m in Sources */,
 				150F31B61C0FEA5D00E5CC8B /* ZXMultiFormatUPCEANReader.m in Sources */,
@@ -5010,6 +5021,7 @@
 				152637281CC60D6800F3BE15 /* PickDateView.m in Sources */,
 				15B7A54D1BE730460052115F /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				15B7A56C1BE7304D0052115F /* SDPhotoGroup.m in Sources */,
+				15421B111CEC74C10001799E /* EditeShangJiaTVC.m in Sources */,
 				150F31451C0FEA5D00E5CC8B /* ZXVEventResultParser.m in Sources */,
 				15B7A4581BE72FE30052115F /* XHMessageTextView.m in Sources */,
 				150F31581C0FEA5D00E5CC8B /* ZXByteArray.m in Sources */,

@@ -74,7 +74,7 @@
     [buyShangpinOB setObject:shangjiaOB forKey:@"shangjia"];
     [buyShangpinOB setObject:_addressOB forKey:@"address"];
     
-    [buyShangpinOB setObject:[_shangpinDict objectForKey:@"des"] forKey:@"shangpinName"];
+    [buyShangpinOB setObject:[_shangpinDict objectForKey:@"name"] forKey:@"shangpinName"];
     [buyShangpinOB setObject:[_shangpinDict objectForKey:@"photos"] forKey:@"shangpinPhoto"];
     [buyShangpinOB setObject:[_shangpinDict objectForKey:@"price"] forKey:@"price"];
     
@@ -153,7 +153,7 @@
     
     PayOrderInfoModel *model = [[PayOrderInfoModel alloc]init];
     
-    model.productName = [_shangpinDict objectForKey:@"des"];
+    model.productName = [_shangpinDict objectForKey:@"name"];
     
     model.productDescription = @"购买邻近商品";
     

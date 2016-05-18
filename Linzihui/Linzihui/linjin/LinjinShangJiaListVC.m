@@ -66,6 +66,8 @@
     
     UserModel *getmodel = [BmobHelper getCurrentUserModel];
     
+
+    
     if (!getmodel.isShangJia) {
         
         UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"注册商家" style:UIBarButtonItemStylePlain target:self action:@selector(registShangjia)];

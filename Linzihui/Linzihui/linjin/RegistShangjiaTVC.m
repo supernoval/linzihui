@@ -49,7 +49,15 @@
     self.navigationItem.rightBarButtonItem = button;
     
     
+
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [CommonMethods showDefaultErrorString:@"提示:为了避免与本人个人信息混杂，请用另外一个手机号重新注册商家"];
     
     
 }

@@ -94,7 +94,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65;
+    return 100;
     
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,8 +110,14 @@
     
     [_CommentCell.headImageView sd_setImageWithURL:[NSURL URLWithString:[model.publisher objectForKey:@"headImageURL"]] placeholderImage:kDefaultHeadImage];
     
+    [BmobHelper getOtherLevelWithUserName:[model.publisher objectForKey:@"username"] result:^(NSString *levelStr) {
+       
+        _CommentCell.levelLabel.text = [NSString stringWithFormat:@"等级:%@",levelStr];
+        
+    }];
     _CommentCell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:model.createdAt ];
     
+    _CommentCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
 

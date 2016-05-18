@@ -117,13 +117,13 @@
     
     [ob saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
        
-        [MyProgressHUD dismiss];
+
         
         if (isSuccessful) {
             
             NSLog(@"comment success");
-            
-            [CommonMethods showDefaultErrorString:@"评价成功"];
+//            
+//            [CommonMethods showDefaultErrorString:@"评价成功"];
             
             
             BmobQuery *commentQuery = [BmobQuery queryWithClassName:kShangJiaComment];
@@ -158,6 +158,7 @@
                     
                     [qury findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
                         
+                                [MyProgressHUD dismiss];
                         
                         if (array.count > 0) {
                             
@@ -170,6 +171,9 @@
                                 if (isSuccessful) {
                                     
                                     NSLog(@"update success");
+                                    
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                    
                                     
                                 }
                                 

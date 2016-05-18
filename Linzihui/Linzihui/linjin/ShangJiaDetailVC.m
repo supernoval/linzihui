@@ -13,7 +13,9 @@
 #import "ShengHuoQuanTVC.h"
 #import "ShangJiaCommentTVC.h"
 #import "PingJiaVC.h"
-
+#import "BuyHistoryCell.h"
+#import "BuyShangPinModel.h"
+#import "EditeShangJiaTVC.h"
 
 
 
@@ -22,6 +24,9 @@
      UIToolbar *_myToolBar;
     
     UIAlertView *_jubaoAlertView;
+    
+    NSMutableArray *_muHistoryArray;
+    
     
     
 }
@@ -33,13 +38,28 @@
     [super viewDidLoad];
     
     self.title = @"商家详情";
+    
     self.headView.frame = CGRectMake(0, 0, ScreenWidth, 100);
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    _muHistoryArray = [[NSMutableArray alloc]init];
+    
     [self initHeadView];
     
     [self initBottomView];
+    
+    [self getCurrentBuy];
+    
+    
+    if ([_model.username isEqualToString:[BmobUser getCurrentUser].username]) {
+        
+        UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editeShangJia)];
+        
+        self.navigationItem.rightBarButtonItem = button;
+        
+        
+    }
     
 
 }
@@ -58,6 +78,55 @@
     
     [_myToolBar removeFromSuperview];
     
+}
+
+#pragma mark - 编辑商家
+-(void)editeShangJia
+{
+    EditeShangJiaTVC *edit = [self.storyboard instantiateViewControllerWithIdentifier:@"EditeShangJiaTVC"];
+    
+    edit.model = _model;
+    
+    [self.navigationController pushViewController:edit animated:YES];
+    
+}
+
+#pragma mark - 获取最近成交
+-(void)getCurrentBuy
+{
+    BmobQuery *queryhist = [BmobQuery queryWithClassName:kBuyShangPin];
+    
+    [queryhist whereKey:@"username" equalTo:_model.username];
+    [queryhist includeKey:@"address"];
+    [queryhist whereKey:@"status" greaterThan:[NSNumber numberWithInt:1]];
+    
+    
+    [queryhist findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (array.count > 0) {
+            
+            for (int i = 0; i< array.count; i++) {
+                
+                BmobObject *ob = [array objectAtIndex:i];
+                
+                BuyShangPinModel *model = [[BuyShangPinModel alloc]init];
+                
+                [model setValuesForKeysWithDictionary:[ob valueForKey:kBmobDataDic]];
+                
+                model.createdAt = ob.createdAt;
+                
+                [_muHistoryArray addObject:model];
+                
+                
+                
+            }
+            
+            [self.tableView reloadData];
+            
+            
+        }
+        
+    }];
 }
 
 -(void)initBottomView
@@ -124,7 +193,8 @@
     
     
     NSString *nickName = [_model.publisher objectForKey:@"nickName"];
-    NSString *username = [_model.publisher objectForKey:@"username"];
+    NSString *username = _model.username;
+    
     
     
     if ([username isEqualToString:[BmobUser getCurrentUser].username]) {
@@ -204,29 +274,59 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    if (section == 3) {
+        
+        return _muHistoryArray.count;
+        
+    }
     return 1;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section == 3) {
+        
+        return 200;
+    }
+    
+    
     return 60;
+    
+    
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    
+    if (section == 2) {
+        
+        return 50;
+    }
+    
+    
     return 1;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    
+    if (section == 2) {
+        
+        UILabel *historyLabel = [CommonMethods labelWithText:@"   最近成交" textColor: kBlueBackColor font:FONT_15 textAligment:NSTextAlignmentLeft frame:CGRectMake(0, 0, ScreenWidth, 50)];
+        
+        return historyLabel;
+        
+    }
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
     
     view.backgroundColor = [UIColor clearColor];
@@ -239,6 +339,29 @@
 #pragma mark - UITableViewDataSource
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section == 3) {
+        
+        BuyHistoryCell *historyCell = [tableView dequeueReusableCellWithIdentifier:@"BuyHistoryCell"];
+        
+        if (indexPath.row < _muHistoryArray.count) {
+            
+            BuyShangPinModel *model = [_muHistoryArray objectAtIndex:indexPath.row];
+            
+            historyCell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:model.createdAt];
+            historyCell.shangpinnamelabel.text = model.shangpinName;
+            historyCell.addresslabel.text = [model.address objectForKey:@"address"];
+            historyCell.priceLabel.text = [NSString stringWithFormat:@"%.2f元",model.price];
+            
+            
+            
+        }
+        
+        return historyCell;
+        
+        
+        
+    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
     
     
@@ -266,6 +389,7 @@
             cell.textLabel.text = @"商品";
         }
             break;
+      
             
         default:
             break;
