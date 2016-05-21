@@ -22,5 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeighConstants;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *trail;
 
 @end

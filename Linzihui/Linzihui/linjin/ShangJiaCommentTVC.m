@@ -35,7 +35,8 @@
 -(void)requestData
 {
     
-  
+    [MyProgressHUD showProgress];
+    
     BmobQuery *query = [BmobQuery queryWithClassName:kShangJiaComment];
     
     [query whereKey:@"shangjia_username" equalTo:_model.username];
@@ -44,6 +45,8 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
+        [MyProgressHUD dismiss];
+        
         if (array.count > 0) {
             
             
@@ -94,7 +97,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+        ShangJiaCommentModel *model =[_dataSource objectAtIndex:indexPath.section];
+    
+    CGFloat height = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth-16];
+    
+    if (height < 21) {
+        
+        height = 21;
+        
+    }
+    
+    return 80 + height;
     
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,10 +116,22 @@
     
     ShangJiaCommentModel *model =[_dataSource objectAtIndex:indexPath.section];
     
+    _CommentCell.trail.constant = 8;
     
-    _CommentCell.contentlabel.text = model.content;
+    _CommentCell.commentLabel.text = model.content;
+    
+    NSLog(@"contentviewY:%.2f",_CommentCell.commentLabel.frame.size.width);
     
     _CommentCell.nameLabel.text = [model.publisher objectForKey:@"nickName"];
+    
+    CGFloat height = [StringHeight heightWithText:model.content font:FONT_15 constrainedToWidth:ScreenWidth-16];
+    
+    if (height < 21) {
+        
+        height = 21;
+        
+    }
+    _CommentCell.contentHeighConstants.constant = height;
     
     [_CommentCell.headImageView sd_setImageWithURL:[NSURL URLWithString:[model.publisher objectForKey:@"headImageURL"]] placeholderImage:kDefaultHeadImage];
     

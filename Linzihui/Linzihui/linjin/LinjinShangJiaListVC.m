@@ -12,6 +12,8 @@
 #import "ShangJiaModel.h"
 #import "TypeTableViewController.h"
 #import "BuyHistoryCell.h"
+#import "ChatViewController.h"
+
 
 
 @interface LinjinShangJiaListVC ()
@@ -136,10 +138,10 @@
     BmobQuery *queryhist = [BmobQuery queryWithClassName:kBuyShangPin];
     
     [queryhist whereKey:@"shangjia" equalTo:myShangjia];
-    [queryhist includeKey:@"address"];
-    [queryhist includeKey:@"buyer"];
+    [queryhist includeKey:@"address,buyer"];
+
     
-//    [queryhist whereKey:@"status" greaterThan:[NSNumber numberWithInt:0]];
+    [queryhist whereKey:@"status" greaterThan:[NSNumber numberWithInt:0]];
     
     
     [queryhist findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
@@ -550,7 +552,7 @@
         
         
         [query includeKey:@"shangpin"];
-        [query includeKey:@"shangjia"];
+//        [query includeKey:@"shangjia"];
         [query includeKey:@"address"];
         
         
@@ -773,9 +775,18 @@
                 
                 historyCell.nameLabel.text = [model.buyer objectForKey:@"nickName"];
                 
+                [historyCell.nameButton setTitle:[model.buyer objectForKey:@"nickName"] forState:UIControlStateNormal];
+                historyCell.nameButton.tag = indexPath.section;
+                
+                [historyCell.nameButton addTarget:self action:@selector(chat:) forControlEvents:UIControlEventTouchUpInside];
+                
                 historyCell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:model.createdAt];
                 historyCell.shangpinnamelabel.text = model.shangpinName;
                 historyCell.addresslabel.text = [model.address objectForKey:@"address"];
+                
+                NSLog(@"address%@",model.buyer);
+                
+//                 historyCell.addresslabel.text = @"sagdaogadf";
                 historyCell.priceLabel.text = [NSString stringWithFormat:@"%.2f元",model.price];
                 
                 
@@ -1076,6 +1087,51 @@
     
 }
 
+
+-(void)chat:(UIButton*)sender
+{
+    
+    BuyShangPinModel *shangpinModel = [_muHistoryArray objectAtIndex:sender.tag];
+    
+    
+    UserModel *model = [[UserModel alloc]init];
+    
+    
+    NSString *nickName = [shangpinModel.buyer objectForKey:@"nickName"];
+    NSString *username =[shangpinModel.buyer objectForKey:@"username"];
+    
+    
+    
+    if ([username isEqualToString:[BmobUser getCurrentUser].username]) {
+        
+        [CommonMethods showDefaultErrorString:@"您自己发布的信息，无法与自己聊天"];
+        
+        return;
+        
+    }
+    
+    model.username = username;
+    model.nickName = nickName;
+    
+    
+    ChatViewController *_chat = [[ChatViewController alloc]initWithChatter:model.username isGroup:NO];
+    
+    if (model.nickName) {
+        
+        _chat.title = model.nickName;
+    }
+    else
+    {
+        _chat.title = model.username;
+    }
+    
+    _chat.hidesBottomBarWhenPushed = YES;
+    _chat.userModel = model;
+    
+    [self.navigationController pushViewController:_chat animated:YES];
+    
+    
+}
 
 -(void)sortData
 {

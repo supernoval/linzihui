@@ -25,7 +25,7 @@
     [super viewDidLoad];
     self.title= @"评价";
     
-    starNum = 5;
+    starNum = 0;
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -38,11 +38,23 @@
     [self.view addSubview:self.touchView];
     
     
+  
+    
+    _starView.hidden = YES;
+    
     
     
     
 
     
+    
+    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+//      _starView.frame = CGRectMake(self.starView.frame.origin.x, self.starView.frame.origin.y, 0, 30);
     
     
 }
@@ -69,6 +81,9 @@
             starNum = 5;
             
         }
+        
+        self.starView.hidden = NO;
+        
         self.starView.frame = CGRectMake(self.starView.frame.origin.x, self.starView.frame.origin.y, starNum*30, 30);
         
         NSLog(@"%.2f,y:%.2f,%ld",point.x,point.y,(long)starNum);

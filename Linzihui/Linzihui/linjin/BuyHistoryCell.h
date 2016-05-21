@@ -23,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commnetHeight;
 
+@property (weak, nonatomic) IBOutlet UIButton *nameButton;
 
 
 @end

@@ -44,7 +44,7 @@
     
     [queryhist whereKey:@"shangjia" equalTo:sellOb];
     [queryhist includeKey:@"address"];
-    [queryhist whereKey:@"status" greaterThan:[NSNumber numberWithInt:0]];
+    [queryhist whereKey:@"status" greaterThan:[NSNumber numberWithInt:1]];
     
     
     [queryhist findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
