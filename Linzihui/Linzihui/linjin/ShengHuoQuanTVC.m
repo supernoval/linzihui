@@ -62,6 +62,8 @@ static NSString *commentCellID = @"CommentCell";
     _dataSource = [[NSMutableArray alloc]init];
     _shurenUserNameArray = [[NSMutableArray alloc]init];
     
+    [self getMyFollows];
+    
     
     if (_isShuRenQuan == 1) {
         
@@ -167,7 +169,7 @@ static NSString *commentCellID = @"CommentCell";
 {
     [super viewWillAppear:animated];
     
-    [self.tableView.header beginRefreshing];
+
     
 }
 
@@ -260,6 +262,27 @@ static NSString *commentCellID = @"CommentCell";
     
 }
 
+#pragma mark - 获取我关注的人
+-(void)getMyFollows
+{
+    [MyProgressHUD showProgress];
+    
+    [BmobHelper getMyFollowsresult:^(BOOL success, NSArray *myfollows) {
+       
+        [MyProgressHUD dismiss];
+        
+        if (success) {
+            
+            _myFollows = myfollows;
+            
+            if (_myFollows.count >0) {
+                
+                    [self.tableView.header beginRefreshing];
+            }
+            
+        }
+    }];
+}
 -(void)headerRefresh
 {
     page = 0;
@@ -300,11 +323,21 @@ static NSString *commentCellID = @"CommentCell";
     }
     else if(_isShuRenQuan == 0)
     {
+        
+        if (_myFollows.count == 0) {
+            
+            
+            [self endHeaderRefresh];
+            [self endFooterRefresh];
+            
+            return;
+            
+        }
         [query whereKey:@"type" equalTo:@0];
         //    附近 3公里 条件限制
         [query whereKey:@"location" nearGeoPoint:_currentPoint  withinKilometers:3.0];
         
-//        [query whereKey:@"username" containedIn:_myFollows];
+        [query whereKey:@"username" containedIn:_myFollows];
         
         
     }

@@ -2119,4 +2119,29 @@
     
 }
 
+#pragma mark - 获取我关注的人
++(void)getMyFollowsresult:(void(^)(BOOL success,NSArray *myfollows))result
+{
+    BmobQuery *query = [BmobQuery queryWithClassName:kFollowTableName];
+    
+    [query whereKey:@"userObjectId" equalTo:[BmobUser getCurrentUser].objectId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+       
+        if (array.count > 0) {
+            
+            BmobObject *ob = [array firstObject];
+            
+            NSArray *myFollows = [ob objectForKey:@"myFollows"];
+            
+            if (result) {
+                
+                result(YES,myFollows);
+                
+            }
+        }
+        
+    }];
+}
+
 @end

@@ -73,6 +73,9 @@ typedef void (^getObjectModelBlock)(BOOL success,id object);
 #pragma mark - 取消关注
 + (void)cancelFollowWithUserModel:(UserModel*)model username:(NSString*)toDeleteusername result:(void(^)(BOOL success))result;
 
+#pragma mark - 获取我关注的人
++(void)getMyFollowsresult:(void(^)(BOOL success,NSArray *myfollows))result;
+
 
 #pragma mark - 判断是否互相关注
 + (void)checkFollowEachOtherWithItemArray:(NSArray*)itemArray searchResult:(void(^)(NSArray*array))resultBlock;
