@@ -18,6 +18,8 @@
 @property (nonatomic,strong) BmobObject*shangpin;
 @property (nonatomic,strong) BmobObject *shangjia;
 @property (nonatomic,strong) BmobObject *address;
+@property (nonatomic,strong) BmobObject *buyer;
+
 
 
 @end

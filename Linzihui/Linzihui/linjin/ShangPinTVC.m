@@ -9,6 +9,9 @@
 #import "ShangPinTVC.h"
 #import "ShangPinTVC.h"
 #import "PublishShangPinVC.h"
+#import "ShangPinDetailViewController.h"
+#import "ShangPinModel.h"
+
 
 @interface ShangPinTVC ()<UIAlertViewDelegate>
 {
@@ -178,7 +181,7 @@
     cell.desLabel.text = [dict objectForKey:@"des"];
     
     
-    cell.priceLabel.text = [NSString stringWithFormat:@"价格:%@",[dict objectForKey:@"price"]];
+    cell.priceLabel.text = [NSString stringWithFormat:@"价格:%@元",[dict objectForKey:@"price"]];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -210,6 +213,23 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    BmobObject *dict = [_dataSource objectAtIndex:indexPath.row];
+    
+    NSDictionary *dataDict = [dict valueForKey:kBmobDataDic];
+    
+    ShangPinModel  *model = [[ShangPinModel alloc]init];
+    
+    [model setValuesForKeysWithDictionary:dataDict];
+    
+    ShangPinDetailViewController *_detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShangPinDetailViewController"];
+    
+    _detailVC.model = model;
+    
+    
+    [self.navigationController pushViewController:_detailVC animated:YES];
+    
+    
     
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

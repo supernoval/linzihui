@@ -7,6 +7,8 @@
 //
 
 #import "PingJiaVC.h"
+#import "ShangJiaCommentTVC.h"
+
 
 @interface PingJiaVC ()
 {
@@ -170,9 +172,17 @@
                                
                                 if (isSuccessful) {
                                     
+                                    ShangJiaModel *temModel = [[ShangJiaModel alloc]init];
+                                    temModel.username = _model.username;
+                                    
+                                    ShangJiaCommentTVC *_commentTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShangJiaCommentTVC"];
+                                    
+                                    _commentTVC.model = temModel;
+                                    
+                                    [self.navigationController pushViewController:_commentTVC animated:YES];
                                     NSLog(@"update success");
                                     
-                                    [self.navigationController popViewControllerAnimated:YES];
+//                                    [self.navigationController popViewControllerAnimated:YES];
                                     
                                     
                                 }

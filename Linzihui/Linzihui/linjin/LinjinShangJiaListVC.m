@@ -11,6 +11,8 @@
 #import "RegistShangjiaTVC.h"
 #import "ShangJiaModel.h"
 #import "TypeTableViewController.h"
+#import "BuyHistoryCell.h"
+
 
 @interface LinjinShangJiaListVC ()
 {
@@ -36,6 +38,11 @@
     UIButton *buyButton;
     
     BmobObject *myShangjia; //我的商家
+    
+    NSMutableArray *_muHistoryArray;
+    
+    
+    
     
     
     
@@ -63,6 +70,7 @@
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     
     _dataSource = [[NSMutableArray alloc]init];
+    _muHistoryArray = [[NSMutableArray alloc]init];
     
     UserModel *getmodel = [BmobHelper getCurrentUserModel];
     
@@ -120,6 +128,56 @@
     [self.footerView removeFromSuperview];
     
 }
+
+
+#pragma mark - 获取最近成交
+-(void)getCurrentBuy
+{
+    BmobQuery *queryhist = [BmobQuery queryWithClassName:kBuyShangPin];
+    
+    [queryhist whereKey:@"shangjia" equalTo:myShangjia];
+    [queryhist includeKey:@"address"];
+    [queryhist includeKey:@"buyer"];
+    
+//    [queryhist whereKey:@"status" greaterThan:[NSNumber numberWithInt:0]];
+    
+    
+    [queryhist findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        [MyProgressHUD dismiss];
+        
+        [self endHeaderRefresh];
+        [self endFooterRefresh];
+        
+        if (array.count > 0) {
+            
+            for (int i = 0; i< array.count; i++) {
+                
+                BmobObject *ob = [array objectAtIndex:i];
+                
+                BuyShangPinModel *model = [[BuyShangPinModel alloc]init];
+                
+                [model setValuesForKeysWithDictionary:[ob valueForKey:kBmobDataDic]];
+                
+                model.createdAt = ob.createdAt;
+                
+                [_muHistoryArray addObject:model];
+                
+                
+                
+            }
+            
+         
+            
+            
+        }
+        
+           [self.tableView reloadData];
+        
+        
+    }];
+}
+
 
 
 -(void)getMyShangjia
@@ -342,10 +400,14 @@
     
     if (isShowMine) {
         
+          [_muHistoryArray removeAllObjects];
+        
         [self getShangPin];
     }
     else
     {
+        [_muHistoryArray removeAllObjects];
+        
         [self loadData];
     }
    
@@ -463,10 +525,12 @@
         
             
         }
-           [self.tableView reloadData];
+         
             
         
         }
+          [self.tableView reloadData];
+        
         
     }];
 }
@@ -485,71 +549,77 @@
         [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
         
         
-    }
-    else //获取我出售记录
-    {
-        [query whereKey:@"shangjia" equalTo:myShangjia];
+        [query includeKey:@"shangpin"];
+        [query includeKey:@"shangjia"];
+        [query includeKey:@"address"];
         
         
-    }
-    
-    [query includeKey:@"shangpin"];
-    [query includeKey:@"shangjia"];
-    [query includeKey:@"address"];
-    
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-    
-        
-        [self endFooterRefresh];
-        [self endHeaderRefresh];
-        
-        
-        [MyProgressHUD dismiss];
-        
-        
-        if (pageIndex == 0) {
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
             
-          [_dataSource removeAllObjects];
-        }
-        
-        
-        if (array.count > 0  && isShowMine) {
-          
-            for (BmobObject *ob in array) {
+            
+            [self endFooterRefresh];
+            [self endHeaderRefresh];
+            
+            
+            [MyProgressHUD dismiss];
+            
+            
+            if (pageIndex == 0) {
                 
+                [_dataSource removeAllObjects];
+            }
+            
+            
+            if (array.count > 0  && isShowMine) {
                 
-                NSDictionary *data = [ob valueForKey:kBmobDataDic];
+                for (BmobObject *ob in array) {
+                    
+                    
+                    NSDictionary *data = [ob valueForKey:kBmobDataDic];
+                    
+                    BuyShangPinModel *model = [[BuyShangPinModel alloc]init];
+                    
+                    [model setValuesForKeysWithDictionary:data];
+                    
+                    NSDate *createdAt = [ob objectForKey:@"createdAt"];
+                    
+                    model.createdAt = createdAt;
+                    
+                    
+                    [_dataSource addObject:model];
+                    
+                    
+                    
+                }
                 
-                BuyShangPinModel *model = [[BuyShangPinModel alloc]init];
-                
-                [model setValuesForKeysWithDictionary:data];
-                
-                NSDate *createdAt = [ob objectForKey:@"createdAt"];
-                
-                model.createdAt = createdAt;
-                
-                
-                [_dataSource addObject:model];
                 
                 
                 
             }
+            else
+            {
+                NSLog(@"error:%@",error);
+                
+            }
             
-          
+            [self.tableView reloadData];
             
             
-        }
-        else
-        {
-            NSLog(@"error:%@",error);
-            
-        }
-        
-          [self.tableView reloadData];
+        }];
         
         
-    }];
+    }
+    else //获取我出售记录
+    {
+        
+        [self getCurrentBuy];
+        
+//        [query whereKey:@"shangjia" equalTo:myShangjia];
+        
+        
+    }
+    
+
     
     
 }
@@ -653,6 +723,13 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
+    if (isShowMine && !isShowHistory) {
+        
+        
+        return _muHistoryArray.count;
+        
+    }
     return _dataSource.count;
     
 }
@@ -665,6 +742,13 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (isShowMine && !isShowHistory) {
+        
+        
+        return 200;
+        
+    }
+    
     return 92;
     
 }
@@ -678,7 +762,35 @@
     if (isShowMine) {
         
         
+        if (!isShowHistory) //显示我出售
+        {
+            
+            BuyHistoryCell *historyCell = [tableView dequeueReusableCellWithIdentifier:@"BuyHistoryCell"];
+            
+            if (indexPath.row < _muHistoryArray.count) {
+                
+                BuyShangPinModel *model = [_muHistoryArray objectAtIndex:indexPath.section];
+                
+                historyCell.nameLabel.text = [model.buyer objectForKey:@"nickName"];
+                
+                historyCell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:model.createdAt];
+                historyCell.shangpinnamelabel.text = model.shangpinName;
+                historyCell.addresslabel.text = [model.address objectForKey:@"address"];
+                historyCell.priceLabel.text = [NSString stringWithFormat:@"%.2f元",model.price];
+                
+                
+                
+            }
+            
+            historyCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
+            return historyCell;
+        }
         
+        
+        
+        //显示我购买
         ShangPinCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShangPinCell"];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -763,9 +875,12 @@
         return cell;
          
         
-    }
-    else  //显示我出售
+     }
+    else
     {
+        
+   
+        
     ShangjiaListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShangjiaListCell"];
     
     ShangJiaModel *model = [_dataSource objectAtIndex:indexPath.section];
@@ -961,6 +1076,11 @@
     
 }
 
+
+-(void)sortData
+{
+    
+}
 
 
 

@@ -251,6 +251,9 @@
 		151671561BF972D900AD4C56 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 151671551BF972D900AD4C56 /* TencentOpenAPI.framework */; };
 		151943BC1C0050A400E4E711 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 151943BB1C0050A400E4E711 /* CommentModel.m */; };
 		151943BF1C00543300E4E711 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 151943BE1C00543300E4E711 /* CommentCell.m */; };
+		152010CC1CF026B70081008F /* ShangPinDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152010CB1CF026B70081008F /* ShangPinDetailViewController.m */; };
+		152010CF1CF02B1A0081008F /* ShangPinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 152010CE1CF02B1A0081008F /* ShangPinModel.m */; };
+		152010D21CF03AF10081008F /* CurrentBuyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152010D11CF03AF10081008F /* CurrentBuyTableView.m */; };
 		152553EC1CA187AB00896A97 /* ShengHuoQuanDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 152553EB1CA187AB00896A97 /* ShengHuoQuanDetail.m */; };
 		152579C61BF1872900F91C06 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C31BF1872900F91C06 /* EditPhotoViewController.m */; };
 		152579C71BF1872900F91C06 /* STScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 152579C51BF1872900F91C06 /* STScratchView.m */; };
@@ -1083,6 +1086,12 @@
 		151943BB1C0050A400E4E711 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		151943BD1C00543300E4E711 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		151943BE1C00543300E4E711 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		152010CA1CF026B70081008F /* ShangPinDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangPinDetailViewController.h; sourceTree = "<group>"; };
+		152010CB1CF026B70081008F /* ShangPinDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangPinDetailViewController.m; sourceTree = "<group>"; };
+		152010CD1CF02B1A0081008F /* ShangPinModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangPinModel.h; sourceTree = "<group>"; };
+		152010CE1CF02B1A0081008F /* ShangPinModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangPinModel.m; sourceTree = "<group>"; };
+		152010D01CF03AF10081008F /* CurrentBuyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentBuyTableView.h; sourceTree = "<group>"; };
+		152010D11CF03AF10081008F /* CurrentBuyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentBuyTableView.m; sourceTree = "<group>"; };
 		152553EA1CA187AB00896A97 /* ShengHuoQuanDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShengHuoQuanDetail.h; sourceTree = "<group>"; };
 		152553EB1CA187AB00896A97 /* ShengHuoQuanDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShengHuoQuanDetail.m; sourceTree = "<group>"; };
 		152579C21BF1872900F91C06 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
@@ -3138,6 +3147,10 @@
 				15421B0D1CEC309A0001799E /* BuyHistoryCell.m */,
 				15421B0F1CEC74C10001799E /* EditeShangJiaTVC.h */,
 				15421B101CEC74C10001799E /* EditeShangJiaTVC.m */,
+				152010CA1CF026B70081008F /* ShangPinDetailViewController.h */,
+				152010CB1CF026B70081008F /* ShangPinDetailViewController.m */,
+				152010D01CF03AF10081008F /* CurrentBuyTableView.h */,
+				152010D11CF03AF10081008F /* CurrentBuyTableView.m */,
 			);
 			name = linjinshangjia;
 			sourceTree = "<group>";
@@ -4462,6 +4475,8 @@
 				15126CFA1CDD5B63007FD64A /* BuyShangPinModel.m */,
 				1556DEFA1CE35868003CDE67 /* ShangJiaCommentModel.h */,
 				1556DEFB1CE35868003CDE67 /* ShangJiaCommentModel.m */,
+				152010CD1CF02B1A0081008F /* ShangPinModel.h */,
+				152010CE1CF02B1A0081008F /* ShangPinModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4652,6 +4667,7 @@
 				150F31BF1C0FEA5D00E5CC8B /* ZXUPCEANWriter.m in Sources */,
 				150F318A1C0FEA5D00E5CC8B /* ZXAbstractExpandedDecoder.m in Sources */,
 				150F313B1C0FEA5D00E5CC8B /* ZXSMSParsedResult.m in Sources */,
+				152010CF1CF02B1A0081008F /* ShangPinModel.m in Sources */,
 				15B7A4D21BE730320052115F /* MJRefreshLegendFooter.m in Sources */,
 				150F31EF1C0FEA5D00E5CC8B /* ZXMultiDetector.m in Sources */,
 				15B7A5B91BE7305D0052115F /* UIView+WebCacheOperation.m in Sources */,
@@ -4663,6 +4679,7 @@
 				15B7A5571BE730460052115F /* PSTCollectionViewLayout.m in Sources */,
 				150F31A31C0FEA5D00E5CC8B /* ZXRSSDataCharacter.m in Sources */,
 				15D336731CA7D8FE00E948B7 /* Reachability.m in Sources */,
+				152010CC1CF026B70081008F /* ShangPinDetailViewController.m in Sources */,
 				15B7A5511BE730460052115F /* PSTCollectionView.m in Sources */,
 				150F314E1C0FEA5D00E5CC8B /* ZXMonochromeRectangleDetector.m in Sources */,
 				159309421CAD10C4006272DB /* ErShouCommentCell.m in Sources */,
@@ -4710,6 +4727,7 @@
 				150F31D91C0FEA5D00E5CC8B /* ZXPDF417Writer.m in Sources */,
 				150F31E11C0FEA5D00E5CC8B /* ZXQRCodeFormatInformation.m in Sources */,
 				150F31331C0FEA5D00E5CC8B /* ZXGeoResultParser.m in Sources */,
+				152010D21CF03AF10081008F /* CurrentBuyTableView.m in Sources */,
 				150F31531C0FEA5D00E5CC8B /* ZXReedSolomonEncoder.m in Sources */,
 				152F40911C0C1EEB003C1C62 /* PersonCell.m in Sources */,
 				150F31381C0FEA5D00E5CC8B /* ZXProductResultParser.m in Sources */,

@@ -16,6 +16,7 @@
 #import "BuyHistoryCell.h"
 #import "BuyShangPinModel.h"
 #import "EditeShangJiaTVC.h"
+#import "CurrentBuyTableView.h"
 
 
 
@@ -28,7 +29,8 @@
     NSMutableArray *_muHistoryArray;
     
     
-    
+    UIBarButtonItem *common ; //关注按钮
+    BOOL hadGuanzhu ; //是否已关注
 }
 @end
 
@@ -50,6 +52,8 @@
     [self initBottomView];
     
     [self getCurrentBuy];
+    
+    [self checkFollow];
     
     
     if ([_model.username isEqualToString:[BmobUser getCurrentUser].username]) {
@@ -78,6 +82,42 @@
     
     [_myToolBar removeFromSuperview];
     
+}
+
+-(void)checkFollow
+{
+    BmobQuery *query = [BmobQuery queryForUser];
+    
+    [query whereKey:@"username" equalTo:_model.username];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (array.count > 0) {
+            
+            BmobObject *ob = [array firstObject];
+            
+            UserModel *_userModel = [[UserModel alloc]init];
+            
+            NSDictionary *dict = [ob valueForKey:kBmobDataDic];
+            
+            [_userModel setValuesForKeysWithDictionary:dict];
+            
+            [BmobHelper checkFollowTypeWithUserModel:_userModel result:^(UserModel *finalModel) {
+               
+                if (finalModel.followType == CheckTypeOnlyMyFollow  || finalModel.followType== CheckTypeFollowEachOther) {
+                    
+                    
+                    hadGuanzhu = YES;
+                    
+                    [common setTitle:@"取消关注"];
+                    
+                }
+                
+            }];
+        }
+    }];
+    
+ 
 }
 
 #pragma mark - 编辑商家
@@ -138,7 +178,7 @@
     
     
     
-    UIBarButtonItem *common = [[UIBarButtonItem alloc]initWithTitle:@"关注" style:UIBarButtonItemStylePlain target:self action:@selector(guanzhu)];
+    common = [[UIBarButtonItem alloc]initWithTitle:@"关注" style:UIBarButtonItemStylePlain target:self action:@selector(guanzhu)];
     
      UIBarButtonItem *pinjia = [[UIBarButtonItem alloc]initWithTitle:@"评价" style:UIBarButtonItemStylePlain target:self action:@selector(pinjia)];
     
@@ -168,6 +208,69 @@
 -(void)guanzhu
 {
     
+    if (hadGuanzhu) {
+        
+        BmobQuery *query = [BmobQuery queryForUser];
+        
+        [query whereKey:@"username" equalTo:_model.username];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            if (array.count > 0) {
+                
+                BmobObject *ob = [array firstObject];
+                
+                UserModel *_userModel = [[UserModel alloc]init];
+                
+                NSDictionary *dict = [ob valueForKey:kBmobDataDic];
+                
+                [_userModel setValuesForKeysWithDictionary:dict];
+                
+               [BmobHelper cancelFollowWithUserModel:_userModel username:[BmobUser getCurrentUser].username result:^(BOOL success) {
+                  
+                   
+                   
+                   [common setTitle:@"关注"];
+                   hadGuanzhu = NO;
+                   [CommonMethods showDefaultErrorString:@"取消关注成功"];
+                   
+               }];
+            }
+        }];
+    }
+    else
+    {
+        BmobQuery *query = [BmobQuery queryForUser];
+        
+        [query whereKey:@"username" equalTo:_model.username];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            if (array.count > 0) {
+                
+                BmobObject *ob = [array firstObject];
+                
+                UserModel *_userModel = [[UserModel alloc]init];
+                
+                NSDictionary *dict = [ob valueForKey:kBmobDataDic];
+                
+                [_userModel setValuesForKeysWithDictionary:dict];
+                
+                [BmobHelper addFollowWithFollowedUserModel:_userModel result:^(BOOL success) {
+                    
+                    if (success) {
+                        
+                        [common setTitle:@"取消关注"];
+                        hadGuanzhu = YES;
+                        [CommonMethods showDefaultErrorString:@"关注成功"];
+                        
+                    }
+                }];
+            }
+        }];
+    }
+
+
 }
 
 #pragma mark - 评价
@@ -281,11 +384,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (section == 3) {
-        
-        return _muHistoryArray.count;
-        
-    }
+  
     return 1;
     
 }
@@ -293,10 +392,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 3) {
-        
-        return 200;
-    }
+ 
     
     
     return 60;
@@ -308,10 +404,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    if (section == 2) {
-        
-        return 50;
-    }
+  
     
     
     return 1;
@@ -320,13 +413,13 @@
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     
-    if (section == 2) {
-        
-        UILabel *historyLabel = [CommonMethods labelWithText:@"   最近成交" textColor: kBlueBackColor font:FONT_15 textAligment:NSTextAlignmentLeft frame:CGRectMake(0, 0, ScreenWidth, 50)];
-        
-        return historyLabel;
-        
-    }
+//    if (section == 2) {
+//        
+//        UILabel *historyLabel = [CommonMethods labelWithText:@"   最近成交" textColor: kBlueBackColor font:FONT_15 textAligment:NSTextAlignmentLeft frame:CGRectMake(0, 0, ScreenWidth, 50)];
+//        
+//        return historyLabel;
+//        
+//    }
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
     
     view.backgroundColor = [UIColor clearColor];
@@ -340,28 +433,28 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 3) {
-        
-        BuyHistoryCell *historyCell = [tableView dequeueReusableCellWithIdentifier:@"BuyHistoryCell"];
-        
-        if (indexPath.row < _muHistoryArray.count) {
-            
-            BuyShangPinModel *model = [_muHistoryArray objectAtIndex:indexPath.row];
-            
-            historyCell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:model.createdAt];
-            historyCell.shangpinnamelabel.text = model.shangpinName;
-            historyCell.addresslabel.text = [model.address objectForKey:@"address"];
-            historyCell.priceLabel.text = [NSString stringWithFormat:@"%.2f元",model.price];
-            
-            
-            
-        }
-        
-        return historyCell;
-        
-        
-        
-    }
+//    if (indexPath.section == 3) {
+//        
+//        BuyHistoryCell *historyCell = [tableView dequeueReusableCellWithIdentifier:@"BuyHistoryCell"];
+//        
+//        if (indexPath.row < _muHistoryArray.count) {
+//            
+//            BuyShangPinModel *model = [_muHistoryArray objectAtIndex:indexPath.row];
+//            
+//            historyCell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:model.createdAt];
+//            historyCell.shangpinnamelabel.text = model.shangpinName;
+//            historyCell.addresslabel.text = [model.address objectForKey:@"address"];
+//            historyCell.priceLabel.text = [NSString stringWithFormat:@"%.2f元",model.price];
+//            
+//            
+//            
+//        }
+//        
+//        return historyCell;
+//        
+//        
+//        
+//    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
     
     
@@ -389,6 +482,11 @@
             cell.textLabel.text = @"商品";
         }
             break;
+        case 3:
+        {
+            cell.textLabel.text = @"最近成交";
+            
+        }
       
             
         default:
@@ -436,6 +534,15 @@
             
         }
             break;
+        case 3:
+        {
+            CurrentBuyTableView *_currentBuy = [self.storyboard instantiateViewControllerWithIdentifier:@"CurrentBuyTableView"];
+            
+            _currentBuy.model = _model;
+            
+            [self.navigationController pushViewController:_currentBuy animated:YES];
+            
+        }
             
             
         default:

@@ -12,6 +12,14 @@
 {
     UIImage *_shangpinImage;
     
+    UIImage *_photo_1_image;
+    UIImage *_photo_2_image;
+    UIImage *_photo_3_image;
+    
+    NSInteger showType;
+    
+    
+    
 }
 @end
 
@@ -81,9 +89,44 @@
     
     image = [CommonMethods autoSizeImageWithImage:image];
     
-    [_uploadPhotoButton setImage:image forState:UIControlStateNormal];
     
-    _shangpinImage = image;
+    switch (showType) {
+        case 0:
+        {
+            [_uploadPhotoButton setImage:image forState:UIControlStateNormal];
+            
+            _shangpinImage = image;
+        }
+            break;
+        case 1:
+        {
+            
+            [_photo_1_button setImage:image forState:UIControlStateNormal];
+            _photo_1_image = image;
+            
+        }
+            break;
+        case 2:
+        {
+            [_photo_2_button setImage:image forState:UIControlStateNormal];
+            
+            _photo_2_image = image;
+            
+        }
+            
+            break;
+        case 3:
+        {
+            [_photo_3_button setImage:image forState:UIControlStateNormal];
+            _photo_3_image = image;
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+ 
     
     
     [picker dismissViewControllerAnimated:YES completion:^{
@@ -99,8 +142,8 @@
     
 }
 
-- (IBAction)uploadPhotoAction:(id)sender {
-    
+-(void)showActionSheet
+{
     UIActionSheet *  _pickPhotoActionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
     
     [_pickPhotoActionSheet addButtonWithTitle:@"相册图片描述"];
@@ -114,6 +157,18 @@
     _pickPhotoActionSheet.tag = 99;
     
     [_pickPhotoActionSheet showInView:self.view];
+    
+    
+}
+
+- (IBAction)uploadPhotoAction:(id)sender {
+    
+    
+    showType = 0;
+    
+    [self showActionSheet];
+    
+  
     
 }
 - (IBAction)okAction:(id)sender {
@@ -159,13 +214,15 @@
 {
     [MyProgressHUD showProgress];
     
+
+    
     [CommonMethods upLoadPhotos:@[_shangpinImage] resultBlock:^(BOOL success, NSArray *results) {
        
         if (success) {
             
             NSString *photourl =[results firstObject];
             
-            [self summitWithphotoURL:photourl];
+            [self uploadPhotos:photourl];
             
         }
         
@@ -183,11 +240,72 @@
     }];
 }
 
--(void)summitWithphotoURL:(NSString *)photourl
+-(void)uploadPhotos:(NSString*)headphotoURL
+{
+    NSMutableArray *muPhotosArray = [[NSMutableArray alloc]init];
+    
+    
+    if (_photo_1_image) {
+        
+        [muPhotosArray addObject:_photo_1_image];
+    }
+    
+    if (_photo_2_image) {
+        
+        [muPhotosArray addObject:_photo_2_image];
+        
+    }
+    
+    if (_photo_3_image) {
+        
+        [muPhotosArray addObject:_photo_3_image];
+        
+    }
+    
+    if (muPhotosArray.count > 0) {
+        
+        [CommonMethods upLoadPhotos:muPhotosArray resultBlock:^(BOOL success, NSArray *results) {
+            
+            if (success) {
+                
+                
+                [self summitWithphotoURL:headphotoURL photoArray:results];
+                
+                
+            }
+            
+            else
+            {
+                
+                [MyProgressHUD dismiss];
+                
+                [CommonMethods showDefaultErrorString:@"商品图片上传失败,请重试"];
+                
+                
+            }
+            
+            
+        }];
+    }
+    else
+    {
+        [self summitWithphotoURL:headphotoURL photoArray:nil];
+        
+    }
+    
+}
+
+-(void)summitWithphotoURL:(NSString *)photourl photoArray:(NSArray*)photoArray
 {
     BmobObject *OB = [BmobObject objectWithClassName:kShangPin];
     
     [OB setObject:photourl forKey:@"photos"];
+    
+    if (photoArray.count > 0) {
+        
+        [OB setObject:photoArray forKey:@"photoArray"];
+        
+    }
     
     [OB setObject:_shangpinnameLabel.text forKey:@"name"];
     
@@ -216,6 +334,32 @@
         }
         
     }];
+    
+}
+- (IBAction)photo_1_action:(id)sender {
+    
+    
+    showType = 1;
+    
+    [self showActionSheet];
+    
+}
+
+- (IBAction)photo_2_action:(id)sender {
+    
+    showType = 2;
+    
+    [self showActionSheet];
+    
+    
+}
+
+- (IBAction)photo_3_action:(id)sender {
+    
+    showType = 3;
+    
+    [self showActionSheet];
+    
     
 }
 @end

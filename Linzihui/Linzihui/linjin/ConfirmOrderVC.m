@@ -37,7 +37,7 @@
 
 -(void)showData
 {
-    _nameLabel.text = [_shangpinDict objectForKey:@"des"];
+    _nameLabel.text = [_shangpinDict objectForKey:@"name"];
     
     _priceLabel.text = [NSString stringWithFormat:@"%.2f元",[[_shangpinDict objectForKey:@"price"]floatValue]];
     
@@ -69,6 +69,8 @@
     BmobObject *shangjiaOB = [BmobObject objectWithoutDatatWithClassName:kShangJia objectId:[_shangjiaModel objectId]];
     
      buyShangpinOB = [BmobObject objectWithClassName:kBuyShangPin];
+    
+    [buyShangpinOB setObject:[BmobUser getCurrentUser] forKey:@"buyer"];
     
     [buyShangpinOB setObject:shangpinOB forKey:@"shangpin"];
     [buyShangpinOB setObject:shangjiaOB forKey:@"shangjia"];

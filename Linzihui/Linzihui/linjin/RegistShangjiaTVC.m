@@ -34,6 +34,9 @@
     self.title = @"填写资料";
     
     
+      [CommonMethods showDefaultErrorString:@"提示:为了避免与本人个人信息混杂，请用另外一个手机号重新注册商家"];
+    
+    
     _headerView.frame = CGRectMake(0, 0, ScreenWidth, 112);
     
     _footerView.frame = CGRectMake(0, 0, ScreenWidth, 100);
@@ -57,7 +60,7 @@
 {
     [super viewWillAppear:animated];
     
-    [CommonMethods showDefaultErrorString:@"提示:为了避免与本人个人信息混杂，请用另外一个手机号重新注册商家"];
+  
     
     
 }

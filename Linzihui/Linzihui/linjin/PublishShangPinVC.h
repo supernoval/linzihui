@@ -25,6 +25,21 @@
 @property (weak, nonatomic) IBOutlet UITextView *shangpinDesTV;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *photo_1_button;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *photo_2_button;
+
+@property (weak, nonatomic) IBOutlet UIButton *photo_3_button;
+
+
+- (IBAction)photo_1_action:(id)sender;
+
+- (IBAction)photo_2_action:(id)sender;
+
+- (IBAction)photo_3_action:(id)sender;
+
+
 
 @property (weak, nonatomic) IBOutlet UITextField *shangpinpriceLabel;
 
