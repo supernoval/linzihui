@@ -551,9 +551,8 @@
         [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
         
         
-        [query includeKey:@"shangpin"];
-//        [query includeKey:@"shangjia"];
-        [query includeKey:@"address"];
+        [query includeKey:@"shangpin,address,shangjia"];
+
         
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {

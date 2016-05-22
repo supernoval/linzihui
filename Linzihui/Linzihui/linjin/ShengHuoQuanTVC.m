@@ -324,20 +324,16 @@ static NSString *commentCellID = @"CommentCell";
     else if(_isShuRenQuan == 0)
     {
         
-        if (_myFollows.count == 0) {
-            
-            
-            [self endHeaderRefresh];
-            [self endFooterRefresh];
-            
-            return;
-            
-        }
+     
         [query whereKey:@"type" equalTo:@0];
         //    附近 3公里 条件限制
         [query whereKey:@"location" nearGeoPoint:_currentPoint  withinKilometers:3.0];
         
-        [query whereKey:@"username" containedIn:_myFollows];
+        NSMutableArray *muarray = [[NSMutableArray alloc]init];
+        [muarray addObject:[BmobUser getCurrentUser].username];
+        [muarray addObjectsFromArray:_myFollows];
+        
+        [query whereKey:@"username" containedIn:muarray];
         
         
     }

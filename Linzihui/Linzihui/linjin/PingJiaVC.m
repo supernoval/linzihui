@@ -10,11 +10,16 @@
 #import "ShangJiaCommentTVC.h"
 
 
-@interface PingJiaVC ()
+@interface PingJiaVC ()<UIGestureRecognizerDelegate>
 {
     UIControl *control;
     
     int  starNum;
+    
+    UIGestureRecognizer *_starGestureRecognizer;
+    
+    UITapGestureRecognizer *_tap;
+    
     
 }
 @end
@@ -29,14 +34,30 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.starView.clipsToBounds = YES;
+//    _starView.clipsToBounds = YES;
 
-    self.touchView = [[UIView alloc]initWithFrame:self.starView.frame];
+    _starView.layer.masksToBounds = YES;
+    
+    self.touchView = [[UIView alloc]initWithFrame:_startImageView.frame];
     
     self.touchView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.touchView];
     
+    
+    _starGestureRecognizer = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(change)];
+    
+    _starGestureRecognizer.delegate = self;
+    
+//    [self.touchView addGestureRecognizer:_starGestureRecognizer];
+    
+    
+    _tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(change)];
+    
+    _tap.delegate = self;
+    
+    
+    [_touchView addGestureRecognizer:_tap];
     
   
     
@@ -59,36 +80,86 @@
     
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+-(void)change
 {
     
 }
 
--(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
 
+#pragma mark - UIGestureRecognizerDelegate
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+   
+//    if (gestureRecognizer == _tap) {
+//        
+//        
+//  
+//    
+//    CGPoint point = [touch locationInView:self.touchView];
+//    
+//    if (CGRectContainsPoint(self.touchView.frame, point)) {
+//        
+//        
+//        starNum = fabs(((NSInteger)(point.x - self.starView.frame.origin.x)/30.0) +1);
+//        
+//        if (starNum > 5) {
+//            
+//            starNum = 5;
+//            
+//        }
+//        
+//        _starView.hidden = NO;
+//        
+//        _starView.clipsToBounds = YES;
+//        
+//        _starView.frame = CGRectMake(self.starView.frame.origin.x, self.starView.frame.origin.y, starNum*30, 30);
+//        
+//        NSLog(@"%.2f,y:%.2f,%ld",point.x,point.y,(long)starNum);
+//        
+//    }
+//        
+//     }
+    
+    return YES;
+    
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
     UITouch *touch = [touches anyObject];
     
-    CGPoint point = [touch locationInView:self.view];
+    CGPoint point = [touch locationInView:self.touchView];
     
     if (CGRectContainsPoint(self.touchView.frame, point)) {
         
         
-        starNum = fabs(((NSInteger)(point.x - self.starView.frame.origin.x)/30.0) +1);
+        starNum = fabs(((NSInteger)(point.x - self.startImageView.frame.origin.x)/30.0) +1);
         
         if (starNum > 5) {
             
             starNum = 5;
             
         }
+    
+  
+        _startImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"star_rank_%d",starNum]];
+            
         
-        self.starView.hidden = NO;
+      
+ 
         
-        self.starView.frame = CGRectMake(self.starView.frame.origin.x, self.starView.frame.origin.y, starNum*30, 30);
+        
+    
         
         NSLog(@"%.2f,y:%.2f,%ld",point.x,point.y,(long)starNum);
         
     }
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+
+   
 }
 
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

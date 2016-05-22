@@ -17,6 +17,9 @@
 
 @property (weak, nonatomic) IBOutlet UIView *starView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *startImageView;
+
+
 @property (strong, nonatomic)  UIView *touchView;
 
 

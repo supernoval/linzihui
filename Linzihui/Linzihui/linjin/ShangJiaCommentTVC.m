@@ -43,6 +43,8 @@
     
     [query includeKey:@"publisher"];
     
+    [query orderByDescending:@"createdAt"];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
         [MyProgressHUD dismiss];
@@ -107,7 +109,7 @@
         
     }
     
-    return 80 + height;
+    return 80 + height +20;
     
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -131,7 +133,7 @@
         height = 21;
         
     }
-    _CommentCell.contentHeighConstants.constant = height;
+    _CommentCell.contentHeighConstants.constant = height+20;
     
     [_CommentCell.headImageView sd_setImageWithURL:[NSURL URLWithString:[model.publisher objectForKey:@"headImageURL"]] placeholderImage:kDefaultHeadImage];
     

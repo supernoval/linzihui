@@ -38,7 +38,7 @@
         desHeight = 21;
         
     }
-    _heightConstraints.constant = desHeight;
+    _heightConstraints.constant = desHeight +20;
     
   
     _photoView.photoItemArray = _model.photoArray;
