@@ -85,6 +85,7 @@
 //位置
 #define kCurrentLatitude   @"CurrentLatitude"
 #define kCurrentLongitude  @"CurrentLongitude"
+#define kHadSeletedNormalAddress  @"HadSeletedNormalAddress"
 
 
 

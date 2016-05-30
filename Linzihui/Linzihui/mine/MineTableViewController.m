@@ -13,6 +13,7 @@
 #import "ChangePersonInfoVC.h"
 #import "EditPhotoViewController.h"
 #import "ShowQRViewController.h"
+#import "LocationViewController.h"
 
 
 static NSInteger photoActionSheetTag = 99;
@@ -20,7 +21,7 @@ static NSInteger photoActionSheetTag = 99;
 static NSInteger sextActionSheetTag  = 100;
 
 
-@interface MineTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,EditPhotoViewDelegate,UIAlertViewDelegate>
+@interface MineTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,EditPhotoViewDelegate,UIAlertViewDelegate,LocationViewDelegate>
 {
     NSArray *_titlesArray;
     
@@ -73,7 +74,7 @@ static NSInteger sextActionSheetTag  = 100;
 
 -(NSArray *)titlesArray
 {
-    NSArray *titles = @[@"头像",@"昵称",@"邻号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"小区",@"个性签名"];
+    NSArray *titles = @[@"头像",@"昵称",@"邻号",@"邀请码",@"二维码名片",@"我的地址",@"性别",@"小区",@"常住地址",@"个性签名"];
     
     return titles;
     
@@ -138,7 +139,7 @@ static NSInteger sextActionSheetTag  = 100;
         case 1:
         {
             
-            return 3;
+            return 4;
         }
             
             break;
@@ -310,7 +311,25 @@ static NSInteger sextActionSheetTag  = 100;
                     }
                 }
                     break;
-                case 2:  //个性签名
+                case 2: // 常住地址
+                {
+                    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadSeletedNormalAddress]) {
+                        
+                        
+                        contentLabel.text = [NSString stringWithFormat:@"经度:%.3f  纬度:%.3f",[[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLongitude],[[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude]];
+                        
+                        
+                        
+                    }
+                    else
+                    {
+                        contentLabel.text = @"未设置";
+                        
+                    }
+                    
+                }
+                    break;
+                case 3:  //个性签名
                 {
                     if (_model.selfComment) {
                         
@@ -499,7 +518,20 @@ static NSInteger sextActionSheetTag  = 100;
 //                [self.navigationController pushViewController:_changeInfoVC animated:YES];
             }
                 break;
-            case 2:  //个性签名
+                
+            case 2:
+            {
+                LocationViewController *_locateVC = [LocationViewController defaultLocation];
+                
+                _locateVC.delegate = self;
+                _locateVC.showSearchBar = YES;
+                
+                
+                [self.navigationController pushViewController:_locateVC animated:YES];
+            }
+                break;
+                
+            case 3:  //个性签名
             {
                 ChangePersonInfoVC *_changeInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePersonInfoVC"];
                 
@@ -728,4 +760,48 @@ static NSInteger sextActionSheetTag  = 100;
         }
     }
 }
+
+#pragma mark - LocationViewDelegate
+-(void)sendLocationLatitude:(double)latitude longitude:(double)longitude andAddress:(NSString *)address
+{
+    
+    [[NSUserDefaults standardUserDefaults ] setFloat:latitude forKey:kCurrentLatitude];
+    
+    [[NSUserDefaults standardUserDefaults] setFloat:longitude forKey:kCurrentLongitude];
+    
+    [[NSUserDefaults standardUserDefaults]  synchronize];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
+        
+        BmobUser *currentUser = [BmobUser getCurrentUser];
+        
+        BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:longitude WithLatitude:latitude];
+        
+        [currentUser setObject:point forKey:@"location"];
+        
+        
+        [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            if (isSuccessful) {
+                
+                NSLog(@"地理坐标保存成功");
+                
+               
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHadSeletedNormalAddress];
+                
+                [[NSUserDefaults standardUserDefaults]  synchronize];
+                
+                
+            }
+            else
+            {
+                NSLog(@"地理位置保存失败 ：%@",error);
+                
+                
+            }
+        }];
+    }
+}
+
+
 @end

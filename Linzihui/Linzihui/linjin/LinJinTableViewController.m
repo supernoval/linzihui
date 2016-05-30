@@ -17,6 +17,9 @@
 #import "LinJinHuZhuListTVC.h"
 #import "LinjinShangJiaListVC.h"
 
+#import "LocationViewController.h"
+
+
 
 
 
@@ -25,7 +28,7 @@ static NSString *CellID = @"CellID";
 
 
 
-@interface LinJinTableViewController ()
+@interface LinJinTableViewController ()<UIAlertViewDelegate,LocationViewDelegate>
 {
     NSArray *_titlesArray;
 }
@@ -43,6 +46,26 @@ static NSString *CellID = @"CellID";
 //   _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"},@{@"title":@"邻近二手",@"image":@"linjinershou"},@{@"title":@"邻近互助",@"image":@"linjinhuzhu"},@{@"title":@"邻近商家",@"image":@"lingjids"},@{@"title":@"红包大战",@"image":@"lingjids"},@{@"title":@"互助买卖房",@"image":@"lingjids"},@{@"title":@"团购新房",@"image":@"lingjids"}];
     
      _titlesArray = @[@{@"title":@"邻近动态",@"image":@"llni"},@{@"title":@"邻近活动",@"image":@"dss"},@{@"title":@"邻近群组",@"image":@"lingjids"},@{@"title":@"邻近二手",@"image":@"linjinershou"},@{@"title":@"邻近互助",@"image":@"linjinhuzhu"},@{@"title":@"邻近商家",@"image":@"linjinshangjia"}];
+    
+    
+    
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear: animated];
+    
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kHadSeletedNormalAddress]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请设置常用地址" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
+        
+        [alert show];
+        
+        
+    }
+    
     
     
 }
@@ -230,6 +253,65 @@ static NSString *CellID = @"CellID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==1) {
+        
+        LocationViewController *_locateVC = [LocationViewController defaultLocation];
+        
+        _locateVC.delegate = self;
+        _locateVC.showSearchBar = YES;
+        
+        
+        [self.navigationController pushViewController:_locateVC animated:YES];
+    }
+}
+
+
+#pragma mark - LocationViewDelegate
+-(void)sendLocationLatitude:(double)latitude longitude:(double)longitude andAddress:(NSString *)address
+{
+    
+    [[NSUserDefaults standardUserDefaults ] setFloat:latitude forKey:kCurrentLatitude];
+    
+    [[NSUserDefaults standardUserDefaults] setFloat:longitude forKey:kCurrentLongitude];
+    
+    [[NSUserDefaults standardUserDefaults]  synchronize];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
+        
+        BmobUser *currentUser = [BmobUser getCurrentUser];
+        
+        BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:longitude WithLatitude:latitude];
+        
+        [currentUser setObject:point forKey:@"location"];
+        
+        
+        [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            if (isSuccessful) {
+                
+                NSLog(@"地理坐标保存成功");
+                
+                
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHadSeletedNormalAddress];
+                
+                [[NSUserDefaults standardUserDefaults]  synchronize];
+                
+                
+            }
+            else
+            {
+                NSLog(@"地理位置保存失败 ：%@",error);
+                
+                
+            }
+        }];
+    }
+}
+
 
 
 - (void)didReceiveMemoryWarning {

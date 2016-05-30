@@ -410,7 +410,7 @@ static NSString *headerCellID = @"headerCell";
     
     if (indexPath.row == 0) {
         
-        return 245;
+        return 362;
         
     }
     if (indexPath.row == 2) {
@@ -431,14 +431,14 @@ static NSString *headerCellID = @"headerCell";
         return 54;
         
     }
-    return 10;
+    return 20;
     
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     
-    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 10)];
+    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
     
     
     blankView.backgroundColor = [UIColor clearColor];

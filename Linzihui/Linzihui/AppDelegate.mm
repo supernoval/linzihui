@@ -315,36 +315,45 @@
         
         [_locationManager stopUpdatingLocation];
         
-        [[NSUserDefaults standardUserDefaults ] setFloat:_location.coordinate.latitude forKey:kCurrentLatitude];
-        
-        [[NSUserDefaults standardUserDefaults] setFloat:_location.coordinate.longitude forKey:kCurrentLongitude];
-        
-        [[NSUserDefaults standardUserDefaults]  synchronize];
-        
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
-            
-            BmobUser *currentUser = [BmobUser getCurrentUser];
-            
-            BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:_location.coordinate.longitude WithLatitude:_location.coordinate.latitude];
-            
-            [currentUser setObject:point forKey:@"location"];
+        if (![[NSUserDefaults standardUserDefaults]boolForKey:kHadSeletedNormalAddress]) {
             
             
-            [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-               
-                if (isSuccessful) {
+            
+            [[NSUserDefaults standardUserDefaults ] setFloat:_location.coordinate.latitude forKey:kCurrentLatitude];
+            
+            [[NSUserDefaults standardUserDefaults] setFloat:_location.coordinate.longitude forKey:kCurrentLongitude];
+            
+            [[NSUserDefaults standardUserDefaults]  synchronize];
+            
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
+                
+                BmobUser *currentUser = [BmobUser getCurrentUser];
+                
+                BmobGeoPoint *point = [[BmobGeoPoint alloc]initWithLongitude:_location.coordinate.longitude WithLatitude:_location.coordinate.latitude];
+                
+                [currentUser setObject:point forKey:@"location"];
+                
+                
+                [currentUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                     
-                    NSLog(@"地理坐标保存成功");
-                    
-                }
-                else
-                {
-                    NSLog(@"地理位置保存失败 ：%@",error);
-                    
-                    
-                }
-            }];
+                    if (isSuccessful) {
+                        
+                        NSLog(@"地理坐标保存成功");
+                        
+                    }
+                    else
+                    {
+                        NSLog(@"地理位置保存失败 ：%@",error);
+                        
+                        
+                    }
+                }];
+            }
+            
         }
+        
+        
+ 
         
     }
 }
