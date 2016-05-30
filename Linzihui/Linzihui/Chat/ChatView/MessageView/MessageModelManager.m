@@ -63,6 +63,8 @@
                 NSString *headImageURL = [ob objectForKey:@"headImageURL"];
                 
                 model.headImageURL = [NSURL URLWithString:headImageURL];
+                model.nickName = [ob objectForKey:@"nickName"];
+                
                 
             }
             else

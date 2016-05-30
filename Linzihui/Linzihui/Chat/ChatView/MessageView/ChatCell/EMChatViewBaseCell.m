@@ -39,6 +39,9 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
         _headImageView.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_headImageView];
         
+//        _headButton = [[UIButton alloc]initWithFrame:_headImageView.frame];
+        
+        
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.backgroundColor = [UIColor clearColor];
         _nameLabel.textColor = [UIColor grayColor];
@@ -80,10 +83,10 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
 {
     _messageModel = messageModel;
     
-    _nameLabel.hidden = (messageModel.messageType == eMessageTypeChat);
+//    _nameLabel.hidden = (messageModel.messageType == eMessageTypeChat);
     
     
-    [self.headImageView sd_setImageWithURL:_messageModel.headImageURL placeholderImage:kDefaultHeadImage];
+//    [self.headImageView sd_setImageWithURL:_messageModel.headImageURL placeholderImage:kDefaultHeadImage];
 }
 
 #pragma mark - private

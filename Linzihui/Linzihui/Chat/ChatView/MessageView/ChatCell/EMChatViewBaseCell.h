@@ -30,8 +30,7 @@ extern NSString *const kRouterEventChatHeadImageTapEventName;
 
 @interface EMChatViewBaseCell : UITableViewCell
 {
-    UIImageView *_headImageView;
-    UILabel *_nameLabel;
+    
     EMChatBaseBubbleView *_bubbleView;
     
     CGFloat _nameLabelHeight;
@@ -40,8 +39,9 @@ extern NSString *const kRouterEventChatHeadImageTapEventName;
 
 @property (nonatomic, strong) MessageModel *messageModel;
 
+@property (nonatomic,strong ) UIButton *headButton; // 头像按钮
 @property (nonatomic, strong) UIImageView *headImageView;       //头像
-@property (nonatomic, strong) UILabel *nameLabel;               //姓名（暂时不支持显示）
+@property (nonatomic, strong) UILabel *nameLabel;               //姓名
 @property (nonatomic, strong) EMChatBaseBubbleView *bubbleView;   //内容区域
 
 - (id)initWithMessageModel:(MessageModel *)model reuseIdentifier:(NSString *)reuseIdentifier;

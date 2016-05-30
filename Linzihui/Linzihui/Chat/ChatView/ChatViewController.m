@@ -629,7 +629,26 @@
                 cell.backgroundColor = [UIColor clearColor];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
+            
             cell.messageModel = model;
+      
+            
+            BmobQuery *query = [BmobQuery queryForUser];
+            [query whereKey:@"username" equalTo:model.username];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+               
+                if (array.count >0) {
+                 
+                    BmobObject *ob = [array firstObject];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.nameLabel.text = [ob objectForKey:@"nickName"];
+                    });
+            
+                    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:[ob objectForKey:@"headImageURL"]] placeholderImage:kDefaultHeadImage];
+                    
+                }
+            }];
             
             return cell;
         }
@@ -770,8 +789,17 @@
 
 - (void)chatHeadImagePressed:(MessageModel *)model
 {
-//    UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:model.username];
-//    [self.navigationController pushViewController:userprofile animated:YES];
+    
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    PersonInfoViewController*_personInfoVC = [SB instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+    
+    _personInfoVC.username = model.username;
+    _personInfoVC.isShowed = YES;
+    
+    
+    [self.navigationController pushViewController:_personInfoVC animated:YES];
+    
+
 }
 
 //链接被点击
@@ -1592,16 +1620,16 @@
             }
             
             MessageModel *model = [MessageModelManager modelWithMessage:message];
-            if ([_delelgate respondsToSelector:@selector(nickNameWithChatter:)]) {
-                NSString *showName = [_delelgate nickNameWithChatter:model.username];
-                model.nickName = showName?showName:model.username;
-            }else {
-                model.nickName = model.username;
-            }
-            
-            if ([_delelgate respondsToSelector:@selector(avatarWithChatter:)]) {
-                model.headImageURL = [NSURL URLWithString:[_delelgate avatarWithChatter:model.username]];
-            }
+//            if ([_delelgate respondsToSelector:@selector(nickNameWithChatter:)]) {
+//                NSString *showName = [_delelgate nickNameWithChatter:model.username];
+//                model.nickName = showName?showName:model.nickName;
+//            }else {
+//                model.nickName = model.nickName;
+//            }
+//            
+//            if ([_delelgate respondsToSelector:@selector(avatarWithChatter:)]) {
+//                model.headImageURL = [NSURL URLWithString:[_delelgate avatarWithChatter:model.username]];
+//            }
             
    
             

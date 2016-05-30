@@ -114,8 +114,8 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     [super setMessageModel:model];
     
     if (model.messageType != eMessageTypeChat) {
-        _nameLabel.text = model.nickName;
-        _nameLabel.hidden = model.isSender;
+//         self.nameLabel.text = model.nickName;
+        self.nameLabel.hidden = model.isSender;
     }
     
     _bubbleView.model = self.messageModel;
