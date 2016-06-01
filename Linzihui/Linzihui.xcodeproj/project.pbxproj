@@ -357,6 +357,13 @@
 		1593093F1CAD0DEB006272DB /* ErShouDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1593093E1CAD0DEB006272DB /* ErShouDetailTVC.m */; };
 		159309421CAD10C4006272DB /* ErShouCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 159309411CAD10C4006272DB /* ErShouCommentCell.m */; };
 		15A05BC81C59E0F2002BBAD3 /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A05BC71C59E0F2002BBAD3 /* ActivityDetailViewController.m */; };
+		15A095A31CFE045E001F52B1 /* QunBaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095A21CFE045E001F52B1 /* QunBaTableViewController.m */; };
+		15A095A61CFE189C001F52B1 /* QunBaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095A51CFE189C001F52B1 /* QunBaTableViewCell.m */; };
+		15A095A91CFE1B58001F52B1 /* PulishTieZiTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095A81CFE1B58001F52B1 /* PulishTieZiTVC.m */; };
+		15A095AC1CFE3026001F52B1 /* TieZiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095AB1CFE3026001F52B1 /* TieZiModel.m */; };
+		15A095AF1CFE374D001F52B1 /* TieZiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095AE1CFE374D001F52B1 /* TieZiDetailViewController.m */; };
+		15A095B21CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095B11CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m */; };
+		15A095B51CFF8915001F52B1 /* TieZiReplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095B41CFF8915001F52B1 /* TieZiReplayCell.m */; };
 		15AB5AA81C140B5B0070F6DA /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */; };
 		15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */; };
 		15AB5AAF1C1715440070F6DA /* GroupChatListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */; };
@@ -1266,6 +1273,20 @@
 		159309411CAD10C4006272DB /* ErShouCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouCommentCell.m; sourceTree = "<group>"; };
 		15A05BC61C59E0F2002BBAD3 /* ActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailViewController.h; sourceTree = "<group>"; };
 		15A05BC71C59E0F2002BBAD3 /* ActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailViewController.m; sourceTree = "<group>"; };
+		15A095A11CFE045E001F52B1 /* QunBaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QunBaTableViewController.h; sourceTree = "<group>"; };
+		15A095A21CFE045E001F52B1 /* QunBaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QunBaTableViewController.m; sourceTree = "<group>"; };
+		15A095A41CFE189C001F52B1 /* QunBaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QunBaTableViewCell.h; sourceTree = "<group>"; };
+		15A095A51CFE189C001F52B1 /* QunBaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QunBaTableViewCell.m; sourceTree = "<group>"; };
+		15A095A71CFE1B58001F52B1 /* PulishTieZiTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulishTieZiTVC.h; sourceTree = "<group>"; };
+		15A095A81CFE1B58001F52B1 /* PulishTieZiTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulishTieZiTVC.m; sourceTree = "<group>"; };
+		15A095AA1CFE3026001F52B1 /* TieZiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TieZiModel.h; sourceTree = "<group>"; };
+		15A095AB1CFE3026001F52B1 /* TieZiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TieZiModel.m; sourceTree = "<group>"; };
+		15A095AD1CFE374D001F52B1 /* TieZiDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TieZiDetailViewController.h; sourceTree = "<group>"; };
+		15A095AE1CFE374D001F52B1 /* TieZiDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TieZiDetailViewController.m; sourceTree = "<group>"; };
+		15A095B01CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TieZiDetailCellTableViewCell.h; sourceTree = "<group>"; };
+		15A095B11CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TieZiDetailCellTableViewCell.m; sourceTree = "<group>"; };
+		15A095B31CFF8915001F52B1 /* TieZiReplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TieZiReplayCell.h; sourceTree = "<group>"; };
+		15A095B41CFF8915001F52B1 /* TieZiReplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TieZiReplayCell.m; sourceTree = "<group>"; };
 		15AB5AA61C140B5B0070F6DA /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		15AB5AAA1C140F030070F6DA /* YaoYiYaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoYiYaoViewController.h; sourceTree = "<group>"; };
@@ -3234,6 +3255,25 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		15A095A01CFE03B3001F52B1 /* qunba */ = {
+			isa = PBXGroup;
+			children = (
+				15A095A11CFE045E001F52B1 /* QunBaTableViewController.h */,
+				15A095A21CFE045E001F52B1 /* QunBaTableViewController.m */,
+				15A095A41CFE189C001F52B1 /* QunBaTableViewCell.h */,
+				15A095A51CFE189C001F52B1 /* QunBaTableViewCell.m */,
+				15A095A71CFE1B58001F52B1 /* PulishTieZiTVC.h */,
+				15A095A81CFE1B58001F52B1 /* PulishTieZiTVC.m */,
+				15A095AD1CFE374D001F52B1 /* TieZiDetailViewController.h */,
+				15A095AE1CFE374D001F52B1 /* TieZiDetailViewController.m */,
+				15A095B01CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.h */,
+				15A095B11CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m */,
+				15A095B31CFF8915001F52B1 /* TieZiReplayCell.h */,
+				15A095B41CFF8915001F52B1 /* TieZiReplayCell.m */,
+			);
+			name = qunba;
+			sourceTree = "<group>";
+		};
 		15AB5AA41C140B210070F6DA /* fuchuang */ = {
 			isa = PBXGroup;
 			children = (
@@ -3890,6 +3930,7 @@
 		15B7A5DC1BE74E490052115F /* linjin */ = {
 			isa = PBXGroup;
 			children = (
+				15A095A01CFE03B3001F52B1 /* qunba */,
 				156D54221CCFB3E900C04DC0 /* linjinshangjia */,
 				152637211CC5FB4300F3BE15 /* linjinHuZhu */,
 				156CB2BF1CA956F7000E7F7E /* linjin'ershou */,
@@ -4477,6 +4518,8 @@
 				1556DEFB1CE35868003CDE67 /* ShangJiaCommentModel.m */,
 				152010CD1CF02B1A0081008F /* ShangPinModel.h */,
 				152010CE1CF02B1A0081008F /* ShangPinModel.m */,
+				15A095AA1CFE3026001F52B1 /* TieZiModel.h */,
+				15A095AB1CFE3026001F52B1 /* TieZiModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4662,6 +4705,7 @@
 				150F31141C0FEA5D00E5CC8B /* LBXScanView.m in Sources */,
 				150F315C1C0FEA5D00E5CC8B /* ZXDetectorResult.m in Sources */,
 				15BE66D01BF3AD91000A9D1F /* MyConversation.m in Sources */,
+				15A095A31CFE045E001F52B1 /* QunBaTableViewController.m in Sources */,
 				15B7A53F1BE730460052115F /* DACircularProgressView.m in Sources */,
 				150F31EC1C0FEA5D00E5CC8B /* ZXQRCodeEncoder.m in Sources */,
 				150F31BF1C0FEA5D00E5CC8B /* ZXUPCEANWriter.m in Sources */,
@@ -4705,6 +4749,7 @@
 				15D5431A1CC8BD0200333405 /* LinJinDetailTVC.m in Sources */,
 				150F31C41C0FEA5D00E5CC8B /* ZXPDF417BarcodeMetadata.m in Sources */,
 				15B7A56E1BE7304D0052115F /* SDWaitingView.m in Sources */,
+				15A095A91CFE1B58001F52B1 /* PulishTieZiTVC.m in Sources */,
 				15B7A4CD1BE730320052115F /* MJRefreshConst.m in Sources */,
 				15B7A4B01BE730150052115F /* BaseTableViewController.m in Sources */,
 				15B7A5AA1BE7305D0052115F /* MKAnnotationView+WebCache.m in Sources */,
@@ -4900,6 +4945,7 @@
 				150F31AE1C0FEA5D00E5CC8B /* ZXEAN13Reader.m in Sources */,
 				150F31591C0FEA5D00E5CC8B /* ZXCharacterSetECI.m in Sources */,
 				15B7A5B71BE7305D0052115F /* UIImageView+HighlightedWebCache.m in Sources */,
+				15A095AC1CFE3026001F52B1 /* TieZiModel.m in Sources */,
 				150F31B11C0FEA5D00E5CC8B /* ZXEAN8Writer.m in Sources */,
 				150F316E1C0FEA5D00E5CC8B /* ZXResultPoint.m in Sources */,
 				152F408B1C0BF056003C1C62 /* HuoDongCell.m in Sources */,
@@ -4927,6 +4973,7 @@
 				150F317F1C0FEA5D00E5CC8B /* ZXDataMatrixSymbolInfo144.m in Sources */,
 				15B7A5D11BE730E40052115F /* ProgressHUD.m in Sources */,
 				150F316A1C0FEA5D00E5CC8B /* ZXInvertedLuminanceSource.m in Sources */,
+				15A095B51CFF8915001F52B1 /* TieZiReplayCell.m in Sources */,
 				15B7A5491BE730460052115F /* UIButton+EMWebCache.m in Sources */,
 				153CE0151BE50D910032517E /* main.m in Sources */,
 				15B7A53E1BE730460052115F /* MWZoomingScrollView.m in Sources */,
@@ -4936,6 +4983,7 @@
 				1538EA151C2A6DDD002A23C7 /* PersonInfoViewController.m in Sources */,
 				15B7A4DD1BE730400052115F /* MBProgressHUD.m in Sources */,
 				15B7A4A01BE72FEE0052115F /* EMChatVideoBubbleView.m in Sources */,
+				15A095AF1CFE374D001F52B1 /* TieZiDetailViewController.m in Sources */,
 				150F31651C0FEA5D00E5CC8B /* ZXByteMatrix.m in Sources */,
 				15EE46F21BE8640600538EA5 /* ForgetCodeTVC.m in Sources */,
 				15F2809D1CAA47A5005F4E7F /* ErShouTypeTVC.m in Sources */,
@@ -4951,6 +4999,7 @@
 				155AB66F1CAB7BAF001A7451 /* ErShouListTVC.m in Sources */,
 				150F317C1C0FEA5D00E5CC8B /* ZXDataMatrixErrorCorrection.m in Sources */,
 				15EE46EC1BE85C5D00538EA5 /* UserModel.m in Sources */,
+				15A095A61CFE189C001F52B1 /* QunBaTableViewCell.m in Sources */,
 				150F31D01C0FEA5D00E5CC8B /* ZXPDF417.m in Sources */,
 				150F31961C0FEA5D00E5CC8B /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				15EE46E21BE85C1700538EA5 /* JSONModelError.m in Sources */,
@@ -4978,6 +5027,7 @@
 				15B7A43C1BE72F800052115F /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				150F31291C0FEA5D00E5CC8B /* ZXAddressBookParsedResult.m in Sources */,
 				15697A611CA3FC80001756E9 /* SetNewGroupNameImageVC.m in Sources */,
+				15A095B21CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m in Sources */,
 				15ABF63A1CCBD47F00089B6D /* TixianVC.m in Sources */,
 				150F31421C0FEA5D00E5CC8B /* ZXURIResultParser.m in Sources */,
 				150F31941C0FEA5D00E5CC8B /* ZXAnyAIDecoder.m in Sources */,

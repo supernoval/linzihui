@@ -62,5 +62,11 @@
 //商家评论
 #define kShangJiaComment              @"ShangJiaComment"
 
+//帖子
+#define kTieZi                       @"TieZi"
+
+
+//群吧
+#define kQunBa                     @"QunBa"
 
 

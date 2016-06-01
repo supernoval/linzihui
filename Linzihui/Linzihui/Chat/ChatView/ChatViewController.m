@@ -37,6 +37,8 @@
 #import "ChatSettingTVC.h"
 #import "PersonInfoViewController.h"
 #import "HuodongTVCViewController.h"
+#import "QunBaTableViewController.h"
+
 
 
 
@@ -284,10 +286,18 @@
     
     NSLog(@"title:%@",self.subTitle);
     
-    _titleLabel = [CommonMethods LabelWithText:self.subTitle andTextAlgniment:NSTextAlignmentCenter andTextColor:[UIColor whiteColor] andTextFont:FONT_15 andFrame:CGRectMake(60, 0, _myTitleView.frame.size.width - 60, 44)];
+    _titleLabel = [CommonMethods LabelWithText:self.subTitle andTextAlgniment:NSTextAlignmentCenter andTextColor:[UIColor whiteColor] andTextFont:FONT_15 andFrame:CGRectMake(60, 0, _myTitleView.frame.size.width - 120, 44)];
     
     
     [_myTitleView addSubview:_titleLabel];
+    
+    
+    UIButton *_qunbaButton = [[UIButton alloc]initWithFrame:CGRectMake(_titleLabel.frame.origin.x + _titleLabel.frame.size.width, 0, 60, 44)];
+    [_qunbaButton setTitle:@"群吧" forState:UIControlStateNormal];
+    [_qunbaButton addTarget:self action:@selector(gotoQunBa) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_myTitleView addSubview:_qunbaButton];
+    
     
     UIButton *_huodongButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 44)];
     
@@ -325,6 +335,24 @@
     
     
 }
+
+#pragma mark - 跳转到群吧
+-(void)gotoQunBa
+{
+    
+    EMGroup *group  = [[EaseMob sharedInstance].chatManager  fetchGroupInfo:_chatter error:nil];
+    
+   UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+    
+    QunBaTableViewController *_qunbaTVC = [sb instantiateViewControllerWithIdentifier:@"QunBaTableViewController"];
+    _qunbaTVC.groupId = _chatter;
+    _qunbaTVC.groupname = _titleLabel.text;
+    _qunbaTVC.owner = group.owner;
+    
+    [self.navigationController pushViewController:_qunbaTVC animated:YES];
+    
+    
+}
 #pragma mark - 收到修改群名通知
 -(void)changeSubTitle:(NSNotification*)noti
 {
@@ -332,6 +360,7 @@
     
     self.title = subtitle;
     self.subTitle = subtitle;
+    
     
     _titleLabel.text = subtitle;
     
