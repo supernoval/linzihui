@@ -364,6 +364,8 @@
 		15A095AF1CFE374D001F52B1 /* TieZiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095AE1CFE374D001F52B1 /* TieZiDetailViewController.m */; };
 		15A095B21CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095B11CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m */; };
 		15A095B51CFF8915001F52B1 /* TieZiReplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095B41CFF8915001F52B1 /* TieZiReplayCell.m */; };
+		15A095BB1CFFBE5B001F52B1 /* QunTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095BA1CFFBE5B001F52B1 /* QunTypeTableViewController.m */; };
+		15A095BE1CFFC155001F52B1 /* AddTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A095BD1CFFC155001F52B1 /* AddTypeViewController.m */; };
 		15AB5AA81C140B5B0070F6DA /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */; };
 		15AB5AAC1C140F030070F6DA /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAB1C140F030070F6DA /* YaoYiYaoViewController.m */; };
 		15AB5AAF1C1715440070F6DA /* GroupChatListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AB5AAE1C1715440070F6DA /* GroupChatListTVC.m */; };
@@ -1287,6 +1289,10 @@
 		15A095B11CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TieZiDetailCellTableViewCell.m; sourceTree = "<group>"; };
 		15A095B31CFF8915001F52B1 /* TieZiReplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TieZiReplayCell.h; sourceTree = "<group>"; };
 		15A095B41CFF8915001F52B1 /* TieZiReplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TieZiReplayCell.m; sourceTree = "<group>"; };
+		15A095B91CFFBE5B001F52B1 /* QunTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QunTypeTableViewController.h; sourceTree = "<group>"; };
+		15A095BA1CFFBE5B001F52B1 /* QunTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QunTypeTableViewController.m; sourceTree = "<group>"; };
+		15A095BC1CFFC155001F52B1 /* AddTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTypeViewController.h; sourceTree = "<group>"; };
+		15A095BD1CFFC155001F52B1 /* AddTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTypeViewController.m; sourceTree = "<group>"; };
 		15AB5AA61C140B5B0070F6DA /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		15AB5AA71C140B5B0070F6DA /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		15AB5AAA1C140F030070F6DA /* YaoYiYaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoYiYaoViewController.h; sourceTree = "<group>"; };
@@ -3270,6 +3276,10 @@
 				15A095B11CFE3BEE001F52B1 /* TieZiDetailCellTableViewCell.m */,
 				15A095B31CFF8915001F52B1 /* TieZiReplayCell.h */,
 				15A095B41CFF8915001F52B1 /* TieZiReplayCell.m */,
+				15A095B91CFFBE5B001F52B1 /* QunTypeTableViewController.h */,
+				15A095BA1CFFBE5B001F52B1 /* QunTypeTableViewController.m */,
+				15A095BC1CFFC155001F52B1 /* AddTypeViewController.h */,
+				15A095BD1CFFC155001F52B1 /* AddTypeViewController.m */,
 			);
 			name = qunba;
 			sourceTree = "<group>";
@@ -4725,6 +4735,7 @@
 				15D336731CA7D8FE00E948B7 /* Reachability.m in Sources */,
 				152010CC1CF026B70081008F /* ShangPinDetailViewController.m in Sources */,
 				15B7A5511BE730460052115F /* PSTCollectionView.m in Sources */,
+				15A095BE1CFFC155001F52B1 /* AddTypeViewController.m in Sources */,
 				150F314E1C0FEA5D00E5CC8B /* ZXMonochromeRectangleDetector.m in Sources */,
 				159309421CAD10C4006272DB /* ErShouCommentCell.m in Sources */,
 				150F31D11C0FEA5D00E5CC8B /* ZXPDF417BarcodeMatrix.m in Sources */,
@@ -4862,6 +4873,7 @@
 				1570C9A01CB3606B00FD73BF /* HeaderOrderView.m in Sources */,
 				150F313D1C0FEA5D00E5CC8B /* ZXSMTPResultParser.m in Sources */,
 				15B7A5471BE730460052115F /* MKAnnotationView+EMWebCache.m in Sources */,
+				15A095BB1CFFBE5B001F52B1 /* QunTypeTableViewController.m in Sources */,
 				15B7A4991BE72FEE0052115F /* DXChatBarMoreView.m in Sources */,
 				150F31B21C0FEA5D00E5CC8B /* ZXEANManufacturerOrgSupport.m in Sources */,
 				150F31DC1C0FEA5D00E5CC8B /* ZXQRCodeDataMask.m in Sources */,

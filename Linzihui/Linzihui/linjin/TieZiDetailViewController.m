@@ -204,9 +204,9 @@
     
     UserModel *model = [[UserModel alloc]init];
     
-    NSDictionary *dict = [_model.publisher valueForKey:kBmobDataDic];
+    NSDictionary *dict = (NSDictionary *)_model.publisher;
     
-    [model setValuesForKeysWithDictionary:dict];
+    [model setValuesForKeysWithDictionary:dict ];
     
     
     [BmobHelper addFollowWithFollowedUserModel:model result:^(BOOL success) {
@@ -530,6 +530,16 @@
     
     
  
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 

@@ -262,6 +262,22 @@ static EMHelper *_helper;
                      result(YES,group);
                  }
                  
+                 
+                 //保存群吧
+                 BmobObject *qunba = [BmobObject objectWithClassName:kQunBa];
+                 [qunba setObject:group.groupId forKey:@"groupId"];
+                 
+                 [qunba setObject:[NSNumber numberWithBool:NO] forKey:@"isPublic"];
+                 
+                 [qunba saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    
+                     if (isSuccessful) {
+                         
+                         NSLog(@"群吧保存成功");
+                         
+                     }
+                 }];
+                 
                 
              }
              else

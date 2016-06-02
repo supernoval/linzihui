@@ -9,11 +9,14 @@
 #import "GroupMemberTVC.h"
 #import "MyConversation.h"
 #import "PersonInfoViewController.h"
+#import "QunTypeTableViewController.h"
 
 
-@interface GroupMemberTVC ()
+@interface GroupMemberTVC ()<UIActionSheetDelegate>
 {
     NSArray *_friendList;
+    
+    
     
     
 }
@@ -26,6 +29,12 @@
     self.title = @"群组成员";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
    
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithTitle:@"设置分类" style:UIBarButtonItemStylePlain target:self action:@selector(showSettingType)];
+    
+    self.navigationItem.rightBarButtonItem = button;
+    
+    
+    
     
     
     [self getData];
@@ -178,24 +187,87 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-      MyConversation *conver = [_friendList objectAtIndex:indexPath.section];
     
+     MyConversation *conver = [_friendList objectAtIndex:indexPath.section];
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
-    
-    PersonInfoViewController * _personInfoVC = [sb  instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
-    
-    _personInfoVC.hidesBottomBarWhenPushed = YES;
-    
-    _personInfoVC.username =conver.username;
-    
-    [self.navigationController pushViewController:_personInfoVC animated:YES];
-    
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_isFromQunBa) //如果是从群吧跳转过来的
+    {
+        
+        if (![conver.username isEqualToString:[BmobUser getCurrentUser].username]) {
+            
+            
+       
+        UIActionSheet *actionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+        
+        [actionsheet addButtonWithTitle:@"设置成管理员"];
+        [actionsheet addButtonWithTitle:@"删除该成员"];
+        
+        [actionsheet addButtonWithTitle:@"取消"];
+        
+        actionsheet.cancelButtonIndex = 2;
+        
+        actionsheet.tag = 999;
+        
+        [actionsheet showInView:self.tableView];
+            
+        
+           }
+        
+        
+        
+    }
+    else
+    {
+       
+        
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+        
+        PersonInfoViewController * _personInfoVC = [sb  instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+        
+        _personInfoVC.hidesBottomBarWhenPushed = YES;
+        
+        _personInfoVC.username =conver.username;
+        
+        [self.navigationController pushViewController:_personInfoVC animated:YES];
+        
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+  
     
     
 }
 
+
+#pragma mark -  跳转到设置群吧分类
+-(void)showSettingType
+{
+    QunTypeTableViewController *quntype = [[QunTypeTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    
+    quntype.groupId = _group.groupId;
+    
+    [self.navigationController pushViewController:quntype animated:YES];
+    
+}
+
+#pragma mark - UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 999) {
+        
+        if (buttonIndex == 0) //设置成管理员
+        {
+            
+            
+        }
+        
+        if (buttonIndex == 1) //删除该成员
+        {
+            
+            
+        }
+    }
+}
 
 @end

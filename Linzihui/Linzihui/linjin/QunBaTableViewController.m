@@ -11,6 +11,8 @@
 #import "PulishTieZiTVC.h"
 #import "TieZiModel.h"
 #import "TieZiDetailViewController.h"
+#import "GroupMemberTVC.h"
+
 
 
 @interface QunBaTableViewController ()
@@ -223,6 +225,8 @@
     
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -231,5 +235,38 @@
 
 
 - (IBAction)valueChange:(id)sender {
+    
+    switch (_segment.selectedSegmentIndex) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            
+            EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:_groupId error:nil];
+            
+            GroupMemberTVC *_groupMember = [[GroupMemberTVC alloc]initWithStyle:UITableViewStylePlain];
+            
+            _groupMember.group = group;
+            _groupMember.isFromQunBa = YES;
+            
+            
+            [self.navigationController pushViewController:_groupMember animated:YES];
+            
+            
+        }
+            break;
+            
+            
+        default:
+            break;
+    }
 }
 @end

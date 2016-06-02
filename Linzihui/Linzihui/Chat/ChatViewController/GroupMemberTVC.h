@@ -12,4 +12,7 @@
 
 @property (nonatomic) EMGroup *group;
 
+@property (nonatomic,assign) BOOL isFromQunBa;
+
+
 @end
