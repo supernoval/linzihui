@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BC27CAB1D0F2F4000D62A1A /* libEaseMobClientSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC27CAA1D0F2F4000D62A1A /* libEaseMobClientSDK.a */; };
 		1506EC1F1BF702C80010F349 /* PullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC1E1BF702C80010F349 /* PullView.m */; };
 		1506EC221BF7093A0010F349 /* BaseHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC211BF7093A0010F349 /* BaseHomeTableViewController.m */; };
 		1506EC261BF712620010F349 /* CreateChatRoomTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1506EC251BF712620010F349 /* CreateChatRoomTVC.m */; };
@@ -353,7 +354,6 @@
 		15858D4C1C1B5E2B000550FD /* EditGroupNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D4B1C1B5E2B000550FD /* EditGroupNameVC.m */; };
 		15858D511C1B71F7000550FD /* HuoDongMessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D501C1B71F7000550FD /* HuoDongMessageTVC.m */; };
 		15858D541C1B8AEC000550FD /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15858D531C1B8AEC000550FD /* SettingTableViewController.m */; };
-		1593093C1CACF037006272DB /* libEaseMobClientSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593093B1CACF037006272DB /* libEaseMobClientSDK.a */; };
 		1593093F1CAD0DEB006272DB /* ErShouDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1593093E1CAD0DEB006272DB /* ErShouDetailTVC.m */; };
 		159309421CAD10C4006272DB /* ErShouCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 159309411CAD10C4006272DB /* ErShouCommentCell.m */; };
 		15A05BC81C59E0F2002BBAD3 /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A05BC71C59E0F2002BBAD3 /* ActivityDetailViewController.m */; };
@@ -591,6 +591,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BC27CAA1D0F2F4000D62A1A /* libEaseMobClientSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDK.a; sourceTree = "<group>"; };
 		1506EC1D1BF702C80010F349 /* PullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullView.h; sourceTree = "<group>"; };
 		1506EC1E1BF702C80010F349 /* PullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullView.m; sourceTree = "<group>"; };
 		1506EC201BF7093A0010F349 /* BaseHomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHomeTableViewController.h; sourceTree = "<group>"; };
@@ -1268,7 +1269,6 @@
 		15858D501C1B71F7000550FD /* HuoDongMessageTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongMessageTVC.m; sourceTree = "<group>"; };
 		15858D521C1B8AEC000550FD /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		15858D531C1B8AEC000550FD /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
-		1593093B1CACF037006272DB /* libEaseMobClientSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDK.a; sourceTree = "<group>"; };
 		1593093D1CAD0DEB006272DB /* ErShouDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouDetailTVC.h; sourceTree = "<group>"; };
 		1593093E1CAD0DEB006272DB /* ErShouDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErShouDetailTVC.m; sourceTree = "<group>"; };
 		159309401CAD10C4006272DB /* ErShouCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErShouCommentCell.h; sourceTree = "<group>"; };
@@ -1922,7 +1922,6 @@
 				15BE66EA1BF3F5C1000A9D1F /* libsqlite3.0.tbd in Frameworks */,
 				154A397B1BE5E4830042632E /* libsqlite3.tbd in Frameworks */,
 				15521B4D1C4A0A850010E718 /* OpenGLES.framework in Frameworks */,
-				1593093C1CACF037006272DB /* libEaseMobClientSDK.a in Frameworks */,
 				154A39691BE5E4370042632E /* CoreLocation.framework in Frameworks */,
 				154A39FA1BE5E7110042632E /* libresolv.tbd in Frameworks */,
 				154A39F81BE5E70B0042632E /* libiconv.tbd in Frameworks */,
@@ -1944,6 +1943,7 @@
 				15521B781C4A0C040010E718 /* BaiduMapAPI_Base.framework in Frameworks */,
 				15FB7FE81BEDC62F007D6EC8 /* libopencore-amrwb.a in Frameworks */,
 				15B7A5C11BE730770052115F /* MOBFoundation.framework in Frameworks */,
+				0BC27CAB1D0F2F4000D62A1A /* libEaseMobClientSDK.a in Frameworks */,
 				154A397F1BE5E5100042632E /* MediaPlayer.framework in Frameworks */,
 				156A6F5D1CC55ADC00FDB276 /* jpush-ios-2.1.6.a in Frameworks */,
 				154A397D1BE5E5070042632E /* AVFoundation.framework in Frameworks */,
@@ -1957,6 +1957,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BC27CA91D0F2F4000D62A1A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				0BC27CAA1D0F2F4000D62A1A /* libEaseMobClientSDK.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		1506EC1C1BF702A70010F349 /* MyViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -3253,14 +3261,6 @@
 			name = HuoDongMessages;
 			sourceTree = "<group>";
 		};
-		1593093A1CACF000006272DB /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				1593093B1CACF037006272DB /* libEaseMobClientSDK.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		15A095A01CFE03B3001F52B1 /* qunba */ = {
 			isa = PBXGroup;
 			children = (
@@ -4180,7 +4180,7 @@
 		15E4524F1C366F6900A6A549 /* EaseMobSDK */ = {
 			isa = PBXGroup;
 			children = (
-				1593093A1CACF000006272DB /* lib */,
+				0BC27CA91D0F2F4000D62A1A /* lib */,
 				15E452501C366F6900A6A549 /* include */,
 				15E452BB1C366F6900A6A549 /* resources */,
 			);

@@ -19,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *placelabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentTV;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstant;
+
+
 @property (weak, nonatomic) IBOutlet AddPhotoView *addphotoView;
 - (IBAction)publish:(id)sender;
 
