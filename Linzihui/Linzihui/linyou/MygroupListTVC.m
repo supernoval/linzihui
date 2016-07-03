@@ -270,81 +270,155 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 0) {
-        
-        GongKaiQunVC *gongkaiQunTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GongKaiQunVC"];
-        
-        [self.navigationController pushViewController:gongkaiQunTVC animated:YES];
-        
-        
-        
-    }
-    
-    else
-    {
-     GroupChatModel *selectedGroup = [_groupListArray objectAtIndex:indexPath.section - 1];
     
     if (_isNearGroup) {
         
-        
-        NSArray *members = selectedGroup.members;
-        
-        BOOL isMember = NO;
-        
-        BmobUser *currentUser = [BmobUser getCurrentUser];
-        
-        NSString *currentUsername = currentUser.username;
-        
-        if ([currentUsername isEqualToString:selectedGroup.owner_username]) {
+            GroupChatModel *selectedGroup = [_groupListArray objectAtIndex:indexPath.section];
             
-            
-            isMember = YES;
-            
-            
-        }
-        else
-        {
-            
-           for (NSDictionary *dict in members) {
-            
-              
-            NSString *username = [dict objectForKey:@"username"];
-            
-              if ([currentUsername isEqualToString:username]) {
-                  
-                  isMember = YES;
-                  
-              }
-            
+            if (_isNearGroup) {
+                
+                
+                NSArray *members = selectedGroup.members;
+                
+                BOOL isMember = NO;
+                
+                BmobUser *currentUser = [BmobUser getCurrentUser];
+                
+                NSString *currentUsername = currentUser.username;
+                
+                if ([currentUsername isEqualToString:selectedGroup.owner_username]) {
+                    
+                    
+                    isMember = YES;
+                    
+                    
+                }
+                else
+                {
+                    
+                    for (NSDictionary *dict in members) {
+                        
+                        
+                        NSString *username = [dict objectForKey:@"username"];
+                        
+                        if ([currentUsername isEqualToString:username]) {
+                            
+                            isMember = YES;
+                            
+                        }
+                        
+                    }
+                }
+                
+                if (isMember) {
+                    
+                    
+                    [self chatWithgroupModel:selectedGroup];
+                }
+                else
+                {
+                    ApplyJoinGroupViewController *_applyJoinGroupVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplyJoinGroupViewController"];
+                    
+                    _applyJoinGroupVC.groupModel = selectedGroup;
+                    
+                    [self.navigationController pushViewController:_applyJoinGroupVC animated:YES];
+                }
+                
+                
             }
-        }
+            else
+            {
+                
+                
+                [self chatWithgroupModel:selectedGroup];
+                
+                
+                
+            }
         
-        if (isMember) {
-            
-            
-             [self chatWithgroupModel:selectedGroup];
-        }
-        else
-        {
-            ApplyJoinGroupViewController *_applyJoinGroupVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplyJoinGroupViewController"];
-            
-            _applyJoinGroupVC.groupModel = selectedGroup;
-            
-            [self.navigationController pushViewController:_applyJoinGroupVC animated:YES];
-        }
-       
+        
+        
         
     }
     else
     {
-       
+        if (indexPath.section == 0) {
+            
+            GongKaiQunVC *gongkaiQunTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GongKaiQunVC"];
+            
+            [self.navigationController pushViewController:gongkaiQunTVC animated:YES];
+            
+            
+            
+        }
         
-        [self chatWithgroupModel:selectedGroup];
-        
-        
-       
+        else
+        {
+            GroupChatModel *selectedGroup = [_groupListArray objectAtIndex:indexPath.section - 1];
+            
+            if (_isNearGroup) {
+                
+                
+                NSArray *members = selectedGroup.members;
+                
+                BOOL isMember = NO;
+                
+                BmobUser *currentUser = [BmobUser getCurrentUser];
+                
+                NSString *currentUsername = currentUser.username;
+                
+                if ([currentUsername isEqualToString:selectedGroup.owner_username]) {
+                    
+                    
+                    isMember = YES;
+                    
+                    
+                }
+                else
+                {
+                    
+                    for (NSDictionary *dict in members) {
+                        
+                        
+                        NSString *username = [dict objectForKey:@"username"];
+                        
+                        if ([currentUsername isEqualToString:username]) {
+                            
+                            isMember = YES;
+                            
+                        }
+                        
+                    }
+                }
+                
+                if (isMember) {
+                    
+                    
+                    [self chatWithgroupModel:selectedGroup];
+                }
+                else
+                {
+                    ApplyJoinGroupViewController *_applyJoinGroupVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplyJoinGroupViewController"];
+                    
+                    _applyJoinGroupVC.groupModel = selectedGroup;
+                    
+                    [self.navigationController pushViewController:_applyJoinGroupVC animated:YES];
+                }
+                
+                
+            }
+            else
+            {
+                
+                
+                [self chatWithgroupModel:selectedGroup];
+                
+                
+                
+            }
+        }
     }
-    }
+
 
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
