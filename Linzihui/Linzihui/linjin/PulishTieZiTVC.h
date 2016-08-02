@@ -22,8 +22,11 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstant;
 
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *typeButton;
 
 @property (weak, nonatomic) IBOutlet AddPhotoView *addphotoView;
 - (IBAction)publish:(id)sender;
+- (IBAction)typeAction:(id)sender;
 
 @end

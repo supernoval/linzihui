@@ -38,7 +38,7 @@
 -(void)getCurrentBuy
 {
     
-    BmobObject *sellOb = [BmobObject objectWithoutDatatWithClassName:kShangJia objectId:_model.objectId];
+    BmobObject *sellOb = [BmobObject objectWithoutDataWithClassName:kShangJia objectId:_model.objectId];
     
     BmobQuery *queryhist = [BmobQuery queryWithClassName:kBuyShangPin];
     

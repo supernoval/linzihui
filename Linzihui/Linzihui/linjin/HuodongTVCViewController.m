@@ -351,7 +351,7 @@ static NSString *headerCellID = @"headerCell";
                 NSDate *endDate = [ob objectForKey:@"endTime"];
                 NSDate *endRegistTime = [ob objectForKey:@"endRegistTime"];
                 
-                NSDictionary *dataDict = [ob valueForKey:@"bmobDataDic"];
+                NSDictionary *dataDict = [ob valueForKey:kBmobDataDic];
                 
                 [model setValuesForKeysWithDictionary:dataDict];
                 
@@ -735,7 +735,7 @@ static NSString *headerCellID = @"headerCell";
     
     HuoDongModel *_model = [_dataSource objectAtIndex:tag];
     
-    BmobObject *_ob  = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_model.objectId];
+    BmobObject *_ob  = [BmobObject objectWithoutDataWithClassName:kHuoDongTableName objectId:_model.objectId];
     
     
     UserModel *currentUser = [BmobHelper getCurrentUserModel];

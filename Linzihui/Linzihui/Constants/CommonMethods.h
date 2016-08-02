@@ -16,7 +16,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <BmobSDK/Bmob.h>
-#import <BmobSDK/BmobProFile.h>
+#import <BmobSDK/BmobFile.h>
 #import "NSUserDefaultKeys.h"
 
 

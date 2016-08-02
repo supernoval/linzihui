@@ -480,17 +480,36 @@ static NSString *CellId  = @"CellId";
             if (_dataSource.count > indexPath.section -3) {
                 
                 NSArray *Array = [_dataSource objectAtIndex:indexPath.section -3];
-                
+//
                 UserModel *model = [Array objectAtIndex:indexPath.row];
+//
+//                
+//                PersonInfoViewController *_personInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+//                
+//                _personInfoVC.username = model.username;
+//                
+//                _personInfoVC.hidesBottomBarWhenPushed = YES;
+//                
+//                [self.navigationController pushViewController:_personInfoVC animated:YES];
                 
                 
-                PersonInfoViewController *_personInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonInfoViewController"];
+                ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:model.username isGroup:NO];
+                if (model.nickName) {
+                    
+                    //        chatVC.title =model.nickName;
+                    chatVC.subTitle = model.nickName;
+                    
+                }else
+                {
+                    //        chatVC.title = model.converstion.chatter;
+                    chatVC.subTitle = model.nickName;
+                }
                 
-                _personInfoVC.username = model.username;
                 
-                _personInfoVC.hidesBottomBarWhenPushed = YES;
+                chatVC.hidesBottomBarWhenPushed = YES;
                 
-                [self.navigationController pushViewController:_personInfoVC animated:YES];
+                [self.navigationController pushViewController:chatVC animated:YES];
+                
                 
             }
           

@@ -332,7 +332,7 @@
                 
                 BmobObject *object = [array firstObject];
                 
-                NSDictionary *dataDict = [object valueForKey:@"bmobDataDic"];
+                NSDictionary *dataDict = [object valueForKey:kBmobDataDic];
                 
                 if (dataDict) {
                     
@@ -366,7 +366,7 @@
 {
     
     
-    NSDictionary *dataDict = [ob valueForKey:@"bmobDataDic"];
+    NSDictionary *dataDict = [ob valueForKey:kBmobDataDic];
     
     [model setValuesForKeysWithDictionary:dataDict];
     

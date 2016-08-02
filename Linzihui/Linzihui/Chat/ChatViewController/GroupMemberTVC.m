@@ -259,6 +259,9 @@
         if (buttonIndex == 0) //设置成管理员
         {
             
+            [[EaseMob sharedInstance].chatManager asyncChangeAffiliation:eGroupMemberRole_Admin forOccupants:@[] inGroup:_group.groupId completion:^(EMGroup *group, EMError *error) {
+                
+            } onQueue:nil];
             
         }
         

@@ -29,7 +29,7 @@
 #define kHuoDongMessagesTableName       @"HuoDongMessages"
 
 //bmob value key
-#define kBmobDataDic                 @"bmobDataDic"
+#define kBmobDataDic                 @"dataDic"
 
 
 //等级

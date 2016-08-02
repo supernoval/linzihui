@@ -137,7 +137,7 @@
 {
     BmobQuery *queryhist = [BmobQuery queryWithClassName:kBuyShangPin];
     
-    [queryhist whereKey:@"shangjia" equalTo:myShangjia];
+    [queryhist whereKey:@"username" equalTo:[BmobUser currentUser].username];
     [queryhist includeKey:@"address,buyer"];
 
     
@@ -187,7 +187,7 @@
      [MyProgressHUD showProgress];
     BmobQuery *query = [BmobQuery queryWithClassName:kShangJia];
     
-    [query whereKey:@"username" equalTo:[BmobUser getCurrentUser].username];
+    [query whereKey:@"username" equalTo:[BmobUser currentUser].username];
     
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
@@ -986,7 +986,7 @@
     
    
     
-    buyShangpinOB = [BmobObject objectWithoutDatatWithClassName:kBuyShangPin objectId:model.objectId];
+    buyShangpinOB = [BmobObject objectWithoutDataWithClassName:kBuyShangPin objectId:model.objectId];
     
     
     NSString *dateStr = [CommonMethods getNoSpaceDateStr:[NSDate date]];
@@ -1013,7 +1013,7 @@
 {
     
     
-    buyShangpinOB = [BmobObject objectWithoutDatatWithClassName:kBuyShangPin objectId:model.objectId];
+    buyShangpinOB = [BmobObject objectWithoutDataWithClassName:kBuyShangPin objectId:model.objectId];
     
     [buyShangpinOB setObject:[NSNumber numberWithInteger:2] forKey:@"status"];
     

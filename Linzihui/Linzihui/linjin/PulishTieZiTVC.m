@@ -7,6 +7,8 @@
 //
 
 #import "PulishTieZiTVC.h"
+#import "QunBaTypeSelectedTVC.h"
+
 
 @interface PulishTieZiTVC ()<UITextFieldDelegate,UITextViewDelegate,AddPhotoViewDelegate>
 {
@@ -14,7 +16,7 @@
     
     NSString *type;
     
-    NSMutableArray  *_types ;
+    NSMutableArray  *_types;
     
     
     
@@ -40,7 +42,7 @@
 {
     BmobQuery *query = [BmobQuery queryWithClassName:kQunBa];
     
-//    [query whereKey:@"groupId" equalTo:_groupId];
+    [query whereKey:@"groupId" equalTo:_groupId];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
        
@@ -64,7 +66,7 @@
                 
             }
             
-            [self setButtonsView];
+//            [self setButtonsView];
             
             
             
@@ -234,6 +236,39 @@
     
 }
 
+
+
+
+
+- (IBAction)typeAction:(id)sender {
+    
+    
+    
+    QunBaTypeSelectedTVC *typeSelectTVC = [[QunBaTypeSelectedTVC alloc]initWithStyle:UITableViewStyleGrouped];
+    
+    typeSelectTVC.typesArray = _types;
+    
+    typeSelectTVC.selectedType = type;
+    
+    [typeSelectTVC setBlock:^(NSString *selectedType) {
+       
+        type = selectedType;
+        
+        _typeLabel.text = type;
+        
+        
+    }];
+    
+    [self.navigationController pushViewController:typeSelectTVC animated:YES];
+    
+    
+    
+    
+}
+
+
+
+
 -(void)uploadPhotos
 {
     [MyProgressHUD showProgress];
@@ -246,6 +281,10 @@
             [self saveData:results];
             
         }
+        else
+        {
+             [MyProgressHUD dismiss];
+        }
     }];
     
 }
@@ -253,7 +292,7 @@
 -(void)saveData:(NSArray*)photosURL
 {
     
-
+     [MyProgressHUD showProgress];
     for (int i = 0 ; i < _types.count; i++) {
         
         NSDictionary *dict = [_types objectAtIndex:i];
@@ -271,6 +310,8 @@
     [OB setObject:_titleTF.text forKey:@"title"];
     
     [OB setObject:[BmobUser getCurrentUser] forKey:@"publisher"];
+    
+    
     
     if (type.length > 0) {
         

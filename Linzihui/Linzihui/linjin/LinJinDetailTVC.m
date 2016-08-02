@@ -141,7 +141,7 @@
     NSString *username = [_model.publisher objectForKey:@"username"];
     
     
-    if ([username isEqualToString:[BmobUser getCurrentUser].username]) {
+    if ([username isEqualToString:[BmobUser currentUser].username]) {
         
         [CommonMethods showDefaultErrorString:@"您自己发布的信息，无法与自己聊天"];
         
@@ -469,7 +469,7 @@
             
             _buyerCell.distanceLabel.text = [NSString stringWithFormat:@"距离:%@",[CommonMethods distanceStringWithLatitude:temModel.latitude longitude:temModel.longitude]];
             
-            NSString *currentUserObjectId = [BmobUser getCurrentUser].objectId;
+            NSString *currentUserObjectId = [BmobUser currentUser].objectId;
             
             NSString *publisherObjectId = [_model.publisher objectForKey:@"objectId"];
             
@@ -663,7 +663,7 @@
     [self.tableView reloadData];
     
     
-    BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kLinJinHuZhu objectId:_model.objectId];
+    BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kLinJinHuZhu objectId:_model.objectId];
     
     [ob setObject:muArray forKey:@"comments"];
     
@@ -774,7 +774,7 @@
     
     UserModel *currentUserModel = [BmobHelper getCurrentUserModel];
     
-    BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kLinJinHuZhu objectId:_model.objectId];
+    BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kLinJinHuZhu objectId:_model.objectId];
 
     currentUserModel.message = _textField_comment.text;
     currentUserModel.latitude = [[NSUserDefaults standardUserDefaults] floatForKey:kCurrentLatitude];
@@ -856,9 +856,9 @@
         
         
         
-        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kLinJinHuZhu objectId:_model.objectId];
+        BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kLinJinHuZhu objectId:_model.objectId];
         
-        [ob addObjectsFromArray:@[[BmobUser getCurrentUser].username] forKey:@"jubao"];
+        [ob addObjectsFromArray:@[[BmobUser currentUser].username] forKey:@"jubao"];
         
         [ob updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
             

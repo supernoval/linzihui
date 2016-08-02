@@ -310,7 +310,7 @@
     [self.tableView reloadData];
     
     //上传
-    BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kTieZi objectId:_model.objectId];
+    BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kTieZi objectId:_model.objectId];
     
     [ob addObjectsFromArray:@[dict] forKey:@"replay"];
     
@@ -659,7 +659,7 @@
         
         
         
-        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kTieZi objectId:_model.objectId];
+        BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kTieZi objectId:_model.objectId];
         
         [ob addObjectsFromArray:@[[BmobUser getCurrentUser].username] forKey:@"jubao"];
         

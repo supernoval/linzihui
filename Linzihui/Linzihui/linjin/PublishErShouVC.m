@@ -218,7 +218,7 @@
     if (_isEdited) {
         
         
-        _ErshouOb = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_editeModel.objectId];
+        _ErshouOb = [BmobObject objectWithoutDataWithClassName:kErShou objectId:_editeModel.objectId];
         
         
         

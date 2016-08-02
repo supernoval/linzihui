@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qQM-Ug-1g7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qQM-Ug-1g7">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18211,18 +18211,70 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOa-Xl-iNb">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdc-KY-VBN">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Le7-NJ-E3O">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="-1" maxX="21" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="1" minY="0.0" maxX="-51" maxY="0.0"/>
+                                        <state key="normal" title="选择分类" image="right_arrow">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="typeAction:" destination="JNi-SE-tV2" eventType="touchUpInside" id="q2B-VN-28p"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="74" id="dxr-rp-6wA"/>
+                                    <constraint firstItem="Gdc-KY-VBN" firstAttribute="leading" secondItem="IOa-Xl-iNb" secondAttribute="leading" constant="8" id="0ia-Qi-UKO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Le7-NJ-E3O" secondAttribute="bottom" id="NGP-Js-fMU"/>
+                                    <constraint firstItem="Le7-NJ-E3O" firstAttribute="leading" secondItem="IOa-Xl-iNb" secondAttribute="leading" id="Vsw-Fo-l52"/>
+                                    <constraint firstAttribute="height" constant="74" id="dxr-rp-6wA">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                                    </constraint>
+                                    <constraint firstAttribute="trailing" secondItem="Le7-NJ-E3O" secondAttribute="trailing" id="pUc-fK-BWA"/>
+                                    <constraint firstItem="Le7-NJ-E3O" firstAttribute="top" secondItem="IOa-Xl-iNb" secondAttribute="top" id="s6E-sx-Vc4"/>
+                                    <constraint firstItem="Gdc-KY-VBN" firstAttribute="top" secondItem="IOa-Xl-iNb" secondAttribute="top" constant="8" id="uh7-k4-HFc"/>
+                                    <constraint firstAttribute="bottom" secondItem="Gdc-KY-VBN" secondAttribute="bottom" constant="8" id="v2D-lb-cKu"/>
                                 </constraints>
                                 <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="Gdc-KY-VBN"/>
+                                        <exclude reference="Le7-NJ-E3O"/>
+                                    </mask>
                                     <mask key="constraints">
                                         <exclude reference="dxr-rp-6wA"/>
+                                        <exclude reference="NGP-Js-fMU"/>
+                                        <exclude reference="Vsw-Fo-l52"/>
+                                        <exclude reference="pUc-fK-BWA"/>
+                                        <exclude reference="s6E-sx-Vc4"/>
+                                        <exclude reference="0ia-Qi-UKO"/>
+                                        <exclude reference="uh7-k4-HFc"/>
+                                        <exclude reference="v2D-lb-cKu"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="Gdc-KY-VBN"/>
+                                        <include reference="Le7-NJ-E3O"/>
+                                    </mask>
                                     <mask key="constraints">
                                         <include reference="dxr-rp-6wA"/>
+                                        <include reference="NGP-Js-fMU"/>
+                                        <include reference="Vsw-Fo-l52"/>
+                                        <include reference="pUc-fK-BWA"/>
+                                        <include reference="s6E-sx-Vc4"/>
+                                        <include reference="0ia-Qi-UKO"/>
+                                        <include reference="uh7-k4-HFc"/>
+                                        <include reference="v2D-lb-cKu"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -18363,11 +18415,13 @@
                         <outlet property="heightConstant" destination="dxr-rp-6wA" id="dOH-DU-eyD"/>
                         <outlet property="placelabel" destination="gbW-WJ-9lJ" id="hux-4a-QKY"/>
                         <outlet property="titleTF" destination="SVw-IM-5r5" id="04f-7A-BhZ"/>
+                        <outlet property="typeButton" destination="Le7-NJ-E3O" id="pCG-uW-xzq"/>
+                        <outlet property="typeLabel" destination="Gdc-KY-VBN" id="sEP-b3-HgP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O2S-lM-zPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5983.5" y="-695.5"/>
+            <point key="canvasLocation" x="5982.75" y="-695.625"/>
         </scene>
         <!--Tie Zi Detail View Controller-->
         <scene sceneID="KKu-oh-ioo">

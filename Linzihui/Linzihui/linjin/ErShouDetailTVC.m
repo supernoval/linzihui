@@ -878,7 +878,7 @@
    
     [MyProgressHUD showProgress];
     
-    BmobObject *shenghuoOB = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
+    BmobObject *shenghuoOB = [BmobObject objectWithoutDataWithClassName:kErShou objectId:_model.objectId];
     
     [shenghuoOB addObjectsFromArray:@[_dict] forKey:@"comments"];
     
@@ -968,7 +968,7 @@
     
     
     
-    BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
+    BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kErShou objectId:_model.objectId];
     
     NSString *currentUsername = [BmobUser getCurrentUser].username;
     
@@ -1093,7 +1093,7 @@
         
         
         
-         BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
+         BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kErShou objectId:_model.objectId];
         
         [ob addObjectsFromArray:@[[BmobUser getCurrentUser].username] forKey:@"jubao"];
         
@@ -1139,7 +1139,7 @@
         
         CGFloat jinEr = [price floatValue];
         
-        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:_model.objectId];
+        BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kErShou objectId:_model.objectId];
         
         UserModel *model = [BmobHelper getCurrentUserModel];
         

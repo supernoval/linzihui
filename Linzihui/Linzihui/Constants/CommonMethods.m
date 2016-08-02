@@ -749,51 +749,44 @@
         
         
         
-       
-        
-        
-        [BmobProFile uploadFilesWithDatas:photosDataArray resultBlock:^(NSArray *filenameArray, NSArray *urlArray, NSArray *bmobFileArray, NSError *error) {
-            
-            
-            
-         
-            if (error) {
-                
-                NSLog(@"%s,error:%@",__func__,error);
-                
-                NSLog(@"图片上传失败");
-                
-                [CommonMethods showDefaultErrorString:@"图片上传失败，请重新上传"];
-                
-                block(NO,nil);
-                
-                
-            }else
-            {
-                
-                NSLog(@"filename:%@  urlArray:%@",filenameArray,urlArray);
+       [BmobFile filesUploadBatchWithDataArray:photosDataArray progressBlock:^(int index, float progress) {
+           
+       } resultBlock:^(NSArray *array, BOOL isSuccessful, NSError *error) {
+           if (error) {
                
-                NSMutableArray *temUrlArray = [[NSMutableArray alloc]init];
-                
-                for (int i = 0; i < bmobFileArray.count; i ++) {
-                    
-                    BmobFile *file = [bmobFileArray objectAtIndex:i];
-                    
-                    [temUrlArray addObject:file.url];
-                    
-                }
-                //回调
-                block(YES,temUrlArray);
-                
-                
-            }
-      
-         
+               NSLog(@"%s,error:%@",__func__,error);
+               
+               NSLog(@"图片上传失败");
+               
+               [CommonMethods showDefaultErrorString:@"图片上传失败，请重新上传"];
+               
+               block(NO,nil);
+               
+               
+           }else
+           {
+               
+//               NSLog(@"filename:%@ ",array);
             
-        } progress:^(NSUInteger index, CGFloat progress) {
-            
-            
-        }];
+               
+               
+               NSMutableArray *temUrlArray = [[NSMutableArray alloc]init];
+               
+               for (int i = 0; i < array.count; i ++) {
+                   
+                   BmobFile *file = [array objectAtIndex:i];
+                   
+                   [temUrlArray addObject:file.url];
+                   
+               }
+               //回调
+               block(YES,temUrlArray);
+               
+               
+           }
+       }];
+        
+ 
         
         
         

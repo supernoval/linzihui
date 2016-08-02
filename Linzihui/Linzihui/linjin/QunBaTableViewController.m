@@ -101,7 +101,7 @@
     
     [query includeKey:@"QunBa,publisher"];
     
-    [query orderByDescending:@"created_at"];
+    [query orderByDescending:@"createdAt"];
     
     query.skip = index*pagesize;
     query.limit = pagesize;
@@ -198,7 +198,9 @@
         
         cell.nameLabel.text = [model.publisher objectForKey:@"nickName"];
         
-        cell.timeLabel.text = [CommonMethods getYYYYMMddFromDefaultDateStr:model.createdAt];
+//        cell.timeLabel.text = [CommonMethods getYYYYMMddHHmmssDateStr:model.createdAt];
+        
+        cell.timeLabel.hidden  = YES;
         
         cell.replayNumLabel.text = [NSString stringWithFormat:@"%ld",(long)model.replay.count];
         

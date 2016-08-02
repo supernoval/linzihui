@@ -7,6 +7,8 @@
 //
   
 #import "BaseBmobModel.h"
+#import "Constants.h"
+#import "BmobDBConstants.h"
 
 @implementation BaseBmobModel
 
@@ -16,7 +18,7 @@
     if (self == [super init]) {
         
         
-        NSDictionary *dataDic = [object valueForKey:@"bmobDataDic"];
+        NSDictionary *dataDic = [object valueForKey:kBmobDataDic];
         
         [self setValuesForKeysWithDictionary:dataDic];
         

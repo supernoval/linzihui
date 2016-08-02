@@ -114,7 +114,7 @@
 
 -(void)saveData:(NSString *)headImageURL
 {
-    BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kShangJia objectId:_model.objectId];
+    BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kShangJia objectId:_model.objectId];
     
     if (_location) {
         

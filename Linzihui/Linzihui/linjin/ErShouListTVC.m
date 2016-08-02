@@ -697,7 +697,7 @@
     
     ErShouModel *model = [_dataSource objectAtIndex:sender.tag];
     
-    BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kErShou objectId:model.objectId];
+    BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kErShou objectId:model.objectId];
     
     NSString *currentUsername = [BmobUser getCurrentUser].username;
     

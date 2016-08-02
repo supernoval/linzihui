@@ -64,9 +64,9 @@
     
     NSString *username = [BmobUser getCurrentUser].username;
     
-    BmobObject *shangpinOB = [BmobObject objectWithoutDatatWithClassName:kShangPin objectId:[_shangpinDict objectForKey:@"objectId"]];
+    BmobObject *shangpinOB = [BmobObject objectWithoutDataWithClassName:kShangPin objectId:[_shangpinDict objectForKey:@"objectId"]];
     
-    BmobObject *shangjiaOB = [BmobObject objectWithoutDatatWithClassName:kShangJia objectId:[_shangjiaModel objectId]];
+    BmobObject *shangjiaOB = [BmobObject objectWithoutDataWithClassName:kShangJia objectId:[_shangjiaModel objectId]];
     
      buyShangpinOB = [BmobObject objectWithClassName:kBuyShangPin];
     

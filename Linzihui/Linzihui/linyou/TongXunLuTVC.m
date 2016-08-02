@@ -302,9 +302,10 @@ static NSString *ContactsCell = @"ContactsCell";
             
             [_abDataSource addObjectsFromArray:array];
             
-            NSLog(@"%s,_abDataSource%ld",__func__,(long)_abDataSource.count);
             
-            [self.tableView reloadData];
+            [self sortdata];
+            
+            
             
         }
         
@@ -314,6 +315,33 @@ static NSString *ContactsCell = @"ContactsCell";
     
     
 }
+
+#pragma mark - 排序 将已注册放前面 
+-(void)sortdata
+{
+    NSArray *resultArray = [_abDataSource sortedArrayUsingComparator:^NSComparisonResult(ContactModel * obj1, ContactModel * obj2) {
+        
+        if (obj1.hadRegist)
+        {
+         
+            return NSOrderedAscending;
+            
+        }
+        else
+        {
+            return NSOrderedDescending;
+        }
+    }];
+    
+    _abDataSource = [[NSMutableArray alloc]init];
+    [_abDataSource addObjectsFromArray:resultArray];
+
+    
+    [self.tableView reloadData];
+    
+}
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     

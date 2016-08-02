@@ -290,7 +290,7 @@
         
     }
  
-        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+        BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kHuoDongTableName objectId:_huodong.objectId];
     
         _attendUser.hadQianDao = YES;
     
@@ -960,7 +960,7 @@
     
     
     
-    BmobObject *_ob  = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+    BmobObject *_ob  = [BmobObject objectWithoutDataWithClassName:kHuoDongTableName objectId:_huodong.objectId];
     
     
     UserModel *currentUser = [BmobHelper getCurrentUserModel];
@@ -1280,7 +1280,7 @@
             [self.tableView reloadData];
             
             
-                BmobObject *_ob  = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+                BmobObject *_ob  = [BmobObject objectWithoutDataWithClassName:kHuoDongTableName objectId:_huodong.objectId];
             
 //            [_ob removeObjectsInArray:@[removeDic] forKey:@"AttendUsers"];
             

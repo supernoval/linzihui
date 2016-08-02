@@ -125,7 +125,7 @@ static NSString *textViewCell  =@"textViewCell";
     
     if (_isEdited) {
        
-        _huodongOB = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodongModel.objectId];
+        _huodongOB = [BmobObject objectWithoutDataWithClassName:kHuoDongTableName objectId:_huodongModel.objectId];
         
         
         UIBarButtonItem *barButton = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(publishHuoDong)];

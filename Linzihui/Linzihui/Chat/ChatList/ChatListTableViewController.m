@@ -73,7 +73,7 @@ static NSString *headCellID = @"CellID";
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivegroupNoti:) name:kCreategroupSuccessNoti object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reFreshDataSource) name:kDidRemoveFriendNoti object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reFreshDataSource) name:kDidRemoveFriendNoti object:nil];
     
 //    [self addHeaderRefresh];
 //    [self addFooterRefresh];
@@ -85,7 +85,7 @@ static NSString *headCellID = @"CellID";
     
 //    [self mysearchConroller];
     
- 
+   [self reFreshDataSource];
     
     
 }
@@ -96,12 +96,11 @@ static NSString *headCellID = @"CellID";
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kHadLogin]) {
         
-        if (!HadFirstRefresh) {
+        
             
-             [self reFreshDataSource];
+        
+        
             
-        }
-       
         
         [self registerNotifications];
         
@@ -746,7 +745,7 @@ static NSString *headCellID = @"CellID";
 - (void)loadDataSource
 {
  
-    NSArray *conversations = [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:YES];
+    NSArray *conversations = [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
     
     NSMutableArray *personChats = [[NSMutableArray alloc]init];
     NSMutableArray *groupChats = [[NSMutableArray alloc]init];
@@ -764,13 +763,14 @@ static NSString *headCellID = @"CellID";
         {
             [groupChats addObject:convert];
             
-        }
+         }
         
     }
     
     
     // get conversations nickname headImage
-    [_conversations removeAllObjects];
+    _conversations = [[NSMutableArray alloc]init];
+    
     
     [BmobHelper getGroupChatInfo:groupChats results:^(NSArray *array) {
         
@@ -915,7 +915,6 @@ static NSString *headCellID = @"CellID";
 -(void)didUnreadMessagesCountChanged
 {
     [self reFreshDataSource];
-    [EMHelper playNewMessageSound];
     
     
     
@@ -923,7 +922,7 @@ static NSString *headCellID = @"CellID";
 
 - (void)didUpdateGroupList:(NSArray *)allGroups error:(EMError *)error
 {
-    [self reFreshDataSource];
+//    [self reFreshDataSource];
 }
 
 -(void)didReceiveApplyToJoinGroup:(NSString *)groupId groupname:(NSString *)groupname applyUsername:(NSString *)username reason:(NSString *)reason error:(EMError *)error

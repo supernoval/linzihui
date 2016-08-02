@@ -169,7 +169,8 @@ static NSString *commentCellID = @"CommentCell";
 {
     [super viewWillAppear:animated];
     
-
+    [self headerRefresh];
+    
     
 }
 
@@ -397,7 +398,7 @@ static NSString *commentCellID = @"CommentCell";
                 for (int i = 0; i < array.count; i++) {
                     
                     BmobObject *ob = [array objectAtIndex:i];
-                     NSDictionary *dataDict = [ob valueForKey:@"bmobDataDic"];
+                     NSDictionary *dataDict = [ob valueForKey:kBmobDataDic];
                     
                     ShengHuoModel *model = [[ShengHuoModel alloc]init];
                     
@@ -905,7 +906,9 @@ static NSString *commentCellID = @"CommentCell";
             
         }
     }
-    BmobObject *_ob = [BmobObject objectWithoutDatatWithClassName:kShengHuoQuanTableName objectId:oneModel.objectId];
+    
+    BmobObject *_ob = [BmobObject objectWithoutDataWithClassName:kShengHuoQuanTableName objectId:oneModel.objectId];
+    
     
     if (hadZan) {
         
@@ -1042,7 +1045,7 @@ static NSString *commentCellID = @"CommentCell";
     
     [MyProgressHUD showProgress];
     
-    BmobObject *shenghuoOB = [BmobObject objectWithoutDatatWithClassName:kShengHuoQuanTableName objectId:_toCommentModel.objectId];
+    BmobObject *shenghuoOB = [BmobObject objectWithoutDataWithClassName:kShengHuoQuanTableName objectId:_toCommentModel.objectId];
     
     [shenghuoOB addObjectsFromArray:@[_dict] forKey:@"comment"];
     

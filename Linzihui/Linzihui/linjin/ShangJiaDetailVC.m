@@ -595,8 +595,8 @@
     if (alertView == _jubaoAlertView && buttonIndex == 1) {
         
         
+        BmobObject *ob = [BmobObject objectWithoutDataWithClassName:kShangJia objectId:_model.objectId];
         
-        BmobObject *ob = [BmobObject objectWithoutDatatWithClassName:kShangJia objectId:_model.objectId];
         
         [ob addObjectsFromArray:@[[BmobUser getCurrentUser].username] forKey:@"jubao"];
         

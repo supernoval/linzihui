@@ -11,7 +11,7 @@
 #import "EditPhotoViewController.h"
 #import <BmobSDK/Bmob.h>
 #import <BmobSDK/BmobUser.h>
-#import <BmobSDK/BmobProFile.h>
+#import <BmobSDK/BmobFile.h>
 
 @interface SendWXViewController ()<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
@@ -124,7 +124,7 @@
         
         NSDictionary *dic = [model toDictionary];
         
-        BmobObject *_huodongOB = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+        BmobObject *_huodongOB = [BmobObject objectWithoutDataWithClassName:kHuoDongTableName objectId:_huodong.objectId];
         
         [_huodongOB addObjectsFromArray:@[dic] forKey:@"comment"];
         
@@ -181,7 +181,7 @@
             model.imageURLs = results;
             
             NSDictionary *dic = [model toDictionary];
-            BmobObject *_huodongOB = [BmobObject objectWithoutDatatWithClassName:kHuoDongTableName objectId:_huodong.objectId];
+            BmobObject *_huodongOB = [BmobObject objectWithoutDataWithClassName:kHuoDongTableName objectId:_huodong.objectId];
             
             [_huodongOB addObjectsFromArray:@[dic] forKey:@"comment"];
             
@@ -436,7 +436,7 @@
             
             if (isSuccessful) {
                 
-                [CommonMethods showDefaultErrorString:@"发送成功"];
+        
                 
                 [self.navigationController popViewControllerAnimated:YES];
                 
